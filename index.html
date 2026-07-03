@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Room Site</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="room" id="room1">
+    <h1></h1>
+    <p>if not for you</p>
+
+    <button onclick="goToRoom('room2')">go in →</button>
+  </div>
+
+  <div class="room hidden" id="room2">
+    <h1>Room 02</h1>
+    <p>Projects / archive / memory space</p>
+
+    <button onclick="goToRoom('room1')">← Back</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
