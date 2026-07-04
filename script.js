@@ -16,21 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
         "▨","▣","▤","▦","26","27","28"
     ];
 
-    const imagePaths = Array.from({ length: TOTAL_LAYERS }, (_, i) =>
-        `images/layer${i + 1}.webp`
+    const imagePaths = Array.from(
+        { length: TOTAL_LAYERS },
+        (_, i) => `images/layer${i + 1}.webp`
     );
 
     // -----------------------------
-    // BUILD LAYERS
+    // BUILD SIGILS ONLY
     // -----------------------------
     for (let i = 0; i < TOTAL_LAYERS; i++) {
-
-        const layer = document.createElement("div");
-        layer.className = "layer";
-        layer.id = `layer${i + 1}`;
-
-        world.appendChild(layer);
-        layers.push(layer);
 
         const sigil = document.createElement("div");
         sigil.dataset.index = i;
@@ -40,50 +34,70 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -----------------------------
-    // IMAGE CREATION (LAZY)
+    // ENSURE LAYER EXISTS
     // -----------------------------
-    function createImage(layer, src) {
+    function ensureLayer(index) {
+
+        if (layers[index]) return layers[index];
+
+        const layer = document.createElement("div");
+        layer.className = "layer";
+        layer.id = `layer${index + 1}`;
+
+        world.appendChild(layer);
+        layers[index] = layer;
+
+        return layer;
+    }
+
+    // -----------------------------
+    // LOAD IMAGE (LAZY, ONCE)
+    // -----------------------------
+    function loadImage(layer, index) {
+
+        if (layer.dataset.loaded) return;
+
         const img = document.createElement("img");
         img.className = "room-image";
-        img.dataset.src = src;
+        img.src = imagePaths[index];
+
         layer.appendChild(img);
-        return img;
+
+        layer.dataset.loaded = "true";
     }
 
-    function loadLayerImages(layer, index) {
-        const src = imagePaths[index];
-        const imgs = layer.querySelectorAll("img");
+    // -----------------------------
+    // TOGGLE LAYER (MOBILE SAFE ANIMATION)
+    // -----------------------------
+    function toggleLayer(index) {
 
-        if (imgs.length === 0) {
-            createImage(layer, src);
-        }
+        const layer = ensureLayer(index);
 
-        layer.querySelectorAll("img").forEach(img => {
-            if (!img.src && img.dataset.src) {
-                img.src = img.dataset.src;
-            }
+        const opening = !layer.classList.contains("lift-up");
+
+        loadImage(layer, index);
+
+        // FORCE 2-FRAME PAINT (fixes mobile animation skipping)
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+
+                layer.classList.toggle("lift-up");
+
+            });
         });
     }
 
     // -----------------------------
-    // SIGILS
+    // SIGILS (EVENT DELEGATION)
     // -----------------------------
-    sigilsContainer.querySelectorAll("div").forEach(sigil => {
-        sigil.addEventListener("click", () => {
+    sigilsContainer.addEventListener("click", (e) => {
 
-            const index = Number(sigil.dataset.index);
-            const layer = layers[index];
+        const target = e.target;
+        const index = Number(target.dataset.index);
 
-            if (!layer) return;
+        if (Number.isNaN(index)) return;
 
-            const isLifting = !layer.classList.contains("lift-up");
-
-            layer.classList.toggle("lift-up");
-
-            if (isLifting) {
-                loadLayerImages(layer, index);
-            }
-        });
+        toggleLayer(index);
     });
 
     // -----------------------------
@@ -91,16 +105,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // -----------------------------
     function liftAll() {
 
-        layers.forEach((layer, i) => {
+        for (let i = 0; i < TOTAL_LAYERS; i++) {
 
-            const delay = (layers.length - i) * 80;
+            const delay = (TOTAL_LAYERS - i) * 80;
 
             setTimeout(() => {
-                layer.classList.add("lift-up");
-                loadLayerImages(layer, i);
-            }, delay);
 
-        });
+                const layer = ensureLayer(i);
+
+                loadImage(layer, i);
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        layer.classList.add("lift-up");
+                    });
+                });
+
+            }, delay);
+        }
     }
 
     if (liftAllBtn) {
