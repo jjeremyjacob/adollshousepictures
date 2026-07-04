@@ -120,7 +120,7 @@ body {
 #layer30 { background-image: url("images/layer30.webp"); } 
 
 
-#layer7, #layer8, #layer9, #layer11, #layer25, #layer26 {
+#layer7, #layer8, #layer10, #layer11, #layer25, #layer26 {
     box-shadow: none !important;
 }
 
