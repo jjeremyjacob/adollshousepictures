@@ -1,84 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const layers = Array.from(document.querySelectorAll(".layer"));
+  let currentIndex = 0;
 
-    const TOTAL_LAYERS = 30;
+  function hideAllLayers() {
+    layers.forEach((layer, i) => {
+      layer.style.display = "none";
+    });
+  }
 
-    const world = document.querySelector(".world");
-    const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
+  function activateLayer(index) {
+    hideAllLayers();
 
-    const layers = [];
+    const layer = layers[index];
+    layer.style.display = "block";
 
-    const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i","▢","□","■",
-        "▨","▣","▤","▦","26","27","28"
-    ];
+    // ONLY NOW load images in this layer (lazy init)
+    const imgs = layer.querySelectorAll("img");
 
-    // -----------------------------
-    // BUILD LAYERS
-    // -----------------------------
-    for (let i = 0; i < TOTAL_LAYERS; i++) {
+    imgs.forEach(img => {
+      if (img.dataset.src && !img.src) {
+        img.src = img.dataset.src;
+      }
+    });
+  }
 
-        const layer = document.createElement("div");
-        layer.className = "layer";
-        layer.id = `layer${i + 1}`;
-
-        world.appendChild(layer);
-        layers.push(layer);
-
-        const sigil = document.createElement("div");
-        sigil.dataset.index = i;
-        sigil.textContent = sigilSet[i] || "◻";
-
-        if (sigilsContainer) {
-            sigilsContainer.appendChild(sigil);
+  function init() {
+    // move ALL images to data-src so they don't preload
+    layers.forEach(layer => {
+      const imgs = layer.querySelectorAll("img");
+      imgs.forEach(img => {
+        if (!img.dataset.src) {
+          img.dataset.src = img.src;
+          img.removeAttribute("src"); // prevents browser loading
         }
+      });
+    });
+
+    activateLayer(0);
+  }
+
+  // navigation example hooks
+  window.goUp = function () {
+    if (currentIndex > 0) {
+      currentIndex--;
+      activateLayer(currentIndex);
     }
+  };
 
-    // -----------------------------
-    // SIGIL CLICK → TOGGLE LAYER
-    // -----------------------------
-    if (sigilsContainer) {
-
-        sigilsContainer.querySelectorAll("div").forEach((sigil) => {
-
-            sigil.addEventListener("click", () => {
-
-                const index = Number(sigil.dataset.index);
-                const layer = layers[index];
-
-                if (!layer) return;
-
-                layer.classList.toggle("lift-up");
-            });
-
-        });
+  window.goDown = function () {
+    if (currentIndex < layers.length - 1) {
+      currentIndex++;
+      activateLayer(currentIndex);
     }
+  };
 
-    // -----------------------------
-    // LIFT ALL (CLEAN + STAGGERED)
-    // -----------------------------
-    function liftAllLayers() {
-
-        const baseDelay = 80;
-
-        layers.forEach((layer, i) => {
-
-            const reversed = layers.length - 1 - i;
-
-            setTimeout(() => {
-                layer.classList.add("lift-up");
-            }, reversed * baseDelay);
-        });
-    }
-
-    // -----------------------------
-    // BUTTON
-    // -----------------------------
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
-    }
-
+  init();
 });
