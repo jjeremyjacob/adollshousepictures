@@ -1,111 +1,158 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+document.addEventListener("DOMContentLoaded", () => {
+
+    console.log("SCRIPT LOADED");
+
+    const TOTAL_LAYERS = 30;
+
+    const world = document.querySelector(".world");
+    const sigilsContainer = document.querySelector(".sigils");
+    const liftAllBtn = document.getElementById("liftAll");
+
+    const DURATION = 6000;
+
+    // -----------------------------
+    // SIGIL SET
+    // -----------------------------
+    const sigilSet = [
+        "find me","gun","the horse","chicken","e",
+        "game","my house","◉","⟡","✦",
+        "floor plan","library","+","cut","⬣",
+        "⌒","king","oh i", "▢","□","■",
+        "▨","▣","▤","▦","26","27","28",
+    ];
+
+    // -----------------------------
+    // BUILD SYSTEM
+    // -----------------------------
+    const layers = [];
+
+    for (let i = 0; i < TOTAL_LAYERS; i++) {
+
+        // create layer
+        const layer = document.createElement("div");
+        layer.className = "layer";
+        layer.id = `layer${i + 1}`;
+
+        world.appendChild(layer);
+        layers.push(layer);
+
+        // create sigil
+        const sigil = document.createElement("div");
+        sigil.dataset.layer = i;
+        sigil.textContent = sigilSet[i] || "◻";
+
+        sigilsContainer.appendChild(sigil);
+    }
+
+    // -----------------------------
+    // INIT STATE
+    // -----------------------------
+    layers.forEach((layer, i) => {
+
+        layer.style.transition = "none";
+
+        if (i === 0) {
+            layer.style.transform = "translateY(0)";
+            layer.dataset.state = "down";
+        } else {
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
+        }
+    });
+
+    // -----------------------------
+    // MOVE FUNCTIONS
+    // -----------------------------
+    function moveUp(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
+        layer.style.transform = "translateY(-140%)";
+        layer.dataset.state = "up";
+    }
+
+    function moveDown(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
+        layer.style.transform = "translateY(0)";
+        layer.dataset.state = "down";
+    }
+
+    // -----------------------------
+    // LIFT ALL LAYERS (SYSTEM CONTROL)
+    // -----------------------------
+    function liftAllLayers() {
+
+        layers.forEach((layer) => {
+
+            layer.style.transition =
+                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
+        });
+    }
+
+    // -----------------------------
+    // SIGIL INTERACTION (per-layer control)
+    // -----------------------------
+    sigilsContainer.querySelectorAll("div").forEach((sigil) => {
+
+        sigil.addEventListener("click", () => {
+
+            const index = Number(sigil.dataset.layer);
+            const layer = layers[index];
+
+            if (!layer) return;
+
+            if (layer.dataset.state === "down") {
+                moveUp(layer);
+            } else {
+                moveDown(layer);
+            }
+
+        });
+
+    });
+
+    // -----------------------------
+    // LEFT NAV CONTROL (lift all)
+    // -----------------------------
+    if (liftAllBtn) {
+        liftAllBtn.addEventListener("click", liftAllLayers);
+    }
+
+});
+
+const layers = document.querySelectorAll(".layer");
+
+function liftAllLayers() {
+  const total = layers.length;
+
+  // STEP 1: instantly make ALL layers visible
+  layers.forEach(layer => {
+    layer.classList.add("visible");
+  });
+
+  // STEP 2: stagger only the lift motion
+  const baseDelay = 500; // dramatic spacing
+
+  layers.forEach((layer, index) => {
+    const reversedIndex = total - 1 - index;
+
+    // strong theatrical curve
+    const delay = Math.pow(reversedIndex, 1.8) * baseDelay;
+
+    setTimeout(() => {
+      layer.classList.add("lift-up");
+    }, delay);
+  });
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #111;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-}
-
-/* STAGE */
-.scene {
-    position: relative;
-    width: 600px;
-    height: 750px;
-    background: #000;
-    border: 6px solid #1e1305;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* WORLD STACK */
-.world {
-    position: absolute;
-    inset: 0;
-}
-
-/* LAYERS */
-.layer {
-    position: absolute;
-    inset: 0;
-
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 1s ease;
-
-    will-change: transform;
-    transform: translateY(0);
-
-    opacity: 1;
-
-    filter: saturate(0.85) contrast(0.95) brightness(0.95);
-
-    box-shadow:
-        0 12px 70px #000,
-        0 2px 12px #0a0a0a;
-}
-
-.layer.lift-up {
-    transform: translateY(-140%);
-}
-
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
-/* IMAGES */
-.room-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: bottom;
-    display: block;
-}
-
-/* SIGILS */
-.sigils {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    color: #4b4330;
-}
-
-.sigils div:hover {
-    color: #ad8a6e;
-    transform: scale(1.4);
-}
-
-/* LIFT NAV */
-.nav {
-    position: fixed;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10000;
-}
-
-button {
-    background: transparent;
-    color: #5d4c26;
-    border: 0;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-button:hover {
-    color: #a77f60;
-    transform: scale(1.4);
-    transition: 0.25s ease;
+function resetLayers() {
+  layers.forEach(layer => {
+    layer.classList.remove("lift-up");
+    layer.classList.remove("visible");
+  });
 }
