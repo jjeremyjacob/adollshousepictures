@@ -14,77 +14,136 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* YOUR SCENE (kept, just becomes the stage contfainer) */
+/* STAGE */
 .scene {
     position: relative;
     width: 600px;
     height: 750px;
-    background: black;
 
-    border: 6px solid rgba(30, 19, 5, 0.85);
-    border-radius: 28px;
+    background: #000;
+
+    border: 6px solid #1e1305;
+    border-radius: 8px;
 
     overflow: hidden;
 }
 
-
-/* WORLD STACK (NEW) */
+/* WORLD STACK */
 .world {
     position: absolute;
     inset: 0;
 }
 
-/* LAYERS = FORMER "ROOMS" */
+/* =========================
+   LAYERS (FULLY OPAQUE)
+   ========================= */
 .layer {
     position: absolute;
     inset: 0;
 
-    overflow: hidden;
+    transform: translateY(0);
 
-    transform: translateY(-100%);
-    transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1.2);
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s ease;
 
+    will-change: transform;
 
     background-size: cover;
-    background-position: center;
+    background-position: bottom center;
     background-repeat: no-repeat;
 
-        /* REAL DEPTH SHADOW */
+    /* FULL OPACITY (no transparency system at all) */
+    opacity: 1;
+
+    /* depth without transparency */
+    filter: saturate(0.8) contrast(0.95) brightness(0.95);
+
+    transform-origin: center;
+
+    /* stronger physical separation instead of alpha blending */
     box-shadow:
-        0 10px 50px rgba(0, 0, 0, 0.25),
-        0 15px 40px rgba(0, 0, 0, 0.1);
+        0 12px 70px #000000,
+        0 2px 12px #0a0a0a;
 }
 
-
-/* ACTIVE LAYER (CURTAIN DOWN) */
-.layer.visible {
-    transform: translateY(0);
+/* LIFT STATE */
+.layer.lift-up {
+    transform: translateY(-140%);
 }
 
-/* BACKGROUNDS (keep your existing images) */
-#layer1 { background-image: url("images/room1.jpg"); }
-#layer2 { background-image: url("images/room2.gif"); }
-#layer3 { background-image: url("images/room3.webp"); }
-#layer4 { background-image: url("images/room4.jpg"); }
-#layer5 { background-image: url("images/room5.jpg"); }
-#layer6 { background-image: url("images/room6.webp"); }
+/* ACTIVE STATE */
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
 
-/* BUTTONS (unchanged visually, just cleaner positioning) */
+/* IMAGE FILL */
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    display: block;
+}
+
+/* =========================
+   BACKGROUNDS
+   ========================= */
+#layer1  { background-image: url("images/layer1.webp"); }
+#layer2  { background-image: url("images/layer2.webp"); }
+#layer3  { background-image: url("images/layer3.webp"); }
+#layer4  { background-image: url("images/layer4.gif"); }
+#layer5  { background-image: url("images/layer5.webp"); }
+#layer6  { background-image: url("images/layer6.webp"); }
+#layer7  { background-image: url("images/layer7.webp"); }
+#layer8  { background-image: url("images/layer8.webp"); }
+#layer9  { background-image: url("images/layer9.webp"); }
+#layer10 { background-image: url("images/layer10.webp"); }
+#layer11 { background-image: url("images/layer11.webp"); }
+#layer12 { background-image: url("images/layer12.webp"); }
+#layer13 { background-image: url("images/layer13.webp"); }
+#layer14 { background-image: url("images/layer14.webp"); }
+#layer15 { background-image: url("images/layer15.webp"); }
+#layer16 { background-image: url("images/layer16.webp"); }
+#layer17 { background-image: url("images/layer17.webp"); }
+#layer18 { background-image: url("images/layer18.gif"); }
+#layer19 { background-image: url("images/layer19.webp"); }
+#layer20 { background-image: url("images/layer20.webp"); }
+#layer21 { background-image: url("images/layer21.webp"); }
+#layer22 { background-image: url("images/layer22.webp"); }
+#layer23 { background-image: url("images/layer23.webp"); }
+#layer24 { background-image: url("images/layer24.webp"); }
+#layer25 { background-image: url("images/layer25.webp"); }
+#layer26 { background-image: url("images/layer26.webp"); }
+#layer27 { background-image: url("images/layer27.webp"); }
+#layer28 { background-image: url("images/layer28.webp"); }
+#layer29 { background-image: url("images/layer29.webp"); }
+#layer30 { background-image: url("images/layer30.webp"); } 
+
+
+#layer7, #layer11, #layer25, #layer26 {
+    box-shadow: none !important;
+}
+
+/* =========================
+   BUTTONS (NO RGBA)
+   ========================= */
 button {
     position: absolute;
     bottom: 30px;
     padding: 10px 14px;
-    font-size: 30px;
+    font-size: 18px;
+
     background: transparent;
-    color: rgba(49, 32, 10, 0.85);
-    border: 0px solid rgba(30, 19, 5, 0.85);
+    color: #5d4c26;
+
+    border: 0;
     cursor: pointer;
     z-index: 10;
 }
 
 button:hover {
-    color: #ffffff;
-    transform: scale(2);
+    color: #a77f60;
+    transform: scale(1.4);
     transition: transform 0.25s ease, color 0.25s ease;
 }
 
@@ -96,4 +155,65 @@ button:hover {
 #nextBtn {
     left: 60%;
     transform: translateX(-50%);
+}
+
+/* =========================
+   SIGILS (NO ALPHA COLORS)
+   ========================= */
+.sigils {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+
+    color: #8b7d64;
+}
+
+.sigils div {
+    color: #4b4330;
+    transition: 0.2s ease;
+}
+
+.sigils div:hover {
+    color: #ad8a6e;
+    transform: scale(1.4);
+}
+
+/* =========================
+   LIFT NAV
+   ========================= */
+.nav,
+.lift-nav {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lift-btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+
+    color: #3a1919;
+    background: #e6e6e6;
+
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
+
+    cursor: pointer;
+    opacity: 1;
 }
