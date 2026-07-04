@@ -14,73 +14,52 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* =========================
-   THEATER STAGE
-   ========================= */
+/* STAGE */
 .scene {
     position: relative;
-
-    width: min(92vw, 600px);
-    height: min(70vh, 750px);
-
+    width: 600px;
+    height: 750px;
     background: #000;
-
-    border: 4px solid #1e1305;
-    border-radius: 10px;
-
+    border: 6px solid #1e1305;
+    border-radius: 8px;
     overflow: hidden;
 }
 
-/* =========================
-   WORLD STACK
-   ========================= */
+/* WORLD STACK */
 .world {
     position: absolute;
     inset: 0;
 }
 
-/* =========================
-   LAYERS (THEATER SYSTEM)
-   ========================= */
+/* LAYERS */
 .layer {
     position: absolute;
     inset: 0;
 
-    transform: translateY(0);
-
     transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.8s ease;
+                filter 1s ease;
 
     will-change: transform;
-
-    background-size: cover;
-    background-position: bottom center;
-    background-repeat: no-repeat;
+    transform: translateY(0);
 
     opacity: 1;
 
-    /* depth without transparency */
-    filter: saturate(0.8) contrast(0.95) brightness(0.95);
+    filter: saturate(0.85) contrast(0.95) brightness(0.95);
 
-    transform-origin: center;
-
-    /* physical stacking feel */
     box-shadow:
-        0 12px 70px #000000,
+        0 12px 70px #000,
         0 2px 12px #0a0a0a;
 }
 
-/* ACTIVE STATE */
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
-/* LIFT STATE */
 .layer.lift-up {
     transform: translateY(-140%);
 }
 
-/* IMAGE SUPPORT (if used instead of background-image) */
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
+
+/* IMAGES */
 .room-image {
     width: 100%;
     height: 100%;
@@ -89,192 +68,44 @@ body {
     display: block;
 }
 
-/* =========================
-   BACKGROUNDS
-   ========================= */
-#layer1  { background-image: url("images/layer1.webp"); }
-#layer2  { background-image: url("images/layer2.webp"); }
-#layer3  { background-image: url("images/layer3.webp"); }
-#layer4  { background-image: url("images/layer4.gif"); }
-#layer5  { background-image: url("images/layer5.webp"); }
-#layer6  { background-image: url("images/layer6.webp"); }
-#layer7  { background-image: url("images/layer7.webp"); }
-#layer8  { background-image: url("images/layer8.webp"); }
-#layer9  { background-image: url("images/layer9.webp"); }
-#layer10 { background-image: url("images/layer10.webp"); }
-#layer11 { background-image: url("images/layer11.webp"); }
-#layer12 { background-image: url("images/layer12.webp"); }
-#layer13 { background-image: url("images/layer13.webp"); }
-#layer14 { background-image: url("images/layer14.webp"); }
-#layer15 { background-image: url("images/layer15.webp"); }
-#layer16 { background-image: url("images/layer16.webp"); }
-#layer17 { background-image: url("images/layer17.webp"); }
-#layer18 { background-image: url("images/layer18.gif"); }
-#layer19 { background-image: url("images/layer19.webp"); }
-#layer20 { background-image: url("images/layer20.webp"); }
-#layer21 { background-image: url("images/layer21.webp"); }
-#layer22 { background-image: url("images/layer22.webp"); }
-#layer23 { background-image: url("images/layer23.webp"); }
-#layer24 { background-image: url("images/layer24.webp"); }
-#layer25 { background-image: url("images/layer25.webp"); }
-#layer26 { background-image: url("images/layer26.webp"); }
-#layer27 { background-image: url("images/layer27.webp"); }
-#layer28 { background-image: url("images/layer28.webp"); }
-#layer29 { background-image: url("images/layer29.webp"); }
-#layer30 { background-image: url("images/layer30.webp"); }
-
-/* selective shadow removal */
-#layer7,
-#layer8,
-#layer10,
-#layer11,
-#layer25,
-#layer26 {
-    box-shadow: none !important;
-}
-
-/* =========================
-   BUTTONS (DESKTOP + MOBILE SAFE)
-   ========================= */
-button {
-    position: absolute;
-    bottom: 30px;
-
-    padding: 12px 16px;
-    font-size: 18px;
-
-    background: transparent;
-    color: #5d4c26;
-
-    border: 0;
-    cursor: pointer;
-    z-index: 10;
-
-    touch-action: manipulation;
-}
-
-button:hover {
-    color: #a77f60;
-    transform: scale(1.2);
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-#prevBtn {
-    left: 40%;
-    transform: translateX(-50%);
-}
-
-#nextBtn {
-    left: 60%;
-    transform: translateX(-50%);
-}
-
-/* =========================
-   SIGILS (DESKTOP DEFAULT)
-   ========================= */
+/* SIGILS */
 .sigils {
     position: fixed;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-
     display: flex;
     flex-direction: column;
     gap: 10px;
-
     font-size: 14px;
-    text-align: right;
     cursor: pointer;
-
-    color: #8b7d64;
-}
-
-.sigils div {
     color: #4b4330;
-    transition: 0.2s ease;
 }
 
 .sigils div:hover {
     color: #ad8a6e;
-    transform: scale(1.3);
+    transform: scale(1.4);
 }
 
-/* =========================
-   NAV BUTTON
-   ========================= */
+/* LIFT NAV */
 .nav {
     position: fixed;
-    left: 50%;
-    bottom: 80px;
-    transform: translateX(-50%);
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 10000;
 }
 
-#liftAll {
-    font-size: 20px;
-    padding: 14px 18px;
-
-    border-radius: 10px;
-    border: 1px solid #bdbdbd;
-
-    background: #e6e6e6;
-    color: #3a1919;
-
+button {
+    background: transparent;
+    color: #5d4c26;
+    border: 0;
     cursor: pointer;
+    font-size: 18px;
 }
 
-/* =========================
-   MOBILE OVERRIDES
-   ========================= */
-@media (max-width: 768px) {
-
-    .sigils {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: auto;
-
-        transform: none;
-
-        flex-direction: row;
-        overflow-x: auto;
-
-        padding: 10px 8px;
-
-        background: #0b0b0b;
-        border-top: 1px solid #1e1305;
-
-        gap: 10px;
-    }
-
-    .sigils div {
-        flex: 0 0 auto;
-
-        padding: 8px 10px;
-        min-width: 40px;
-
-        text-align: center;
-
-        background: #111;
-        border-radius: 6px;
-    }
-
-    .nav {
-        bottom: 100px;
-    }
-
-    button:hover {
-        transform: none;
-    }
-}
-
-/* =========================
-   TOUCH SAFETY
-   ========================= */
-@media (hover: none) {
-    button:hover,
-    .sigils div:hover {
-        transform: none !important;
-    }
+button:hover {
+    color: #a77f60;
+    transform: scale(1.4);
+    transition: 0.25s ease;
 }
