@@ -1,42 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Room Site</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Room System</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="phone-frame">
+<div class="scene">
 
-    <!-- ROOM 01 -->
-    <section class="room active" id="room1">
-      <h1 class="title"></h1>
-      <p class="text">
-        
-      </p>
-      <button class="btn" onclick="goToRoom(2)">
-        in
-      </button>
-    </section>
+<!-- WORLD STACK -->
+    <div class="world">
 
-    <!-- ROOM 02 -->
-    <section class="room" id="room2">
-      <h1 class="title"></h1>
-      <p class="text">
-        
-      </p>
-      <button class="btn" onclick="goToRoom(1)">
-        out
-      </button>
-    <button class="btn" onclick="goToRoom(1)">
-        in
-      </button>
-    </section>
+      <div class="layer visible" id="layer1"></div>
+      <div class="layer" id="layer2"></div>
+      <div class="layer" id="layer3"></div>
+      <div class="layer" id="layer4"></div>
+      <div class="layer" id="layer5"></div>
+      <div class="layer" id="layer6"></div>
 
-  </div>
+    </div>
 
-  <script src="script.js"></script>
+    <!-- CONTROLS -->
+    <button id="prevBtn">-</button>
+    <button id="nextBtn">+</button>
+
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
