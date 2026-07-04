@@ -1,158 +1,219 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    console.log("SCRIPT LOADED");
-
-    const TOTAL_LAYERS = 30;
-
-    const world = document.querySelector(".world");
-    const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
-
-    const DURATION = 6000;
-
-    // -----------------------------
-    // SIGIL SET
-    // -----------------------------
-    const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i", "▢","□","■",
-        "▨","▣","▤","▦","26","27","28",
-    ];
-
-    // -----------------------------
-    // BUILD SYSTEM
-    // -----------------------------
-    const layers = [];
-
-    for (let i = 0; i < TOTAL_LAYERS; i++) {
-
-        // create layer
-        const layer = document.createElement("div");
-        layer.className = "layer";
-        layer.id = `layer${i + 1}`;
-
-        world.appendChild(layer);
-        layers.push(layer);
-
-        // create sigil
-        const sigil = document.createElement("div");
-        sigil.dataset.layer = i;
-        sigil.textContent = sigilSet[i] || "◻";
-
-        sigilsContainer.appendChild(sigil);
-    }
-
-    // -----------------------------
-    // INIT STATE
-    // -----------------------------
-    layers.forEach((layer, i) => {
-
-        layer.style.transition = "none";
-
-        if (i === 0) {
-            layer.style.transform = "translateY(0)";
-            layer.dataset.state = "down";
-        } else {
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
-        }
-    });
-
-    // -----------------------------
-    // MOVE FUNCTIONS
-    // -----------------------------
-    function moveUp(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-        layer.style.transform = "translateY(-140%)";
-        layer.dataset.state = "up";
-    }
-
-    function moveDown(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-        layer.style.transform = "translateY(0)";
-        layer.dataset.state = "down";
-    }
-
-    // -----------------------------
-    // LIFT ALL LAYERS (SYSTEM CONTROL)
-    // -----------------------------
-    function liftAllLayers() {
-
-        layers.forEach((layer) => {
-
-            layer.style.transition =
-                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
-        });
-    }
-
-    // -----------------------------
-    // SIGIL INTERACTION (per-layer control)
-    // -----------------------------
-    sigilsContainer.querySelectorAll("div").forEach((sigil) => {
-
-        sigil.addEventListener("click", () => {
-
-            const index = Number(sigil.dataset.layer);
-            const layer = layers[index];
-
-            if (!layer) return;
-
-            if (layer.dataset.state === "down") {
-                moveUp(layer);
-            } else {
-                moveDown(layer);
-            }
-
-        });
-
-    });
-
-    // -----------------------------
-    // LEFT NAV CONTROL (lift all)
-    // -----------------------------
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
-    }
-
-});
-
-const layers = document.querySelectorAll(".layer");
-
-function liftAllLayers() {
-  const total = layers.length;
-
-  // STEP 1: instantly make ALL layers visible
-  layers.forEach(layer => {
-    layer.classList.add("visible");
-  });
-
-  // STEP 2: stagger only the lift motion
-  const baseDelay = 500; // dramatic spacing
-
-  layers.forEach((layer, index) => {
-    const reversedIndex = total - 1 - index;
-
-    // strong theatrical curve
-    const delay = Math.pow(reversedIndex, 1.8) * baseDelay;
-
-    setTimeout(() => {
-      layer.classList.add("lift-up");
-    }, delay);
-  });
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function resetLayers() {
-  layers.forEach(layer => {
-    layer.classList.remove("lift-up");
-    layer.classList.remove("visible");
-  });
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* STAGE */
+.scene {
+    position: relative;
+    width: 600px;
+    height: 750px;
+
+    background: #000;
+
+    border: 6px solid #1e1305;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+/* WORLD STACK */
+.world {
+    position: absolute;
+    inset: 0;
+}
+
+/* =========================
+   LAYERS (FULLY OPAQUE)
+   ========================= */
+.layer {
+    position: absolute;
+    inset: 0;
+
+    transform: translateY(0);
+
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s ease;
+
+    will-change: transform;
+
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+
+    /* FULL OPACITY (no transparency system at all) */
+    opacity: 1;
+
+    /* depth without transparency */
+    filter: saturate(0.8) contrast(0.95) brightness(0.95);
+
+    transform-origin: center;
+
+    /* stronger physical separation instead of alpha blending */
+    box-shadow:
+        0 12px 70px #000000,
+        0 2px 12px #0a0a0a;
+}
+
+/* LIFT STATE */
+.layer.lift-up {
+    transform: translateY(-140%);
+}
+
+/* ACTIVE STATE */
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
+
+/* IMAGE FILL */
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    display: block;
+}
+
+/* =========================
+   BACKGROUNDS
+   ========================= */
+#layer1  { background-image: url("images/layer1.webp"); }
+#layer2  { background-image: url("images/layer2.webp"); }
+#layer3  { background-image: url("images/layer3.webp"); }
+#layer4  { background-image: url("images/layer4.gif"); }
+#layer5  { background-image: url("images/layer5.webp"); }
+#layer6  { background-image: url("images/layer6.webp"); }
+#layer7  { background-image: url("images/layer7.webp"); }
+#layer8  { background-image: url("images/layer8.webp"); }
+#layer9  { background-image: url("images/layer9.webp"); }
+#layer10 { background-image: url("images/layer10.webp"); }
+#layer11 { background-image: url("images/layer11.webp"); }
+#layer12 { background-image: url("images/layer12.webp"); }
+#layer13 { background-image: url("images/layer13.webp"); }
+#layer14 { background-image: url("images/layer14.webp"); }
+#layer15 { background-image: url("images/layer15.webp"); }
+#layer16 { background-image: url("images/layer16.webp"); }
+#layer17 { background-image: url("images/layer17.webp"); }
+#layer18 { background-image: url("images/layer18.gif"); }
+#layer19 { background-image: url("images/layer19.webp"); }
+#layer20 { background-image: url("images/layer20.webp"); }
+#layer21 { background-image: url("images/layer21.webp"); }
+#layer22 { background-image: url("images/layer22.webp"); }
+#layer23 { background-image: url("images/layer23.webp"); }
+#layer24 { background-image: url("images/layer24.webp"); }
+#layer25 { background-image: url("images/layer25.webp"); }
+#layer26 { background-image: url("images/layer26.webp"); }
+#layer27 { background-image: url("images/layer27.webp"); }
+#layer28 { background-image: url("images/layer28.webp"); }
+#layer29 { background-image: url("images/layer29.webp"); }
+#layer30 { background-image: url("images/layer30.webp"); } 
+
+
+#layer7, #layer11, #layer25, #layer26 {
+    box-shadow: none !important;
+}
+
+/* =========================
+   BUTTONS (NO RGBA)
+   ========================= */
+button {
+    position: absolute;
+    bottom: 30px;
+    padding: 10px 14px;
+    font-size: 18px;
+
+    background: transparent;
+    color: #5d4c26;
+
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button:hover {
+    color: #a77f60;
+    transform: scale(1.4);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+#prevBtn {
+    left: 40%;
+    transform: translateX(-50%);
+}
+
+#nextBtn {
+    left: 60%;
+    transform: translateX(-50%);
+}
+
+/* =========================
+   SIGILS (NO ALPHA COLORS)
+   ========================= */
+.sigils {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
+
+    color: #8b7d64;
+}
+
+.sigils div {
+    color: #4b4330;
+    transition: 0.2s ease;
+}
+
+.sigils div:hover {
+    color: #ad8a6e;
+    transform: scale(1.4);
+}
+
+/* =========================
+   LIFT NAV
+   ========================= */
+.nav,
+.lift-nav {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lift-btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+
+    color: #3a1919;
+    background: #e6e6e6;
+
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
+
+    cursor: pointer;
+    opacity: 1;
 }
