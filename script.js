@@ -1,132 +1,219 @@
-document.addEventListener("DOMContentLoaded", () => {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    const TOTAL_LAYERS = 30;
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
 
-    const world = document.querySelector(".world");
-    const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
+/* STAGE */
+.scene {
+    position: relative;
+    width: 600px;
+    height: 750px;
 
-    const layers = [];
+    background: #000;
 
-    const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i","▢","□","■",
-        "▨","▣","▤","▦","26","27","28"
-    ];
+    border: 6px solid #1e1305;
+    border-radius: 8px;
 
-    const imagePaths = Array.from(
-        { length: TOTAL_LAYERS },
-        (_, i) => `images/layer${i + 1}.webp`
-    );
+    overflow: hidden;
+}
 
-    // -----------------------------
-    // BUILD SIGILS ONLY
-    // -----------------------------
-    for (let i = 0; i < TOTAL_LAYERS; i++) {
+/* WORLD STACK */
+.world {
+    position: absolute;
+    inset: 0;
+}
 
-        const sigil = document.createElement("div");
-        sigil.dataset.index = i;
-        sigil.textContent = sigilSet[i] || "◻";
+/* =========================
+   LAYERS (FULLY OPAQUE)
+   ========================= */
+.layer {
+    position: absolute;
+    inset: 0;
 
-        sigilsContainer.appendChild(sigil);
-    }
+    transform: translateY(0);
 
-    // -----------------------------
-    // ENSURE LAYER EXISTS
-    // -----------------------------
-    function ensureLayer(index) {
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s ease;
 
-        if (layers[index]) return layers[index];
+    will-change: transform;
 
-        const layer = document.createElement("div");
-        layer.className = "layer";
-        layer.id = `layer${index + 1}`;
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
 
-        world.appendChild(layer);
-        layers[index] = layer;
+    /* FULL OPACITY (no transparency system at all) */
+    opacity: 1;
 
-        return layer;
-    }
+    /* depth without transparency */
+    filter: saturate(0.8) contrast(0.95) brightness(0.95);
 
-    // -----------------------------
-    // LOAD IMAGE (LAZY, ONCE)
-    // -----------------------------
-    function loadImage(layer, index) {
+    transform-origin: center;
 
-        if (layer.dataset.loaded) return;
+    /* stronger physical separation instead of alpha blending */
+    box-shadow:
+        0 12px 70px #000000,
+        0 2px 12px #0a0a0a;
+}
 
-        const img = document.createElement("img");
-        img.className = "room-image";
-        img.src = imagePaths[index];
+/* LIFT STATE */
+.layer.lift-up {
+    transform: translateY(-140%);
+}
 
-        layer.appendChild(img);
+/* ACTIVE STATE */
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
 
-        layer.dataset.loaded = "true";
-    }
+/* IMAGE FILL */
+.room-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    display: block;
+}
 
-    // -----------------------------
-    // TOGGLE LAYER (MOBILE SAFE ANIMATION)
-    // -----------------------------
-    function toggleLayer(index) {
+/* =========================
+   BACKGROUNDS
+   ========================= */
+#layer1  { background-image: url("images/layer1.webp"); }
+#layer2  { background-image: url("images/layer2.webp"); }
+#layer3  { background-image: url("images/layer3.webp"); }
+#layer4  { background-image: url("images/layer4.gif"); }
+#layer5  { background-image: url("images/layer5.webp"); }
+#layer6  { background-image: url("images/layer6.webp"); }
+#layer7  { background-image: url("images/layer7.webp"); }
+#layer8  { background-image: url("images/layer8.webp"); }
+#layer9  { background-image: url("images/layer9.webp"); }
+#layer10 { background-image: url("images/layer10.webp"); }
+#layer11 { background-image: url("images/layer11.webp"); }
+#layer12 { background-image: url("images/layer12.webp"); }
+#layer13 { background-image: url("images/layer13.webp"); }
+#layer14 { background-image: url("images/layer14.webp"); }
+#layer15 { background-image: url("images/layer15.webp"); }
+#layer16 { background-image: url("images/layer16.webp"); }
+#layer17 { background-image: url("images/layer17.webp"); }
+#layer18 { background-image: url("images/layer18.gif"); }
+#layer19 { background-image: url("images/layer19.webp"); }
+#layer20 { background-image: url("images/layer20.webp"); }
+#layer21 { background-image: url("images/layer21.webp"); }
+#layer22 { background-image: url("images/layer22.webp"); }
+#layer23 { background-image: url("images/layer23.webp"); }
+#layer24 { background-image: url("images/layer24.webp"); }
+#layer25 { background-image: url("images/layer25.webp"); }
+#layer26 { background-image: url("images/layer26.webp"); }
+#layer27 { background-image: url("images/layer27.webp"); }
+#layer28 { background-image: url("images/layer28.webp"); }
+#layer29 { background-image: url("images/layer29.webp"); }
+#layer30 { background-image: url("images/layer30.webp"); } 
 
-        const layer = ensureLayer(index);
 
-        const opening = !layer.classList.contains("lift-up");
+#layer7, #layer11, #layer25, #layer26 {
+    box-shadow: none !important;
+}
 
-        loadImage(layer, index);
+/* =========================
+   BUTTONS (NO RGBA)
+   ========================= */
+button {
+    position: absolute;
+    bottom: 30px;
+    padding: 10px 14px;
+    font-size: 18px;
 
-        // FORCE 2-FRAME PAINT (fixes mobile animation skipping)
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
+    background: transparent;
+    color: #5d4c26;
 
-                layer.classList.toggle("lift-up");
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+}
 
-            });
-        });
-    }
+button:hover {
+    color: #a77f60;
+    transform: scale(1.4);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
 
-    // -----------------------------
-    // SIGILS (EVENT DELEGATION)
-    // -----------------------------
-    sigilsContainer.addEventListener("click", (e) => {
+#prevBtn {
+    left: 40%;
+    transform: translateX(-50%);
+}
 
-        const target = e.target;
-        const index = Number(target.dataset.index);
+#nextBtn {
+    left: 60%;
+    transform: translateX(-50%);
+}
 
-        if (Number.isNaN(index)) return;
+/* =========================
+   SIGILS (NO ALPHA COLORS)
+   ========================= */
+.sigils {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 
-        toggleLayer(index);
-    });
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-    // -----------------------------
-    // LIFT ALL
-    // -----------------------------
-    function liftAll() {
+    font-size: 14px;
+    text-align: right;
+    cursor: pointer;
 
-        for (let i = 0; i < TOTAL_LAYERS; i++) {
+    color: #8b7d64;
+}
 
-            const delay = (TOTAL_LAYERS - i) * 80;
+.sigils div {
+    color: #4b4330;
+    transition: 0.2s ease;
+}
 
-            setTimeout(() => {
+.sigils div:hover {
+    color: #ad8a6e;
+    transform: scale(1.4);
+}
 
-                const layer = ensureLayer(i);
+/* =========================
+   LIFT NAV
+   ========================= */
+.nav,
+.lift-nav {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-                loadImage(layer, i);
+.lift-btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
 
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        layer.classList.add("lift-up");
-                    });
-                });
+    color: #3a1919;
+    background: #e6e6e6;
 
-            }, delay);
-        }
-    }
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid #bdbdbd;
 
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAll);
-    }
-
-});
+    cursor: pointer;
+    opacity: 1;
+}
