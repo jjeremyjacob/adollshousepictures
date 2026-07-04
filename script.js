@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "▨","▣","▤","▦","26","27","28"
     ];
 
+    const imagePaths = Array.from({ length: TOTAL_LAYERS }, (_, i) =>
+        `images/layer${i + 1}.webp`
+    );
+
     // -----------------------------
     // BUILD LAYERS
     // -----------------------------
@@ -32,100 +36,75 @@ document.addEventListener("DOMContentLoaded", () => {
         sigil.dataset.index = i;
         sigil.textContent = sigilSet[i] || "◻";
 
-        if (sigilsContainer) {
-            sigilsContainer.appendChild(sigil);
-        }
+        sigilsContainer.appendChild(sigil);
     }
 
     // -----------------------------
-    // LAZY LOAD SETUP (PREVENT ALL INITIAL IMAGE LOADING)
+    // IMAGE CREATION (LAZY)
     // -----------------------------
-    function initLazyLoading() {
-        layers.forEach(layer => {
-            const imgs = layer.querySelectorAll("img");
-
-            imgs.forEach(img => {
-                if (img.getAttribute("src")) {
-                    img.dataset.src = img.getAttribute("src");
-                    img.removeAttribute("src"); // prevents browser preload
-                }
-            });
-        });
+    function createImage(layer, src) {
+        const img = document.createElement("img");
+        img.className = "room-image";
+        img.dataset.src = src;
+        layer.appendChild(img);
+        return img;
     }
 
-    // -----------------------------
-    // LOAD IMAGES FOR A LAYER
-    // -----------------------------
-    function loadLayerImages(layer) {
-        if (!layer) return;
-
+    function loadLayerImages(layer, index) {
+        const src = imagePaths[index];
         const imgs = layer.querySelectorAll("img");
 
-        imgs.forEach(img => {
-            if (img.dataset.src && !img.src) {
+        if (imgs.length === 0) {
+            createImage(layer, src);
+        }
+
+        layer.querySelectorAll("img").forEach(img => {
+            if (!img.src && img.dataset.src) {
                 img.src = img.dataset.src;
             }
         });
     }
 
     // -----------------------------
-    // SIGIL CLICK → TOGGLE LAYER
+    // SIGILS
     // -----------------------------
-    if (sigilsContainer) {
+    sigilsContainer.querySelectorAll("div").forEach(sigil => {
+        sigil.addEventListener("click", () => {
 
-        sigilsContainer.querySelectorAll("div").forEach((sigil) => {
+            const index = Number(sigil.dataset.index);
+            const layer = layers[index];
 
-            sigil.addEventListener("click", () => {
+            if (!layer) return;
 
-                const index = Number(sigil.dataset.index);
-                const layer = layers[index];
+            const isLifting = !layer.classList.contains("lift-up");
 
-                if (!layer) return;
+            layer.classList.toggle("lift-up");
 
-                const isLifting = !layer.classList.contains("lift-up");
-
-                layer.classList.toggle("lift-up");
-
-                // ONLY load images when layer lifts
-                if (isLifting) {
-                    loadLayerImages(layer);
-                }
-            });
-
+            if (isLifting) {
+                loadLayerImages(layer, index);
+            }
         });
-    }
+    });
 
     // -----------------------------
-    // LIFT ALL (STAGGERED + LAZY SAFE)
+    // LIFT ALL
     // -----------------------------
-    function liftAllLayers() {
-
-        const baseDelay = 80;
+    function liftAll() {
 
         layers.forEach((layer, i) => {
 
-            const reversed = layers.length - 1 - i;
+            const delay = (layers.length - i) * 80;
 
             setTimeout(() => {
-
                 layer.classList.add("lift-up");
+                loadLayerImages(layer, i);
+            }, delay);
 
-                loadLayerImages(layer);
-
-            }, reversed * baseDelay);
         });
     }
 
-    // -----------------------------
-    // BUTTON
-    // -----------------------------
     if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
+        liftAllBtn.addEventListener("click", liftAll);
     }
-
-    // -----------------------------
-    // INIT
-    // -----------------------------
-    initLazyLoading();
 
 });
