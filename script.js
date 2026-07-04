@@ -1,58 +1,131 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const layers = Array.from(document.querySelectorAll(".layer"));
-  let currentIndex = 0;
 
-  function hideAllLayers() {
-    layers.forEach((layer, i) => {
-      layer.style.display = "none";
-    });
-  }
+    const TOTAL_LAYERS = 30;
 
-  function activateLayer(index) {
-    hideAllLayers();
+    const world = document.querySelector(".world");
+    const sigilsContainer = document.querySelector(".sigils");
+    const liftAllBtn = document.getElementById("liftAll");
 
-    const layer = layers[index];
-    layer.style.display = "block";
+    const layers = [];
 
-    // ONLY NOW load images in this layer (lazy init)
-    const imgs = layer.querySelectorAll("img");
+    const sigilSet = [
+        "find me","gun","the horse","chicken","e",
+        "game","my house","◉","⟡","✦",
+        "floor plan","library","+","cut","⬣",
+        "⌒","king","oh i","▢","□","■",
+        "▨","▣","▤","▦","26","27","28"
+    ];
 
-    imgs.forEach(img => {
-      if (img.dataset.src && !img.src) {
-        img.src = img.dataset.src;
-      }
-    });
-  }
+    // -----------------------------
+    // BUILD LAYERS
+    // -----------------------------
+    for (let i = 0; i < TOTAL_LAYERS; i++) {
 
-  function init() {
-    // move ALL images to data-src so they don't preload
-    layers.forEach(layer => {
-      const imgs = layer.querySelectorAll("img");
-      imgs.forEach(img => {
-        if (!img.dataset.src) {
-          img.dataset.src = img.src;
-          img.removeAttribute("src"); // prevents browser loading
+        const layer = document.createElement("div");
+        layer.className = "layer";
+        layer.id = `layer${i + 1}`;
+
+        world.appendChild(layer);
+        layers.push(layer);
+
+        const sigil = document.createElement("div");
+        sigil.dataset.index = i;
+        sigil.textContent = sigilSet[i] || "◻";
+
+        if (sigilsContainer) {
+            sigilsContainer.appendChild(sigil);
         }
-      });
-    });
-
-    activateLayer(0);
-  }
-
-  // navigation example hooks
-  window.goUp = function () {
-    if (currentIndex > 0) {
-      currentIndex--;
-      activateLayer(currentIndex);
     }
-  };
 
-  window.goDown = function () {
-    if (currentIndex < layers.length - 1) {
-      currentIndex++;
-      activateLayer(currentIndex);
+    // -----------------------------
+    // LAZY LOAD SETUP (PREVENT ALL INITIAL IMAGE LOADING)
+    // -----------------------------
+    function initLazyLoading() {
+        layers.forEach(layer => {
+            const imgs = layer.querySelectorAll("img");
+
+            imgs.forEach(img => {
+                if (img.getAttribute("src")) {
+                    img.dataset.src = img.getAttribute("src");
+                    img.removeAttribute("src"); // prevents browser preload
+                }
+            });
+        });
     }
-  };
 
-  init();
+    // -----------------------------
+    // LOAD IMAGES FOR A LAYER
+    // -----------------------------
+    function loadLayerImages(layer) {
+        if (!layer) return;
+
+        const imgs = layer.querySelectorAll("img");
+
+        imgs.forEach(img => {
+            if (img.dataset.src && !img.src) {
+                img.src = img.dataset.src;
+            }
+        });
+    }
+
+    // -----------------------------
+    // SIGIL CLICK → TOGGLE LAYER
+    // -----------------------------
+    if (sigilsContainer) {
+
+        sigilsContainer.querySelectorAll("div").forEach((sigil) => {
+
+            sigil.addEventListener("click", () => {
+
+                const index = Number(sigil.dataset.index);
+                const layer = layers[index];
+
+                if (!layer) return;
+
+                const isLifting = !layer.classList.contains("lift-up");
+
+                layer.classList.toggle("lift-up");
+
+                // ONLY load images when layer lifts
+                if (isLifting) {
+                    loadLayerImages(layer);
+                }
+            });
+
+        });
+    }
+
+    // -----------------------------
+    // LIFT ALL (STAGGERED + LAZY SAFE)
+    // -----------------------------
+    function liftAllLayers() {
+
+        const baseDelay = 80;
+
+        layers.forEach((layer, i) => {
+
+            const reversed = layers.length - 1 - i;
+
+            setTimeout(() => {
+
+                layer.classList.add("lift-up");
+
+                loadLayerImages(layer);
+
+            }, reversed * baseDelay);
+        });
+    }
+
+    // -----------------------------
+    // BUTTON
+    // -----------------------------
+    if (liftAllBtn) {
+        liftAllBtn.addEventListener("click", liftAllLayers);
+    }
+
+    // -----------------------------
+    // INIT
+    // -----------------------------
+    initLazyLoading();
+
 });
