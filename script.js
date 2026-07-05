@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const TOTAL_LAYERS = 30;
+
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
     const liftAllBtn = document.getElementById("liftAll");
@@ -17,7 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const layers = [];
 
-    // BUILD
+    // -----------------------------
+    // BUILD SYSTEM
+    // -----------------------------
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -34,8 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         sigilsContainer.appendChild(sigil);
     }
 
+    // -----------------------------
     // INIT STATE
+    // -----------------------------
     layers.forEach((layer, i) => {
+
         layer.style.transition = "none";
 
         if (i === 0) {
@@ -47,46 +53,115 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // -----------------------------
+    // MOVE FUNCTIONS
+    // -----------------------------
     function moveUp(layer) {
-        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
         layer.style.transform = "translateY(-140%)";
         layer.dataset.state = "up";
     }
 
     function moveDown(layer) {
-        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
         layer.style.transform = "translateY(0)";
         layer.dataset.state = "down";
     }
 
+    // -----------------------------
+    // LIFT ALL
+    // -----------------------------
     function liftAllLayers() {
         layers.forEach(layer => {
-            layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+            layer.style.transition =
+                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
             layer.style.transform = "translateY(-140%)";
             layer.dataset.state = "up";
         });
     }
 
-    // SIGILS
+    // -----------------------------
+    // RESET ALL
+    // -----------------------------
+    function resetLayers() {
+        layers.forEach(layer => {
+            layer.style.transition =
+                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+            layer.style.transform = "translateY(0)";
+            layer.dataset.state = "down";
+        });
+    }
+
+    // -----------------------------
+    // SIGIL INTERACTION
+    // -----------------------------
     sigilsContainer.querySelectorAll("div").forEach(sigil => {
+
         sigil.addEventListener("click", () => {
+
             const index = Number(sigil.dataset.layer);
             const layer = layers[index];
+
             if (!layer) return;
 
-            layer.dataset.state === "down"
-                ? moveUp(layer)
-                : moveDown(layer);
+            if (layer.dataset.state === "down") {
+                moveUp(layer);
+            } else {
+                moveDown(layer);
+            }
         });
     });
 
-    // BUTTON (click + touch safe)
+    // -----------------------------
+    // BUTTON CONTROL
+    // -----------------------------
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
-        liftAllBtn.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            liftAllLayers();
-        }, { passive: false });
     }
+
+    // -----------------------------
+    // MOBILE TOUCH GESTURES
+    // -----------------------------
+    function enableTouchGestures() {
+
+        if (window.innerWidth > 768) return;
+
+        let startY = 0;
+        let endY = 0;
+        let touching = false;
+
+        const threshold = 50;
+
+        document.addEventListener("touchstart", (e) => {
+            startY = e.touches[0].clientY;
+            touching = true;
+        }, { passive: true });
+
+        document.addEventListener("touchmove", (e) => {
+            if (!touching) return;
+            endY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener("touchend", () => {
+            if (!touching) return;
+            touching = false;
+
+            const deltaY = endY - startY;
+
+            // swipe up → lift all layers
+            if (deltaY < -threshold) {
+                liftAllLayers();
+            }
+
+            // swipe down → reset
+            if (deltaY > threshold) {
+                resetLayers();
+            }
+        });
+    }
+
+    enableTouchGestures();
 
 });
