@@ -14,7 +14,9 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* STAGE */
+/* =========================
+   STAGE (FORCE VISIBILITY)
+   ========================= */
 .scene {
     position: relative;
     width: 600px;
@@ -23,6 +25,9 @@ body {
     border: 6px solid #1e1305;
     border-radius: 8px;
     overflow: hidden;
+
+    /* DEBUG SAFETY */
+    z-index: 1;
 }
 
 /* WORLD */
@@ -31,15 +36,22 @@ body {
     inset: 0;
 }
 
-/* LAYERS */
+/* =========================
+   LAYERS
+   ========================= */
 .layer {
     position: absolute;
     inset: 0;
+
+    transform: translateY(0);
     transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
+
     background-size: cover;
     background-position: bottom center;
     background-repeat: no-repeat;
+
     opacity: 1;
+
     box-shadow: 0 12px 70px #000, 0 2px 12px #0a0a0a;
 }
 
@@ -47,23 +59,29 @@ body {
     transform: translateY(-140%);
 }
 
-/* SIGILS (DESKTOP SAFE) */
+/* =========================
+   SIGILS (FIXED: INDIVIDUAL ITEMS)
+   ========================= */
 .sigils {
     position: fixed;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
+
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     font-size: 14px;
     color: #4b4330;
-    cursor: pointer;
-    text-align: right;
+
+    z-index: 10;
 }
 
 .sigils div {
+    cursor: pointer;
     transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
 .sigils div:hover {
@@ -74,12 +92,16 @@ body {
     color: #c7a77a;
 }
 
+/* ARCH */
 .sigils .arch {
     color: #ffffff;
 }
 
-/* MOBILE SAFE */
+/* =========================
+   MOBILE (NO STRUCTURE CHANGES)
+   ========================= */
 @media (max-width: 768px) {
+
     body {
         flex-direction: column;
         overflow-y: auto;
@@ -88,20 +110,23 @@ body {
 
     .scene {
         width: min(94vw, 600px);
-        aspect-ratio: 600 / 750;
         height: auto;
+        aspect-ratio: 600 / 750;
     }
 
     .sigils {
         position: static;
         transform: none;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 8px;
-        width: 100%;
-        max-width: 600px;
-        margin-top: 14px;
-        padding: 10px;
-        justify-items: center;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 10px 12px;
+        padding: 14px;
+    }
+
+    .sigils div {
+        font-size: 15px;
     }
 }
