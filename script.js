@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "find me","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i", "▢","□","■",
-        "▨","▣","▤","▦","26","27","28",
+        "⌒","king","oh i","▢","□",
+        "■","▨","▣","▤","▦",
+        "26","27","28","29","30"
     ];
 
     const layers = [];
@@ -28,64 +29,56 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.push(layer);
 
         const sigil = document.createElement("div");
-        sigil.dataset.layer = i;
+        sigil.dataset.index = i;
         sigil.textContent = sigilSet[i] || "◻";
 
         sigilsContainer.appendChild(sigil);
     }
 
-    // INIT STATE
-    layers.forEach((layer, i) => {
-        layer.style.transition = "none";
-
-        if (i === 0) {
-            layer.style.transform = "translateY(0)";
-            layer.dataset.state = "down";
-        } else {
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
-        }
-    });
-
-    function moveUp(layer) {
-        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-        layer.style.transform = "translateY(-140%)";
+    // MOVE HELPERS
+    function lift(layer) {
+        layer.style.transform = "translateY(0)";
         layer.dataset.state = "up";
     }
 
-    function moveDown(layer) {
-        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-        layer.style.transform = "translateY(0)";
+    function drop(layer) {
+        layer.style.transform = "translateY(140%)";
         layer.dataset.state = "down";
     }
 
-    function liftAllLayers() {
-        layers.forEach(layer => {
-            layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
-        });
+    function liftAll() {
+        layers.forEach(lift);
     }
 
-    // SIGILS
+    function dropAll() {
+        layers.forEach(drop);
+    }
+
+    // INIT (all down)
+    dropAll();
+
+    // SIGIL CLICK CONTROL
     sigilsContainer.querySelectorAll("div").forEach(sigil => {
         sigil.addEventListener("click", () => {
-            const index = Number(sigil.dataset.layer);
+            const index = Number(sigil.dataset.index);
             const layer = layers[index];
             if (!layer) return;
 
-            layer.dataset.state === "down"
-                ? moveUp(layer)
-                : moveDown(layer);
+            if (layer.dataset.state === "up") {
+                drop(layer);
+            } else {
+                lift(layer);
+            }
         });
     });
 
-    // BUTTON (click + touch safe)
+    // BUTTON
     if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
+        liftAllBtn.addEventListener("click", liftAll);
+
         liftAllBtn.addEventListener("touchstart", (e) => {
             e.preventDefault();
-            liftAllLayers();
+            liftAll();
         }, { passive: false });
     }
 
