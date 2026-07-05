@@ -23,11 +23,9 @@ body {
     position: relative;
     width: 600px;
     height: 750px;
-
     background: #000;
     border: 6px solid #1e1305;
     border-radius: 8px;
-
     overflow: hidden;
 }
 
@@ -45,10 +43,8 @@ body {
     inset: 0;
 
     transform: translateY(140%);
-
-    transition:
-        transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 1s ease;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s ease;
 
     will-change: transform;
 
@@ -63,78 +59,45 @@ body {
         0 2px 12px rgba(0,0,0,0.6);
 }
 
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
 /* -------------------------
-   SIGIL GRID NAVIGATION
-   (3-column, anchored to scene edge)
+   SIGILS (RESTORED SAFE VERSION)
 --------------------------*/
 .sigils {
     position: fixed;
-
-    /* lock to RIGHT EDGE of 600px scene */
-    right: calc(50% - 300px + 20px);
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-    width: 200px;
-    padding: 12px;
-
-    background: rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-
-    backdrop-filter: blur(6px);
-
-    font-size: 13px;
-    text-align: center;
+    font-size: 14px;
+    text-align: right;
 
     z-index: 9999;
+
+    color: #4b4330;
 }
 
-/* normal sigils */
 .sigils div {
-    color: #4b4330;
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* hover state */
 .sigils div:hover {
     color: #d2b48c;
     transform: scale(1.15);
 }
 
-/* -------------------------
-   WHITE SYSTEM COMMAND
---------------------------*/
+/* WHITE COMMAND SIGIL */
 .sigil-lift-all {
     color: #ffffff !important;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    margin-top: 10px;
 }
 
-.sigil-lift-all:hover {
-    color: #ffffff !important;
-    transform: scale(1.2);
-}
-
-/* -------------------------
-   OPTIONAL ACTIVE STATE
---------------------------*/
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
-/* -------------------------
-   MOBILE (kept minimal)
---------------------------*/
+/* MOBILE */
 @media (max-width: 768px) {
 
     body {
@@ -150,9 +113,7 @@ body {
 
     .sigils {
         right: 10px;
-        width: 160px;
-        font-size: 11px;
-        gap: 6px 8px;
-        padding: 10px;
+        font-size: 12px;
+        gap: 6px;
     }
 }
