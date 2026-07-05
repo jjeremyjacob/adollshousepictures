@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
 
     const DURATION = 6000;
 
@@ -42,9 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
             i === 0 ? "translateY(0)" : "translateY(-140%)";
     });
 
-    /* =========================
-       CORE DEPTH SYSTEM
-    ========================= */
     function goToLayer(index) {
 
         currentLayer = index;
@@ -61,33 +57,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
-       SIGILS (FLAT + RELIABLE)
+       SIGILS
     ========================= */
     const sigils = [];
 
     sigilSet.forEach((label, i) => {
 
         const sigil = document.createElement("div");
+
         sigil.textContent = label;
         sigil.dataset.index = i;
-
-        if (i === 0) sigil.classList.add("arch");
 
         sigilsContainer.appendChild(sigil);
         sigils.push(sigil);
     });
 
-    function updateSigils() {
-        sigils.forEach((sigil, i) => {
-            sigil.classList.toggle("active", i === currentLayer);
-        });
-    }
+    /* ARCH LIFT (LAST ITEM) */
+    const archLift = document.createElement("div");
+    archLift.textContent = "⌂";
+    archLift.classList.add("arch-lift");
 
-    updateSigils();
+    sigilsContainer.appendChild(archLift);
 
-    /* CLICK NAVIGATION */
+    /* SIGIL NAV */
     sigils.forEach(sigil => {
         sigil.addEventListener("click", () => {
+
             const index = Number(sigil.dataset.index);
 
             if (index === 0) {
@@ -99,10 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* =========================
-       LIFT ALL RESET
-    ========================= */
-    function liftAllLayers() {
+    /* ARCH ACTION */
+    archLift.addEventListener("click", () => {
         currentLayer = 0;
 
         layers.forEach(layer => {
@@ -110,10 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         updateSigils();
+    });
+
+    function updateSigils() {
+        sigils.forEach((sigil, i) => {
+            sigil.classList.toggle("active", i === currentLayer);
+        });
     }
 
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
-    }
+    updateSigils();
 
 });
