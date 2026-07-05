@@ -1,92 +1,32 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #111;
-    overflow: hidden;
-
-    font-family: Arial, sans-serif;
-}
-
-/* =========================
-   STAGE
-   ========================= */
-.scene {
-    position: relative;
-    width: 600px;
-    height: 750px;
-
-    background: #000;
-    border: 6px solid #1e1305;
-    border-radius: 8px;
-
-    overflow: hidden;
-}
-
-/* WORLD */
-.world {
-    position: absolute;
-    inset: 0;
-}
-
-/* =========================
-   LAYERS
-   ========================= */
-.layer {
-    position: absolute;
-    inset: 0;
-
-    transform: translateY(0);
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
-
-    background-size: cover;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-
-    opacity: 1;
-
-    box-shadow: 0 12px 70px #000, 0 2px 12px #0a0a0a;
-}
-
-.layer.lift-up {
-    transform: translateY(-140%);
-}
-
-/* =========================
-   SIGILS
-   ========================= */
 .sigils {
     position: fixed;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
 
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px 14px;
 
     font-size: 14px;
     color: #4b4330;
 
     text-align: right;
     cursor: pointer;
-
     z-index: 10;
+
+    user-select: none;
 }
 
+/* each sigil is a stable cell */
 .sigils div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2px 4px;
+
     transition: color 0.2s ease;
-    display: inline-block;
 }
 
 .sigils div:hover {
@@ -97,13 +37,13 @@ body {
     color: #c7a77a;
 }
 
-/* ARCH LIFT (BOTTOM ITEM) */
+/* ARCH stays white */
 .sigils .arch-lift {
     color: #ffffff;
 }
 
 /* =========================
-   MOBILE
+   MOBILE GRID OVERRIDE
    ========================= */
 @media (max-width: 768px) {
 
@@ -119,8 +59,21 @@ body {
     }
 
     .sigils {
-        right: 10px;
-        font-size: 12px;
-        gap: 6px;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+
+        margin-top: 14px;
+        width: 94vw;
+        max-width: 600px;
+
+        grid-template-columns: repeat(5, 1fr);
+        justify-items: center;
+        align-items: center;
+
+        gap: 12px 8px;
+
+        font-size: 13px;
     }
 }
