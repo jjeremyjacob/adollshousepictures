@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.push(layer);
     }
 
-    // INIT
+    // INIT LAYERS
     layers.forEach((layer, i) => {
         layer.style.transform = i === 0 ? "translateY(0)" : "translateY(-140%)";
     });
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSigils();
     }
 
-    // BUILD SIGILS
+    // BUILD SIGILS (FLAT STRUCTURE ONLY)
     const sigils = [];
 
     sigilSet.forEach((label, i) => {
