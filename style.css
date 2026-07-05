@@ -65,7 +65,7 @@ body {
 }
 
 /* =========================
-   SIGILS (DESKTOP DEFAULT)
+   SIGILS (DESKTOP)
    ========================= */
 .sigils {
     position: fixed;
@@ -100,7 +100,7 @@ body {
 }
 
 /* =========================
-   MOBILE LAYOUT
+   MOBILE FIX (CLEAN SYSTEM)
    ========================= */
 @media (max-width: 768px) {
 
@@ -108,45 +108,56 @@ body {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 12px;
+
+        padding: 12px 0;
+        overflow: hidden;
     }
 
     /* =========================
-       SIGIL CONTROL PANEL
-       (ABOVE STAGE)
+       SIGIL PANEL (ABOVE STAGE)
     ========================= */
     .sigils {
         position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
 
         width: min(94vw, 600px);
 
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-auto-rows: 30px;
+        display: flex;
+        flex-wrap: wrap;
 
-        gap: 10px 6px;
+        justify-content: center;
+        align-items: center;
 
-        margin-bottom: 14px;
+        gap: 8px;
+
+        padding: 12px;
+
+        margin-bottom: 12px;
+
+        background: #0b0b0b;
+        border: 1px solid #1e1305;
+        border-radius: 10px;
+
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 
         font-size: 14px;
-        text-align: center;
-
-        justify-items: center;
-        align-items: center;
 
         user-select: none;
     }
 
     .sigils div {
-        width: 100%;
-        height: 100%;
+        flex: 0 0 auto;
+
+        padding: 6px 8px;
 
         display: flex;
         align-items: center;
         justify-content: center;
+
+        border-radius: 4px;
+    }
+
+    .sigils div:hover {
+        background: rgba(255,255,255,0.06);
     }
 
     .sigils .arch-lift {
@@ -154,15 +165,14 @@ body {
     }
 
     /* =========================
-       STAGE (BELOW GRID)
+       STAGE
     ========================= */
     .scene {
         width: min(94vw, 600px);
-        height: auto;
         aspect-ratio: 600 / 750;
+        height: auto;
     }
 
-    /* reduce shadow intensity for mobile performance */
     .layer {
         box-shadow:
             0 4px 24px #000,
