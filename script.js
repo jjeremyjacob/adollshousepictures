@@ -16,11 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const layers = [];
-    let currentLayer = 0;
 
-    /* =========================
-       BUILD LAYERS
-    ========================= */
+    // =========================
+    // BUILD LAYERS
+    // =========================
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -30,88 +29,68 @@ document.addEventListener("DOMContentLoaded", () => {
         layer.style.backgroundImage =
             `url("images/layer${i + 1}.webp")`;
 
+        layer.dataset.state = "down";
+
         world.appendChild(layer);
         layers.push(layer);
     }
 
-    /* INIT */
-    layers.forEach((layer, i) => {
-        layer.style.transition = "none";
-        layer.style.transform =
-            i === 0 ? "translateY(0)" : "translateY(-140%)";
-    });
+    // =========================
+    // INDIVIDUAL LAYER CONTROL
+    // =========================
+    function lift(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
 
-    function goToLayer(index) {
-
-        currentLayer = index;
-
-        layers.forEach((layer, i) => {
-            layer.style.transition =
-                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-            layer.style.transform =
-                i <= currentLayer ? "translateY(0)" : "translateY(-140%)";
-        });
-
-        updateSigils();
+        layer.style.transform = "translateY(-140%)";
+        layer.dataset.state = "up";
     }
 
-    /* =========================
-       BUILD GRID SIGILS
-    ========================= */
-    const sigils = [];
+    function drop(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
 
+        layer.style.transform = "translateY(0)";
+        layer.dataset.state = "down";
+    }
+
+    function toggleLayer(index) {
+        const layer = layers[index];
+        if (!layer) return;
+
+        if (layer.dataset.state === "down") {
+            lift(layer);
+        } else {
+            drop(layer);
+        }
+    }
+
+    // =========================
+    // SIGILS
+    // =========================
     sigilSet.forEach((label, i) => {
 
         const sigil = document.createElement("div");
-
         sigil.textContent = label;
         sigil.dataset.index = i;
 
+        sigil.addEventListener("click", () => {
+            toggleLayer(i);
+        });
+
         sigilsContainer.appendChild(sigil);
-        sigils.push(sigil);
     });
 
-    /* ARCH (LAST CELL IN GRID) */
+    // =========================
+    // ARCH (RESET ONLY)
+    // =========================
     const archLift = document.createElement("div");
     archLift.textContent = "⌂";
     archLift.classList.add("arch-lift");
 
-    sigilsContainer.appendChild(archLift);
-
-    /* NAVIGATION */
-    sigils.forEach(sigil => {
-        sigil.addEventListener("click", () => {
-
-            const index = Number(sigil.dataset.index);
-
-            if (index === 0) {
-                goToLayer(TOTAL_LAYERS - 1);
-                return;
-            }
-
-            goToLayer(index);
-        });
-    });
-
-    /* ARCH ACTION */
     archLift.addEventListener("click", () => {
-
-        currentLayer = 0;
-
-        layers.forEach(layer => {
-            layer.style.transform = "translateY(-140%)";
-        });
-
-        updateSigils();
+        layers.forEach(layer => drop(layer));
     });
 
-    function updateSigils() {
-        sigils.forEach((sigil, i) => {
-            sigil.classList.toggle("active", i === currentLayer);
-        });
-    }
-
-    updateSigils();
-
+    sigilsContainer.appendChild(archLift);
 });
