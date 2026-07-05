@@ -8,32 +8,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i","▢","□",
-        "■","▨","▣","▤","▦",
-        "26","27","28","29","30"
-    ];
+    "find me","gun","the horse","chicken","e",
+    "game","my house","◉","⟡","✦",
+    "floor plan","library","+","cut","⬣",
+    "⌒","king","oh i","▢","□",
+    "■","▨","▣","▤","▦",
+    "26","27","28","29","30"
+];
 
-    const layers = [];
+// BUILD SIGILS GRID
+sigilSet.forEach((label, i) => {
+    const sigil = document.createElement("div");
+    sigil.dataset.index = i;
+    sigil.textContent = label;
+    sigilsContainer.appendChild(sigil);
+});
 
-    // BUILD
-    for (let i = 0; i < TOTAL_LAYERS; i++) {
+// CREATE LIFT ALL SIGIL (white command node)
+const liftAllSigil = document.createElement("div");
+liftAllSigil.textContent = "lift all";
+liftAllSigil.classList.add("sigil-lift-all");
 
-        const layer = document.createElement("div");
-        layer.className = "layer";
-        layer.id = `layer${i + 1}`;
-
-        world.appendChild(layer);
-        layers.push(layer);
-
-        const sigil = document.createElement("div");
-        sigil.dataset.index = i;
-        sigil.textContent = sigilSet[i] || "◻";
-
-        sigilsContainer.appendChild(sigil);
-    }
+// append into grid AFTER creation (keeps layout consistent)
+sigilsContainer.appendChild(liftAllSigil);
 
     // MOVE HELPERS
     function lift(layer) {
