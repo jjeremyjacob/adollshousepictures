@@ -8,20 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "⌒", // ARCH LIFT (NOW PART OF SYSTEM)
+        "⌒", // ARCH LIFT (index 0)
         "find me","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
-        "king","oh i", "▢","□","■",
+        "king","oh i","▢","□","■",
         "▨","▣","▤","▦","26","27","28"
     ];
 
     const layers = [];
     let currentLayer = 0;
 
-    // -----------------------------
     // BUILD LAYERS
-    // -----------------------------
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.push(layer);
     }
 
-    // INIT STATE
+    // INIT
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
@@ -46,9 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----------------------------
-    // SPATIAL SYSTEM
-    // -----------------------------
+    // GO TO LAYER (SPATIAL SYSTEM)
     function goToLayer(index) {
 
         currentLayer = index;
@@ -70,9 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSigils();
     }
 
-    // -----------------------------
-    // BUILD SIGILS (INCLUDING ARCH)
-    // -----------------------------
+    // BUILD SIGILS
     const sigils = [];
 
     sigilSet.forEach((label, i) => {
@@ -81,18 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
         sigil.textContent = label;
         sigil.dataset.index = i;
 
-        // mark arch sigil
         if (i === 0) sigil.classList.add("arch");
 
         sigilsContainer.appendChild(sigil);
         sigils.push(sigil);
     });
 
-    // -----------------------------
-    // ACTIVE STATE
-    // -----------------------------
+    // UPDATE ACTIVE STATE
     function updateSigils() {
-
         sigils.forEach((sigil, i) => {
             sigil.classList.toggle("active", i === currentLayer);
         });
@@ -100,15 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateSigils();
 
-    // -----------------------------
-    // SIGIL INTERACTION
-    // -----------------------------
+    // INTERACTION
     sigils.forEach(sigil => {
 
         sigil.addEventListener("click", () => {
+
             const index = Number(sigil.dataset.index);
 
-            // ARCH LIFT BEHAVIOR
             if (index === 0) {
                 goToLayer(TOTAL_LAYERS - 1);
                 return;
