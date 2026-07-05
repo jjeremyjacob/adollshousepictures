@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "❂","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i","▢","□","■",
-        "▨","▣","▤","▦","26","27","28"
+        "❂","⟴","⇶","⊙","e",
+        "⧉","mh","◉","⟡","✦",
+        "fp","bk","+","ct","⬣",
+        "⌒","kg","oi","f▢","f□","f■",
+        "f▨","f▣","f▤","f▦","fl","fl2","28"
     ];
 
     const layers = [];
