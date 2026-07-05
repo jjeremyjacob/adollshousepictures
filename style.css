@@ -91,25 +91,45 @@ button:hover {
 /* SIGILS */
 .sigils {
     position: fixed;
-    right: 20px;
+    right: calc(50% - 300px + 20px);
     top: 50%;
     transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 14px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+
+    gap: 10px 14px;
+
+    font-size: 13px;
+    width: 180px;
+
+    text-align: center;
+}
+
+/* normal sigils */
+.sigils div {
     color: #4b4330;
     cursor: pointer;
-    text-align: right;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.sigils div {
-    transition: 0.2s ease;
-}
-
+/* hover state */
 .sigils div:hover {
     color: #ad8a6e;
-    transform: scale(1.4);
+    transform: scale(1.15);
+}
+
+/* WHITE LIFT COMMAND */
+.sigil-lift-all {
+    color: #ffffff !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.sigil-lift-all:hover {
+    color: #ffffff !important;
+    transform: scale(1.2);
 }
 
 /* MOBILE */
