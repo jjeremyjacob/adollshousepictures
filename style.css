@@ -15,7 +15,9 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* STAGE */
+/* =========================
+   STAGE
+   ========================= */
 .scene {
     position: relative;
     width: 600px;
@@ -34,7 +36,9 @@ body {
     inset: 0;
 }
 
-/* LAYERS */
+/* =========================
+   LAYERS
+   ========================= */
 .layer {
     position: absolute;
     inset: 0;
@@ -62,11 +66,9 @@ body {
     transform: translateY(-140%);
 }
 
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
-/* BACKGROUNDS */
+/* =========================
+   BACKGROUNDS
+   ========================= */
 #layer1  { background-image: url("images/layer1.webp"); }
 #layer2  { background-image: url("images/layer2.webp"); }
 #layer3  { background-image: url("images/layer3.webp"); }
@@ -98,28 +100,41 @@ body {
 #layer29 { background-image: url("images/layer29.webp"); }
 #layer30 { background-image: url("images/layer30.webp"); }
 
-/* NAV BUTTON */
-button {
+/* =========================
+   NAV (ARCH LIFT)
+   ========================= */
+.nav {
     position: absolute;
-    bottom: 30px;
-    padding: 10px 14px;
-    font-size: 18px;
-
-    background: transparent;
-    color: #5d4c26;
-
-    border: 0;
-    cursor: pointer;
-    z-index: 10;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
 }
 
-button:hover {
-    color: #a77f60;
-    transform: scale(1.4);
+#liftAll {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+/* ARCH LIFT ICON */
+#liftAll::before {
+    content: "⌒";
+    font-size: 22px;
+    color: #5d4c26;
+    display: inline-block;
     transition: transform 0.25s ease, color 0.25s ease;
 }
 
-/* SIGILS (DESKTOP) */
+#liftAll:hover::before {
+    color: #a77f60;
+    transform: scale(1.4);
+}
+
+/* =========================
+   SIGILS (DESKTOP)
+   ========================= */
 .sigils {
     position: fixed;
     right: 20px;
@@ -131,10 +146,9 @@ button:hover {
     gap: 10px;
 
     font-size: 14px;
-    text-align: right;
-    cursor: pointer;
-
     color: #8b7d64;
+    cursor: pointer;
+    text-align: right;
 }
 
 .sigils div {
@@ -147,17 +161,8 @@ button:hover {
     transform: scale(1.4);
 }
 
-/* NAV */
-.nav {
-    position: fixed;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10000;
-}
-
 /* =========================
-   MOBILE OVERRIDES
+   MOBILE
    ========================= */
 @media (max-width: 768px) {
 
@@ -170,11 +175,11 @@ button:hover {
 
     .scene {
         width: min(94vw, 600px);
-        height: auto;
         aspect-ratio: 600 / 750;
+        height: auto;
     }
 
-    /* SIGILS MOVE BELOW STAGE */
+    /* SIGILS BELOW STAGE */
     .sigils {
         position: static;
         transform: none;
@@ -185,11 +190,10 @@ button:hover {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
 
         gap: 10px 14px;
 
-        font-size: 16px; /* slightly larger */
+        font-size: 16px;
         line-height: 1.4;
 
         width: 100%;
@@ -200,11 +204,14 @@ button:hover {
         padding: 4px 6px;
     }
 
-    /* CENTER BUTTON */
+    /* CENTER ARCH LIFT ON MOBILE */
     .nav {
-        left: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(-50%);
+        position: static;
+        transform: none;
+
+        display: flex;
+        justify-content: center;
+
+        margin-top: 14px;
     }
 }
