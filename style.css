@@ -114,13 +114,12 @@ body {
     gap: 10px;
 
     font-size: 14px;
-    color: #8b7d64;
+    color: #4b4330;
     cursor: pointer;
     text-align: right;
 }
 
 .sigils div {
-    color: #4b4330;
     transition: 0.2s ease;
 }
 
@@ -129,19 +128,18 @@ body {
     transform: scale(1.4);
 }
 
-/* ACTIVE SIGIL */
 .sigils div.active {
     color: #c7a77a;
     transform: scale(1.25);
 }
 
-/* ARCH SIGIL (⌒) */
+/* ARCH (⌒) */
 .sigils .arch {
     color: #ffffff;
 }
 
 /* =========================
-   MOBILE
+   MOBILE (6 ROW SYSTEM)
    ========================= */
 @media (max-width: 768px) {
 
@@ -158,15 +156,9 @@ body {
         height: auto;
     }
 
-    /* SIGILS 3 × 10 GRID */
     .sigils {
         position: static;
         transform: none;
-
-        display: grid;
-        grid-template-columns: repeat(10, 1fr);
-
-        gap: 8px 6px;
 
         width: 100%;
         max-width: 600px;
@@ -174,11 +166,29 @@ body {
         margin-top: 14px;
         padding: 10px 8px;
 
-        font-size: 15px;
-        line-height: 1.2;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
+    /* ROW 1: ARCH ONLY */
+    .sigils-row {
+        display: grid;
         justify-items: center;
         align-items: center;
+    }
+
+    .sigils-row.arch-row {
+        grid-template-columns: 1fr;
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    /* ROWS 2–6 GRID */
+    .sigils-row.grid-row {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px 6px;
+        font-size: 15px;
     }
 
     .sigils div {
