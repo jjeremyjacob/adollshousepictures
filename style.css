@@ -1,41 +1,153 @@
-.experience {
-  width: 100%;
-
-  /* center inside Squarespace section */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* breathing room so nothing gets clipped */
-  padding: 40px 0;
-
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* iframe stage */
-.experience iframe {
-  width: min(600px, 92vw);
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
-  /* match your site’s stage ratio (600x750) */
-  aspect-ratio: 4 / 5;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  border: none;
-  display: block;
+    background: #111;
 
-  /* prevents weird baseline spacing in some browsers */
-  line-height: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   STAGE (9:16)
+========================= */
+
+.scene {
+    position: relative;
+
+    width: min(520px, 90vw);
+    aspect-ratio: 9 / 16;
+
+    max-height: 88vh;
+
+    background: #000;
+
+    border: 6px solid #1e1305;
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+/* =========================
+   WORLD
+========================= */
+
+.world {
+    position: absolute;
+    inset: 0;
+}
+
+/* =========================
+   LAYERS
+========================= */
+
+.layer {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+    transform: translateY(-140%);
+
+    transition: transform 6s cubic-bezier(.22,1,.36,1);
+
+    will-change: transform;
+}
+
+/* =========================
+   NAVIGATION (12 + LIFT)
+   4 columns x 3 rows
+========================= */
+
+.sigils {
+    position: absolute;
+
+    left: 50%;
+    bottom: 26px;
+    transform: translateX(-50%);
+
+    display: grid;
+
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(3, auto);
+
+    gap: 14px 22px;
+
+    z-index: 1000;
+
+    user-select: none;
+
+    align-items: center;
+    justify-items: center;
+}
+
+.sigils div {
+
+    color: #2a2216;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+}
+
+.sigils div:hover {
+    color: #ad8a6e;
+    transform: scale(1.2);
+}
+
+.sigils div.active {
+    color: #5a4630;
 }
 
 /* =========================
    MOBILE
 ========================= */
-@media (max-width: 768px) {
 
-  .experience {
-    padding: 20px 0;
-  }
+@media (max-width:768px){
 
-  .experience iframe {
-    width: 94vw;
-  }
+    .scene{
+        width:94vw;
+        max-height: 85vh;
+    }
+
+    .sigils{
+        gap:12px 16px;
+        bottom:16px;
+    }
+
+    .sigils div{
+        font-size:18px;
+    }
+}
+
+/* =========================
+   LIFT ALL CENTER FIX
+========================= */
+
+.sigils .lift-all {
+    grid-column: 1 / -1;  /* span full width of grid */
+    justify-self: center; /* center it visually */
+    font-size: 32px;
+    margin-top: 4px;
 }
