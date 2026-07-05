@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
 
+    if (!world || !sigilsContainer) {
+        console.error("Missing .world or .sigils in DOM");
+        return;
+    }
+
     const DURATION = 6000;
 
     const sigilSet = [
@@ -26,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
 
+        // SAFER IMAGE BINDING
         layer.style.backgroundImage =
             `url("images/layer${i + 1}.webp")`;
 
@@ -36,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================
-    // LAYER ACTIONS (NO GROUP LOGIC)
+    // LAYER ACTIONS (NO GROUPING)
     // =========================
     function lift(layer) {
         layer.style.transition =
@@ -85,7 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
         sigilsContainer.appendChild(sigil);
     });
 
-    // ARCH (RESET CONTROL)
+    // =========================
+    // ARCH CONTROL (RESET)
+    // =========================
     const arch = document.createElement("div");
     arch.textContent = "⌂";
     arch.classList.add("arch-lift");
