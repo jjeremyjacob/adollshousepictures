@@ -201,3 +201,11 @@ body {
         padding: 2px 4px;
     }
 }
+
+.sigils div,
+.sigils div:hover,
+.sigils div.active,
+.sigils .arch,
+.sigils .arch:hover {
+    transform: none !important;
+}
