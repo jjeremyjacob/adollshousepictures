@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-    "❂","⟴","⇶","⊙","e",
-    "⧉","mh","◉","⟡","✦",
-    "fp","bk","+","ct","⬣",
-    "⌒","kg","oi","▢","□","■",
-    "▨","▣","▤","▦","fl","fl2","28"
-];
+        "❂","⟴","⇶","⊙","e",
+        "⧉","mh","◉","⟡","✦",
+        "fp","bk","+","ct","⬣",
+        "⌒","kg","oi","▢","□","■",
+        "▨","▣","▤","▦","fl","fl2","28"
+    ];
 
     const layers = [];
     let currentLayer = 0;
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================
-       SIGILS
+       BUILD GRID SIGILS
     ========================= */
     const sigils = [];
 
@@ -72,14 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
         sigils.push(sigil);
     });
 
-    /* ARCH LIFT (LAST ITEM) */
+    /* ARCH (LAST CELL IN GRID) */
     const archLift = document.createElement("div");
     archLift.textContent = "⌂";
     archLift.classList.add("arch-lift");
 
     sigilsContainer.appendChild(archLift);
 
-    /* SIGIL NAV */
+    /* NAVIGATION */
     sigils.forEach(sigil => {
         sigil.addEventListener("click", () => {
 
@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ARCH ACTION */
     archLift.addEventListener("click", () => {
+
         currentLayer = 0;
 
         layers.forEach(layer => {
