@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const TOTAL_LAYERS = 5;
+    const TOTAL_LAYERS = 12;
     const DURATION = 6000;
 
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
 
-    const sigilSet = ["❂", "⟴", "⇶", "⊙", "e"];
+    const sigilSet = [
+        "❂","⟴","⇶","⊙",
+        "e","✦","◉","⟡",
+        "▢","■","✶","✷"
+    ];
 
     const layers = [];
     const sigils = [];
     const layerState = new Array(TOTAL_LAYERS).fill(false);
 
     /* =========================
-       IMAGE RESOLVER (.webp → .gif fallback)
+       GIF / WEBP RESOLVER
     ========================= */
 
     function resolveImage(i) {
@@ -62,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         world.appendChild(layer);
         layers.push(layer);
 
-        // assign image (webp preferred, gif fallback)
         resolveImage(i).then((src) => {
             if (src) {
                 layer.style.backgroundImage = `url("${src}")`;
@@ -89,11 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =========================
-       LIFT ALL (⌂)
+       LIFT ALL (CENTERED)
     ========================= */
 
     const liftAll = document.createElement("div");
     liftAll.textContent = "⌂";
+    liftAll.classList.add("lift-all");
 
     liftAll.addEventListener("click", () => {
 
@@ -103,7 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             layers[i].style.transform = "translateY(-140%)";
 
-            sigils[i].classList.remove("active");
+            if (sigils[i]) {
+                sigils[i].classList.remove("active");
+            }
         }
     });
 
@@ -131,18 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
        INITIAL STATE
     ========================= */
 
-    updateSigils();
-
-    // auto-drop first layer on load
     setTimeout(() => {
         toggleLayer(0);
     }, 300);
-
-    function updateSigils() {
-
-        sigils.forEach((sigil, i) => {
-            sigil.classList.toggle("active", layerState[i]);
-        });
-    }
 
 });
