@@ -5,8 +5,8 @@
 }
 
 body {
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,16 +15,16 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* STAGE */
+/* =========================
+   STAGE
+   ========================= */
 .scene {
     position: relative;
     width: 600px;
     height: 750px;
-
     background: #000;
     border: 6px solid #1e1305;
     border-radius: 8px;
-
     overflow: hidden;
 }
 
@@ -34,16 +34,15 @@ body {
     inset: 0;
 }
 
-/* LAYERS */
+/* =========================
+   LAYERS
+   ========================= */
 .layer {
     position: absolute;
     inset: 0;
 
     transform: translateY(0);
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 1s ease;
-
-    will-change: transform;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
 
     background-size: cover;
     background-position: bottom center;
@@ -51,75 +50,16 @@ body {
 
     opacity: 1;
 
-    filter: saturate(0.8) contrast(0.95) brightness(0.95);
-
-    box-shadow:
-        0 12px 70px #000000,
-        0 2px 12px #0a0a0a;
+    box-shadow: 0 12px 70px #000, 0 2px 12px #0a0a0a;
 }
 
 .layer.lift-up {
     transform: translateY(-140%);
 }
 
-.layer.active {
-    filter: saturate(1) contrast(1.05) brightness(1);
-}
-
-/* BACKGROUNDS */
-#layer1  { background-image: url("images/layer1.webp"); }
-#layer2  { background-image: url("images/layer2.webp"); }
-#layer3  { background-image: url("images/layer3.webp"); }
-#layer4  { background-image: url("images/layer4.gif"); }
-#layer5  { background-image: url("images/layer5.webp"); }
-#layer6  { background-image: url("images/layer6.webp"); }
-#layer7  { background-image: url("images/layer7.webp"); }
-#layer8  { background-image: url("images/layer8.webp"); }
-#layer9  { background-image: url("images/layer9.webp"); }
-#layer10 { background-image: url("images/layer10.webp"); }
-#layer11 { background-image: url("images/layer11.webp"); }
-#layer12 { background-image: url("images/layer12.webp"); }
-#layer13 { background-image: url("images/layer13.webp"); }
-#layer14 { background-image: url("images/layer14.webp"); }
-#layer15 { background-image: url("images/layer15.webp"); }
-#layer16 { background-image: url("images/layer16.webp"); }
-#layer17 { background-image: url("images/layer17.webp"); }
-#layer18 { background-image: url("images/layer18.gif"); }
-#layer19 { background-image: url("images/layer19.webp"); }
-#layer20 { background-image: url("images/layer20.webp"); }
-#layer21 { background-image: url("images/layer21.webp"); }
-#layer22 { background-image: url("images/layer22.webp"); }
-#layer23 { background-image: url("images/layer23.webp"); }
-#layer24 { background-image: url("images/layer24.webp"); }
-#layer25 { background-image: url("images/layer25.webp"); }
-#layer26 { background-image: url("images/layer26.webp"); }
-#layer27 { background-image: url("images/layer27.webp"); }
-#layer28 { background-image: url("images/layer28.webp"); }
-#layer29 { background-image: url("images/layer29.webp"); }
-#layer30 { background-image: url("images/layer30.webp"); }
-
-/* BUTTON */
-button {
-    position: absolute;
-    bottom: 30px;
-    padding: 10px 14px;
-    font-size: 18px;
-
-    background: transparent;
-    color: #5d4c26;
-
-    border: 0;
-    cursor: pointer;
-    z-index: 10;
-}
-
-button:hover {
-    color: #a77f60;
-    transform: scale(1.4);
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-/* SIGILS */
+/* =========================
+   SIGILS (CLEAN + INDIVIDUAL)
+   ========================= */
 .sigils {
     position: fixed;
     right: 20px;
@@ -131,33 +71,56 @@ button:hover {
     gap: 10px;
 
     font-size: 14px;
-    text-align: right;
-    cursor: pointer;
+    color: #4b4330;
 
-    color: #8b7d64;
+    cursor: pointer;
+    text-align: right;
+    z-index: 10;
 }
 
 .sigils div {
-    color: #4b4330;
-    transition: 0.2s ease;
+    transition: color 0.2s ease;
+    display: inline-block;
 }
 
 .sigils div:hover {
     color: #ad8a6e;
-    transform: scale(1.4);
 }
 
-/* NAV */
+.sigils div.active {
+    color: #c7a77a;
+}
+
+/* ARCH */
+.sigils .arch {
+    color: #ffffff;
+}
+
+/* =========================
+   NAV BUTTON
+   ========================= */
 .nav {
     position: fixed;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10000;
+    z-index: 1000;
+}
+
+#liftAll {
+    background: transparent;
+    border: none;
+    color: #5d4c26;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#liftAll:hover {
+    color: #a77f60;
 }
 
 /* =========================
-   MOBILE FIXES ONLY
+   MOBILE (SAFE ONLY)
    ========================= */
 @media (max-width: 768px) {
 
@@ -168,14 +131,14 @@ button:hover {
 
     .scene {
         width: min(94vw, 600px);
-        height: auto;
         aspect-ratio: 600 / 750;
+        height: auto;
     }
 
     .sigils {
-        right: 8px;
-        font-size: 11px;
-        gap: 4px;
+        right: 10px;
+        font-size: 12px;
+        gap: 6px;
     }
 
     .nav {
@@ -185,21 +148,11 @@ button:hover {
         transform: translateX(-50%);
     }
 
-    button {
-        font-size: 20px;
-        padding: 14px 18px;
+    #liftAll {
+        font-size: 22px;
     }
 
     .layer {
-        box-shadow:
-            0 4px 24px #000,
-            0 1px 6px #000;
+        box-shadow: 0 4px 24px #000, 0 1px 6px #000;
     }
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
 }
