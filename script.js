@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "❂","⟴","⇶","⊙","e",
-        "⧉","mh","◉","⟡","✦",
-        "fp","bk","+","ct","⬣",
-        "⌒","kg","oi","f▢","f□","f■",
-        "f▨","f▣","f▤","f▦","fl","fl2","28"
-    ];
+    "❂","⟴","⇶","⊙","e",
+    "⧉","mh","◉","⟡","✦",
+    "fp","bk","+","ct","⬣",
+    "⌒","kg","oi","▢","□","■",
+    "▨","▣","▤","▦","fl","fl2","28"
+];
 
     const layers = [];
     let currentLayer = 0;
