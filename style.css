@@ -129,26 +129,19 @@ body {
     transform: scale(1.4);
 }
 
-/* ACTIVE SIGIL (current layer) */
+/* ACTIVE SIGIL */
 .sigils div.active {
     color: #c7a77a;
     transform: scale(1.25);
 }
 
-/* =========================
-   ARCH LIFT SIGIL (FIRST ITEM)
-   ========================= */
+/* ARCH SIGIL (⌒) */
 .sigils .arch {
-    color: #ffffff; /* distinct system control */
-}
-
-.sigils .arch:hover {
-    color: #a77f60; /* keep hover family consistent */
-    transform: scale(1.4);
+    color: #ffffff;
 }
 
 /* =========================
-   MOBILE LAYOUT
+   MOBILE
    ========================= */
 @media (max-width: 768px) {
 
@@ -165,14 +158,13 @@ body {
         height: auto;
     }
 
-    /* SIGILS BELOW STAGE (3 × 10 GRID) */
+    /* SIGILS 3 × 10 GRID */
     .sigils {
         position: static;
         transform: none;
 
         display: grid;
         grid-template-columns: repeat(10, 1fr);
-        grid-auto-rows: auto;
 
         gap: 8px 6px;
 
