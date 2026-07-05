@@ -1,103 +1,148 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const TOTAL_LAYERS = 30;
+    const TOTAL_LAYERS = 5;
+    const DURATION = 6000;
+
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
 
-    const layers = [];
+    const sigilSet = ["❂", "⟴", "⇶", "⊙", "e"];
 
-    // -----------------------------
-    // BUILD LAYERS
-    // -----------------------------
+    const layers = [];
+    const sigils = [];
+    const layerState = new Array(TOTAL_LAYERS).fill(false);
+
+    /* =========================
+       IMAGE RESOLVER (.webp → .gif fallback)
+    ========================= */
+
+    function resolveImage(i) {
+
+        const base = `images/layer${i + 1}`;
+
+        const webp = `${base}.webp`;
+        const gif = `${base}.gif`;
+
+        return new Promise((resolve) => {
+
+            const img = new Image();
+
+            img.onload = () => resolve(webp);
+
+            img.onerror = () => {
+
+                const img2 = new Image();
+
+                img2.onload = () => resolve(gif);
+
+                img2.onerror = () => resolve(null);
+
+                img2.src = gif;
+            };
+
+            img.src = webp;
+        });
+    }
+
+    /* =========================
+       BUILD LAYERS
+    ========================= */
+
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
+
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
 
+        layer.style.transform = "translateY(-140%)";
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(.22,1,.36,1)`;
+
         world.appendChild(layer);
         layers.push(layer);
-    }
 
-    // -----------------------------
-    // SIGIL LIST
-    // -----------------------------
-    const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i","▢","□",
-        "■","▨","▣","▤","▦",
-        "26","27","28","29","30"
-    ];
-
-    // -----------------------------
-    // LAYER CONTROL
-    // -----------------------------
-    function lift(layer) {
-        layer.style.transform = "translateY(0)";
-        layer.dataset.state = "up";
-    }
-
-    function drop(layer) {
-        layer.style.transform = "translateY(140%)";
-        layer.dataset.state = "down";
-    }
-
-    function liftAll() {
-        layers.forEach(lift);
-    }
-
-    function dropAll() {
-        layers.forEach(drop);
-    }
-
-    // INIT STATE
-    dropAll();
-
-    // -----------------------------
-    // BUILD SIGILS
-    // -----------------------------
-    sigilSet.forEach((label, i) => {
-        const sigil = document.createElement("div");
-        sigil.textContent = label;
-        sigil.dataset.index = i;
-
-        sigilsContainer.appendChild(sigil);
-    });
-
-    // -----------------------------
-    // ADD LIFT ALL SIGIL
-    // -----------------------------
-    const liftAllSigil = document.createElement("div");
-    liftAllSigil.textContent = "lift all";
-    liftAllSigil.classList.add("sigil-lift-all");
-
-    sigilsContainer.appendChild(liftAllSigil);
-
-    // -----------------------------
-    // SIGIL CLICK HANDLING
-    // -----------------------------
-    sigilsContainer.querySelectorAll("div").forEach((sigil) => {
-
-        if (sigil === liftAllSigil) return;
-
-        sigil.addEventListener("click", () => {
-            const index = Number(sigil.dataset.index);
-            const layer = layers[index];
-            if (!layer) return;
-
-            if (layer.dataset.state === "up") {
-                drop(layer);
-            } else {
-                lift(layer);
+        // assign image (webp preferred, gif fallback)
+        resolveImage(i).then((src) => {
+            if (src) {
+                layer.style.backgroundImage = `url("${src}")`;
             }
         });
+    }
+
+    /* =========================
+       BUILD SIGILS
+    ========================= */
+
+    sigilSet.forEach((label, index) => {
+
+        const sigil = document.createElement("div");
+
+        sigil.textContent = label;
+
+        sigil.addEventListener("click", () => {
+            toggleLayer(index);
+        });
+
+        sigilsContainer.appendChild(sigil);
+        sigils.push(sigil);
     });
 
-    // -----------------------------
-    // LIFT ALL
-    // -----------------------------
-    liftAllSigil.addEventListener("click", liftAll);
+    /* =========================
+       LIFT ALL (⌂)
+    ========================= */
+
+    const liftAll = document.createElement("div");
+    liftAll.textContent = "⌂";
+
+    liftAll.addEventListener("click", () => {
+
+        for (let i = 0; i < TOTAL_LAYERS; i++) {
+
+            layerState[i] = false;
+
+            layers[i].style.transform = "translateY(-140%)";
+
+            sigils[i].classList.remove("active");
+        }
+    });
+
+    sigilsContainer.appendChild(liftAll);
+
+    /* =========================
+       TOGGLE SINGLE LAYER
+    ========================= */
+
+    function toggleLayer(index) {
+
+        layerState[index] = !layerState[index];
+
+        layers[index].style.transform = layerState[index]
+            ? "translateY(0)"
+            : "translateY(-140%)";
+
+        sigils[index].classList.toggle(
+            "active",
+            layerState[index]
+        );
+    }
+
+    /* =========================
+       INITIAL STATE
+    ========================= */
+
+    updateSigils();
+
+    // auto-drop first layer on load
+    setTimeout(() => {
+        toggleLayer(0);
+    }, 300);
+
+    function updateSigils() {
+
+        sigils.forEach((sigil, i) => {
+            sigil.classList.toggle("active", layerState[i]);
+        });
+    }
 
 });
