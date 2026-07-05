@@ -1,43 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* STAGE */
+.scene {
+    position: relative;
+    width: 600px;
+    height: 750px;
+    background: #000;
+    border: 6px solid #1e1305;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* WORLD */
+.world {
+    position: absolute;
+    inset: 0;
+}
+
+/* LAYERS */
+.layer {
+    position: absolute;
+    inset: 0;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    box-shadow: 0 12px 70px #000, 0 2px 12px #0a0a0a;
+}
+
+.layer.lift-up {
+    transform: translateY(-140%);
+}
+
+/* SIGILS (DESKTOP SAFE) */
 .sigils {
     position: fixed;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-
     display: flex;
     flex-direction: column;
     gap: 10px;
-
     font-size: 14px;
     color: #4b4330;
     cursor: pointer;
     text-align: right;
-
-    /* prevents any hover/layout weirdness */
-    will-change: auto;
 }
 
 .sigils div {
     transition: color 0.2s ease;
-    transform: none;
 }
 
 .sigils div:hover {
     color: #ad8a6e;
-    transform: none;
 }
 
 .sigils div.active {
     color: #c7a77a;
-    transform: none;
 }
 
-/* ARCH SIGIL */
 .sigils .arch {
     color: #ffffff;
 }
 
-.sigils .arch:hover {
-    color: #ad8a6e;
-    transform: none;
+/* MOBILE SAFE */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 18px 0;
+    }
+
+    .scene {
+        width: min(94vw, 600px);
+        aspect-ratio: 600 / 750;
+        height: auto;
+    }
+
+    .sigils {
+        position: static;
+        transform: none;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        width: 100%;
+        max-width: 600px;
+        margin-top: 14px;
+        padding: 10px;
+        justify-items: center;
+    }
 }
