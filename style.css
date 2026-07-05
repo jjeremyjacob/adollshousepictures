@@ -129,40 +129,21 @@ body {
     transform: scale(1.4);
 }
 
-/* ACTIVE SIGIL STATE (SPATIAL SYSTEM) */
+/* ACTIVE SIGIL (current layer) */
 .sigils div.active {
     color: #c7a77a;
     transform: scale(1.25);
 }
 
 /* =========================
-   ARCH LIFT NAV (DESKTOP)
+   ARCH LIFT SIGIL (FIRST ITEM)
    ========================= */
-.nav {
-    position: absolute;
-    left: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10000;
+.sigils .arch {
+    color: #ffffff; /* distinct system control */
 }
 
-#liftAll {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-}
-
-#liftAll::before {
-    content: "⌒";
-    font-size: 22px;
-    color: #5d4c26;
-    display: inline-block;
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-#liftAll:hover::before {
-    color: #a77f60;
+.sigils .arch:hover {
+    color: #a77f60; /* keep hover family consistent */
     transform: scale(1.4);
 }
 
@@ -182,17 +163,6 @@ body {
         width: min(94vw, 600px);
         aspect-ratio: 600 / 750;
         height: auto;
-    }
-
-    /* ARCH LIFT ABOVE STAGE */
-    .nav {
-        position: static;
-        transform: none;
-
-        display: flex;
-        justify-content: center;
-
-        margin-bottom: 12px;
     }
 
     /* SIGILS BELOW STAGE (3 × 10 GRID) */
