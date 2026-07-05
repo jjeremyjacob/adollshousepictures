@@ -123,19 +123,25 @@ body {
     transition: 0.2s ease;
 }
 
+/* hover: ONLY color change, no transform */
 .sigils div:hover {
     color: #ad8a6e;
-    transform: scale(1.4);
 }
 
+/* active state: ONLY color change, no transform */
 .sigils div.active {
     color: #c7a77a;
-    transform: scale(1.25);
 }
+
 
 /* ARCH (⌒) */
 .sigils .arch {
     color: #ffffff;
+}
+
+/* ARCH hover also no scaling */
+.sigils .arch:hover {
+    color: #ad8a6e;
 }
 
 /* =========================
