@@ -5,7 +5,8 @@
 }
 
 body {
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,20 +15,17 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* =========================
-   STAGE (FORCE VISIBILITY)
-   ========================= */
+/* STAGE */
 .scene {
     position: relative;
     width: 600px;
     height: 750px;
+
     background: #000;
     border: 6px solid #1e1305;
     border-radius: 8px;
-    overflow: hidden;
 
-    /* DEBUG SAFETY */
-    z-index: 1;
+    overflow: hidden;
 }
 
 /* WORLD */
@@ -36,15 +34,16 @@ body {
     inset: 0;
 }
 
-/* =========================
-   LAYERS
-   ========================= */
+/* LAYERS */
 .layer {
     position: absolute;
     inset: 0;
 
     transform: translateY(0);
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 1s ease;
+
+    will-change: transform;
 
     background-size: cover;
     background-position: bottom center;
@@ -52,16 +51,75 @@ body {
 
     opacity: 1;
 
-    box-shadow: 0 12px 70px #000, 0 2px 12px #0a0a0a;
+    filter: saturate(0.8) contrast(0.95) brightness(0.95);
+
+    box-shadow:
+        0 12px 70px #000000,
+        0 2px 12px #0a0a0a;
 }
 
 .layer.lift-up {
     transform: translateY(-140%);
 }
 
-/* =========================
-   SIGILS (FIXED: INDIVIDUAL ITEMS)
-   ========================= */
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
+
+/* BACKGROUNDS */
+#layer1  { background-image: url("images/layer1.webp"); }
+#layer2  { background-image: url("images/layer2.webp"); }
+#layer3  { background-image: url("images/layer3.webp"); }
+#layer4  { background-image: url("images/layer4.gif"); }
+#layer5  { background-image: url("images/layer5.webp"); }
+#layer6  { background-image: url("images/layer6.webp"); }
+#layer7  { background-image: url("images/layer7.webp"); }
+#layer8  { background-image: url("images/layer8.webp"); }
+#layer9  { background-image: url("images/layer9.webp"); }
+#layer10 { background-image: url("images/layer10.webp"); }
+#layer11 { background-image: url("images/layer11.webp"); }
+#layer12 { background-image: url("images/layer12.webp"); }
+#layer13 { background-image: url("images/layer13.webp"); }
+#layer14 { background-image: url("images/layer14.webp"); }
+#layer15 { background-image: url("images/layer15.webp"); }
+#layer16 { background-image: url("images/layer16.webp"); }
+#layer17 { background-image: url("images/layer17.webp"); }
+#layer18 { background-image: url("images/layer18.gif"); }
+#layer19 { background-image: url("images/layer19.webp"); }
+#layer20 { background-image: url("images/layer20.webp"); }
+#layer21 { background-image: url("images/layer21.webp"); }
+#layer22 { background-image: url("images/layer22.webp"); }
+#layer23 { background-image: url("images/layer23.webp"); }
+#layer24 { background-image: url("images/layer24.webp"); }
+#layer25 { background-image: url("images/layer25.webp"); }
+#layer26 { background-image: url("images/layer26.webp"); }
+#layer27 { background-image: url("images/layer27.webp"); }
+#layer28 { background-image: url("images/layer28.webp"); }
+#layer29 { background-image: url("images/layer29.webp"); }
+#layer30 { background-image: url("images/layer30.webp"); }
+
+/* BUTTON */
+button {
+    position: absolute;
+    bottom: 30px;
+    padding: 10px 14px;
+    font-size: 18px;
+
+    background: transparent;
+    color: #5d4c26;
+
+    border: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+button:hover {
+    color: #a77f60;
+    transform: scale(1.4);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* SIGILS */
 .sigils {
     position: fixed;
     right: 20px;
@@ -73,39 +131,39 @@ body {
     gap: 10px;
 
     font-size: 14px;
-    color: #4b4330;
+    text-align: right;
+    cursor: pointer;
 
-    z-index: 10;
+    color: #8b7d64;
 }
 
 .sigils div {
-    cursor: pointer;
-    transition: color 0.2s ease;
-    white-space: nowrap;
+    color: #4b4330;
+    transition: 0.2s ease;
 }
 
 .sigils div:hover {
     color: #ad8a6e;
+    transform: scale(1.4);
 }
 
-.sigils div.active {
-    color: #c7a77a;
-}
-
-/* ARCH */
-.sigils .arch {
-    color: #ffffff;
+/* NAV */
+.nav {
+    position: fixed;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
 }
 
 /* =========================
-   MOBILE (NO STRUCTURE CHANGES)
+   MOBILE FIXES ONLY
    ========================= */
 @media (max-width: 768px) {
 
     body {
-        flex-direction: column;
-        overflow-y: auto;
-        padding: 18px 0;
+        align-items: flex-start;
+        padding-top: 20px;
     }
 
     .scene {
@@ -115,18 +173,33 @@ body {
     }
 
     .sigils {
-        position: static;
-        transform: none;
-
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        gap: 10px 12px;
-        padding: 14px;
+        right: 8px;
+        font-size: 11px;
+        gap: 4px;
     }
 
-    .sigils div {
-        font-size: 15px;
+    .nav {
+        left: 50%;
+        top: auto;
+        bottom: 18px;
+        transform: translateX(-50%);
     }
+
+    button {
+        font-size: 20px;
+        padding: 14px 18px;
+    }
+
+    .layer {
+        box-shadow:
+            0 4px 24px #000,
+            0 1px 6px #000;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
 }
