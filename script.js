@@ -1,116 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const TOTAL_LAYERS = 30;
-
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
-
-    if (!world || !sigilsContainer) {
-        console.error("Missing .world or .sigils in DOM");
-        return;
-    }
+    const liftAllBtn = document.getElementById("liftAll");
 
     const DURATION = 6000;
 
     const sigilSet = [
-        "❂","⟴","⇶","⊙","e",
-        "⧉","mh","◉","⟡","✦",
-        "fp","bk","+","ct","⬣",
-        "⌒","kg","oi","▢","□","■",
-        "▨","▣","▤","▦","fl","fl2","28"
+        "find me","gun","the horse","chicken","e",
+        "game","my house","◉","⟡","✦",
+        "floor plan","library","+","cut","⬣",
+        "⌒","king","oh i", "▢","□","■",
+        "▨","▣","▤","▦","26","27","28",
     ];
 
     const layers = [];
 
-    // =========================
-    // BUILD LAYERS (SAFE LOADING)
-    // =========================
+    // BUILD
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
 
-        const imgPath = `images/layer${i + 1}.webp`;
-
-        // SAFE IMAGE LOADING (prevents silent blank stage)
-        const img = new Image();
-        img.src = imgPath;
-
-        img.onload = () => {
-            layer.style.backgroundImage = `url("${imgPath}")`;
-        };
-
-        img.onerror = () => {
-            console.warn("Missing image:", imgPath);
-            layer.style.background = "#1a1a1a"; // visible fallback
-        };
-
-        layer.dataset.state = "down";
-
         world.appendChild(layer);
         layers.push(layer);
+
+        const sigil = document.createElement("div");
+        sigil.dataset.layer = i;
+        sigil.textContent = sigilSet[i] || "◻";
+
+        sigilsContainer.appendChild(sigil);
     }
 
-    // =========================
-    // LAYER CONTROL (NO GROUPING)
-    // =========================
-    function lift(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    // INIT STATE
+    layers.forEach((layer, i) => {
+        layer.style.transition = "none";
 
+        if (i === 0) {
+            layer.style.transform = "translateY(0)";
+            layer.dataset.state = "down";
+        } else {
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
+        }
+    });
+
+    function moveUp(layer) {
+        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
         layer.style.transform = "translateY(-140%)";
         layer.dataset.state = "up";
     }
 
-    function drop(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
+    function moveDown(layer) {
+        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
         layer.style.transform = "translateY(0)";
         layer.dataset.state = "down";
     }
 
-    function toggleLayer(index) {
-        const layer = layers[index];
-        if (!layer) return;
-
-        if (layer.dataset.state === "down") {
-            lift(layer);
-        } else {
-            drop(layer);
-        }
-    }
-
-    function resetAll() {
-        layers.forEach(layer => drop(layer));
-    }
-
-    // =========================
-    // BUILD SIGILS
-    // =========================
-    sigilSet.forEach((label, i) => {
-
-        const sigil = document.createElement("div");
-        sigil.textContent = label;
-        sigil.dataset.index = i;
-
-        sigil.addEventListener("click", () => {
-            toggleLayer(i);
+    function liftAllLayers() {
+        layers.forEach(layer => {
+            layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
         });
+    }
 
-        sigilsContainer.appendChild(sigil);
+    // SIGILS
+    sigilsContainer.querySelectorAll("div").forEach(sigil => {
+        sigil.addEventListener("click", () => {
+            const index = Number(sigil.dataset.layer);
+            const layer = layers[index];
+            if (!layer) return;
+
+            layer.dataset.state === "down"
+                ? moveUp(layer)
+                : moveDown(layer);
+        });
     });
 
-    // =========================
-    // ARCH (RESET CONTROL)
-    // =========================
-    const arch = document.createElement("div");
-    arch.textContent = "⌂";
-    arch.classList.add("arch-lift");
-
-    arch.addEventListener("click", resetAll);
-
-    sigilsContainer.appendChild(arch);
+    // BUTTON (click + touch safe)
+    if (liftAllBtn) {
+        liftAllBtn.addEventListener("click", liftAllLayers);
+        liftAllBtn.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            liftAllLayers();
+        }, { passive: false });
+    }
 
 });
