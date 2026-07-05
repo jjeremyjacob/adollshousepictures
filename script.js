@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const layers = [];
 
-    // BUILD
+    // BUILD LAYERS
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sigilsContainer.appendChild(sigil);
     }
 
-    // INIT
+    // INIT STATE
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function moveUp(layer) {
         layer.style.transition =
             `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
         layer.style.transform = "translateY(-140%)";
         layer.dataset.state = "up";
     }
@@ -61,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function moveDown(layer) {
         layer.style.transition =
             `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
         layer.style.transform = "translateY(0)";
         layer.dataset.state = "down";
     }
@@ -70,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.forEach(layer => {
             layer.style.transition =
                 `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
             layer.style.transform = "translateY(-140%)";
             layer.dataset.state = "up";
         });
@@ -94,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // BUTTON
+    // ARCH LIFT BUTTON
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
     }
