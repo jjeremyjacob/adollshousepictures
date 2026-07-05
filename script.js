@@ -3,23 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const TOTAL_LAYERS = 30;
 
     const world = document.querySelector(".world");
-    const sigilsContainer = document.querySelector(".sigils");
+    const indexContainer = document.querySelector(".index");
     const liftAllBtn = document.getElementById("liftAll");
 
     const DURATION = 6000;
 
-    const sigilSet = [
-        "find me","gun","the horse","chicken","e",
-        "game","my house","◉","⟡","✦",
-        "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i", "▢","□","■",
-        "▨","▣","▤","▦","26","27","28",
-    ];
-
     const layers = [];
 
     // -----------------------------
-    // BUILD SYSTEM
+    // BUILD LAYERS
     // -----------------------------
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
@@ -29,16 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         world.appendChild(layer);
         layers.push(layer);
-
-        const sigil = document.createElement("div");
-        sigil.dataset.layer = i;
-        sigil.textContent = sigilSet[i] || "◻";
-
-        sigilsContainer.appendChild(sigil);
     }
 
     // -----------------------------
-    // INIT STATE
+    // INITIAL STATE
     // -----------------------------
     layers.forEach((layer, i) => {
 
@@ -54,67 +40,96 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // -----------------------------
-    // MOVE FUNCTIONS
+    // CORE STATE
     // -----------------------------
-    function moveUp(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    let currentLayer = 0;
 
-        layer.style.transform = "translateY(-140%)";
-        layer.dataset.state = "up";
+    function goToLayer(index) {
+
+        currentLayer = index;
+
+        layers.forEach((layer, i) => {
+
+            layer.style.transition =
+                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
+            if (i <= currentLayer) {
+                layer.style.transform = "translateY(0)";
+                layer.dataset.state = "down";
+            } else {
+                layer.style.transform = "translateY(-140%)";
+                layer.dataset.state = "up";
+            }
+        });
     }
 
-    function moveDown(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-        layer.style.transform = "translateY(0)";
-        layer.dataset.state = "down";
-    }
-
     // -----------------------------
-    // LIFT ALL
+    // LIFT ALL / RESET
     // -----------------------------
     function liftAllLayers() {
-        layers.forEach(layer => {
-            layer.style.transition =
-                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
-        });
+        goToLayer(TOTAL_LAYERS - 1);
     }
 
-    // -----------------------------
-    // RESET ALL
-    // -----------------------------
     function resetLayers() {
-        layers.forEach(layer => {
-            layer.style.transition =
-                `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-
-            layer.style.transform = "translateY(0)";
-            layer.dataset.state = "down";
-        });
+        goToLayer(0);
     }
 
     // -----------------------------
-    // SIGIL INTERACTION
+    // INDEX NAVIGATION (6 GROUPS)
     // -----------------------------
-    sigilsContainer.querySelectorAll("div").forEach(sigil => {
+    const indexGroups = [
+        [0, 4],
+        [5, 9],
+        [10, 14],
+        [15, 19],
+        [20, 24],
+        [25, 29]
+    ];
 
-        sigil.addEventListener("click", () => {
+    const indexLabels = [
+        "01–05",
+        "06–10",
+        "11–15",
+        "16–20",
+        "21–25",
+        "26–30"
+    ];
 
-            const index = Number(sigil.dataset.layer);
-            const layer = layers[index];
+    const groups = [];
 
-            if (!layer) return;
+    indexGroups.forEach((range, i) => {
 
-            if (layer.dataset.state === "down") {
-                moveUp(layer);
+        const el = document.createElement("div");
+        el.textContent = indexLabels[i];
+
+        el.dataset.start = range[0];
+        el.dataset.end = range[1];
+
+        indexContainer.appendChild(el);
+        groups.push(el);
+    });
+
+    // -----------------------------
+    // INDEX CLICK BEHAVIOR
+    // cycles through each range
+    // -----------------------------
+    groups.forEach(group => {
+
+        let current = Number(group.dataset.start);
+
+        group.addEventListener("click", () => {
+
+            const start = Number(group.dataset.start);
+            const end = Number(group.dataset.end);
+
+            if (current < start || current > end) {
+                current = start;
             } else {
-                moveDown(layer);
+                current++;
+                if (current > end) current = start;
             }
+
+            goToLayer(current);
         });
     });
 
@@ -124,5 +139,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
     }
+
+    // Optional: long-press reset (mobile-friendly fallback)
+    let pressTimer;
+
+    liftAllBtn?.addEventListener("touchstart", () => {
+        pressTimer = setTimeout(resetLayers, 700);
+    });
+
+    liftAllBtn?.addEventListener("touchend", () => {
+        clearTimeout(pressTimer);
+    });
 
 });
