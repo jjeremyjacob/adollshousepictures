@@ -11,21 +11,23 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-/* LAYOUT */
+/* CENTER STAGE */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* STAGE */
+/* SCENE */
 .scene {
     position: relative;
     width: 600px;
     height: 750px;
+
     background: #000;
     border: 6px solid #1e1305;
     border-radius: 8px;
+
     overflow: hidden;
 }
 
@@ -35,12 +37,14 @@ body {
     inset: 0;
 }
 
-/* LAYERS */
+/* -------------------------
+   LAYERS
+--------------------------*/
 .layer {
     position: absolute;
     inset: 0;
 
-    transform: translateY(140%); /* default: hidden/down */
+    transform: translateY(140%);
 
     transition:
         transform 6s cubic-bezier(0.22, 1, 0.36, 1),
@@ -59,52 +63,39 @@ body {
         0 2px 12px rgba(0,0,0,0.6);
 }
 
-/* ACTIVE VISUAL STATE */
 .layer.active {
     filter: saturate(1) contrast(1.05) brightness(1);
 }
 
-/* NAV BUTTON */
-.nav {
-    position: fixed;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 9999;
-}
-
-button {
-    background: transparent;
-    border: 0;
-    color: #5d4c26;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 10px 14px;
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-button:hover {
-    color: #a77f60;
-    transform: scale(1.2);
-}
-
-/* SIGILS */
+/* -------------------------
+   SIGIL GRID NAVIGATION
+   (3-column, anchored to scene edge)
+--------------------------*/
 .sigils {
     position: fixed;
+
+    /* lock to RIGHT EDGE of 600px scene */
     right: calc(50% - 300px + 20px);
     top: 50%;
     transform: translateY(-50%);
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: auto;
+    gap: 10px 12px;
 
-    gap: 10px 14px;
+    width: 200px;
+    padding: 12px;
+
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+
+    backdrop-filter: blur(6px);
 
     font-size: 13px;
-    width: 180px;
-
     text-align: center;
+
+    z-index: 9999;
 }
 
 /* normal sigils */
@@ -116,15 +107,17 @@ button:hover {
 
 /* hover state */
 .sigils div:hover {
-    color: #ad8a6e;
+    color: #d2b48c;
     transform: scale(1.15);
 }
 
-/* WHITE LIFT COMMAND */
+/* -------------------------
+   WHITE SYSTEM COMMAND
+--------------------------*/
 .sigil-lift-all {
     color: #ffffff !important;
     font-weight: 500;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
 }
 
 .sigil-lift-all:hover {
@@ -132,7 +125,16 @@ button:hover {
     transform: scale(1.2);
 }
 
-/* MOBILE */
+/* -------------------------
+   OPTIONAL ACTIVE STATE
+--------------------------*/
+.layer.active {
+    filter: saturate(1) contrast(1.05) brightness(1);
+}
+
+/* -------------------------
+   MOBILE (kept minimal)
+--------------------------*/
 @media (max-width: 768px) {
 
     body {
@@ -147,20 +149,10 @@ button:hover {
     }
 
     .sigils {
-        right: 8px;
+        right: 10px;
+        width: 160px;
         font-size: 11px;
-        gap: 4px;
-    }
-
-    .nav {
-        left: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(-50%);
-    }
-
-    button {
-        font-size: 20px;
-        padding: 14px 18px;
+        gap: 6px 8px;
+        padding: 10px;
     }
 }
