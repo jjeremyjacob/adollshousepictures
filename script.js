@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const layers = [];
 
     // =========================
-    // BUILD LAYERS
+    // BUILD LAYERS (SAFE LOADING)
     // =========================
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
@@ -31,9 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
 
-        // SAFER IMAGE BINDING
-        layer.style.backgroundImage =
-            `url("images/layer${i + 1}.webp")`;
+        const imgPath = `images/layer${i + 1}.webp`;
+
+        // SAFE IMAGE LOADING (prevents silent blank stage)
+        const img = new Image();
+        img.src = imgPath;
+
+        img.onload = () => {
+            layer.style.backgroundImage = `url("${imgPath}")`;
+        };
+
+        img.onerror = () => {
+            console.warn("Missing image:", imgPath);
+            layer.style.background = "#1a1a1a"; // visible fallback
+        };
 
         layer.dataset.state = "down";
 
@@ -42,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================
-    // LAYER ACTIONS (NO GROUPING)
+    // LAYER CONTROL (NO GROUPING)
     // =========================
     function lift(layer) {
         layer.style.transition =
@@ -92,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // =========================
-    // ARCH CONTROL (RESET)
+    // ARCH (RESET CONTROL)
     // =========================
     const arch = document.createElement("div");
     arch.textContent = "⌂";
