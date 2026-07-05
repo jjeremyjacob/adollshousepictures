@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "find me","gun","the horse","chicken","e",
+        "❂","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
         "⌒","king","oh i","▢","□","■",
