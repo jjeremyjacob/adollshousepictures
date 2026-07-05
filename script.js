@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================
-    // INDIVIDUAL LAYER CONTROL
+    // LAYER ACTIONS (NO GROUP LOGIC)
     // =========================
     function lift(layer) {
         layer.style.transition =
@@ -65,8 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function resetAll() {
+        layers.forEach(layer => drop(layer));
+    }
+
     // =========================
-    // SIGILS
+    // BUILD SIGILS
     // =========================
     sigilSet.forEach((label, i) => {
 
@@ -81,16 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
         sigilsContainer.appendChild(sigil);
     });
 
-    // =========================
-    // ARCH (RESET ONLY)
-    // =========================
-    const archLift = document.createElement("div");
-    archLift.textContent = "⌂";
-    archLift.classList.add("arch-lift");
+    // ARCH (RESET CONTROL)
+    const arch = document.createElement("div");
+    arch.textContent = "⌂";
+    arch.classList.add("arch-lift");
 
-    archLift.addEventListener("click", () => {
-        layers.forEach(layer => drop(layer));
-    });
+    arch.addEventListener("click", resetAll);
 
-    sigilsContainer.appendChild(archLift);
+    sigilsContainer.appendChild(arch);
+
 });
