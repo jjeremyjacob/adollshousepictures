@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const DURATION = 6000;
 
     const sigilSet = [
-        "⌒", // ARCH LIFT (index 0)
+        "⌒",
         "find me","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const layers = [];
     let currentLayer = 0;
 
-    // BUILD LAYERS
+    /* -----------------------------
+       BUILD LAYERS
+    ------------------------------ */
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -30,21 +32,21 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.push(layer);
     }
 
-    // INIT
+    /* INIT */
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
 
         if (i === 0) {
             layer.style.transform = "translateY(0)";
-            layer.dataset.state = "down";
         } else {
             layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
         }
     });
 
-    // GO TO LAYER (SPATIAL SYSTEM)
+    /* -----------------------------
+       NAV SYSTEM
+    ------------------------------ */
     function goToLayer(index) {
 
         currentLayer = index;
@@ -56,17 +58,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (i <= currentLayer) {
                 layer.style.transform = "translateY(0)";
-                layer.dataset.state = "down";
             } else {
                 layer.style.transform = "translateY(-140%)";
-                layer.dataset.state = "up";
             }
         });
 
         updateSigils();
     }
 
-    // BUILD SIGILS
+    /* -----------------------------
+       BUILD MOBILE 6-ROW SIGILS
+    ------------------------------ */
+
+    const archRow = document.createElement("div");
+    archRow.className = "sigils-row arch-row";
+
+    const gridRow = document.createElement("div");
+    gridRow.className = "sigils-row grid-row";
+
+    sigilsContainer.appendChild(archRow);
+    sigilsContainer.appendChild(gridRow);
+
     const sigils = [];
 
     sigilSet.forEach((label, i) => {
@@ -75,13 +87,19 @@ document.addEventListener("DOMContentLoaded", () => {
         sigil.textContent = label;
         sigil.dataset.index = i;
 
-        if (i === 0) sigil.classList.add("arch");
+        if (i === 0) {
+            sigil.classList.add("arch");
+            archRow.appendChild(sigil);
+        } else {
+            gridRow.appendChild(sigil);
+        }
 
-        sigilsContainer.appendChild(sigil);
         sigils.push(sigil);
     });
 
-    // UPDATE ACTIVE STATE
+    /* -----------------------------
+       ACTIVE STATE
+    ------------------------------ */
     function updateSigils() {
         sigils.forEach((sigil, i) => {
             sigil.classList.toggle("active", i === currentLayer);
@@ -90,7 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateSigils();
 
-    // INTERACTION
+    /* -----------------------------
+       CLICK INTERACTION
+    ------------------------------ */
     sigils.forEach(sigil => {
 
         sigil.addEventListener("click", () => {
