@@ -7,11 +7,14 @@
 body {
     min-height: 100vh;
     min-height: 100dvh;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: #111;
     overflow: hidden;
+
     font-family: Arial, sans-serif;
 }
 
@@ -22,9 +25,11 @@ body {
     position: relative;
     width: 600px;
     height: 750px;
+
     background: #000;
     border: 6px solid #1e1305;
     border-radius: 8px;
+
     overflow: hidden;
 }
 
@@ -58,7 +63,7 @@ body {
 }
 
 /* =========================
-   SIGILS (CLEAN + INDIVIDUAL)
+   SIGILS
    ========================= */
 .sigils {
     position: fixed;
@@ -73,8 +78,9 @@ body {
     font-size: 14px;
     color: #4b4330;
 
-    cursor: pointer;
     text-align: right;
+    cursor: pointer;
+
     z-index: 10;
 }
 
@@ -91,36 +97,13 @@ body {
     color: #c7a77a;
 }
 
-/* ARCH */
-.sigils .arch {
+/* ARCH LIFT (BOTTOM ITEM) */
+.sigils .arch-lift {
     color: #ffffff;
 }
 
 /* =========================
-   NAV BUTTON
-   ========================= */
-.nav {
-    position: fixed;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-}
-
-#liftAll {
-    background: transparent;
-    border: none;
-    color: #5d4c26;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-#liftAll:hover {
-    color: #a77f60;
-}
-
-/* =========================
-   MOBILE (SAFE ONLY)
+   MOBILE
    ========================= */
 @media (max-width: 768px) {
 
@@ -139,20 +122,5 @@ body {
         right: 10px;
         font-size: 12px;
         gap: 6px;
-    }
-
-    .nav {
-        left: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(-50%);
-    }
-
-    #liftAll {
-        font-size: 22px;
-    }
-
-    .layer {
-        box-shadow: 0 4px 24px #000, 0 1px 6px #000;
     }
 }
