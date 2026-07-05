@@ -4,116 +4,142 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
+    width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #111;
-    font-family: Arial, sans-serif;
 }
 
-/* CENTER STAGE */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background: #111;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* SCENE */
+/* =========================
+   STAGE
+========================= */
+
 .scene {
     position: relative;
-    width: 600px;
-    height: 750px;
+
+    width: min(600px, 92vw);
+    aspect-ratio: 600 / 750;
+
     background: #000;
+
     border: 6px solid #1e1305;
     border-radius: 8px;
+
     overflow: hidden;
 }
 
-/* WORLD */
+/* =========================
+   WORLD
+========================= */
+
 .world {
     position: absolute;
     inset: 0;
 }
 
-/* -------------------------
+/* =========================
    LAYERS
---------------------------*/
+========================= */
+
 .layer {
     position: absolute;
     inset: 0;
 
-    transform: translateY(140%);
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 1s ease;
-
-    will-change: transform;
-
     background-size: cover;
-    background-position: bottom center;
+    background-position: center bottom;
     background-repeat: no-repeat;
 
-    filter: saturate(0.8) contrast(0.95) brightness(0.95);
+    transform: translateY(-140%);
 
-    box-shadow:
-        0 12px 70px rgba(0,0,0,0.9),
-        0 2px 12px rgba(0,0,0,0.6);
+    transition: transform 6s cubic-bezier(.22,1,.36,1);
+
+    will-change: transform;
 }
 
-/* -------------------------
-   SIGILS (RESTORED SAFE VERSION)
---------------------------*/
+.layer:first-child {
+    transform: translateY(0);
+}
+
+/* =========================
+   SIGILS
+========================= */
+
 .sigils {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
 
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 18px;
+    align-items: center;
 
-    font-size: 14px;
-    text-align: right;
+    z-index: 1000;
 
-    z-index: 9999;
-
-    color: #4b4330;
+    user-select: none;
 }
 
 .sigils div {
+
+    color: #271f0f;
+
+    font-size: 16px;
+
     cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
 }
 
 .sigils div:hover {
-    color: #d2b48c;
-    transform: scale(1.15);
+
+    color: #ad8a6e;
+    transform: scale(1.35);
+
 }
 
-/* WHITE COMMAND SIGIL */
-.sigil-lift-all {
-    color: #ffffff !important;
-    font-weight: 500;
-    margin-top: 10px;
+.sigils div.active {
+
+    color: #392817;
+
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
+/* =========================
+   MOBILE
+========================= */
 
-    body {
-        align-items: flex-start;
-        padding-top: 20px;
+@media (max-width:768px){
+
+    .scene{
+
+        width:94vw;
+
     }
 
-    .scene {
-        width: min(94vw, 600px);
-        height: auto;
-        aspect-ratio: 600 / 750;
+    .sigils{
+
+        gap:10px;
+        bottom:18px;
+
     }
 
-    .sigils {
-        right: 10px;
-        font-size: 12px;
-        gap: 6px;
+    .sigils div{
+
+        font-size:13px;
+
     }
+
 }
