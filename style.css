@@ -15,6 +15,31 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.index {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-size: 12px;
+    color: #4b4330;
+    cursor: pointer;
+    text-align: right;
+}
+
+.index div {
+    transition: 0.2s ease;
+}
+
+.index div:hover {
+    color: #ad8a6e;
+    transform: scale(1.2);
+}
+
 /* STAGE */
 .scene {
     position: relative;
