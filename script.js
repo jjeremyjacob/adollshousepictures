@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function moveUp(layer) {
         layer.style.transition =
             `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
         layer.style.transform = "translateY(-140%)";
         layer.dataset.state = "up";
     }
@@ -66,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function moveDown(layer) {
         layer.style.transition =
             `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
         layer.style.transform = "translateY(0)";
         layer.dataset.state = "down";
     }
@@ -77,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.forEach(layer => {
             layer.style.transition =
                 `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
             layer.style.transform = "translateY(-140%)";
             layer.dataset.state = "up";
         });
@@ -89,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.forEach(layer => {
             layer.style.transition =
                 `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+
             layer.style.transform = "translateY(0)";
             layer.dataset.state = "down";
         });
@@ -120,48 +124,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
     }
-
-    // -----------------------------
-    // MOBILE TOUCH GESTURES
-    // -----------------------------
-    function enableTouchGestures() {
-
-        if (window.innerWidth > 768) return;
-
-        let startY = 0;
-        let endY = 0;
-        let touching = false;
-
-        const threshold = 50;
-
-        document.addEventListener("touchstart", (e) => {
-            startY = e.touches[0].clientY;
-            touching = true;
-        }, { passive: true });
-
-        document.addEventListener("touchmove", (e) => {
-            if (!touching) return;
-            endY = e.touches[0].clientY;
-        }, { passive: true });
-
-        document.addEventListener("touchend", () => {
-            if (!touching) return;
-            touching = false;
-
-            const deltaY = endY - startY;
-
-            // swipe up → lift all layers
-            if (deltaY < -threshold) {
-                liftAllLayers();
-            }
-
-            // swipe down → reset
-            if (deltaY > threshold) {
-                resetLayers();
-            }
-        });
-    }
-
-    enableTouchGestures();
 
 });
