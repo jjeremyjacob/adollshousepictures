@@ -3,36 +3,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const TOTAL_LAYERS = 30;
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
 
-    const DURATION = 6000;
+    const layers = [];
 
+    // -----------------------------
+    // BUILD LAYERS
+    // -----------------------------
+    for (let i = 0; i < TOTAL_LAYERS; i++) {
+
+        const layer = document.createElement("div");
+        layer.className = "layer";
+        layer.id = `layer${i + 1}`;
+
+        world.appendChild(layer);
+        layers.push(layer);
+    }
+
+    // -----------------------------
+    // SIGIL LABELS
+    // -----------------------------
     const sigilSet = [
-    "find me","gun","the horse","chicken","e",
-    "game","my house","◉","⟡","✦",
-    "floor plan","library","+","cut","⬣",
-    "⌒","king","oh i","▢","□",
-    "■","▨","▣","▤","▦",
-    "26","27","28","29","30"
-];
+        "find me","gun","the horse","chicken","e",
+        "game","my house","◉","⟡","✦",
+        "floor plan","library","+","cut","⬣",
+        "⌒","king","oh i","▢","□",
+        "■","▨","▣","▤","▦",
+        "26","27","28","29","30"
+    ];
 
-// BUILD SIGILS GRID
-sigilSet.forEach((label, i) => {
-    const sigil = document.createElement("div");
-    sigil.dataset.index = i;
-    sigil.textContent = label;
-    sigilsContainer.appendChild(sigil);
-});
-
-// CREATE LIFT ALL SIGIL (white command node)
-const liftAllSigil = document.createElement("div");
-liftAllSigil.textContent = "lift all";
-liftAllSigil.classList.add("sigil-lift-all");
-
-// append into grid AFTER creation (keeps layout consistent)
-sigilsContainer.appendChild(liftAllSigil);
-
-    // MOVE HELPERS
+    // -----------------------------
+    // LAYER STATE HELPERS
+    // -----------------------------
     function lift(layer) {
         layer.style.transform = "translateY(0)";
         layer.dataset.state = "up";
@@ -51,14 +52,42 @@ sigilsContainer.appendChild(liftAllSigil);
         layers.forEach(drop);
     }
 
-    // INIT (all down)
+    // -----------------------------
+    // INIT STATE (all hidden/down)
+    // -----------------------------
     dropAll();
 
-    // SIGIL CLICK CONTROL
-    sigilsContainer.querySelectorAll("div").forEach(sigil => {
+    // -----------------------------
+    // BUILD SIGILS GRID
+    // -----------------------------
+    sigilSet.forEach((label, i) => {
+        const sigil = document.createElement("div");
+        sigil.textContent = label;
+        sigil.dataset.index = i;
+
+        sigilsContainer.appendChild(sigil);
+    });
+
+    // -----------------------------
+    // ADD WHITE "LIFT ALL" COMMAND SIGIL
+    // -----------------------------
+    const liftAllSigil = document.createElement("div");
+    liftAllSigil.textContent = "lift all";
+    liftAllSigil.classList.add("sigil-lift-all");
+
+    sigilsContainer.appendChild(liftAllSigil);
+
+    // -----------------------------
+    // INDIVIDUAL SIGIL CONTROL
+    // -----------------------------
+    sigilsContainer.querySelectorAll("div").forEach((sigil, index) => {
+
+        // last element is liftAllSigil → skip layer mapping
+        if (sigil === liftAllSigil) return;
+
         sigil.addEventListener("click", () => {
-            const index = Number(sigil.dataset.index);
-            const layer = layers[index];
+            const layerIndex = Number(sigil.dataset.index);
+            const layer = layers[layerIndex];
             if (!layer) return;
 
             if (layer.dataset.state === "up") {
@@ -69,14 +98,9 @@ sigilsContainer.appendChild(liftAllSigil);
         });
     });
 
-    // BUTTON
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAll);
-
-        liftAllBtn.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            liftAll();
-        }, { passive: false });
-    }
+    // -----------------------------
+    // LIFT ALL CONTROL (white sigil)
+    // -----------------------------
+    liftAllSigil.addEventListener("click", liftAll);
 
 });
