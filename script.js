@@ -3,16 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const TOTAL_LAYERS = 30;
 
     const world = document.querySelector(".world");
-    const indexContainer = document.querySelector(".index");
+    const sigilsContainer = document.querySelector(".sigils");
     const liftAllBtn = document.getElementById("liftAll");
 
     const DURATION = 6000;
 
+    const sigilSet = [
+        "find me","gun","the horse","chicken","e",
+        "game","my house","◉","⟡","✦",
+        "floor plan","library","+","cut","⬣",
+        "⌒","king","oh i", "▢","□","■",
+        "▨","▣","▤","▦","26","27","28",
+    ];
+
     const layers = [];
 
-    // -----------------------------
-    // BUILD LAYERS
-    // -----------------------------
+    // BUILD
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -21,11 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         world.appendChild(layer);
         layers.push(layer);
+
+        const sigil = document.createElement("div");
+        sigil.dataset.layer = i;
+        sigil.textContent = sigilSet[i] || "◻";
+
+        sigilsContainer.appendChild(sigil);
     }
 
-    // -----------------------------
-    // INITIAL STATE
-    // -----------------------------
+    // INIT
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
@@ -39,116 +49,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----------------------------
-    // CORE STATE
-    // -----------------------------
-    let currentLayer = 0;
+    // MOVE FUNCTIONS
+    function moveUp(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
 
-    function goToLayer(index) {
+        layer.style.transform = "translateY(-140%)";
+        layer.dataset.state = "up";
+    }
 
-        currentLayer = index;
+    function moveDown(layer) {
+        layer.style.transition =
+            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
 
-        layers.forEach((layer, i) => {
+        layer.style.transform = "translateY(0)";
+        layer.dataset.state = "down";
+    }
 
+    function liftAllLayers() {
+        layers.forEach(layer => {
             layer.style.transition =
                 `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
 
-            if (i <= currentLayer) {
-                layer.style.transform = "translateY(0)";
-                layer.dataset.state = "down";
-            } else {
-                layer.style.transform = "translateY(-140%)";
-                layer.dataset.state = "up";
-            }
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
         });
     }
 
-    // -----------------------------
-    // LIFT ALL / RESET
-    // -----------------------------
-    function liftAllLayers() {
-        goToLayer(TOTAL_LAYERS - 1);
-    }
+    // SIGILS
+    sigilsContainer.querySelectorAll("div").forEach(sigil => {
 
-    function resetLayers() {
-        goToLayer(0);
-    }
+        sigil.addEventListener("click", () => {
 
-    // -----------------------------
-    // INDEX NAVIGATION (6 GROUPS)
-    // -----------------------------
-    const indexGroups = [
-        [0, 4],
-        [5, 9],
-        [10, 14],
-        [15, 19],
-        [20, 24],
-        [25, 29]
-    ];
+            const index = Number(sigil.dataset.layer);
+            const layer = layers[index];
 
-    const indexLabels = [
-        "01–05",
-        "06–10",
-        "11–15",
-        "16–20",
-        "21–25",
-        "26–30"
-    ];
+            if (!layer) return;
 
-    const groups = [];
-
-    indexGroups.forEach((range, i) => {
-
-        const el = document.createElement("div");
-        el.textContent = indexLabels[i];
-
-        el.dataset.start = range[0];
-        el.dataset.end = range[1];
-
-        indexContainer.appendChild(el);
-        groups.push(el);
-    });
-
-    // -----------------------------
-    // INDEX CLICK BEHAVIOR
-    // cycles through each range
-    // -----------------------------
-    groups.forEach(group => {
-
-        let current = Number(group.dataset.start);
-
-        group.addEventListener("click", () => {
-
-            const start = Number(group.dataset.start);
-            const end = Number(group.dataset.end);
-
-            if (current < start || current > end) {
-                current = start;
+            if (layer.dataset.state === "down") {
+                moveUp(layer);
             } else {
-                current++;
-                if (current > end) current = start;
+                moveDown(layer);
             }
-
-            goToLayer(current);
         });
     });
 
-    // -----------------------------
-    // BUTTON CONTROL
-    // -----------------------------
+    // BUTTON
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
     }
-
-    // Optional: long-press reset (mobile-friendly fallback)
-    let pressTimer;
-
-    liftAllBtn?.addEventListener("touchstart", () => {
-        pressTimer = setTimeout(resetLayers, 700);
-    });
-
-    liftAllBtn?.addEventListener("touchend", () => {
-        clearTimeout(pressTimer);
-    });
 
 });
