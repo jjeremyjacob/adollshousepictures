@@ -101,38 +101,6 @@ body {
 #layer30 { background-image: url("images/layer30.webp"); }
 
 /* =========================
-   NAV (ARCH LIFT)
-   ========================= */
-.nav {
-    position: absolute;
-    left: -60px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10000;
-}
-
-#liftAll {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-}
-
-/* ARCH LIFT ICON */
-#liftAll::before {
-    content: "⌒";
-    font-size: 22px;
-    color: #5d4c26;
-    display: inline-block;
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-#liftAll:hover::before {
-    color: #a77f60;
-    transform: scale(1.4);
-}
-
-/* =========================
    SIGILS (DESKTOP)
    ========================= */
 .sigils {
@@ -161,8 +129,45 @@ body {
     transform: scale(1.4);
 }
 
+/* ACTIVE SIGIL STATE (SPATIAL SYSTEM) */
+.sigils div.active {
+    color: #c7a77a;
+    transform: scale(1.25);
+}
+
 /* =========================
-   MOBILE
+   ARCH LIFT NAV (DESKTOP)
+   ========================= */
+.nav {
+    position: absolute;
+    left: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+}
+
+#liftAll {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+#liftAll::before {
+    content: "⌒";
+    font-size: 22px;
+    color: #5d4c26;
+    display: inline-block;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+#liftAll:hover::before {
+    color: #a77f60;
+    transform: scale(1.4);
+}
+
+/* =========================
+   MOBILE LAYOUT
    ========================= */
 @media (max-width: 768px) {
 
@@ -170,7 +175,7 @@ body {
         flex-direction: column;
         align-items: center;
         overflow-y: auto;
-        padding-bottom: 40px;
+        padding: 18px 0 40px 0;
     }
 
     .scene {
@@ -179,32 +184,7 @@ body {
         height: auto;
     }
 
-    /* SIGILS BELOW STAGE */
-    .sigils {
-        position: static;
-        transform: none;
-
-        margin-top: 16px;
-        padding: 12px 10px;
-
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        gap: 10px 14px;
-
-        font-size: 16px;
-        line-height: 1.4;
-
-        width: 100%;
-        max-width: 600px;
-    }
-
-    .sigils div {
-        padding: 4px 6px;
-    }
-
-    /* CENTER ARCH LIFT ON MOBILE */
+    /* ARCH LIFT ABOVE STAGE */
     .nav {
         position: static;
         transform: none;
@@ -212,6 +192,34 @@ body {
         display: flex;
         justify-content: center;
 
+        margin-bottom: 12px;
+    }
+
+    /* SIGILS BELOW STAGE (3 × 10 GRID) */
+    .sigils {
+        position: static;
+        transform: none;
+
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-auto-rows: auto;
+
+        gap: 8px 6px;
+
+        width: 100%;
+        max-width: 600px;
+
         margin-top: 14px;
+        padding: 10px 8px;
+
+        font-size: 15px;
+        line-height: 1.2;
+
+        justify-items: center;
+        align-items: center;
+    }
+
+    .sigils div {
+        padding: 2px 4px;
     }
 }
