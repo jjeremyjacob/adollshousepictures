@@ -19,7 +19,7 @@ body {
 }
 
 /* =========================
-   STAGE CONTAINER
+   STAGE (POSITION CONTEXT)
    ========================= */
 .scene {
     position: relative;
@@ -32,9 +32,12 @@ body {
     border-radius: 8px;
 
     overflow: hidden;
+
+    /* ensures clean stacking + Safari stability */
+    isolation: isolate;
 }
 
-/* WORLD STACK */
+/* WORLD */
 .world {
     position: absolute;
     inset: 0;
@@ -66,17 +69,19 @@ body {
 }
 
 /* =========================
-   SIGILS (RIGHT STAGE SPINE)
+   SIGILS (RIGHT EDGE ATTACHED)
    ========================= */
 .sigils {
     position: absolute;
 
-    right: 20px;
     top: 0;
     bottom: 0;
+    right: 0;
 
-    width: 120px;              /* CRITICAL FIX (prevents collapse) */
-    height: 100%;
+    width: 120px; /* real bounding box inside stage */
+
+    /* internal inset so it doesn't touch border */
+    padding-right: 20px;
 
     display: grid;
 
@@ -91,10 +96,10 @@ body {
     font-size: 13px;
     color: #4b4330;
 
+    z-index: 5;
+
     user-select: none;
     cursor: pointer;
-
-    z-index: 5;
 }
 
 /* individual sigils */
@@ -123,7 +128,7 @@ body {
 }
 
 /* =========================
-   MOBILE (STACKED PANEL)
+   MOBILE LAYOUT
    ========================= */
 @media (max-width: 768px) {
 
@@ -136,7 +141,6 @@ body {
         overflow: hidden;
     }
 
-    /* mobile sigils become panel */
     .sigils {
         position: relative;
 
