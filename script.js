@@ -1,80 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const TOTAL_LAYERS = 30;
-
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
+    const liftAllBtn = document.getElementById("liftAll");
+
+    const DURATION = 6000;
 
     const sigilSet = [
-        "⌒",
         "find me","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
-        "king","oh i","▢","□","■",
-        "▨","▣","▤","▦","26","27","28"
+        "⌒","king","oh i", "▢","□","■",
+        "▨","▣","▤","▦","26","27","28",
     ];
 
     const layers = [];
-    let currentLayer = 0;
 
-    // BUILD LAYERS
+    // BUILD
     for (let i = 0; i < TOTAL_LAYERS; i++) {
+
         const layer = document.createElement("div");
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
+
         world.appendChild(layer);
         layers.push(layer);
-    }
 
-    // INIT LAYERS
-    layers.forEach((layer, i) => {
-        layer.style.transform = i === 0 ? "translateY(0)" : "translateY(-140%)";
-    });
-
-    function goToLayer(index) {
-        currentLayer = index;
-
-        layers.forEach((layer, i) => {
-            layer.style.transform =
-                i <= currentLayer ? "translateY(0)" : "translateY(-140%)";
-        });
-
-        updateSigils();
-    }
-
-    // BUILD SIGILS (FLAT STRUCTURE ONLY)
-    const sigils = [];
-
-    sigilSet.forEach((label, i) => {
         const sigil = document.createElement("div");
-        sigil.textContent = label;
-        sigil.dataset.index = i;
-
-        if (i === 0) sigil.classList.add("arch");
+        sigil.dataset.layer = i;
+        sigil.textContent = sigilSet[i] || "◻";
 
         sigilsContainer.appendChild(sigil);
-        sigils.push(sigil);
+    }
+
+    // INIT STATE
+    layers.forEach((layer, i) => {
+        layer.style.transition = "none";
+
+        if (i === 0) {
+            layer.style.transform = "translateY(0)";
+            layer.dataset.state = "down";
+        } else {
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
+        }
     });
 
-    function updateSigils() {
-        sigils.forEach((sigil, i) => {
-            sigil.classList.toggle("active", i === currentLayer);
+    function moveUp(layer) {
+        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        layer.style.transform = "translateY(-140%)";
+        layer.dataset.state = "up";
+    }
+
+    function moveDown(layer) {
+        layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+        layer.style.transform = "translateY(0)";
+        layer.dataset.state = "down";
+    }
+
+    function liftAllLayers() {
+        layers.forEach(layer => {
+            layer.style.transition = `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+            layer.style.transform = "translateY(-140%)";
+            layer.dataset.state = "up";
         });
     }
 
-    updateSigils();
-
-    sigils.forEach(sigil => {
+    // SIGILS
+    sigilsContainer.querySelectorAll("div").forEach(sigil => {
         sigil.addEventListener("click", () => {
-            const index = Number(sigil.dataset.index);
+            const index = Number(sigil.dataset.layer);
+            const layer = layers[index];
+            if (!layer) return;
 
-            if (index === 0) {
-                goToLayer(TOTAL_LAYERS - 1);
-                return;
-            }
-
-            goToLayer(index);
+            layer.dataset.state === "down"
+                ? moveUp(layer)
+                : moveDown(layer);
         });
     });
+
+    // BUTTON (click + touch safe)
+    if (liftAllBtn) {
+        liftAllBtn.addEventListener("click", liftAllLayers);
+        liftAllBtn.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            liftAllLayers();
+        }, { passive: false });
+    }
 
 });
