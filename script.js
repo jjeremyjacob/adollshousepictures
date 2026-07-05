@@ -4,19 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
-    const liftAllBtn = document.getElementById("liftAll");
 
     const DURATION = 6000;
 
     const sigilSet = [
+        "⌒", // ARCH LIFT (NOW PART OF SYSTEM)
         "find me","gun","the horse","chicken","e",
         "game","my house","◉","⟡","✦",
         "floor plan","library","+","cut","⬣",
-        "⌒","king","oh i", "▢","□","■",
-        "▨","▣","▤","▦","26","27","28",
+        "king","oh i", "▢","□","■",
+        "▨","▣","▤","▦","26","27","28"
     ];
 
     const layers = [];
+    let currentLayer = 0;
 
     // -----------------------------
     // BUILD LAYERS
@@ -31,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.push(layer);
     }
 
-    // -----------------------------
     // INIT STATE
-    // -----------------------------
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
@@ -48,10 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // -----------------------------
-    // CORE SPATIAL STATE
+    // SPATIAL SYSTEM
     // -----------------------------
-    let currentLayer = 0;
-
     function goToLayer(index) {
 
         currentLayer = index;
@@ -70,61 +67,56 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        updateSigilState();
+        updateSigils();
     }
 
     // -----------------------------
-    // SIGIL GRID BUILD (3 × 10)
+    // BUILD SIGILS (INCLUDING ARCH)
     // -----------------------------
     const sigils = [];
 
-    for (let i = 0; i < TOTAL_LAYERS; i++) {
+    sigilSet.forEach((label, i) => {
 
         const sigil = document.createElement("div");
-        sigil.textContent = sigilSet[i] || "◻";
+        sigil.textContent = label;
         sigil.dataset.index = i;
+
+        // mark arch sigil
+        if (i === 0) sigil.classList.add("arch");
 
         sigilsContainer.appendChild(sigil);
         sigils.push(sigil);
-    }
+    });
 
     // -----------------------------
-    // ACTIVE SIGIL HIGHLIGHT
+    // ACTIVE STATE
     // -----------------------------
-    function updateSigilState() {
+    function updateSigils() {
 
         sigils.forEach((sigil, i) => {
-            if (i === currentLayer) {
-                sigil.classList.add("active");
-            } else {
-                sigil.classList.remove("active");
-            }
+            sigil.classList.toggle("active", i === currentLayer);
         });
     }
 
-    updateSigilState();
+    updateSigils();
 
     // -----------------------------
-    // SIGIL INTERACTION (SPATIAL JUMP)
+    // SIGIL INTERACTION
     // -----------------------------
     sigils.forEach(sigil => {
 
         sigil.addEventListener("click", () => {
             const index = Number(sigil.dataset.index);
+
+            // ARCH LIFT BEHAVIOR
+            if (index === 0) {
+                goToLayer(TOTAL_LAYERS - 1);
+                return;
+            }
+
             goToLayer(index);
         });
 
     });
-
-    // -----------------------------
-    // ARCH LIFT (FULL COLLAPSE)
-    // -----------------------------
-    function liftAllLayers() {
-        goToLayer(TOTAL_LAYERS - 1);
-    }
-
-    if (liftAllBtn) {
-        liftAllBtn.addEventListener("click", liftAllLayers);
-    }
 
 });
