@@ -1,108 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #111;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-}
-
-/* =========================
-   STAGE
-   ========================= */
-.scene {
-    position: relative;
-    width: 600px;
-    height: 750px;
-
-    background: #000;
-    border: 6px solid #1e1305;
-    border-radius: 8px;
-
-    overflow: hidden;
-}
-
-/* WORLD */
-.world {
-    position: absolute;
-    inset: 0;
-}
-
-/* =========================
-   LAYERS
-   ========================= */
-.layer {
-    position: absolute;
-    inset: 0;
-
-    transform: translateY(0);
-    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 1s ease;
-
-    will-change: transform;
-
-    background-size: cover;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-
-    opacity: 1;
-
-    filter: saturate(0.8) contrast(0.95) brightness(0.95);
-
-    box-shadow:
-        0 12px 70px #000000,
-        0 2px 12px #0a0a0a;
-}
-
-.layer.lift-up {
-    transform: translateY(-140%);
-}
-
-/* =========================
-   BACKGROUNDS
-   ========================= */
-#layer1  { background-image: url("images/layer1.webp"); }
-#layer2  { background-image: url("images/layer2.webp"); }
-#layer3  { background-image: url("images/layer3.webp"); }
-#layer4  { background-image: url("images/layer4.gif"); }
-#layer5  { background-image: url("images/layer5.webp"); }
-#layer6  { background-image: url("images/layer6.webp"); }
-#layer7  { background-image: url("images/layer7.webp"); }
-#layer8  { background-image: url("images/layer8.webp"); }
-#layer9  { background-image: url("images/layer9.webp"); }
-#layer10 { background-image: url("images/layer10.webp"); }
-#layer11 { background-image: url("images/layer11.webp"); }
-#layer12 { background-image: url("images/layer12.webp"); }
-#layer13 { background-image: url("images/layer13.webp"); }
-#layer14 { background-image: url("images/layer14.webp"); }
-#layer15 { background-image: url("images/layer15.webp"); }
-#layer16 { background-image: url("images/layer16.webp"); }
-#layer17 { background-image: url("images/layer17.webp"); }
-#layer18 { background-image: url("images/layer18.gif"); }
-#layer19 { background-image: url("images/layer19.webp"); }
-#layer20 { background-image: url("images/layer20.webp"); }
-#layer21 { background-image: url("images/layer21.webp"); }
-#layer22 { background-image: url("images/layer22.webp"); }
-#layer23 { background-image: url("images/layer23.webp"); }
-#layer24 { background-image: url("images/layer24.webp"); }
-#layer25 { background-image: url("images/layer25.webp"); }
-#layer26 { background-image: url("images/layer26.webp"); }
-#layer27 { background-image: url("images/layer27.webp"); }
-#layer28 { background-image: url("images/layer28.webp"); }
-#layer29 { background-image: url("images/layer29.webp"); }
-#layer30 { background-image: url("images/layer30.webp"); }
-
-/* =========================
-   SIGILS (DESKTOP)
-   ========================= */
 .sigils {
     position: fixed;
     right: 20px;
@@ -117,95 +12,32 @@ body {
     color: #4b4330;
     cursor: pointer;
     text-align: right;
+
+    /* prevents any hover/layout weirdness */
+    will-change: auto;
 }
 
 .sigils div {
-    transition: 0.2s ease;
+    transition: color 0.2s ease;
+    transform: none;
 }
 
-/* hover: ONLY color change, no transform */
 .sigils div:hover {
     color: #ad8a6e;
+    transform: none;
 }
 
-/* active state: ONLY color change, no transform */
 .sigils div.active {
     color: #c7a77a;
+    transform: none;
 }
 
-
-/* ARCH (⌒) */
+/* ARCH SIGIL */
 .sigils .arch {
     color: #ffffff;
 }
 
-/* ARCH hover also no scaling */
 .sigils .arch:hover {
     color: #ad8a6e;
-}
-
-/* =========================
-   MOBILE (6 ROW SYSTEM)
-   ========================= */
-@media (max-width: 768px) {
-
-    body {
-        flex-direction: column;
-        align-items: center;
-        overflow-y: auto;
-        padding: 18px 0 40px 0;
-    }
-
-    .scene {
-        width: min(94vw, 600px);
-        aspect-ratio: 600 / 750;
-        height: auto;
-    }
-
-    .sigils {
-        position: static;
-        transform: none;
-
-        width: 100%;
-        max-width: 600px;
-
-        margin-top: 14px;
-        padding: 10px 8px;
-
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    /* ROW 1: ARCH ONLY */
-    .sigils-row {
-        display: grid;
-        justify-items: center;
-        align-items: center;
-    }
-
-    .sigils-row.arch-row {
-        grid-template-columns: 1fr;
-        font-size: 18px;
-        margin-bottom: 6px;
-    }
-
-    /* ROWS 2–6 GRID */
-    .sigils-row.grid-row {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 8px 6px;
-        font-size: 15px;
-    }
-
-    .sigils div {
-        padding: 2px 4px;
-    }
-}
-
-.sigils div,
-.sigils div:hover,
-.sigils div.active,
-.sigils .arch,
-.sigils .arch:hover {
-    transform: none !important;
+    transform: none;
 }
