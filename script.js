@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const layers = [];
 
+    // -----------------------------
     // BUILD LAYERS
+    // -----------------------------
     for (let i = 0; i < TOTAL_LAYERS; i++) {
 
         const layer = document.createElement("div");
@@ -27,15 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         world.appendChild(layer);
         layers.push(layer);
-
-        const sigil = document.createElement("div");
-        sigil.dataset.layer = i;
-        sigil.textContent = sigilSet[i] || "◻";
-
-        sigilsContainer.appendChild(sigil);
     }
 
+    // -----------------------------
     // INIT STATE
+    // -----------------------------
     layers.forEach((layer, i) => {
 
         layer.style.transition = "none";
@@ -49,49 +47,82 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // MOVE FUNCTIONS
-    function moveUp(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-        layer.style.transform = "translateY(-140%)";
-        layer.dataset.state = "up";
-    }
+    // -----------------------------
+    // CORE SPATIAL STATE
+    // -----------------------------
+    let currentLayer = 0;
 
-    function moveDown(layer) {
-        layer.style.transition =
-            `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-        layer.style.transform = "translateY(0)";
-        layer.dataset.state = "down";
-    }
+    function goToLayer(index) {
 
-    function liftAllLayers() {
-        layers.forEach(layer => {
+        currentLayer = index;
+
+        layers.forEach((layer, i) => {
+
             layer.style.transition =
                 `transform ${DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-            layer.style.transform = "translateY(-140%)";
-            layer.dataset.state = "up";
+
+            if (i <= currentLayer) {
+                layer.style.transform = "translateY(0)";
+                layer.dataset.state = "down";
+            } else {
+                layer.style.transform = "translateY(-140%)";
+                layer.dataset.state = "up";
+            }
+        });
+
+        updateSigilState();
+    }
+
+    // -----------------------------
+    // SIGIL GRID BUILD (3 × 10)
+    // -----------------------------
+    const sigils = [];
+
+    for (let i = 0; i < TOTAL_LAYERS; i++) {
+
+        const sigil = document.createElement("div");
+        sigil.textContent = sigilSet[i] || "◻";
+        sigil.dataset.index = i;
+
+        sigilsContainer.appendChild(sigil);
+        sigils.push(sigil);
+    }
+
+    // -----------------------------
+    // ACTIVE SIGIL HIGHLIGHT
+    // -----------------------------
+    function updateSigilState() {
+
+        sigils.forEach((sigil, i) => {
+            if (i === currentLayer) {
+                sigil.classList.add("active");
+            } else {
+                sigil.classList.remove("active");
+            }
         });
     }
 
-    // SIGILS
-    sigilsContainer.querySelectorAll("div").forEach(sigil => {
+    updateSigilState();
+
+    // -----------------------------
+    // SIGIL INTERACTION (SPATIAL JUMP)
+    // -----------------------------
+    sigils.forEach(sigil => {
 
         sigil.addEventListener("click", () => {
-
-            const index = Number(sigil.dataset.layer);
-            const layer = layers[index];
-
-            if (!layer) return;
-
-            if (layer.dataset.state === "down") {
-                moveUp(layer);
-            } else {
-                moveDown(layer);
-            }
+            const index = Number(sigil.dataset.index);
+            goToLayer(index);
         });
+
     });
 
-    // ARCH LIFT BUTTON
+    // -----------------------------
+    // ARCH LIFT (FULL COLLAPSE)
+    // -----------------------------
+    function liftAllLayers() {
+        goToLayer(TOTAL_LAYERS - 1);
+    }
+
     if (liftAllBtn) {
         liftAllBtn.addEventListener("click", liftAllLayers);
     }
