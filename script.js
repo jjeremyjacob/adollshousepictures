@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -----------------------------
-    // SIGIL LABELS
+    // SIGIL LIST
     // -----------------------------
     const sigilSet = [
         "find me","gun","the horse","chicken","e",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     // -----------------------------
-    // LAYER STATE HELPERS
+    // LAYER CONTROL
     // -----------------------------
     function lift(layer) {
         layer.style.transform = "translateY(0)";
@@ -52,13 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
         layers.forEach(drop);
     }
 
-    // -----------------------------
-    // INIT STATE (all hidden/down)
-    // -----------------------------
+    // INIT STATE
     dropAll();
 
     // -----------------------------
-    // BUILD SIGILS GRID
+    // BUILD SIGILS
     // -----------------------------
     sigilSet.forEach((label, i) => {
         const sigil = document.createElement("div");
@@ -69,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // -----------------------------
-    // ADD WHITE "LIFT ALL" COMMAND SIGIL
+    // ADD LIFT ALL SIGIL
     // -----------------------------
     const liftAllSigil = document.createElement("div");
     liftAllSigil.textContent = "lift all";
@@ -78,16 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
     sigilsContainer.appendChild(liftAllSigil);
 
     // -----------------------------
-    // INDIVIDUAL SIGIL CONTROL
+    // SIGIL CLICK HANDLING
     // -----------------------------
-    sigilsContainer.querySelectorAll("div").forEach((sigil, index) => {
+    sigilsContainer.querySelectorAll("div").forEach((sigil) => {
 
-        // last element is liftAllSigil → skip layer mapping
         if (sigil === liftAllSigil) return;
 
         sigil.addEventListener("click", () => {
-            const layerIndex = Number(sigil.dataset.index);
-            const layer = layers[layerIndex];
+            const index = Number(sigil.dataset.index);
+            const layer = layers[index];
             if (!layer) return;
 
             if (layer.dataset.state === "up") {
@@ -99,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // -----------------------------
-    // LIFT ALL CONTROL (white sigil)
+    // LIFT ALL
     // -----------------------------
     liftAllSigil.addEventListener("click", liftAll);
 
