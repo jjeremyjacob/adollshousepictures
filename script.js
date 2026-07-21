@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const TOTAL_LAYERS = 12;
-    const DURATION = 6000;
+const TOTAL_LAYERS = 12;
+const DURATION = 6000;
+const STAGGER_DELAY = 550;
 
     const world = document.querySelector(".world");
     const sigilsContainer = document.querySelector(".sigils");
@@ -14,39 +15,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const layers = [];
     const sigils = [];
-    const layerState = new Array(TOTAL_LAYERS).fill(false);
+    const layerState = new Array(TOTAL_LAYERS).fill(true);
+
 
     /* =========================
-       GIF / WEBP RESOLVER
+       IMAGE RESOLVER
+       WEBP → PNG → GIF
     ========================= */
 
     function resolveImage(i) {
 
-        const base = `images/layer${i + 1}`;
+        const base = `images/layer_${String(i).padStart(4,"0")}_${i + 1}`;
 
         const webp = `${base}.webp`;
+        const png = `${base}.png`;
         const gif = `${base}.gif`;
+
 
         return new Promise((resolve) => {
 
-            const img = new Image();
 
-            img.onload = () => resolve(webp);
+            function testImage(src, fallback) {
 
-            img.onerror = () => {
+                const img = new Image();
 
-                const img2 = new Image();
+                img.onload = () => resolve(src);
 
-                img2.onload = () => resolve(gif);
+                img.onerror = fallback;
 
-                img2.onerror = () => resolve(null);
+                img.src = src;
 
-                img2.src = gif;
-            };
+            }
 
-            img.src = webp;
+
+            testImage(webp, () => {
+
+                testImage(png, () => {
+
+                    testImage(gif, () => {
+
+                        resolve(null);
+
+                    });
+
+                });
+
+            });
+
+
         });
+
     }
+
+
 
     /* =========================
        BUILD LAYERS
@@ -59,19 +80,34 @@ document.addEventListener("DOMContentLoaded", () => {
         layer.className = "layer";
         layer.id = `layer${i + 1}`;
 
-        layer.style.transform = "translateY(-140%)";
+
+        // ALL LAYERS START DOWN
+        layer.style.transform = "translateY(0)";
+
         layer.style.transition =
             `transform ${DURATION}ms cubic-bezier(.22,1,.36,1)`;
 
+
         world.appendChild(layer);
+
         layers.push(layer);
 
+
+
         resolveImage(i).then((src) => {
+
             if (src) {
-                layer.style.backgroundImage = `url("${src}")`;
+
+                layer.style.backgroundImage =
+                    `url("${src}")`;
+
             }
+
         });
+
     }
+
+
 
     /* =========================
        BUILD SIGILS
@@ -79,41 +115,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sigilSet.forEach((label, index) => {
 
+
         const sigil = document.createElement("div");
 
         sigil.textContent = label;
 
+
+        sigil.classList.add("active");
+
+
         sigil.addEventListener("click", () => {
+
             toggleLayer(index);
+
         });
 
+
         sigilsContainer.appendChild(sigil);
+
         sigils.push(sigil);
+
+
     });
 
-    /* =========================
-       LIFT ALL (CENTERED)
-    ========================= */
 
-    const liftAll = document.createElement("div");
-    liftAll.textContent = "⌂";
-    liftAll.classList.add("lift-all");
+/* =========================
+   LOWER ALL
+========================= */
 
-    liftAll.addEventListener("click", () => {
+const liftAll = document.createElement("div");
 
-        for (let i = 0; i < TOTAL_LAYERS; i++) {
+liftAll.textContent = "+";
 
-            layerState[i] = false;
+liftAll.classList.add("lift-all");
 
-            layers[i].style.transform = "translateY(-140%)";
 
-            if (sigils[i]) {
-                sigils[i].classList.remove("active");
-            }
+liftAll.addEventListener("click", () => {
+
+for (let i = 0; i < TOTAL_LAYERS; i++) {
+
+    setTimeout(() => {
+
+        layerState[i] = true;
+
+        layers[i].style.transform =
+            "translateY(0)";
+
+
+        if (sigils[i]) {
+
+            sigils[i].classList.add("active");
+
         }
-    });
 
-    sigilsContainer.appendChild(liftAll);
+    }, i * STAGGER_DELAY);
+
+}
+
+
+});
+
+
+sigilsContainer.appendChild(liftAll);
+
+
 
     /* =========================
        TOGGLE SINGLE LAYER
@@ -121,24 +186,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function toggleLayer(index) {
 
+
         layerState[index] = !layerState[index];
 
-        layers[index].style.transform = layerState[index]
+
+        layers[index].style.transform =
+            layerState[index]
             ? "translateY(0)"
             : "translateY(-140%)";
+
+
 
         sigils[index].classList.toggle(
             "active",
             layerState[index]
         );
+
+
     }
 
-    /* =========================
-       INITIAL STATE
-    ========================= */
 
-    setTimeout(() => {
-        toggleLayer(0);
-    }, 300);
 
 });
