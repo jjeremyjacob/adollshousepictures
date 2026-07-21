@@ -59,7 +59,7 @@ body {
     inset: 0;
 
     background-size: cover;
-    background-position: center top;
+background-position: center center;
     background-repeat: no-repeat;
 
     transform: translateY(-140%);
