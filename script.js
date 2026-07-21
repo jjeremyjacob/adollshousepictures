@@ -25,7 +25,7 @@ const STAGGER_DELAY = 550;
 
     function resolveImage(i) {
 
-        const base = `images/layer_${String(i).padStart(4,"0")}_${i + 1}`;
+        const base = `images/Layer_${String(i).padStart(4,"0")}_${i + 1}`;
 
         const webp = `${base}.webp`;
         const png = `${base}.png`;
