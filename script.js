@@ -1,0 +1,342 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuToggle =
+    document.querySelector(".menu-toggle");
+
+const siteNav =
+    document.querySelector(".site-nav");
+
+
+if (menuToggle && siteNav) {
+
+    menuToggle.addEventListener("click", () => {
+
+        const isOpen =
+            siteNav.classList.toggle("active");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+    });
+
+
+    siteNav.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            siteNav.classList.remove("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
+
+}
+
+
+
+/* =====================================================
+   VIDEO HOVER PREVIEW
+===================================================== */
+
+const projectVideos =
+    document.querySelectorAll(
+        ".project-card video"
+    );
+
+
+projectVideos.forEach(video => {
+
+    const card =
+        video.closest(".project-card");
+
+
+    if (!card) return;
+
+
+    card.addEventListener("mouseenter", () => {
+
+        video.play().catch(() => {});
+
+    });
+
+
+    card.addEventListener("mouseleave", () => {
+
+        video.pause();
+
+        video.currentTime = 0;
+
+    });
+
+});
+
+
+
+/* =====================================================
+   VIDEO MODAL
+===================================================== */
+
+const videoModal =
+    document.querySelector(".video-modal");
+
+const modalVideo =
+    document.querySelector(".modal-video");
+
+const modalClose =
+    document.querySelector(".modal-close");
+
+
+const openVideo = (src) => {
+
+    if (!videoModal || !modalVideo) return;
+
+
+    modalVideo.src = src;
+
+    videoModal.classList.add("active");
+
+    videoModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow = "hidden";
+
+
+    modalVideo.play().catch(() => {});
+
+};
+
+
+const closeVideo = () => {
+
+    if (!videoModal || !modalVideo) return;
+
+
+    modalVideo.pause();
+
+    modalVideo.removeAttribute("src");
+
+    modalVideo.load();
+
+
+    videoModal.classList.remove("active");
+
+    videoModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow = "";
+
+};
+
+
+
+/* Motion cards */
+
+document
+    .querySelectorAll(".video-card")
+    .forEach(card => {
+
+        card.addEventListener("click", () => {
+
+            const video =
+                card.dataset.video;
+
+            if (video) {
+
+                openVideo(video);
+
+            }
+
+        });
+
+    });
+
+
+
+/* Screening room */
+
+document
+    .querySelectorAll(".screening-item")
+    .forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            const video =
+                item.dataset.video;
+
+            if (video) {
+
+                openVideo(video);
+
+            }
+
+        });
+
+    });
+
+
+
+if (modalClose) {
+
+    modalClose.addEventListener(
+        "click",
+        closeVideo
+    );
+
+}
+
+
+if (videoModal) {
+
+    videoModal.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target === videoModal
+            ) {
+
+                closeVideo();
+
+            }
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            videoModal?.classList.contains("active")
+        ) {
+
+            closeVideo();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   IMAGE REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(
+        ".feature-card, .project-card, .design-card, .information-layout, .screening-item"
+    );
+
+
+if ("IntersectionObserver" in window) {
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: .12
+            }
+        );
+
+
+    revealElements.forEach(element => {
+
+        element.classList.add("reveal");
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+
+/* =====================================================
+   CURRENT YEAR
+===================================================== */
+
+const year =
+    document.getElementById("year");
+
+
+if (year) {
+
+    year.textContent =
+        new Date().getFullYear();
+
+}
+
+
+
+/* =====================================================
+   CLOSE MENU WITH ESCAPE
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape" &&
+            siteNav?.classList.contains("active")
+        ) {
+
+            siteNav.classList.remove(
+                "active"
+            );
+
+            menuToggle?.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+
+
+});
