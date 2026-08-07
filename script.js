@@ -387,635 +387,629 @@ let startTime = performance.now();
 const settleTime = 1000;
 const releaseDuration = 12000;
 
-
 function getActiveTitle() {
 
-    return mobileQuery.matches
-        ? mobileTitle
-        : desktopTitle;
+return mobileQuery.matches
+? mobileTitle
+: desktopTitle;
 
 }
-
 
 function prepareTitle() {
 
-    const newActiveTitle =
-        getActiveTitle();
+const newActiveTitle =
+getActiveTitle();
 
+if (
+newActiveTitle === activeTitle &&
+letters.length
+) {
 
-    if (
-        newActiveTitle === activeTitle &&
-        letters.length
-    ) {
+return;
+
+}
+
+activeTitle =
+newActiveTitle;
+
+const originalText =
+activeTitle.dataset.originalText ||
+activeTitle.textContent;
+
+activeTitle.dataset.originalText =
+originalText;
+
+/*
+
+Temporarily keep letters in normal
+document flow so their original
+positions can be measured correctly.
+*/
+
+activeTitle.innerHTML = "";
+
+letters = [];
+
+[...originalText].forEach(
+char => {
+
+    if (char === "\n") {
+
+        activeTitle.appendChild(
+            document.createElement("br")
+        );
 
         return;
 
     }
 
+    if (char === " ") {
 
-    activeTitle =
-        newActiveTitle;
+        activeTitle.appendChild(
+            document.createTextNode(" ")
+        );
 
+        return;
 
-    const originalText =
-        activeTitle.dataset.originalText ||
-        activeTitle.textContent;
+    }
 
+    const span =
+        document.createElement("span");
 
-    activeTitle.dataset.originalText =
-        originalText;
+    span.className =
+        "floating-letter";
 
+    /*
+     * Important:
+     * temporarily restore normal flow
+     * while measuring.
+     */
 
-    activeTitle.innerHTML = "";
-    letters = [];
+    span.style.position =
+        "static";
 
+    span.textContent =
+        char;
 
-    [...originalText].forEach(
-        char => {
-
-            if (char === "\n") {
-
-                activeTitle.appendChild(
-                    document.createElement("br")
-                );
-
-                return;
-
-            }
-
-
-            if (char === " ") {
-
-                activeTitle.appendChild(
-                    document.createTextNode(" ")
-                );
-
-                return;
-
-            }
-
-
-            const span =
-                document.createElement("span");
-
-
-            span.className =
-                "floating-letter";
-
-
-            span.textContent =
-                char;
-
-
-            activeTitle.appendChild(
-                span
-            );
-
-
-            letters.push({
-
-                element: span,
-
-                baseX: 0,
-                baseY: 0,
-
-                x: 0,
-                y: 0,
-
-                vx: 0,
-                vy: 0,
-
-                width: 0,
-                height: 0,
-
-                rotation: 0,
-                rotationVelocity: 0
-
-            });
-
-        }
+    activeTitle.appendChild(
+        span
     );
 
+    letters.push({
 
-    measureLetters();
+        element: span,
 
+        baseX: 0,
+        baseY: 0,
 
-    letters.forEach(
-        letter => {
+        x: 0,
+        y: 0,
 
-            const angle =
-                Math.random() *
-                Math.PI *
-                2;
+        vx: 0,
+        vy: 0,
 
+        width: 0,
+        height: 0,
 
-            const speed =
-                0.055 +
-                Math.random() *
-                0.045;
+        rotation: 0,
+        rotationVelocity: 0
 
-
-            letter.vx =
-                Math.cos(angle) *
-                speed;
-
-
-            letter.vy =
-                Math.sin(angle) *
-                speed;
-
-
-            letter.rotation =
-                (
-                    Math.random() -
-                    0.5
-                ) * 5;
-
-
-            letter.rotationVelocity =
-                (
-                    Math.random() -
-                    0.5
-                ) * 0.01;
-
-        }
-    );
+    });
 
 }
 
+);
+
+measureLetters();
+
+/*
+
+NOW remove letters from the document flow.
+Their measured positions have already been saved.
+*/
+
+letters.forEach(
+letter => {
+
+    const rect =
+        letter.element.getBoundingClientRect();
+
+    letter.element.style.position =
+        "fixed";
+
+    letter.element.style.left =
+        `${rect.left}px`;
+
+    letter.element.style.top =
+        `${rect.top}px`;
+
+    letter.element.style.transform =
+        "translate3d(0,0,0)";
+
+    const angle =
+        Math.random() *
+        Math.PI *
+        2;
+
+    const speed =
+        0.055 +
+        Math.random() *
+        0.045;
+
+    letter.vx =
+        Math.cos(angle) *
+        speed;
+
+    letter.vy =
+        Math.sin(angle) *
+        speed;
+
+    letter.rotation =
+        (
+            Math.random() -
+            0.5
+        ) * 5;
+
+    letter.rotationVelocity =
+        (
+            Math.random() -
+            0.5
+        ) * 0.01;
+
+}
+
+);
+
+}
 
 function measureLetters() {
 
-    if (!activeTitle) return;
+if (!activeTitle) return;
 
+const introRect =
+intro.getBoundingClientRect();
 
-    const introRect =
-        intro.getBoundingClientRect();
+letters.forEach(
+letter => {
 
+    /*
+     * During measurement the letters are
+     * still in normal text flow.
+     */
 
-    letters.forEach(
-        letter => {
+    letter.element.style.position =
+        "static";
 
-            letter.element.style.transform =
-                "none";
+    letter.element.style.transform =
+        "none";
 
+    const rect =
+        letter.element.getBoundingClientRect();
 
-            const rect =
-                letter.element.getBoundingClientRect();
+    /*
+     * Store viewport coordinates because
+     * the final letters are position: fixed.
+     */
 
+    letter.baseX =
+        rect.left;
 
-            letter.baseX =
-                rect.left -
-                introRect.left;
+    letter.baseY =
+        rect.top;
 
+    letter.width =
+        rect.width;
 
-            letter.baseY =
-                rect.top -
-                introRect.top;
+    letter.height =
+        rect.height;
 
+    letter.x =
+        rect.left;
 
-            letter.width =
-                rect.width;
-
-
-            letter.height =
-                rect.height;
-
-
-            letter.x =
-                letter.baseX;
-
-
-            letter.y =
-                letter.baseY;
-
-        }
-    );
+    letter.y =
+        rect.top;
 
 }
 
+);
+
+}
 
 function collide(a, b) {
 
-    const overlapX =
-        Math.min(
-            a.x + a.width,
-            b.x + b.width
-        ) -
-        Math.max(
-            a.x,
-            b.x
-        );
+const overlapX =
+Math.min(
+a.x + a.width,
+b.x + b.width
+) -
+Math.max(
+a.x,
+b.x
+);
 
+const overlapY =
+Math.min(
+a.y + a.height,
+b.y + b.height
+) -
+Math.max(
+a.y,
+b.y
+);
 
-    const overlapY =
-        Math.min(
-            a.y + a.height,
-            b.y + b.height
-        ) -
-        Math.max(
-            a.y,
-            b.y
-        );
+if (
+overlapX <= 0 ||
+overlapY <= 0
+) {
 
-
-    if (
-        overlapX <= 0 ||
-        overlapY <= 0
-    ) {
-
-        return;
-
-    }
-
-
-    if (overlapX < overlapY) {
-
-        const centerA =
-            a.x + a.width / 2;
-
-        const centerB =
-            b.x + b.width / 2;
-
-
-        const direction =
-            centerA < centerB
-                ? -1
-                : 1;
-
-
-        const push =
-            overlapX / 2 + 1;
-
-
-        a.x +=
-            direction * push;
-
-        b.x -=
-            direction * push;
-
-
-        const velocity =
-            a.vx;
-
-        a.vx =
-            b.vx;
-
-        b.vx =
-            velocity;
-
-    } else {
-
-        const centerA =
-            a.y + a.height / 2;
-
-        const centerB =
-            b.y + b.height / 2;
-
-
-        const direction =
-            centerA < centerB
-                ? -1
-                : 1;
-
-
-        const push =
-            overlapY / 2 + 1;
-
-
-        a.y +=
-            direction * push;
-
-        b.y -=
-            direction * push;
-
-
-        const velocity =
-            a.vy;
-
-        a.vy =
-            b.vy;
-
-        b.vy =
-            velocity;
-
-    }
+return;
 
 }
 
+if (overlapX < overlapY) {
+
+const centerA =
+    a.x + a.width / 2;
+
+const centerB =
+    b.x + b.width / 2;
+
+const direction =
+    centerA < centerB
+        ? -1
+        : 1;
+
+const push =
+    overlapX / 2 + 1;
+
+a.x +=
+    direction * push;
+
+b.x -=
+    direction * push;
+
+const velocity =
+    a.vx;
+
+a.vx =
+    b.vx;
+
+b.vx =
+    velocity;
+
+} else {
+
+const centerA =
+    a.y + a.height / 2;
+
+const centerB =
+    b.y + b.height / 2;
+
+const direction =
+    centerA < centerB
+        ? -1
+        : 1;
+
+const push =
+    overlapY / 2 + 1;
+
+a.y +=
+    direction * push;
+
+b.y -=
+    direction * push;
+
+const velocity =
+    a.vy;
+
+a.vy =
+    b.vy;
+
+b.vy =
+    velocity;
+
+}
+
+}
 
 function keepInsidePage(letter) {
 
-    const pageWidth =
-        window.innerWidth;
+const pageWidth =
+window.innerWidth;
 
+const pageHeight =
+window.innerHeight;
 
-    const pageHeight =
-        Math.max(
-            document.documentElement.scrollHeight,
-            document.body.scrollHeight,
-            window.innerHeight
-        );
+if (letter.x <= 0) {
 
+letter.x = 0;
 
-    if (letter.x <= 0) {
+if (letter.vx < 0) {
 
-        letter.x = 0;
+    letter.vx *= -1;
 
-        if (letter.vx < 0) {
+}
 
-            letter.vx *= -1;
+}
 
-        }
+if (
+letter.x + letter.width >= pageWidth
+) {
 
-    }
+letter.x =
+    pageWidth - letter.width;
 
+if (letter.vx > 0) {
 
-    if (
-        letter.x + letter.width >= pageWidth
-    ) {
+    letter.vx *= -1;
+
+}
+
+}
+
+if (letter.y <= 0) {
+
+letter.y = 0;
+
+if (letter.vy < 0) {
+
+    letter.vy *= -1;
+
+}
+
+}
+
+if (
+letter.y + letter.height >= pageHeight
+) {
+
+letter.y =
+    pageHeight - letter.height;
+
+if (letter.vy > 0) {
+
+    letter.vy *= -1;
+
+}
+
+}
+
+}
+
+prepareTitle();
+
+function animateIntro(now) {
+
+const delta =
+Math.min(
+now - lastTime,
+32
+);
+
+lastTime = now;
+
+const elapsed =
+now - startTime;
+
+if (
+elapsed < settleTime
+) {
+
+letters.forEach(
+    letter => {
 
         letter.x =
-            pageWidth - letter.width;
-
-
-        if (letter.vx > 0) {
-
-            letter.vx *= -1;
-
-        }
-
-    }
-
-
-    if (letter.y <= 0) {
-
-        letter.y = 0;
-
-        if (letter.vy < 0) {
-
-            letter.vy *= -1;
-
-        }
-
-    }
-
-
-    if (
-        letter.y + letter.height >= pageHeight
-    ) {
+            letter.baseX;
 
         letter.y =
-            pageHeight - letter.height;
+            letter.baseY;
 
+        letter.element.style.left =
+            `${letter.baseX}px`;
 
-        if (letter.vy > 0) {
+        letter.element.style.top =
+            `${letter.baseY}px`;
 
-            letter.vy *= -1;
+        letter.element.style.transform =
+            "translate3d(0,0,0)";
 
-        }
+    }
+);
+
+}
+
+else {
+
+const releaseProgress =
+    Math.min(
+        (
+            elapsed -
+            settleTime
+        ) /
+        releaseDuration,
+        1
+    );
+
+const force =
+    Math.min(
+        releaseProgress * 1.5,
+        1
+    );
+
+letters.forEach(
+    letter => {
+
+        letter.x +=
+            letter.vx *
+            delta *
+            force;
+
+        letter.y +=
+            letter.vy *
+            delta *
+            force;
+
+        letter.rotation +=
+            letter.rotationVelocity *
+            delta *
+            2;
+
+        keepInsidePage(letter);
+
+    }
+);
+
+for (
+    let i = 0;
+    i < letters.length;
+    i++
+) {
+
+    for (
+        let j = i + 1;
+        j < letters.length;
+        j++
+    ) {
+
+        collide(
+            letters[i],
+            letters[j]
+        );
 
     }
 
 }
 
+letters.forEach(
+    letter => {
 
-prepareTitle();
+        const offsetX =
+            letter.x -
+            letter.baseX;
 
+        const offsetY =
+            letter.y -
+            letter.baseY;
 
-function animateIntro(now) {
+        letter.element.style.left =
+            `${letter.baseX}px`;
 
-    const delta =
-        Math.min(
-            now - lastTime,
-            32
-        );
+        letter.element.style.top =
+            `${letter.baseY}px`;
 
-
-    lastTime = now;
-
-
-    const elapsed =
-        now - startTime;
-
-
-    if (
-        elapsed < settleTime
-    ) {
-
-        letters.forEach(
-            letter => {
-
-                letter.x =
-                    letter.baseX;
-
-                letter.y =
-                    letter.baseY;
-
-                letter.element.style.transform =
-                    "translate3d(0,0,0)";
-
-            }
-        );
+        letter.element.style.transform =
+            `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${letter.rotation}deg)`;
 
     }
+);
 
+}
 
-    else {
+requestAnimationFrame(
+animateIntro
+);
 
-        const releaseProgress =
-            Math.min(
-                (
-                    elapsed -
-                    settleTime
-                ) /
-                releaseDuration,
-                1
-            );
+}
 
+requestAnimationFrame(
+animateIntro
+);
 
-        const force =
-            Math.min(
-                releaseProgress * 1.5,
-                1
-            );
+let resizeTimeout = null;
 
+window.addEventListener(
+"resize",
+() => {
 
-        letters.forEach(
-            letter => {
+clearTimeout(
+    resizeTimeout
+);
 
-                letter.x +=
-                    letter.vx *
-                    delta *
-                    force;
+resizeTimeout =
+    setTimeout(
+        () => {
 
+            prepareTitle();
 
-                letter.y +=
-                    letter.vy *
-                    delta *
-                    force;
+            if (letters.length) {
 
+                /*
+                 * Recalculate original positions
+                 * after responsive layout changes.
+                 */
 
-                letter.rotation +=
-                    letter.rotationVelocity *
-                    delta *
-                    2;
+                letters.forEach(
+                    letter => {
 
+                        letter.element.style.position =
+                            "static";
 
-                keepInsidePage(letter);
+                    }
+                );
 
-            }
-        );
+                measureLetters();
 
+                letters.forEach(
+                    letter => {
 
-        for (
-            let i = 0;
-            i < letters.length;
-            i++
-        ) {
+                        letter.element.style.position =
+                            "fixed";
 
-            for (
-                let j = i + 1;
-                j < letters.length;
-                j++
-            ) {
+                        letter.element.style.left =
+                            `${letter.baseX}px`;
 
-                collide(
-                    letters[i],
-                    letters[j]
+                        letter.element.style.top =
+                            `${letter.baseY}px`;
+
+                    }
                 );
 
             }
 
-        }
-
-
-        letters.forEach(
-            letter => {
-
-                const introRect =
-                    intro.getBoundingClientRect();
-
-
-                const documentX =
-                    letter.x +
-                    introRect.left;
-
-
-                const documentY =
-                    letter.y +
-                    introRect.top +
-                    window.scrollY;
-
-
-                const offsetX =
-                    documentX -
-                    (
-                        letter.baseX +
-                        introRect.left
-                    );
-
-
-                const offsetY =
-                    documentY -
-                    (
-                        letter.baseY +
-                        introRect.top +
-                        window.scrollY
-                    );
-
-
-                letter.element.style.transform =
-                    `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${letter.rotation}deg)`;
-
-            }
-        );
-
-    }
-
-
-    requestAnimationFrame(
-        animateIntro
+        },
+        150
     );
 
 }
-
-
-requestAnimationFrame(
-    animateIntro
 );
-
-
-let resizeTimeout = null;
-
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        clearTimeout(
-            resizeTimeout
-        );
-
-
-        resizeTimeout =
-            setTimeout(
-                () => {
-
-                    prepareTitle();
-                    measureLetters();
-
-                },
-                150
-            );
-
-    }
-);
-
 
 let previousMobileState =
-    mobileQuery.matches;
-
+mobileQuery.matches;
 
 const checkBreakpoint =
-    () => {
+() => {
 
-        const currentMobileState =
-            mobileQuery.matches;
-
-
-        if (
-            currentMobileState !==
-            previousMobileState
-        ) {
-
-            previousMobileState =
-                currentMobileState;
-
-
-            prepareTitle();
-            measureLetters();
-
-
-            startTime =
-                performance.now();
-
-            lastTime =
-                performance.now();
-
-        }
-
-    };
-
+const currentMobileState =
+mobileQuery.matches;
 
 if (
-    mobileQuery.addEventListener
+currentMobileState !==
+previousMobileState
 ) {
 
-    mobileQuery.addEventListener(
-        "change",
-        checkBreakpoint
-    );
+previousMobileState =
+    currentMobileState;
+
+prepareTitle();
+
+startTime =
+    performance.now();
+
+lastTime =
+    performance.now();
+
+}
+
+};
+
+if (
+mobileQuery.addEventListener
+) {
+
+mobileQuery.addEventListener(
+"change",
+checkBreakpoint
+);
 
 }
 
