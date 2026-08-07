@@ -509,7 +509,6 @@ display: inline-block;
 color: #ffffff;
 font-size: clamp(42px, 6.5vw, 100px);
 line-height: 1.05;
-letter-spacing: -.055em;
 font-weight: 700;
 padding: 0 22px;
 }
@@ -1126,7 +1125,6 @@ display: inline-block;
 color: #ffffff;
 font-size: 12vw;
 line-height: 1.05;
-letter-spacing: -.055em;
 font-weight: 700;
 padding: 0 14px;
 }
