@@ -344,39 +344,85 @@ SCROLL MEDIA SECTION
 
 .scroll-media {
 position: relative;
+
+
 width: 100%;
+
 min-height: auto;
-padding: 120px var(--page-gutter) 60px;
+
+padding:
+    120px var(--page-gutter) 60px;
+
 background: transparent;
+
 overflow: visible;
+
+
 }
+
+/* =====================================================
+MEDIA CONTAINER
+===================================================== */
 
 .scroll-media .vimeo-wrapper {
 position: relative;
+
+
 width: 100%;
+
 max-width: 1200px;
+
 aspect-ratio: 16 / 9;
+
 margin: 0 auto;
+
 overflow: hidden;
+
+
 }
+
+/* =====================================================
+MEDIA IFRAME
+===================================================== */
 
 .scroll-media .vimeo-wrapper iframe {
 position: absolute;
+
+
 inset: 0;
+
 width: 100%;
 height: 100%;
+
 border: 0;
+
 display: block;
+
 pointer-events: none;
+
+
 }
 
-.vimeo-desktop {
-display: block;
+/* =====================================================
+MOBILE MEDIA
+===================================================== */
+
+@media (max-width: 700px) {
+
+
+.scroll-media {
+padding: 80px var(--page-gutter);
 }
 
-.vimeo-mobile {
-display: none;
+.scroll-media .vimeo-wrapper {
+width: 100%;
+max-width: none;
+aspect-ratio: 16 / 9;
 }
+
+}
+
+
 
 /* =====================================================
 END / COPYRIGHT
@@ -848,67 +894,52 @@ MOBILE
 }
 
 /* =================================================
-GLOBAL VIDEO
+MOBILE GLOBAL VIDEO
 ================================================= */
 
-@media (max-width: 700px) {
-
-
 .base-video {
-    position: fixed;
+position: fixed;
+top: -5vh;
+right: 0;
+bottom: -5vh;
+left: 0;
 
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+width: 100%;
+height: 110vh;
+min-height: 110svh;
 
-    width: 100%;
-    height: 100%;
-    min-height: 100svh;
-
-    overflow: hidden;
-
-    background: #d4cbc7;
+overflow: hidden;
+background: #d4cbc7;
 }
 
 .base-video iframe {
-    position: absolute;
+position: absolute;
+top: 50%;
+left: 50%;
 
-    top: 50%;
-    left: 50%;
+/*
+Oversized deliberately so the Vimeo video
+always covers the full mobile viewport.
+*/
 
-    /*
-    Vimeo is 16:9.
-    This makes the video behave like
-    background-size: cover.
-    */
+width: 195vh;
+height: 110vh;
 
-    width: 177.78svh;
-    height: 100svh;
+min-width: 195vh;
+min-height: 110vh;
 
-    min-width: 100vw;
-    min-height: 100svh;
+transform: translate(-50%, -50%);
 
-    transform:
-        translate(-50%, -50%);
+border: 0;
+display: block;
+pointer-events: none;
 
-    border: 0;
-
-    display: block;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    transition:
-        opacity 2.5s ease;
+opacity: 0;
+transition: opacity 2.5s ease;
 }
 
 .base-video iframe.video-loaded {
-    opacity: 1;
-}
-
-
+opacity: 1;
 }
 
 
@@ -1021,14 +1052,6 @@ max-width: none;
 aspect-ratio: 16 / 9;
 }
 
-.vimeo-desktop {
-display: none;
-}
-
-.vimeo-mobile {
-display: block;
-}
-
 .scroll-media .vimeo-wrapper iframe {
 width: 100%;
 height: 100%;
@@ -1069,15 +1092,18 @@ font-size: 9px;
 }
 
 /* =================================================
-CLIENTS
+CLIENTS — MOBILE
 ================================================= */
 
 .client-section {
+width: 100%;
 min-height: 75svh;
 padding: 90px 0 120px;
+overflow: hidden;
 }
 
 .client-heading {
+width: 100%;
 padding: 0 var(--page-gutter);
 margin-bottom: 50px;
 }
@@ -1085,39 +1111,95 @@ margin-bottom: 50px;
 .client-heading p {
 color: #ffffff;
 font-size: 9px;
+text-transform: uppercase;
+letter-spacing: .12em;
 }
 
+/* FULL-BLEED CLIENT TICKER */
+
 .client-ticker {
+width: 100vw;
+margin-left: 0;
+display: flex;
+flex-direction: column;
 gap: 14px;
+overflow: visible;
 }
 
 .client-track {
+position: relative;
+width: 100vw;
+margin: 0;
 padding: 10px 0 16px;
+overflow: hidden;
+white-space: nowrap;
 }
 
-.client-track:nth-child(3),
-.client-track:nth-child(4) {
-display: none;
+/* ALL FOUR ROWS VISIBLE */
+
+.client-track-one,
+.client-track-two,
+.client-track-three,
+.client-track-four {
+display: block;
 }
+
+/* CLIENT LINE */
+
+.client-line {
+display: inline-flex;
+width: max-content;
+align-items: baseline;
+will-change: transform;
+}
+
+/* CLIENT NAME */
 
 .client-name {
+display: inline-block;
+color: #ffffff;
 font-size: 12vw;
 line-height: 1.05;
+letter-spacing: -.055em;
+font-weight: 700;
 padding: 0 14px;
 }
 
+/* SEPARATOR */
+
 .client-separator {
+display: inline-block;
+color: #ffffff;
 font-size: 7vw;
 line-height: 1.05;
+opacity: .45;
+padding: 0;
 }
+
+/* ROW 1 */
 
 .client-track-one .client-line {
-animation-duration: 38s;
+animation: clientTickerOne 38s linear infinite;
 }
 
+/* ROW 2 */
+
 .client-track-two .client-line {
-animation-duration: 44s;
+animation: clientTickerTwo 44s linear infinite;
 }
+
+/* ROW 3 */
+
+.client-track-three .client-line {
+animation: clientTickerThree 40s linear infinite;
+}
+
+/* ROW 4 */
+
+.client-track-four .client-line {
+animation: clientTickerFour 46s linear infinite;
+}
+
 
 /* =================================================
 ABOUT
