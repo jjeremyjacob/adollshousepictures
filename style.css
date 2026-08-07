@@ -954,7 +954,7 @@ RIGHT EDGE STAYS INSIDE AUDIO CONTROL
 width: 100%;
 min-height: 95svh;
 padding: 100px var(--mobile-right-gutter) 50px var(--page-gutter);
-overflow: hidden;
+overflow: visible;
 }
 
 .intro-content {

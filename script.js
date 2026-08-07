@@ -350,439 +350,454 @@ function initializeVimeo() {
 initializeVimeo();
 
 
-/* =================================================
-   INTRO — FLOATING LETTERS
-================================================= */
+// =================================================
+// INTRO — FLOATING LETTERS
+// =================================================
 
 const intro =
-    document.querySelector(".intro");
+document.querySelector(".intro");
 
 const introTitle =
-    document.querySelector(".intro h1");
+document.querySelector(".intro h1");
 
 const desktopTitle =
-    document.querySelector(".desktop-title");
+document.querySelector(".desktop-title");
 
 const mobileTitle =
-    document.querySelector(".mobile-title");
-
+document.querySelector(".mobile-title");
 
 if (
-    intro &&
-    introTitle &&
-    desktopTitle &&
-    mobileTitle &&
-    !reducedMotion
+intro &&
+introTitle &&
+desktopTitle &&
+mobileTitle &&
+!reducedMotion
 ) {
 
-    let activeTitle = null;
-    let letters = [];
+let activeTitle = null;
+let letters = [];
 
-    let lastTime =
-        performance.now();
+let lastTime = performance.now();
+let startTime = performance.now();
 
-    let startTime =
-        performance.now();
-
-
-    const settleTime = 1000;
-    const releaseDuration = 12000;
-    const floatDuration = 9000;
-    const returnDuration = 15000;
+const settleTime = 1000;
+const releaseDuration = 12000;
 
 
-    function getActiveTitle() {
+function getActiveTitle() {
 
-        return mobileQuery.matches
-            ? mobileTitle
-            : desktopTitle;
+    return mobileQuery.matches
+        ? mobileTitle
+        : desktopTitle;
+
+}
+
+
+function prepareTitle() {
+
+    const newActiveTitle =
+        getActiveTitle();
+
+
+    if (
+        newActiveTitle === activeTitle &&
+        letters.length
+    ) {
+
+        return;
 
     }
 
 
-    function prepareTitle() {
-
-        const newActiveTitle =
-            getActiveTitle();
+    activeTitle =
+        newActiveTitle;
 
 
-        if (
-            newActiveTitle === activeTitle &&
-            letters.length
-        ) {
-
-            return;
-
-        }
+    const originalText =
+        activeTitle.dataset.originalText ||
+        activeTitle.textContent;
 
 
-        activeTitle =
-            newActiveTitle;
+    activeTitle.dataset.originalText =
+        originalText;
 
 
-        const originalText =
-            activeTitle.dataset.originalText ||
-            activeTitle.textContent;
+    activeTitle.innerHTML = "";
+    letters = [];
 
 
-        activeTitle.dataset.originalText =
-            originalText;
+    [...originalText].forEach(
+        char => {
 
-
-        activeTitle.innerHTML = "";
-        letters = [];
-
-
-        [...originalText].forEach(
-            char => {
-
-                if (char === "\n") {
-
-                    activeTitle.appendChild(
-                        document.createElement("br")
-                    );
-
-                    return;
-
-                }
-
-
-                if (char === " ") {
-
-                    activeTitle.appendChild(
-                        document.createTextNode(" ")
-                    );
-
-                    return;
-
-                }
-
-
-                const span =
-                    document.createElement("span");
-
-
-                span.className =
-                    "floating-letter";
-
-
-                span.textContent =
-                    char;
-
+            if (char === "\n") {
 
                 activeTitle.appendChild(
-                    span
+                    document.createElement("br")
                 );
 
-
-                letters.push({
-
-                    element: span,
-
-                    baseX: 0,
-                    baseY: 0,
-
-                    x: 0,
-                    y: 0,
-
-                    vx: 0,
-                    vy: 0,
-
-                    width: 0,
-                    height: 0,
-
-                    rotation: 0,
-                    rotationVelocity: 0
-
-                });
+                return;
 
             }
-        );
 
 
-        measureLetters();
+            if (char === " ") {
 
+                activeTitle.appendChild(
+                    document.createTextNode(" ")
+                );
 
-        letters.forEach(
-            letter => {
-
-                const angle =
-                    Math.random() *
-                    Math.PI *
-                    2;
-
-
-                const speed =
-                    0.055 +
-                    Math.random() *
-                    0.045;
-
-
-                letter.vx =
-                    Math.cos(angle) *
-                    speed;
-
-
-                letter.vy =
-                    Math.sin(angle) *
-                    speed;
-
-
-                letter.rotation =
-                    (
-                        Math.random() -
-                        0.5
-                    ) * 5;
-
-
-                letter.rotationVelocity =
-                    (
-                        Math.random() -
-                        0.5
-                    ) * 0.01;
+                return;
 
             }
-        );
-
-    }
 
 
-    function measureLetters() {
-
-        if (!activeTitle) return;
-
-
-        const introRect =
-            intro.getBoundingClientRect();
+            const span =
+                document.createElement("span");
 
 
-        letters.forEach(
-            letter => {
-
-                letter.element.style.transform =
-                    "none";
+            span.className =
+                "floating-letter";
 
 
-                const rect =
-                    letter.element.getBoundingClientRect();
+            span.textContent =
+                char;
 
 
-                letter.baseX =
-                    rect.left -
-                    introRect.left;
-
-
-                letter.baseY =
-                    rect.top -
-                    introRect.top;
-
-
-                letter.width =
-                    rect.width;
-
-
-                letter.height =
-                    rect.height;
-
-
-                letter.x =
-                    letter.baseX;
-
-
-                letter.y =
-                    letter.baseY;
-
-            }
-        );
-
-    }
-
-
-    function collide(a, b) {
-
-        const overlapX =
-            Math.min(
-                a.x + a.width,
-                b.x + b.width
-            ) -
-            Math.max(
-                a.x,
-                b.x
+            activeTitle.appendChild(
+                span
             );
 
 
-        const overlapY =
-            Math.min(
-                a.y + a.height,
-                b.y + b.height
-            ) -
-            Math.max(
-                a.y,
-                b.y
-            );
+            letters.push({
 
+                element: span,
 
-        if (
-            overlapX <= 0 ||
-            overlapY <= 0
-        ) {
+                baseX: 0,
+                baseY: 0,
 
-            return;
+                x: 0,
+                y: 0,
 
-        }
+                vx: 0,
+                vy: 0,
 
+                width: 0,
+                height: 0,
 
-        if (overlapX < overlapY) {
+                rotation: 0,
+                rotationVelocity: 0
 
-            const centerA =
-                a.x + a.width / 2;
-
-            const centerB =
-                b.x + b.width / 2;
-
-
-            const direction =
-                centerA < centerB
-                    ? -1
-                    : 1;
-
-
-            const push =
-                overlapX / 2 + 1;
-
-
-            a.x +=
-                direction * push;
-
-            b.x -=
-                direction * push;
-
-
-            const velocity =
-                a.vx;
-
-            a.vx =
-                b.vx;
-
-            b.vx =
-                velocity;
-
-        } else {
-
-            const centerA =
-                a.y + a.height / 2;
-
-            const centerB =
-                b.y + b.height / 2;
-
-
-            const direction =
-                centerA < centerB
-                    ? -1
-                    : 1;
-
-
-            const push =
-                overlapY / 2 + 1;
-
-
-            a.y +=
-                direction * push;
-
-            b.y -=
-                direction * push;
-
-
-            const velocity =
-                a.vy;
-
-            a.vy =
-                b.vy;
-
-            b.vy =
-                velocity;
+            });
 
         }
-
-    }
-
-
-    function keepInside(letter) {
-
-        const width =
-            intro.clientWidth;
+    );
 
 
-        const height =
-            Math.max(
-                window.innerHeight,
-                intro.scrollHeight
-            );
+    measureLetters();
 
 
-        if (letter.x <= 0) {
+    letters.forEach(
+        letter => {
 
-            letter.x = 0;
+            const angle =
+                Math.random() *
+                Math.PI *
+                2;
 
-            if (letter.vx < 0) {
 
-                letter.vx *= -1;
+            const speed =
+                0.055 +
+                Math.random() *
+                0.045;
 
-            }
+
+            letter.vx =
+                Math.cos(angle) *
+                speed;
+
+
+            letter.vy =
+                Math.sin(angle) *
+                speed;
+
+
+            letter.rotation =
+                (
+                    Math.random() -
+                    0.5
+                ) * 5;
+
+
+            letter.rotationVelocity =
+                (
+                    Math.random() -
+                    0.5
+                ) * 0.01;
 
         }
+    );
+
+}
 
 
-        if (
-            letter.x + letter.width >= width
-        ) {
+function measureLetters() {
+
+    if (!activeTitle) return;
+
+
+    const introRect =
+        intro.getBoundingClientRect();
+
+
+    letters.forEach(
+        letter => {
+
+            letter.element.style.transform =
+                "none";
+
+
+            const rect =
+                letter.element.getBoundingClientRect();
+
+
+            letter.baseX =
+                rect.left -
+                introRect.left;
+
+
+            letter.baseY =
+                rect.top -
+                introRect.top;
+
+
+            letter.width =
+                rect.width;
+
+
+            letter.height =
+                rect.height;
+
 
             letter.x =
-                width - letter.width;
+                letter.baseX;
 
-
-            if (letter.vx > 0) {
-
-                letter.vx *= -1;
-
-            }
-
-        }
-
-
-        if (letter.y <= 0) {
-
-            letter.y = 0;
-
-            if (letter.vy < 0) {
-
-                letter.vy *= -1;
-
-            }
-
-        }
-
-
-        if (
-            letter.y + letter.height >= height
-        ) {
 
             letter.y =
-                height - letter.height;
+                letter.baseY;
+
+        }
+    );
+
+}
 
 
-            if (letter.vy > 0) {
+function collide(a, b) {
 
-                letter.vy *= -1;
+    const overlapX =
+        Math.min(
+            a.x + a.width,
+            b.x + b.width
+        ) -
+        Math.max(
+            a.x,
+            b.x
+        );
 
-            }
+
+    const overlapY =
+        Math.min(
+            a.y + a.height,
+            b.y + b.height
+        ) -
+        Math.max(
+            a.y,
+            b.y
+        );
+
+
+    if (
+        overlapX <= 0 ||
+        overlapY <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    if (overlapX < overlapY) {
+
+        const centerA =
+            a.x + a.width / 2;
+
+        const centerB =
+            b.x + b.width / 2;
+
+
+        const direction =
+            centerA < centerB
+                ? -1
+                : 1;
+
+
+        const push =
+            overlapX / 2 + 1;
+
+
+        a.x +=
+            direction * push;
+
+        b.x -=
+            direction * push;
+
+
+        const velocity =
+            a.vx;
+
+        a.vx =
+            b.vx;
+
+        b.vx =
+            velocity;
+
+    } else {
+
+        const centerA =
+            a.y + a.height / 2;
+
+        const centerB =
+            b.y + b.height / 2;
+
+
+        const direction =
+            centerA < centerB
+                ? -1
+                : 1;
+
+
+        const push =
+            overlapY / 2 + 1;
+
+
+        a.y +=
+            direction * push;
+
+        b.y -=
+            direction * push;
+
+
+        const velocity =
+            a.vy;
+
+        a.vy =
+            b.vy;
+
+        b.vy =
+            velocity;
+
+    }
+
+}
+
+
+function keepInsidePage(letter) {
+
+    const pageWidth =
+        window.innerWidth;
+
+
+    const pageHeight =
+        Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight,
+            window.innerHeight
+        );
+
+
+    if (letter.x <= 0) {
+
+        letter.x = 0;
+
+        if (letter.vx < 0) {
+
+            letter.vx *= -1;
 
         }
 
     }
 
 
-    function setLettersToBase() {
+    if (
+        letter.x + letter.width >= pageWidth
+    ) {
+
+        letter.x =
+            pageWidth - letter.width;
+
+
+        if (letter.vx > 0) {
+
+            letter.vx *= -1;
+
+        }
+
+    }
+
+
+    if (letter.y <= 0) {
+
+        letter.y = 0;
+
+        if (letter.vy < 0) {
+
+            letter.vy *= -1;
+
+        }
+
+    }
+
+
+    if (
+        letter.y + letter.height >= pageHeight
+    ) {
+
+        letter.y =
+            pageHeight - letter.height;
+
+
+        if (letter.vy > 0) {
+
+            letter.vy *= -1;
+
+        }
+
+    }
+
+}
+
+
+prepareTitle();
+
+
+function animateIntro(now) {
+
+    const delta =
+        Math.min(
+            now - lastTime,
+            32
+        );
+
+
+    lastTime = now;
+
+
+    const elapsed =
+        now - startTime;
+
+
+    if (
+        elapsed < settleTime
+    ) {
 
         letters.forEach(
             letter => {
@@ -793,11 +808,8 @@ if (
                 letter.y =
                     letter.baseY;
 
-                letter.rotation = 0;
-
-
                 letter.element.style.transform =
-                    "translate3d(0,0,0) rotate(0deg)";
+                    "translate3d(0,0,0)";
 
             }
         );
@@ -805,231 +817,114 @@ if (
     }
 
 
-    prepareTitle();
+    else {
 
-
-    function animateIntro(now) {
-
-        const delta =
+        const releaseProgress =
             Math.min(
-                now - lastTime,
-                32
-            );
-
-
-        lastTime = now;
-
-
-        const elapsed =
-            now - startTime;
-
-
-        const returnStart =
-            settleTime +
-            releaseDuration +
-            floatDuration;
-
-
-        if (
-            elapsed < settleTime
-        ) {
-
-            letters.forEach(
-                letter => {
-
-                    letter.x =
-                        letter.baseX;
-
-                    letter.y =
-                        letter.baseY;
-
-                    letter.element.style.transform =
-                        "translate3d(0,0,0)";
-
-                }
-            );
-
-        }
-
-
-        else if (
-            elapsed <
-            settleTime +
-            releaseDuration
-        ) {
-
-            const progress =
                 (
                     elapsed -
                     settleTime
                 ) /
-                releaseDuration;
-
-
-            const force =
-                Math.min(
-                    progress * 1.5,
-                    1
-                );
-
-
-            letters.forEach(
-                letter => {
-
-                    letter.x +=
-                        letter.vx *
-                        delta *
-                        force;
-
-
-                    letter.y +=
-                        letter.vy *
-                        delta *
-                        force;
-
-
-                    letter.rotation +=
-                        letter.rotationVelocity *
-                        delta *
-                        2;
-
-
-                    keepInside(letter);
-
-                }
+                releaseDuration,
+                1
             );
 
 
-            for (
-                let i = 0;
-                i < letters.length;
-                i++
-            ) {
+        const force =
+            Math.min(
+                releaseProgress * 1.5,
+                1
+            );
 
-                for (
-                    let j = i + 1;
-                    j < letters.length;
-                    j++
-                ) {
 
-                    collide(
-                        letters[i],
-                        letters[j]
-                    );
+        letters.forEach(
+            letter => {
 
-                }
+                letter.x +=
+                    letter.vx *
+                    delta *
+                    force;
+
+
+                letter.y +=
+                    letter.vy *
+                    delta *
+                    force;
+
+
+                letter.rotation +=
+                    letter.rotationVelocity *
+                    delta *
+                    2;
+
+
+                keepInsidePage(letter);
 
             }
+        );
 
 
-            letters.forEach(
-                letter => {
-
-                    letter.element.style.transform =
-                        `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
-
-                }
-            );
-
-        }
-
-
-        else if (
-            elapsed < returnStart
+        for (
+            let i = 0;
+            i < letters.length;
+            i++
         ) {
 
-            letters.forEach(
-                letter => {
-
-                    letter.x +=
-                        letter.vx * delta;
-
-                    letter.y +=
-                        letter.vy * delta;
-
-                    letter.rotation +=
-                        letter.rotationVelocity *
-                        delta;
-
-
-                    keepInside(letter);
-
-
-                    letter.element.style.transform =
-                        `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
-
-                }
-            );
-
-        }
-
-
-        else {
-
-            const returnProgress =
-                Math.min(
-                    (
-                        elapsed -
-                        returnStart
-                    ) /
-                    returnDuration,
-                    1
-                );
-
-
-            const eased =
-                1 -
-                Math.pow(
-                    1 - returnProgress,
-                    4
-                );
-
-
-            letters.forEach(
-                letter => {
-
-                    letter.x +=
-                        (
-                            letter.baseX -
-                            letter.x
-                        ) *
-                        eased *
-                        0.035;
-
-
-                    letter.y +=
-                        (
-                            letter.baseY -
-                            letter.y
-                        ) *
-                        eased *
-                        0.035;
-
-
-                    letter.rotation *=
-                        0.96;
-
-
-                    letter.element.style.transform =
-                        `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
-
-                }
-            );
-
-
-            if (
-                returnProgress >= 1
+            for (
+                let j = i + 1;
+                j < letters.length;
+                j++
             ) {
 
-                setLettersToBase();
+                collide(
+                    letters[i],
+                    letters[j]
+                );
 
             }
 
         }
 
 
-        requestAnimationFrame(
-            animateIntro
+        letters.forEach(
+            letter => {
+
+                const introRect =
+                    intro.getBoundingClientRect();
+
+
+                const documentX =
+                    letter.x +
+                    introRect.left;
+
+
+                const documentY =
+                    letter.y +
+                    introRect.top +
+                    window.scrollY;
+
+
+                const offsetX =
+                    documentX -
+                    (
+                        letter.baseX +
+                        introRect.left
+                    );
+
+
+                const offsetY =
+                    documentY -
+                    (
+                        letter.baseY +
+                        introRect.top +
+                        window.scrollY
+                    );
+
+
+                letter.element.style.transform =
+                    `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${letter.rotation}deg)`;
+
+            }
         );
 
     }
@@ -1039,79 +934,86 @@ if (
         animateIntro
     );
 
-
-    let resizeTimeout = null;
-
-
-    window.addEventListener(
-        "resize",
-        () => {
-
-            clearTimeout(
-                resizeTimeout
-            );
+}
 
 
-            resizeTimeout =
-                setTimeout(
-                    () => {
-
-                        prepareTitle();
-                        measureLetters();
-
-                    },
-                    150
-                );
-
-        }
-    );
+requestAnimationFrame(
+    animateIntro
+);
 
 
-    let previousMobileState =
-        mobileQuery.matches;
+let resizeTimeout = null;
 
 
-    const checkBreakpoint =
-        () => {
+window.addEventListener(
+    "resize",
+    () => {
 
-            const currentMobileState =
-                mobileQuery.matches;
-
-
-            if (
-                currentMobileState !==
-                previousMobileState
-            ) {
-
-                previousMobileState =
-                    currentMobileState;
-
-
-                prepareTitle();
-                measureLetters();
-
-
-                startTime =
-                    performance.now();
-
-                lastTime =
-                    performance.now();
-
-            }
-
-        };
-
-
-    if (
-        mobileQuery.addEventListener
-    ) {
-
-        mobileQuery.addEventListener(
-            "change",
-            checkBreakpoint
+        clearTimeout(
+            resizeTimeout
         );
 
+
+        resizeTimeout =
+            setTimeout(
+                () => {
+
+                    prepareTitle();
+                    measureLetters();
+
+                },
+                150
+            );
+
     }
+);
+
+
+let previousMobileState =
+    mobileQuery.matches;
+
+
+const checkBreakpoint =
+    () => {
+
+        const currentMobileState =
+            mobileQuery.matches;
+
+
+        if (
+            currentMobileState !==
+            previousMobileState
+        ) {
+
+            previousMobileState =
+                currentMobileState;
+
+
+            prepareTitle();
+            measureLetters();
+
+
+            startTime =
+                performance.now();
+
+            lastTime =
+                performance.now();
+
+        }
+
+    };
+
+
+if (
+    mobileQuery.addEventListener
+) {
+
+    mobileQuery.addEventListener(
+        "change",
+        checkBreakpoint
+    );
+
+}
 
 }
 
