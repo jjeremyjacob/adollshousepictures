@@ -4,6 +4,9 @@
 
 <head>
 
+<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://i.vimeocdn.com">
+<link rel="preconnect" href="https://f.vimeocdn.com">
 
 <meta charset="UTF-8">
 
@@ -140,14 +143,17 @@
 
 <div class="base-video">
 
-    <iframe
-        src="https://player.vimeo.com/video/1124182293?autoplay=1&muted=1&loop=1&background=1&autopause=0&title=0&byline=0&portrait=0"
-        title="A Doll's House Pictures background"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        aria-hidden="true"
-    ></iframe>
+<div class="base-video">
+<iframe
+    src="https://player.vimeo.com/video/1124182293?autoplay=1&muted=1&loop=1&background=1&autopause=0&title=0&byline=0&portrait=0"
+    title="A Doll's House Pictures background"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+    aria-hidden="true"
+></iframe>
+
+</div>
 
 </div>
 
@@ -204,17 +210,22 @@
     <section class="scroll-media">
 
 
-        <div class="vimeo-wrapper vimeo-desktop">
+<div class="vimeo-wrapper vimeo-desktop">
 
-            <iframe
-                src="https://player.vimeo.com/video/1022500123?autoplay=1&muted=1&loop=1&background=1&autopause=0&title=0&byline=0&portrait=0"
-                title="A Doll's House Pictures"
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen
-            ></iframe>
 
-        </div>
+<iframe
+    src="https://player.vimeo.com/video/1022500123?autoplay=1&muted=1&loop=1&background=1&autopause=0&title=0&byline=0&portrait=0"
+    title="A Doll's House Pictures"
+    frameborder="0"
+    loading="eager"
+    fetchpriority="high"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+></iframe>
+
+
+</div>
+
 
 
     </section>
@@ -705,6 +716,8 @@
 <script
     src="https://player.vimeo.com/api/player.js"
 ></script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
 
 <script
     src="script.js"
