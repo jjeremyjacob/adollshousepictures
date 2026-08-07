@@ -1,8 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
 /* =====================================================
 GLOBAL
@@ -19,19 +19,10 @@ scroll-behavior: smooth;
 body {
 width: 100%;
 min-height: 100vh;
-
-
 background: transparent;
 color: #000000;
-
-font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+font-family: Arial, Helvetica, sans-serif;
 overflow-x: hidden;
-
-
 }
 
 a {
@@ -49,35 +40,25 @@ GLOBAL VIMEO BACKGROUND
 
 .base-video {
 position: fixed;
-
-
 inset: 0;
-
 width: 100%;
 height: 100vh;
-
 z-index: 0;
-
 overflow: hidden;
-
 pointer-events: none;
 
 background:
-    radial-gradient(
-        circle at 50% 45%,
-        #ded8d4 0%,
-        #d4cbc7 35%,
-        rgba(213, 201, 195, 0.9) 60%,
-        rgba(221, 214, 209, 0.72) 80%,
-        rgba(250, 248, 245, 0.65) 100%
-    );
+radial-gradient(
+circle at 50% 45%,
+#ded8d4 0%,
+#d4cbc7 35%,
+rgba(213, 201, 195, 0.9) 60%,
+rgba(221, 214, 209, 0.72) 80%,
+rgba(250, 248, 245, 0.65) 100%
+);
 
 background-size: 160% 160%;
-
-animation:
-    backgroundDrift 30s ease-in-out infinite alternate;
-
-
+animation: backgroundDrift 30s ease-in-out infinite alternate;
 }
 
 @keyframes backgroundDrift {
@@ -85,42 +66,25 @@ animation:
 background-position: 10% 10%;
 }
 
-
 100% {
-    background-position: 120% 100%;
+background-position: 120% 100%;
 }
-
-
 }
 
 .base-video iframe {
 position: absolute;
-
-
 top: 50%;
 left: 50%;
-
 width: 100vw;
 height: 56.25vw;
-
 min-width: 177.78vh;
 min-height: 100vh;
-
-transform:
-    translate(-50%, -50%);
-
+transform: translate(-50%, -50%);
 border: 0;
-
 display: block;
-
 pointer-events: none;
-
 opacity: 0;
-
-transition:
-    opacity 2.5s ease;
-
-
+transition: opacity 2.5s ease;
 }
 
 .base-video iframe.video-loaded {
@@ -133,26 +97,15 @@ SCROLLING CONTENT LAYER
 
 main {
 position: relative;
-
-
 z-index: 1;
-
 width: 100%;
-
 background: transparent;
-
-
 }
 
 .scrolling-content {
 position: relative;
-
-
 width: 100%;
-
 background: transparent;
-
-
 }
 
 /* =====================================================
@@ -164,13 +117,8 @@ ALL SCROLLING SECTIONS
 .scroll-media,
 .end {
 position: relative;
-
-
 width: 100%;
-
 background: transparent;
-
-
 }
 
 /* =====================================================
@@ -179,16 +127,10 @@ FIXED LOGO
 
 .site-header {
 position: fixed;
-
-
 top: 0;
 left: 0;
-
 z-index: 1000;
-
 padding: 22px var(--page-gutter);
-
-
 }
 
 .site-header a {
@@ -197,12 +139,8 @@ display: block;
 
 .site-header img {
 display: block;
-
-
 width: 50px;
 height: auto;
-
-
 }
 
 /* =====================================================
@@ -211,69 +149,44 @@ CONTACT TAB
 
 .contact-tab {
 position: fixed;
-
-
 left: 0;
 top: 50%;
-
 z-index: 1200;
-
 width: 32px;
 height: 125px;
-
 transform: translateY(-50%);
-
 border: 0;
-
 background: #ffffff;
 color: #000000;
-
 cursor: pointer;
-
 display: flex;
 align-items: center;
 justify-content: center;
-
-
 }
 
 .contact-tab span {
 writing-mode: vertical-rl;
-
-
 transform: rotate(180deg);
-
 font-size: 12px;
 letter-spacing: .12em;
 font-weight: 700;
-
-
 }
 
 /* =====================================================
 CONTACT LINKS
 ===================================================== */
 
-.email-hover {
-display: none;
-}
-
-.email-link:hover .email-default {
-display: none;
-}
-
-.email-link:hover .email-hover {
-display: inline;
-}
-
+.email-hover,
 .instagram-hover {
 display: none;
 }
 
+.email-link:hover .email-default,
 .instagram-link:hover .instagram-default {
 display: none;
 }
 
+.email-link:hover .email-hover,
 .instagram-link:hover .instagram-hover {
 display: inline;
 }
@@ -284,28 +197,17 @@ CONTACT DRAWER
 
 .contact-drawer {
 position: fixed;
-
-
 top: 0;
 left: 0;
-
 z-index: 1100;
-
 width: 360px;
 max-width: 85vw;
 height: 100vh;
-
 background: #ffffff;
 color: #000000;
-
 transform: translateX(-100%);
-
-transition:
-    transform .65s cubic-bezier(.16, 1, .3, 1);
-
+transition: transform .65s cubic-bezier(.16, 1, .3, 1);
 overflow-y: auto;
-
-
 }
 
 .contact-drawer.active {
@@ -318,76 +220,45 @@ DRAWER CLOSE
 
 .drawer-close {
 position: absolute;
-
-
 top: 18px;
 right: 20px;
-
 width: 35px;
 height: 35px;
-
 border: 0;
-
 background: transparent;
 color: #000000;
-
 font-size: 32px;
 font-weight: 200;
-
 line-height: 1;
-
 cursor: pointer;
-
-
 }
 
 .drawer-content {
 min-height: 100%;
-
-
-padding:
-    85px 35px 40px 60px;
-
+padding: 85px 35px 40px 60px;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-
-
 }
 
 .drawer-title {
 font-size: 28px;
-
-
 line-height: .85;
-
 font-weight: 700;
-
 letter-spacing: -.05em;
-
-
 }
 
 .drawer-information {
 display: flex;
 flex-direction: column;
-
-
 gap: 0;
-
 font-size: 14px;
 line-height: 1.25;
-
-
 }
 
 .drawer-information a {
 width: fit-content;
-
-
 padding-bottom: 3px;
-
-
 }
 
 /* =====================================================
@@ -396,19 +267,11 @@ INTRO
 
 .intro {
 min-height: 100vh;
-
-
-padding:
-    120px var(--page-gutter) 60px;
-
+padding: 120px var(--page-gutter) 60px;
 display: flex;
 flex-direction: column;
-
 justify-content: flex-end;
-
 overflow: visible;
-
-
 }
 
 .desktop-title {
@@ -419,19 +282,10 @@ display: inline;
 display: none;
 }
 
-/* =====================================================
-INTRO CONTENT
-===================================================== */
-
 .intro-content {
 position: relative;
-
-
 z-index: 2;
-
 width: 100%;
-
-
 }
 
 /* =====================================================
@@ -439,39 +293,20 @@ INTRO TYPOGRAPHY
 ===================================================== */
 
 .intro h1 {
-font-size: clamp(
-60px,
-12vw,
-190px
-);
-
-
+font-size: clamp(60px, 12vw, 190px);
 line-height: .78;
-
 letter-spacing: -.075em;
-
 font-weight: 700;
-
 overflow: visible;
-
 color: #ffffff;
-
-
 }
 
 .intro p {
 margin-top: 35px;
-
-
 font-size: 12px;
-
 text-transform: uppercase;
-
 letter-spacing: .08em;
-
 color: #ffffff;
-
-
 }
 
 /* =====================================================
@@ -480,13 +315,8 @@ FLOATING LETTERS
 
 .floating-letter {
 display: inline-block;
-
-
 position: relative;
-
 will-change: transform;
-
-
 }
 
 /* =====================================================
@@ -495,34 +325,17 @@ TEXT SCROLL SECTION
 
 .scroll-section {
 min-height: 100vh;
-
-
-padding:
-    120px var(--page-gutter) 60px;
-
+padding: 120px var(--page-gutter) 60px;
 display: flex;
 align-items: center;
-
 color: #ffffff;
-
-
 }
 
 .scroll-section h2 {
-font-size: clamp(
-50px,
-10vw,
-160px
-);
-
-
+font-size: clamp(50px, 10vw, 160px);
 line-height: .8;
-
 letter-spacing: -.07em;
-
 font-weight: 700;
-
-
 }
 
 /* =====================================================
@@ -531,68 +344,31 @@ SCROLL MEDIA SECTION
 
 .scroll-media {
 position: relative;
-
-
 width: 100%;
-
 min-height: auto;
-
-padding:
-    120px var(--page-gutter) 60px;
-
+padding: 120px var(--page-gutter) 60px;
 background: transparent;
-
 overflow: visible;
-
-
 }
-
-/* =====================================================
-MEDIA CONTAINER
-===================================================== */
 
 .scroll-media .vimeo-wrapper {
 position: relative;
-
-
 width: 100%;
-
 max-width: 1200px;
-
 aspect-ratio: 16 / 9;
-
 margin: 0 auto;
-
 overflow: hidden;
-
-
 }
-
-/* =====================================================
-MEDIA IFRAME
-===================================================== */
 
 .scroll-media .vimeo-wrapper iframe {
 position: absolute;
-
-
 inset: 0;
-
 width: 100%;
 height: 100%;
-
 border: 0;
-
 display: block;
-
 pointer-events: none;
-
-
 }
-
-/* =====================================================
-DESKTOP / MOBILE MEDIA
-===================================================== */
 
 .vimeo-desktop {
 display: block;
@@ -608,39 +384,22 @@ END / COPYRIGHT
 
 .end {
 min-height: 20vh;
-
-
 width: 100%;
 max-width: none;
-
 margin: 0;
-
-padding:
-    60px var(--page-gutter);
-
+padding: 60px var(--page-gutter);
 display: flex;
 align-items: flex-end;
-
 color: #ffffff;
-
 overflow: hidden;
-
-
 }
 
 .end p {
 width: 100%;
-
-
 font-size: 12px;
-
 line-height: .8;
-
 font-weight: 700;
-
 white-space: nowrap;
-
-
 }
 
 /* =====================================================
@@ -649,378 +408,27 @@ VIMEO AUDIO TOGGLE
 
 .vimeo-audio-toggle {
 position: fixed;
-
-
 right: 0;
 top: 10%;
-
 transform: translateY(-50%);
-
 z-index: 1200;
-
 width: 32px;
 height: 125px;
-
 border: 0;
-
 background: #ffffff;
 color: #000000;
-
 cursor: pointer;
-
 display: flex;
 align-items: center;
 justify-content: center;
-
-
 }
 
 .vimeo-audio-toggle span {
 writing-mode: vertical-rl;
-
-
 transform: rotate(180deg);
-
 font-size: 12px;
 letter-spacing: .12em;
 font-weight: 700;
-
-
-}
-
-/* =====================================================
-MOBILE
-===================================================== */
-
-@media (max-width: 700px) {
-
-
-:root {
-    --page-gutter: 25px;
-}
-
-/* =================================================
-   GLOBAL VIDEO
-================================================= */
-
-.base-video {
-    height: 100svh;
-}
-
-.base-video iframe {
-    width: 177.78vh;
-    height: 100vh;
-
-    min-width: 177.78vh;
-    min-height: 100vh;
-}
-
-/* =================================================
-   HEADER
-================================================= */
-
-.site-header {
-    padding:
-        30px var(--page-gutter);
-}
-
-.site-header img {
-    width: 50px;
-}
-
-/* =================================================
-   CONTACT
-================================================= */
-
-.contact-tab {
-    width: 30px;
-    height: 110px;
-
-    background: #ffffff;
-    color: #000000;
-}
-
-.contact-tab span {
-    font-size: 9px;
-}
-
-.contact-drawer {
-    width: 85vw;
-
-    max-width: none;
-
-    background: #ffffff;
-    color: #000000;
-}
-
-.drawer-content {
-    padding:
-        75px 25px 30px;
-}
-
-.drawer-title {
-    font-size: 24px;
-}
-
-.drawer-information {
-    font-size: 13px;
-
-    gap: 20px;
-}
-
-/* =================================================
-   TITLE
-================================================= */
-
-.desktop-title {
-    display: none;
-}
-
-.mobile-title {
-    display: inline;
-
-    white-space: nowrap;
-}
-
-/* =================================================
-   INTRO
-================================================= */
-
-.intro {
-    min-height: 100svh;
-
-    padding:
-        120px var(--page-gutter) 60px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: flex-end;
-}
-
-.intro h1 {
-    font-size: 18vw;
-}
-
-.intro p {
-    margin-top: 25px;
-
-    font-size: 9px;
-}
-
-/* =================================================
-   TEXT SECTION
-================================================= */
-
-.scroll-section {
-    min-height: 100svh;
-
-    padding:
-        100px var(--page-gutter) 60px;
-}
-
-.scroll-section h2 {
-    font-size: 17vw;
-}
-
-/* =================================================
-   MEDIA SECTION
-================================================= */
-
-.scroll-media {
-    min-height: auto;
-
-    padding:
-        80px var(--page-gutter);
-}
-
-.scroll-media .vimeo-wrapper {
-    width: 100%;
-
-    max-width: none;
-
-    aspect-ratio: 16 / 9;
-}
-
-.vimeo-desktop {
-    display: none;
-}
-
-.vimeo-mobile {
-    display: block;
-}
-
-.scroll-media .vimeo-wrapper iframe {
-    width: 100%;
-    height: 100%;
-
-    min-width: 0;
-    min-height: 0;
-}
-
-/* =================================================
-   END / COPYRIGHT
-================================================= */
-
-.end {
-    width: 100%;
-    max-width: none;
-
-    margin: 0;
-
-    min-height: 60svh;
-
-    padding:
-        60px var(--page-gutter);
-}
-
-.end p {
-    font-size: 6vw;
-
-    white-space: nowrap;
-}
-
-/* =================================================
-   AUDIO
-================================================= */
-
-.vimeo-audio-toggle {
-    width: 30px;
-    height: 110px;
-
-    background: #ffffff;
-    color: #000000;
-}
-
-.vimeo-audio-toggle span {
-    font-size: 9px;
-}
-
-/* =================================================
-   CLIENTS
-================================================= */
-
-.client-section {
-    min-height: 75svh;
-
-    padding:
-        90px 0 120px;
-}
-
-.client-heading {
-    padding:
-        0 var(--page-gutter);
-
-    margin-bottom: 50px;
-}
-
-.client-heading p {
-    color: #ffffff;
-
-    font-size: 9px;
-}
-
-.client-ticker {
-    gap: 14px;
-}
-
-.client-track {
-    padding:
-        10px 0 16px;
-}
-
-.client-track:nth-child(3),
-.client-track:nth-child(4) {
-    display: none;
-}
-
-.client-name {
-    font-size: 12vw;
-
-    line-height: 1.05;
-
-    padding:
-        0 14px;
-}
-
-.client-separator {
-    font-size: 7vw;
-
-    line-height: 1.05;
-}
-
-.client-track-one .client-line {
-    animation-duration: 38s;
-}
-
-.client-track-two .client-line {
-    animation-duration: 44s;
-}
-
-/* =================================================
-   ABOUT
-================================================= */
-
-.about-section {
-    min-height: auto;
-
-    padding:
-        90px var(--page-gutter) 120px;
-
-    display: block;
-}
-
-.about-heading {
-    padding-top: 0;
-
-    margin-bottom: 45px;
-}
-
-.about-heading p {
-    font-size: 9px;
-}
-
-.about-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 40px;
-
-    max-width: none;
-}
-
-.about-image {
-    width: 72%;
-
-    max-width: 300px;
-}
-
-.about-copy {
-    max-width: none;
-}
-
-.about-copy .about-lead {
-    font-size: 9vw;
-
-    line-height: .95;
-
-    letter-spacing: -.045em;
-
-    margin-bottom: 40px;
-}
-
-.about-copy p {
-    font-size: 5.5vw;
-
-    line-height: 1.05;
-
-    letter-spacing: -.025em;
-
-    margin-bottom: 30px;
-}
-
-
 }
 
 /* =====================================================
@@ -1029,26 +437,17 @@ GLOBAL FILM TEXTURE
 
 body::after {
 content: "";
-
-
 position: fixed;
-
 inset: 0;
-
 z-index: 9999;
-
 pointer-events: none;
-
 opacity: 0.4;
 
 background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='filmNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmNoise)'/%3E%3C/svg%3E");
+url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='filmNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmNoise)'/%3E%3C/svg%3E");
 
 background-size: 200px 200px;
-
 mix-blend-mode: soft-light;
-
-
 }
 
 /* =====================================================
@@ -1057,140 +456,70 @@ CLIENTS
 
 .client-section {
 position: relative;
-
-
 width: 100%;
-
 min-height: 100vh;
-
-padding:
-    120px 0 140px;
-
+padding: 120px 0 140px;
 display: flex;
 flex-direction: column;
-
 justify-content: center;
-
 color: #ffffff;
-
 background: transparent;
-
 overflow: hidden;
-
-
 }
 
 .client-heading {
 width: 100%;
-
-
-padding:
-    0 var(--page-gutter);
-
+padding: 0 var(--page-gutter);
 margin-bottom: 70px;
-
 color: #ffffff;
-
-
 }
 
 .client-heading p {
 font-size: 11px;
-
-
 text-transform: uppercase;
-
 letter-spacing: .12em;
-
 color: #ffffff;
-
-
 }
 
 .client-ticker {
 width: 100%;
-
-
 display: flex;
 flex-direction: column;
-
 overflow: visible;
-
-
 }
 
 .client-track {
 position: relative;
-
-
 width: 100%;
-
 overflow: hidden;
-
 white-space: nowrap;
-
-padding:
-    12px 0 18px;
-
-
+padding: 12px 0 18px;
 }
 
 .client-line {
 display: inline-flex;
-
-
 align-items: baseline;
-
 width: max-content;
-
 will-change: transform;
-
 color: #ffffff;
-
-
 }
 
 .client-name {
 display: inline-block;
-
-
 color: #ffffff;
-
-font-size: clamp(
-    42px,
-    6.5vw,
-    100px
-);
-
+font-size: clamp(42px, 6.5vw, 100px);
 line-height: 1.05;
-
 letter-spacing: -.055em;
-
 font-weight: 700;
-
-padding:
-    0 22px;
-
-
+padding: 0 22px;
 }
 
 .client-separator {
 display: inline-block;
-
-
 color: #ffffff;
-
-font-size: clamp(
-    28px,
-    4vw,
-    60px
-);
-
+font-size: clamp(28px, 4vw, 60px);
 line-height: 1.05;
-
 opacity: .45;
-
-
 }
 
 /* =====================================================
@@ -1198,35 +527,19 @@ CLIENT TICKER MOTION
 ===================================================== */
 
 .client-track-one .client-line {
-animation:
-clientTickerOne
-42s
-linear
-infinite;
+animation: clientTickerOne 42s linear infinite;
 }
 
 .client-track-two .client-line {
-animation:
-clientTickerTwo
-50s
-linear
-infinite;
+animation: clientTickerTwo 50s linear infinite;
 }
 
 .client-track-three .client-line {
-animation:
-clientTickerThree
-46s
-linear
-infinite;
+animation: clientTickerThree 46s linear infinite;
 }
 
 .client-track-four .client-line {
-animation:
-clientTickerFour
-55s
-linear
-infinite;
+animation: clientTickerFour 55s linear infinite;
 }
 
 @keyframes clientTickerOne {
@@ -1234,12 +547,9 @@ from {
 transform: translateX(0);
 }
 
-
 to {
-    transform: translateX(-50%);
+transform: translateX(-50%);
 }
-
-
 }
 
 @keyframes clientTickerTwo {
@@ -1247,12 +557,9 @@ from {
 transform: translateX(-50%);
 }
 
-
 to {
-    transform: translateX(0);
+transform: translateX(0);
 }
-
-
 }
 
 @keyframes clientTickerThree {
@@ -1260,12 +567,9 @@ from {
 transform: translateX(0);
 }
 
-
 to {
-    transform: translateX(-50%);
+transform: translateX(-50%);
 }
-
-
 }
 
 @keyframes clientTickerFour {
@@ -1273,29 +577,9 @@ from {
 transform: translateX(-50%);
 }
 
-
 to {
-    transform: translateX(0);
+transform: translateX(0);
 }
-
-
-}
-
-/* =====================================================
-REDUCED MOTION
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-
-.client-line {
-    animation: none !important;
-
-    transform:
-        translateX(0) !important;
-}
-
-
 }
 
 /* =====================================================
@@ -1304,27 +588,14 @@ ABOUT
 
 .about-section {
 position: relative;
-
-
 width: 100%;
-
 min-height: 90vh;
-
-padding:
-    120px var(--page-gutter) 140px;
-
+padding: 120px var(--page-gutter) 140px;
 display: grid;
-
-grid-template-columns:
-    25% 75%;
-
+grid-template-columns: 25% 75%;
 align-items: start;
-
 color: #ffffff;
-
 background: transparent;
-
-
 }
 
 .about-heading {
@@ -1333,104 +604,52 @@ padding-top: 6px;
 
 .about-heading p {
 font-size: 11px;
-
-
 text-transform: uppercase;
-
 letter-spacing: .12em;
-
 color: #ffffff;
-
-
 }
 
 .about-content {
 width: 100%;
-
-
 max-width: 1100px;
-
 display: grid;
-
-grid-template-columns:
-    minmax(220px, 32%)
-    1fr;
-
+grid-template-columns: minmax(220px, 32%) 1fr;
 gap: 55px;
-
 align-items: start;
-
-
 }
 
 .about-image {
 width: 100%;
-
-
 overflow: hidden;
-
-
 }
 
 .about-image img {
 display: block;
-
-
 width: 100%;
 height: auto;
-
 object-fit: cover;
-
-
 }
 
 .about-copy {
 width: 100%;
-
-
 max-width: 750px;
-
-
 }
 
 .about-copy p {
 margin: 0 0 35px;
-
-
-font-size: clamp(
-    20px,
-    2.4vw,
-    36px
-);
-
+font-size: clamp(20px, 2.4vw, 36px);
 line-height: 1.05;
-
 letter-spacing: -.035em;
-
 font-weight: 400;
-
 color: #ffffff;
-
-
 }
 
 .about-copy .about-lead {
-font-size: clamp(
-28px,
-4vw,
-60px
-);
-
-
+font-size: clamp(28px, 4vw, 60px);
 line-height: .95;
-
 letter-spacing: -.055em;
-
 font-weight: 700;
-
 margin-bottom: 55px;
-
-
 }
 
 /* =====================================================
@@ -1439,77 +658,43 @@ VIDEO DEPTH FIELD
 
 .video-depth-section {
 position: relative;
-
-
 width: 100%;
-
 height: 300vh;
-
 overflow: hidden;
-
-
 }
 
 .video-depth-inner {
 position: relative;
-
-
 width: 100%;
 height: 100%;
-
-
 }
 
 .depth-video {
 position: absolute;
-
-
 left: var(--x);
 top: var(--y);
-
 width: var(--w);
-
 aspect-ratio: 16 / 9;
-
 overflow: hidden;
-
 will-change: transform;
-
-transform:
-    translate3d(0, 0, 0)
-    scale(1);
-
+transform: translate3d(0, 0, 0) scale(1);
 transform-origin: center center;
-
 backface-visibility: hidden;
 -webkit-backface-visibility: hidden;
-
 contain: layout paint;
-
 margin: 0;
-
-
 }
 
 .depth-video iframe {
 position: absolute;
-
-
 inset: 0;
-
 width: 100%;
 height: 100%;
-
 border: 0;
-
 display: block;
-
 pointer-events: none;
-
 backface-visibility: hidden;
 -webkit-backface-visibility: hidden;
-
-
 }
 
 /* =====================================================
@@ -1550,53 +735,51 @@ DESKTOP
 
 @media (min-width: 1025px) {
 
-
 .video-depth-section {
-    height: 180vh;
+height: 180vh;
 }
 
 .depth-video-1 {
-    left: 4%;
-    top: 1%;
-    width: 54%;
+left: 4%;
+top: 1%;
+width: 54%;
 }
 
 .depth-video-2 {
-    left: 50%;
-    top: 25%;
-    width: 30%;
+left: 50%;
+top: 25%;
+width: 30%;
 }
 
 .depth-video-3 {
-    left: 28%;
-    top: 41%;
-    width: 38%;
+left: 28%;
+top: 41%;
+width: 38%;
 }
 
 .depth-video-4 {
-    left: 68%;
-    top: 48%;
-    width: 25%;
+left: 68%;
+top: 48%;
+width: 25%;
 }
 
 .depth-video-5 {
-    left: 6%;
-    top: 62%;
-    width: 42%;
+left: 6%;
+top: 62%;
+width: 42%;
 }
 
 .depth-video-6 {
-    left: 43%;
-    top: 76%;
-    width: 46%;
+left: 43%;
+top: 76%;
+width: 46%;
 }
 
 .depth-video-7 {
-    left: 76%;
-    top: 91%;
-    width: 22%;
+left: 76%;
+top: 91%;
+width: 22%;
 }
-
 
 }
 
@@ -1606,124 +789,432 @@ TABLET
 
 @media (min-width: 601px) and (max-width: 1024px) {
 
-
 .video-depth-section {
-    height: 165vh;
+height: 165vh;
 }
 
 .depth-video-1 {
-    left: 3%;
-    top: 7%;
-    width: 60%;
+left: 3%;
+top: 7%;
+width: 60%;
 }
 
 .depth-video-2 {
-    left: 58%;
-    top: 14%;
-    width: 34%;
+left: 58%;
+top: 14%;
+width: 34%;
 }
 
 .depth-video-3 {
-    left: 20%;
-    top: 32%;
-    width: 44%;
+left: 20%;
+top: 32%;
+width: 44%;
 }
 
 .depth-video-4 {
-    left: 66%;
-    top: 43%;
-    width: 28%;
+left: 66%;
+top: 43%;
+width: 28%;
 }
 
 .depth-video-5 {
-    left: 2%;
-    top: 54%;
-    width: 43%;
+left: 2%;
+top: 54%;
+width: 43%;
 }
 
 .depth-video-6 {
-    left: 37%;
-    top: 67%;
-    width: 52%;
+left: 37%;
+top: 67%;
+width: 52%;
 }
 
 .depth-video-7 {
-    left: 75%;
-    top: 80%;
-    width: 22%;
+left: 75%;
+top: 80%;
+width: 22%;
 }
-
 
 }
 
 /* =====================================================
-MOBILE VIDEO FIELD
+MOBILE
 ===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
+:root {
+--page-gutter: 25px;
+}
+
+/* =================================================
+GLOBAL VIDEO
+================================================= */
+
+.base-video {
+position: fixed;
+inset: 0;
+width: 100%;
+height: 100svh;
+min-height: 100svh;
+overflow: hidden;
+z-index: 0;
+pointer-events: none;
+}
+
+.base-video iframe {
+position: absolute;
+top: 50%;
+left: 50%;
+width: 177.78svh;
+height: 100svh;
+min-width: 0;
+min-height: 0;
+transform: translate(-50%, -50%);
+border: 0;
+display: block;
+pointer-events: none;
+}
+
+/* =================================================
+HEADER
+================================================= */
+
+.site-header {
+padding: 30px var(--page-gutter);
+}
+
+.site-header img {
+width: 50px;
+}
+
+/* =================================================
+CONTACT
+================================================= */
+
+.contact-tab {
+width: 30px;
+height: 110px;
+background: #ffffff;
+color: #000000;
+}
+
+.contact-tab span {
+font-size: 9px;
+}
+
+.contact-drawer {
+width: 85vw;
+max-width: none;
+background: #ffffff;
+color: #000000;
+}
+
+.drawer-content {
+padding: 75px 25px 30px;
+}
+
+.drawer-title {
+font-size: 24px;
+}
+
+.drawer-information {
+font-size: 13px;
+gap: 20px;
+}
+
+/* =================================================
+TITLE
+================================================= */
+
+.desktop-title {
+display: none;
+}
+
+.mobile-title {
+display: inline;
+white-space: nowrap;
+}
+
+/* =================================================
+INTRO
+================================================= */
+
+.intro {
+min-height: 100svh;
+padding: 120px var(--page-gutter) 60px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
+
+.intro h1 {
+font-size: 18vw;
+}
+
+.intro p {
+margin-top: 25px;
+font-size: 9px;
+}
+
+/* =================================================
+TEXT SECTION
+================================================= */
+
+.scroll-section {
+min-height: 100svh;
+padding: 100px var(--page-gutter) 60px;
+}
+
+.scroll-section h2 {
+font-size: 17vw;
+}
+
+/* =================================================
+MEDIA SECTION
+================================================= */
+
+.scroll-media {
+min-height: auto;
+padding: 80px var(--page-gutter);
+}
+
+.scroll-media .vimeo-wrapper {
+width: 100%;
+max-width: none;
+aspect-ratio: 16 / 9;
+}
+
+.vimeo-desktop {
+display: none;
+}
+
+.vimeo-mobile {
+display: block;
+}
+
+.scroll-media .vimeo-wrapper iframe {
+width: 100%;
+height: 100%;
+min-width: 0;
+min-height: 0;
+}
+
+/* =================================================
+END / COPYRIGHT
+================================================= */
+
+.end {
+width: 100%;
+max-width: none;
+margin: 0;
+min-height: 60svh;
+padding: 60px var(--page-gutter);
+}
+
+.end p {
+font-size: 6vw;
+white-space: nowrap;
+}
+
+/* =================================================
+AUDIO
+================================================= */
+
+.vimeo-audio-toggle {
+width: 30px;
+height: 110px;
+background: #ffffff;
+color: #000000;
+}
+
+.vimeo-audio-toggle span {
+font-size: 9px;
+}
+
+/* =================================================
+CLIENTS
+================================================= */
+
+.client-section {
+min-height: 75svh;
+padding: 90px 0 120px;
+}
+
+.client-heading {
+padding: 0 var(--page-gutter);
+margin-bottom: 50px;
+}
+
+.client-heading p {
+color: #ffffff;
+font-size: 9px;
+}
+
+.client-ticker {
+gap: 14px;
+}
+
+.client-track {
+padding: 10px 0 16px;
+}
+
+.client-track:nth-child(3),
+.client-track:nth-child(4) {
+display: none;
+}
+
+.client-name {
+font-size: 12vw;
+line-height: 1.05;
+padding: 0 14px;
+}
+
+.client-separator {
+font-size: 7vw;
+line-height: 1.05;
+}
+
+.client-track-one .client-line {
+animation-duration: 38s;
+}
+
+.client-track-two .client-line {
+animation-duration: 44s;
+}
+
+/* =================================================
+ABOUT
+================================================= */
+
+.about-section {
+min-height: auto;
+padding: 90px var(--page-gutter) 120px;
+display: block;
+}
+
+.about-heading {
+padding-top: 0;
+margin-bottom: 45px;
+}
+
+.about-heading p {
+font-size: 9px;
+}
+
+.about-content {
+display: flex;
+flex-direction: column;
+gap: 40px;
+max-width: none;
+}
+
+.about-image {
+width: 72%;
+max-width: 300px;
+}
+
+.about-copy {
+max-width: none;
+}
+
+.about-copy .about-lead {
+font-size: 9vw;
+line-height: .95;
+letter-spacing: -.045em;
+margin-bottom: 40px;
+}
+
+.about-copy p {
+font-size: 5.5vw;
+line-height: 1.05;
+letter-spacing: -.025em;
+margin-bottom: 30px;
+}
+
+/* =================================================
+MOBILE VIDEO FIELD
+================================================= */
 
 .video-depth-section {
-    height: 145vh;
+position: relative;
+width: 100%;
+height: 145vh;
+min-height: 0;
+overflow: hidden;
+}
+
+.video-depth-inner {
+position: relative;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+
+.depth-video {
+position: absolute;
+overflow: hidden;
+max-width: calc(100% - 30px);
+transform-origin: center center;
 }
 
 .depth-video-1 {
-    left: 2%;
-    top: 7%;
-    width: 82%;
+left: 2%;
+top: 7%;
+width: 82%;
 }
 
 .depth-video-2 {
-    left: 55%;
-    top: 15%;
-    width: 48%;
+left: 55%;
+top: 15%;
+width: 48%;
 }
 
 .depth-video-3 {
-    left: 12%;
-    top: 31%;
-    width: 68%;
+left: 12%;
+top: 31%;
+width: 68%;
 }
 
 .depth-video-4 {
-    left: 62%;
-    top: 43%;
-    width: 40%;
+left: 62%;
+top: 43%;
+width: 40%;
 }
 
 .depth-video-5 {
-    left: -2%;
-    top: 54%;
-    width: 62%;
+left: -2%;
+top: 54%;
+width: 62%;
 }
 
 .depth-video-6 {
-    left: 34%;
-    top: 67%;
-    width: 70%;
+left: 34%;
+top: 67%;
+width: 70%;
 }
 
 .depth-video-7 {
-    left: 72%;
-    top: 81%;
-    width: 38%;
+left: 72%;
+top: 81%;
+width: 38%;
 }
-
 
 }
 
 /* =====================================================
-VIDEO FIELD — REDUCED MOTION
+REDUCED MOTION
 ===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
-
-.depth-video {
-    transform:
-        translate3d(0, 0, 0)
-        scale(1) !important;
+.client-line {
+animation: none !important;
+transform: translateX(0) !important;
 }
 
+.depth-video {
+transform: translate3d(0, 0, 0) scale(1) !important;
+}
 
 }
