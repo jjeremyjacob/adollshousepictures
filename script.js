@@ -17,6 +17,12 @@ document.addEventListener(
             ".contact-drawer"
         );
 
+    const drawerClose =
+        document.querySelector(
+            ".drawer-close"
+        );
+
+
     const openDrawer = () => {
 
         if (
@@ -40,6 +46,7 @@ document.addEventListener(
 
     };
 
+
     const closeDrawer = () => {
 
         if (
@@ -62,6 +69,7 @@ document.addEventListener(
         );
 
     };
+
 
     if (
         contactTab &&
@@ -90,6 +98,16 @@ document.addEventListener(
         );
 
 
+        if (drawerClose) {
+
+            drawerClose.addEventListener(
+                "click",
+                closeDrawer
+            );
+
+        }
+
+
         document.addEventListener(
             "keydown",
             event => {
@@ -108,6 +126,120 @@ document.addEventListener(
     }
 
 
+
+    /* =================================================
+       EMAIL / INSTAGRAM HOVER
+    ================================================= */
+
+    const emailLinks =
+        document.querySelectorAll(
+            ".email-link"
+        );
+
+    emailLinks.forEach(
+        link => {
+
+            const defaultText =
+                link.querySelector(
+                    ".email-default"
+                );
+
+            const hoverText =
+                link.querySelector(
+                    ".email-hover"
+                );
+
+            if (
+                !defaultText ||
+                !hoverText
+            ) return;
+
+            link.addEventListener(
+                "mouseenter",
+                () => {
+
+                    defaultText.style.display =
+                        "none";
+
+                    hoverText.style.display =
+                        "inline";
+
+                }
+            );
+
+
+            link.addEventListener(
+                "mouseleave",
+                () => {
+
+                    defaultText.style.display =
+                        "inline";
+
+                    hoverText.style.display =
+                        "none";
+
+                }
+            );
+
+        }
+    );
+
+
+    const instagramLinks =
+        document.querySelectorAll(
+            ".instagram-link"
+        );
+
+    instagramLinks.forEach(
+        link => {
+
+            const defaultText =
+                link.querySelector(
+                    ".instagram-default"
+                );
+
+            const hoverText =
+                link.querySelector(
+                    ".instagram-hover"
+                );
+
+            if (
+                !defaultText ||
+                !hoverText
+            ) return;
+
+            link.addEventListener(
+                "mouseenter",
+                () => {
+
+                    defaultText.style.display =
+                        "none";
+
+                    hoverText.style.display =
+                        "inline";
+
+                }
+            );
+
+
+            link.addEventListener(
+                "mouseleave",
+                () => {
+
+                    defaultText.style.display =
+                        "inline";
+
+                    hoverText.style.display =
+                        "none";
+
+                }
+            );
+
+        }
+    );
+
+
+
     /* =================================================
        GLOBAL VIMEO BACKGROUND VIDEO
     ================================================= */
@@ -119,7 +251,9 @@ document.addEventListener(
 
     const baseIframe =
         baseVideo
-            ? baseVideo.querySelector("iframe")
+            ? baseVideo.querySelector(
+                "iframe"
+            )
             : null;
 
     const audioToggle =
@@ -134,8 +268,9 @@ document.addEventListener(
         false;
 
 
+
     /* =================================================
-       INITIALIZE BACKGROUND VIMEO
+       INITIALIZE GLOBAL VIMEO
     ================================================= */
 
     function initializeVimeo() {
@@ -154,18 +289,10 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           RESET FADE
-        ================================================= */
-
         baseIframe.classList.remove(
             "video-loaded"
         );
 
-
-        /* =================================================
-           DESTROY PREVIOUS PLAYER
-        ================================================= */
 
         if (activePlayer) {
 
@@ -173,7 +300,8 @@ document.addEventListener(
 
                 activePlayer.destroy();
 
-            } catch (error) {
+            }
+            catch (error) {
 
                 console.log(
                     "Vimeo cleanup:",
@@ -188,19 +316,25 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           CREATE PLAYER
-        ================================================= */
+        try {
 
-        activePlayer =
-            new Vimeo.Player(
-                baseIframe
+            activePlayer =
+                new Vimeo.Player(
+                    baseIframe
+                );
+
+        }
+        catch (error) {
+
+            console.log(
+                "Vimeo initialization error:",
+                error
             );
 
+            return;
 
-        /* =================================================
-           VIMEO READY
-        ================================================= */
+        }
+
 
         activePlayer.ready().then(
             async () => {
@@ -209,10 +343,6 @@ document.addEventListener(
                     "Background Vimeo ready."
                 );
 
-
-                /* =================================================
-                   KEEP VIDEO MUTED
-                ================================================= */
 
                 try {
 
@@ -231,17 +361,24 @@ document.addEventListener(
                 }
 
 
-                /* =================================================
-                   WAIT FOR ACTUAL PLAY
-                ================================================= */
+                try {
+
+                    await activePlayer.play();
+
+                }
+                catch (error) {
+
+                    console.log(
+                        "Vimeo autoplay:",
+                        error
+                    );
+
+                }
+
 
                 activePlayer.on(
                     "play",
                     () => {
-
-                        console.log(
-                            "Background Vimeo playing."
-                        );
 
                         setTimeout(
                             () => {
@@ -258,21 +395,20 @@ document.addEventListener(
                 );
 
 
-                /* =================================================
-                   AUDIO TOGGLE
-                ================================================= */
-
                 if (!audioToggle) return;
+
 
                 audioToggle.onclick =
                     async () => {
 
                         if (!activePlayer) return;
 
+
                         try {
 
                             audioOn =
                                 !audioOn;
+
 
                             await activePlayer.setVolume(
                                 audioOn
@@ -280,10 +416,12 @@ document.addEventListener(
                                     : 0
                             );
 
+
                             const label =
                                 audioToggle.querySelector(
                                     "span"
                                 );
+
 
                             if (label) {
 
@@ -294,12 +432,14 @@ document.addEventListener(
 
                             }
 
+
                             audioToggle.setAttribute(
                                 "aria-label",
                                 audioOn
                                     ? "Turn video audio off"
                                     : "Turn video audio on"
                             );
+
 
                         }
                         catch (error) {
@@ -329,21 +469,24 @@ document.addEventListener(
     }
 
 
-    /* =================================================
-       INITIALIZE
-    ================================================= */
-
     initializeVimeo();
 
 
+
     /* =================================================
-       RESPONSIVE BREAKPOINT
+       RESPONSIVE STATE
     ================================================= */
 
     const mobileQuery =
         window.matchMedia(
             "(max-width: 700px)"
         );
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
 
 
     /* =================================================
@@ -378,10 +521,6 @@ document.addEventListener(
         mobileTitle
     ) {
 
-        /* =================================================
-           STATE
-        ================================================= */
-
         let activeTitle =
             null;
 
@@ -394,10 +533,9 @@ document.addEventListener(
         let startTime =
             performance.now();
 
+        let animationFrame =
+            null;
 
-        /* =================================================
-           ANIMATION TIMING
-        ================================================= */
 
         const settleTime =
             1000;
@@ -412,10 +550,6 @@ document.addEventListener(
             15000;
 
 
-        /* =================================================
-           GET ACTIVE TITLE
-        ================================================= */
-
         function getActiveTitle() {
 
             return mobileQuery.matches
@@ -425,14 +559,11 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           PREPARE TITLE
-        ================================================= */
-
         function prepareTitle() {
 
             const newActiveTitle =
                 getActiveTitle();
+
 
             if (
                 newActiveTitle ===
@@ -444,25 +575,19 @@ document.addEventListener(
 
             }
 
+
             activeTitle =
                 newActiveTitle;
 
-
-            /* =================================================
-               RESTORE ORIGINAL TEXT
-            ================================================= */
 
             const originalText =
                 activeTitle.dataset.originalText ||
                 activeTitle.innerText;
 
+
             activeTitle.dataset.originalText =
                 originalText;
 
-
-            /* =================================================
-               CLEAR TITLE
-            ================================================= */
 
             activeTitle.innerHTML =
                 "";
@@ -471,18 +596,10 @@ document.addEventListener(
                 [];
 
 
-            /* =================================================
-               CREATE INDIVIDUAL LETTERS
-            ================================================= */
-
             [
                 ...originalText
             ].forEach(
                 char => {
-
-                    /* =================================================
-                       PRESERVE LINE BREAKS
-                    ================================================= */
 
                     if (
                         char === "\n"
@@ -499,10 +616,6 @@ document.addEventListener(
                     }
 
 
-                    /* =================================================
-                       PRESERVE SPACES
-                    ================================================= */
-
                     if (
                         char === " "
                     ) {
@@ -517,10 +630,6 @@ document.addEventListener(
 
                     }
 
-
-                    /* =================================================
-                       CREATE LETTER
-                    ================================================= */
 
                     const span =
                         document.createElement(
@@ -539,6 +648,7 @@ document.addEventListener(
                     activeTitle.appendChild(
                         span
                     );
+
 
                     letters.push({
 
@@ -567,6 +677,12 @@ document.addEventListener(
                             0,
 
                         height:
+                            0,
+
+                        rotation:
+                            0,
+
+                        rotationVelocity:
                             0
 
                     });
@@ -575,16 +691,8 @@ document.addEventListener(
             );
 
 
-            /* =================================================
-               MEASURE BEFORE ANIMATION
-            ================================================= */
-
             measureLetters();
 
-
-            /* =================================================
-               INITIAL VELOCITIES
-            ================================================= */
 
             letters.forEach(
                 letter => {
@@ -599,6 +707,7 @@ document.addEventListener(
                         Math.random() *
                         0.045;
 
+
                     letter.vx =
                         Math.cos(angle) *
                         speed;
@@ -607,22 +716,35 @@ document.addEventListener(
                         Math.sin(angle) *
                         speed;
 
+
+                    letter.rotation =
+                        (
+                            Math.random() -
+                            0.5
+                        ) *
+                        5;
+
+                    letter.rotationVelocity =
+                        (
+                            Math.random() -
+                            0.5
+                        ) *
+                        0.01;
+
                 }
             );
 
         }
 
 
-        /* =================================================
-           MEASURE ORIGINAL POSITIONS
-        ================================================= */
-
         function measureLetters() {
 
             if (!activeTitle) return;
 
+
             const introRect =
                 intro.getBoundingClientRect();
+
 
             letters.forEach(
                 letter => {
@@ -630,8 +752,10 @@ document.addEventListener(
                     letter.element.style.transform =
                         "none";
 
+
                     const rect =
                         letter.element.getBoundingClientRect();
+
 
                     letter.baseX =
                         rect.left -
@@ -647,6 +771,7 @@ document.addEventListener(
                     letter.height =
                         rect.height;
 
+
                     letter.x =
                         letter.baseX;
 
@@ -658,10 +783,6 @@ document.addEventListener(
 
         }
 
-
-        /* =================================================
-           COLLISION SYSTEM
-        ================================================= */
 
         function collide(
             a,
@@ -682,6 +803,7 @@ document.addEventListener(
                 a.y +
                 a.height;
 
+
             const bLeft =
                 b.x;
 
@@ -696,6 +818,7 @@ document.addEventListener(
                 b.y +
                 b.height;
 
+
             const overlapX =
                 Math.min(
                     aRight,
@@ -705,6 +828,7 @@ document.addEventListener(
                     aLeft,
                     bLeft
                 );
+
 
             const overlapY =
                 Math.min(
@@ -716,6 +840,7 @@ document.addEventListener(
                     bTop
                 );
 
+
             if (
                 overlapX <= 0 ||
                 overlapY <= 0
@@ -725,10 +850,6 @@ document.addEventListener(
 
             }
 
-
-            /* =================================================
-               HORIZONTAL COLLISION
-            ================================================= */
 
             if (
                 overlapX <
@@ -743,14 +864,17 @@ document.addEventListener(
                     b.x +
                     b.width / 2;
 
+
                 const direction =
                     centerA < centerB
                         ? -1
                         : 1;
 
+
                 const push =
                     overlapX / 2 +
                     1;
+
 
                 a.x +=
                     direction *
@@ -759,6 +883,7 @@ document.addEventListener(
                 b.x -=
                     direction *
                     push;
+
 
                 const velocity =
                     a.vx;
@@ -770,12 +895,6 @@ document.addEventListener(
                     velocity;
 
             }
-
-
-            /* =================================================
-               VERTICAL COLLISION
-            ================================================= */
-
             else {
 
                 const centerA =
@@ -786,14 +905,17 @@ document.addEventListener(
                     b.y +
                     b.height / 2;
 
+
                 const direction =
                     centerA < centerB
                         ? -1
                         : 1;
 
+
                 const push =
                     overlapY / 2 +
                     1;
+
 
                 a.y +=
                     direction *
@@ -802,6 +924,7 @@ document.addEventListener(
                 b.y -=
                     direction *
                     push;
+
 
                 const velocity =
                     a.vy;
@@ -817,10 +940,6 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           BOUNDARIES
-        ================================================= */
-
         function keepInside(
             letter
         ) {
@@ -829,13 +948,11 @@ document.addEventListener(
                 intro.clientWidth;
 
             const floatHeight =
-                window.innerHeight *
-                2;
+                Math.max(
+                    window.innerHeight,
+                    intro.scrollHeight
+                );
 
-
-            /* =================================================
-               LEFT
-            ================================================= */
 
             if (
                 letter.x <= 0
@@ -856,10 +973,6 @@ document.addEventListener(
             }
 
 
-            /* =================================================
-               RIGHT
-            ================================================= */
-
             if (
                 letter.x +
                 letter.width >=
@@ -869,6 +982,7 @@ document.addEventListener(
                 letter.x =
                     introWidth -
                     letter.width;
+
 
                 if (
                     letter.vx > 0
@@ -881,10 +995,6 @@ document.addEventListener(
 
             }
 
-
-            /* =================================================
-               TOP
-            ================================================= */
 
             if (
                 letter.y <= 0
@@ -905,10 +1015,6 @@ document.addEventListener(
             }
 
 
-            /* =================================================
-               BOTTOM
-            ================================================= */
-
             if (
                 letter.y +
                 letter.height >=
@@ -918,6 +1024,7 @@ document.addEventListener(
                 letter.y =
                     floatHeight -
                     letter.height;
+
 
                 if (
                     letter.vy > 0
@@ -933,16 +1040,31 @@ document.addEventListener(
         }
 
 
-        /* =================================================
-           INITIALIZE TITLE
-        ================================================= */
+        function setLettersToBase() {
+
+            letters.forEach(
+                letter => {
+
+                    letter.x =
+                        letter.baseX;
+
+                    letter.y =
+                        letter.baseY;
+
+                    letter.rotation =
+                        0;
+
+                    letter.element.style.transform =
+                        "translate3d(0,0,0) rotate(0deg)";
+
+                }
+            );
+
+        }
+
 
         prepareTitle();
 
-
-        /* =================================================
-           ANIMATION
-        ================================================= */
 
         function animate(
             now
@@ -955,12 +1077,15 @@ document.addEventListener(
                     32
                 );
 
+
             lastTime =
                 now;
+
 
             const elapsed =
                 now -
                 startTime;
+
 
             const returnStart =
                 settleTime +
@@ -968,9 +1093,16 @@ document.addEventListener(
                 floatDuration;
 
 
-            /* =================================================
-               PHASE 1 — HOLD
-            ================================================= */
+            if (
+                reducedMotion
+            ) {
+
+                setLettersToBase();
+
+                return;
+
+            }
+
 
             if (
                 elapsed <
@@ -986,40 +1118,36 @@ document.addEventListener(
                         letter.y =
                             letter.baseY;
 
+                        letter.element.style.transform =
+                            "translate3d(0,0,0)";
+
                     }
                 );
 
             }
 
 
-            /* =================================================
-               PHASE 2 — FLOAT
-            ================================================= */
-
             else if (
                 elapsed <
-                returnStart
+                settleTime +
+                releaseDuration
             ) {
 
-                const releaseElapsed =
-                    elapsed -
-                    settleTime;
+                const progress =
+                    (
+                        elapsed -
+                        settleTime
+                    ) /
+                    releaseDuration;
 
-                const release =
+
+                const force =
                     Math.min(
-                        releaseElapsed /
-                        releaseDuration,
+                        progress *
+                        1.5,
                         1
                     );
 
-                const easedRelease =
-                    release *
-                    release *
-                    (
-                        3 -
-                        2 *
-                        release
-                    );
 
                 letters.forEach(
                     letter => {
@@ -1027,20 +1155,27 @@ document.addEventListener(
                         letter.x +=
                             letter.vx *
                             delta *
-                            easedRelease;
+                            force;
 
                         letter.y +=
                             letter.vy *
                             delta *
-                            easedRelease;
+                            force;
+
+
+                        letter.rotation +=
+                            letter.rotationVelocity *
+                            delta *
+                            2;
+
+
+                        keepInside(
+                            letter
+                        );
 
                     }
                 );
 
-
-                /* =================================================
-                   COLLISIONS
-                ================================================= */
 
                 for (
                     let i = 0;
@@ -1063,34 +1198,75 @@ document.addEventListener(
 
                 }
 
+
+                letters.forEach(
+                    letter => {
+
+                        letter.element.style.transform =
+                            `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
+
+                    }
+                );
+
             }
 
 
-            /* =================================================
-               PHASE 3 — RETURN
-            ================================================= */
+            else if (
+                elapsed <
+                returnStart
+            ) {
+
+                letters.forEach(
+                    letter => {
+
+                        letter.x +=
+                            letter.vx *
+                            delta;
+
+                        letter.y +=
+                            letter.vy *
+                            delta;
+
+                        letter.rotation +=
+                            letter.rotationVelocity *
+                            delta;
+
+
+                        keepInside(
+                            letter
+                        );
+
+
+                        letter.element.style.transform =
+                            `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
+
+                    }
+                );
+
+            }
+
 
             else {
 
-                const returnElapsed =
-                    elapsed -
-                    returnStart;
-
-                const progress =
+                const returnProgress =
                     Math.min(
-                        returnElapsed /
+                        (
+                            elapsed -
+                            returnStart
+                        ) /
                         returnDuration,
                         1
                     );
 
-                const ease =
-                    progress *
-                    progress *
-                    (
-                        3 -
-                        2 *
-                        progress
+
+                const eased =
+                    1 -
+                    Math.pow(
+                        1 -
+                        returnProgress,
+                        4
                     );
+
 
                 letters.forEach(
                     letter => {
@@ -1101,11 +1277,8 @@ document.addEventListener(
                                 letter.baseX -
                                 letter.x
                             ) *
-                            (
-                                0.015 +
-                                ease *
-                                0.12
-                            );
+                            eased *
+                            0.035;
 
                         letter.y =
                             letter.y +
@@ -1113,28 +1286,22 @@ document.addEventListener(
                                 letter.baseY -
                                 letter.y
                             ) *
-                            (
-                                0.015 +
-                                ease *
-                                0.12
-                            );
+                            eased *
+                            0.035;
 
-                        letter.vx =
-                            0;
+                        letter.rotation *=
+                            0.96;
 
-                        letter.vy =
-                            0;
+
+                        letter.element.style.transform =
+                            `translate3d(${letter.x - letter.baseX}px, ${letter.y - letter.baseY}px, 0) rotate(${letter.rotation}deg)`;
 
                     }
                 );
 
 
-                /* =================================================
-                   SNAP BACK + NEW CYCLE
-                ================================================= */
-
                 if (
-                    progress >=
+                    returnProgress >=
                     1
                 ) {
 
@@ -1147,435 +1314,809 @@ document.addEventListener(
                             letter.y =
                                 letter.baseY;
 
-                            letter.vx =
+                            letter.rotation =
                                 0;
 
-                            letter.vy =
-                                0;
+                            letter.element.style.transform =
+                                "translate3d(0,0,0) rotate(0deg)";
 
                         }
                     );
-
-                    letters.forEach(
-                        letter => {
-
-                            const angle =
-                                Math.random() *
-                                Math.PI *
-                                2;
-
-                            const speed =
-                                0.055 +
-                                Math.random() *
-                                0.045;
-
-                            letter.vx =
-                                Math.cos(angle) *
-                                speed;
-
-                            letter.vy =
-                                Math.sin(angle) *
-                                speed;
-
-                        }
-                    );
-
-                    startTime =
-                        now;
 
                 }
 
             }
 
 
-            /* =================================================
-               BOUNDARIES
-            ================================================= */
-
-            if (
-                elapsed <
-                returnStart
-            ) {
-
-                letters.forEach(
-                    letter => {
-
-                        keepInside(
-                            letter
-                        );
-
-                    }
+            animationFrame =
+                requestAnimationFrame(
+                    animate
                 );
-
-            }
-
-
-            /* =================================================
-               APPLY TRANSFORMS
-            ================================================= */
-
-            letters.forEach(
-                letter => {
-
-                    letter.element.style.transform =
-                        `translate3d(
-                            ${letter.x - letter.baseX}px,
-                            ${letter.y - letter.baseY}px,
-                            0
-                        )`;
-
-                }
-            );
-
-            requestAnimationFrame(
-                animate
-            );
 
         }
 
 
-        requestAnimationFrame(
-            animate
-        );
+        if (
+            !reducedMotion
+        ) {
+
+            animationFrame =
+                requestAnimationFrame(
+                    animate
+                );
+
+        }
 
 
-        /* =================================================
-           RESIZE
-        ================================================= */
+        let resizeTimeout =
+            null;
+
 
         window.addEventListener(
             "resize",
             () => {
 
-                const newActiveTitle =
-                    getActiveTitle();
+                clearTimeout(
+                    resizeTimeout
+                );
 
-                if (
-                    newActiveTitle !==
-                    activeTitle
-                ) {
 
-                    prepareTitle();
+                resizeTimeout =
+                    setTimeout(
+                        () => {
 
-                    startTime =
-                        performance.now();
+                            prepareTitle();
 
-                    lastTime =
-                        performance.now();
+                            measureLetters();
 
-                    return;
-
-                }
-
-                measureLetters();
+                        },
+                        150
+                    );
 
             }
         );
 
+
+
+        /* =============================================
+           RESTART INTRO ON TITLE BREAKPOINT CHANGE
+        ============================================= */
+
+        let previousMobileState =
+            mobileQuery.matches;
+
+
+        const checkBreakpoint =
+            () => {
+
+                const currentMobileState =
+                    mobileQuery.matches;
+
+
+                if (
+                    currentMobileState !==
+                    previousMobileState
+                ) {
+
+                    previousMobileState =
+                        currentMobileState;
+
+                    prepareTitle();
+
+                    measureLetters();
+
+                    startTime =
+                        performance.now();
+
+                }
+
+            };
+
+
+        if (
+            mobileQuery.addEventListener
+        ) {
+
+            mobileQuery.addEventListener(
+                "change",
+                checkBreakpoint
+            );
+
+        }
+
     }
+
 
 
     /* =================================================
-       CLIENT TICKER
+       POINTER FIELD
     ================================================= */
 
-    const clientLines = [
-        document.querySelector(
-            ".client-track-one .client-line"
-        ),
-        document.querySelector(
-            ".client-track-two .client-line"
-        ),
-        document.querySelector(
-            ".client-track-three .client-line"
-        ),
-        document.querySelector(
-            ".client-track-four .client-line"
-        )
-    ];
+    let pointerX =
+        0;
 
-    const clients = [
+    let pointerY =
+        0;
 
-        "Bard College",
-        "Fisher Center at Bard",
-        "Storm King Art Center",
-        "American Ballet Theatre",
-        "Romber Works",
-        "Kaatsbaan",
-        "Stissing House",
-        "Pam Tanowitz Dance",
-        "Archestratus Books + Foods",
-        "Van Cleef & Arpels",
-        "Dance & Stuff",
-        "Talbott & Arding",
-        "Madewell",
-        "Dance Reflections",
-        "Trisha Brown Dance Company",
-        "James Veloria"
+    let targetPointerX =
+        0;
 
-    ];
-
-    const clientGroups = [
-        [
-            "Bard College",
-            "Fisher Center at Bard",
-            "Storm King Art Center"
-        ],
-        [
-            "American Ballet Theatre",
-            "Romber Works",
-            "Stissing House"
-        ],
-        [
-            "Archestratus Books + Foods",
-            "Van Cleef & Arpels",
-            "Talbott & Arding"
-        ],
-        [
-            "Madewell",
-            "James Veloria",
-            "Bard College"
-        ]
-    ];
+    let targetPointerY =
+        0;
 
 
-    clientLines.forEach(
-        (line, index) => {
-
-            if (!line) return;
-
-            const group =
-                clientGroups[index] ||
-                clients;
-
-            const content =
-                group
-                    .map(
-                        client =>
-                            `<span class="client-name">${client}</span>`
-                    )
-                    .join(
-                        `<span class="client-separator">·</span>`
-                    );
-
-            line.innerHTML =
-                content +
-                `<span class="client-separator">·</span>` +
-                content;
-
-        }
-    );
-
-
-    /* =================================================
-       COPYRIGHT
-    ================================================= */
-
-    const copyrightYear =
-        document.getElementById(
-            "copyrightYear"
-        );
-
-    if (copyrightYear) {
-
-        copyrightYear.textContent =
-            new Date().getFullYear();
-
-    }
-
-/* =================================================
-VIDEO DEPTH FIELD — VERTICAL PARALLAX
-================================================= */
-
-const videoDepthSection =
-document.querySelector(
-".video-depth-section"
-);
-
-const depthVideos =
-document.querySelectorAll(
-".depth-video"
-);
-
-if (
-videoDepthSection &&
-depthVideos.length
-) {
-
-
-let depthTicking =
-    false;
-
-
-/*
- * Each video has its own vertical travel.
- *
- * Smaller number = foreground
- * Larger number = background
- */
-
-const depthSettings = [
-
-    {
-        travel: 120
-    },
-
-    {
-        travel: 240
-    },
-
-    {
-        travel: 380
-    },
-
-    {
-        travel: 540
-    },
-
-    {
-        travel: 720
-    },
-
-    {
-        travel: 930
-    },
-
-    {
-        travel: 1180
-    }
-
-];
-
-
-function updateVideoDepth() {
-
-    const sectionRect =
-        videoDepthSection.getBoundingClientRect();
-
-    const viewportHeight =
-        window.innerHeight;
-
-
-    /*
-     * Calculate progress through
-     * the entire section.
-     */
-
-    let progress =
-        (
-            viewportHeight -
-            sectionRect.top
-        ) /
-        (
-            viewportHeight +
-            sectionRect.height
-        );
-
-
-    progress =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                progress
-            )
-        );
-
-
-    /*
-     * Center the movement.
-     *
-     * At the middle of the section,
-     * every video is at its original position.
-     */
-
-    const centered =
-        progress -
-        0.5;
-
-
-    depthVideos.forEach(
-        (video, index) => {
-
-            const settings =
-                depthSettings[index] ||
-                {
-                    travel: 500
-                };
-
-
-            /*
-             * Vertical-only movement.
-             *
-             * Nothing changes horizontally.
-             */
-
-            const movement =
-                centered *
-                settings.travel;
-
-
-            video.style.transform =
-                `translate3d(
-                    0,
-                    ${movement}px,
-                    0
-                )`;
-
-        }
-    );
-
-
-    depthTicking =
+    let pointerActive =
         false;
 
-}
 
-
-function requestVideoDepthUpdate() {
-
-    if (
-        !depthTicking
+    function updatePointer(
+        x,
+        y
     ) {
 
-        window.requestAnimationFrame(
-            updateVideoDepth
-        );
+        targetPointerX =
+            (
+                x /
+                window.innerWidth
+            ) *
+            2 -
+            1;
 
-        depthTicking =
+
+        targetPointerY =
+            (
+                y /
+                window.innerHeight
+            ) *
+            2 -
+            1;
+
+
+        pointerActive =
             true;
 
     }
 
-}
+
+    window.addEventListener(
+        "pointermove",
+        event => {
+
+            updatePointer(
+                event.clientX,
+                event.clientY
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
 
 
-window.addEventListener(
-    "scroll",
-    requestVideoDepthUpdate,
-    {
-        passive: true
-    }
-);
+    window.addEventListener(
+        "pointerleave",
+        () => {
 
+            pointerActive =
+                false;
 
-window.addEventListener(
-    "resize",
-    requestVideoDepthUpdate
-);
+            targetPointerX =
+                0;
 
+            targetPointerY =
+                0;
 
-requestVideoDepthUpdate();
-
-
-}
-
+        }
+    );
 
 
 
     /* =================================================
-       END
+       VIDEO DEPTH FIELD
     ================================================= */
+
+    const depthVideos =
+        [
+            ...document.querySelectorAll(
+                ".depth-video"
+            )
+        ];
+
+
+    if (
+        depthVideos.length &&
+        !reducedMotion
+    ) {
+
+        let depthCurrentX =
+            0;
+
+        let depthCurrentY =
+            0;
+
+
+        let depthFrame =
+            null;
+
+
+        function animateDepth() {
+
+            pointerX +=
+                (
+                    targetPointerX -
+                    pointerX
+                ) *
+                0.045;
+
+
+            pointerY +=
+                (
+                    targetPointerY -
+                    pointerY
+                ) *
+                0.045;
+
+
+            depthCurrentX +=
+                (
+                    pointerX -
+                    depthCurrentX
+                ) *
+                0.035;
+
+
+            depthCurrentY +=
+                (
+                    pointerY -
+                    depthCurrentY
+                ) *
+                0.035;
+
+
+            depthVideos.forEach(
+                (video, index) => {
+
+                    const depth =
+                        (
+                            index + 1
+                        ) /
+                        depthVideos.length;
+
+
+                    const movement =
+                        8 +
+                        depth *
+                        22;
+
+
+                    const x =
+                        depthCurrentX *
+                        movement;
+
+                    const y =
+                        depthCurrentY *
+                        movement *
+                        0.65;
+
+
+                    const rotation =
+                        depthCurrentX *
+                        (
+                            0.35 +
+                            depth *
+                            0.45
+                        );
+
+
+                    const scale =
+                        1 +
+                        (
+                            depthCurrentY *
+                            0.003
+                        );
+
+
+                    video.style.transform =
+                        `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg) scale(${scale})`;
+
+                }
+            );
+
+
+            depthFrame =
+                requestAnimationFrame(
+                    animateDepth
+                );
+
+        }
+
+
+        depthFrame =
+            requestAnimationFrame(
+                animateDepth
+            );
+
+    }
+
+
+
+    /* =================================================
+       CLIENT TICKER — PAUSE WHEN OFFSCREEN
+    ================================================= */
+
+    const clientSection =
+        document.querySelector(
+            ".client-section"
+        );
+
+
+    if (
+        clientSection
+    ) {
+
+        const tickerObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                clientSection.classList.remove(
+                                    "ticker-paused"
+                                );
+
+                            }
+                            else {
+
+                                clientSection.classList.add(
+                                    "ticker-paused"
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold:
+                        0
+                }
+            );
+
+
+        tickerObserver.observe(
+            clientSection
+        );
+
+    }
+
+
+
+    /* =================================================
+       ABOUT IMAGE PARALLAX
+    ================================================= */
+
+    const aboutImage =
+        document.querySelector(
+            ".about-image img"
+        );
+
+
+    if (
+        aboutImage &&
+        !reducedMotion
+    ) {
+
+        let aboutTarget =
+            0;
+
+        let aboutCurrent =
+            0;
+
+
+        const updateAbout =
+            () => {
+
+                const rect =
+                    aboutImage.getBoundingClientRect();
+
+
+                const viewportCenter =
+                    window.innerHeight /
+                    2;
+
+
+                const imageCenter =
+                    rect.top +
+                    rect.height /
+                    2;
+
+
+                const difference =
+                    (
+                        imageCenter -
+                        viewportCenter
+                    ) /
+                    window.innerHeight;
+
+
+                aboutTarget =
+                    Math.max(
+                        -1,
+                        Math.min(
+                            1,
+                            difference
+                        )
+                    );
+
+            };
+
+
+        const animateAbout =
+            () => {
+
+                aboutCurrent +=
+                    (
+                        aboutTarget -
+                        aboutCurrent
+                    ) *
+                    0.045;
+
+
+                aboutImage.style.transform =
+                    `translate3d(0, ${aboutCurrent * -18}px, 0)`;
+
+
+                requestAnimationFrame(
+                    animateAbout
+                );
+
+            };
+
+
+        window.addEventListener(
+            "scroll",
+            updateAbout,
+            {
+                passive: true
+            }
+        );
+
+
+        updateAbout();
+
+        animateAbout();
+
+    }
+
+
+
+    /* =================================================
+       SCROLL MEDIA — SUBTLE DEPTH
+    ================================================= */
+
+    const scrollMedia =
+        document.querySelectorAll(
+            ".scroll-media"
+        );
+
+
+    if (
+        scrollMedia.length &&
+        !reducedMotion
+    ) {
+
+        let mediaTargets =
+            new Map();
+
+        let mediaCurrent =
+            new Map();
+
+
+        scrollMedia.forEach(
+            (
+                section,
+                index
+            ) => {
+
+                mediaTargets.set(
+                    index,
+                    0
+                );
+
+                mediaCurrent.set(
+                    index,
+                    0
+                );
+
+            }
+        );
+
+
+        const updateMediaTargets =
+            () => {
+
+                scrollMedia.forEach(
+                    (
+                        section,
+                        index
+                    ) => {
+
+                        const rect =
+                            section.getBoundingClientRect();
+
+
+                        const center =
+                            rect.top +
+                            rect.height /
+                            2;
+
+
+                        const distance =
+                            (
+                                center -
+                                window.innerHeight /
+                                2
+                            ) /
+                            window.innerHeight;
+
+
+                        mediaTargets.set(
+                            index,
+                            Math.max(
+                                -1,
+                                Math.min(
+                                    1,
+                                    distance
+                                )
+                            )
+                        );
+
+                    }
+                );
+
+            };
+
+
+        const animateMedia =
+            () => {
+
+                scrollMedia.forEach(
+                    (
+                        section,
+                        index
+                    ) => {
+
+                        const wrapper =
+                            section.querySelector(
+                                ".vimeo-wrapper"
+                            );
+
+
+                        if (
+                            !wrapper
+                        ) return;
+
+
+                        const target =
+                            mediaTargets.get(
+                                index
+                            ) ||
+                            0;
+
+
+                        const current =
+                            mediaCurrent.get(
+                                index
+                            ) ||
+                            0;
+
+
+                        const next =
+                            current +
+                            (
+                                target -
+                                current
+                            ) *
+                            0.04;
+
+
+                        mediaCurrent.set(
+                            index,
+                            next
+                        );
+
+
+                        wrapper.style.transform =
+                            `translate3d(0, ${next * -14}px, 0)`;
+
+                    }
+                );
+
+
+                requestAnimationFrame(
+                    animateMedia
+                );
+
+            };
+
+
+        window.addEventListener(
+            "scroll",
+            updateMediaTargets,
+            {
+                passive: true
+            }
+        );
+
+
+        updateMediaTargets();
+
+        animateMedia();
+
+    }
+
+
+
+    /* =================================================
+       TOUCH — SMALL POINTER RESPONSE
+    ================================================= */
+
+    window.addEventListener(
+        "touchstart",
+        event => {
+
+            if (
+                !event.touches.length
+            ) return;
+
+
+            updatePointer(
+                event.touches[0].clientX,
+                event.touches[0].clientY
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "touchmove",
+        event => {
+
+            if (
+                !event.touches.length
+            ) return;
+
+
+            updatePointer(
+                event.touches[0].clientX,
+                event.touches[0].clientY
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+
+    /* =================================================
+       EXTERNAL LINKS
+    ================================================= */
+
+    const externalLinks =
+        document.querySelectorAll(
+            'a[href^="http"]'
+        );
+
+
+    externalLinks.forEach(
+        link => {
+
+            try {
+
+                const url =
+                    new URL(
+                        link.href
+                    );
+
+
+                if (
+                    url.hostname !==
+                    window.location.hostname
+                ) {
+
+                    link.target =
+                        "_blank";
+
+                    link.rel =
+                        "noopener noreferrer";
+
+                }
+
+            }
+            catch (error) {
+
+                // Ignore malformed URLs.
+
+            }
+
+        }
+    );
+
+
+
+    /* =================================================
+       PREVENT DRAGGING IMAGES
+    ================================================= */
+
+    document
+        .querySelectorAll(
+            "img"
+        )
+        .forEach(
+            image => {
+
+                image.addEventListener(
+                    "dragstart",
+                    event => {
+
+                        event.preventDefault();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+    /* =================================================
+       CLEANUP
+    ================================================= */
+
+    window.addEventListener(
+        "beforeunload",
+        () => {
+
+            if (
+                activePlayer
+            ) {
+
+                try {
+
+                    activePlayer.destroy();
+
+                }
+                catch (error) {
+
+                    console.log(
+                        "Vimeo unload cleanup:",
+                        error
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    console.log(
+        "A Doll's House Pictures — site initialized."
+    );
 
 }
 
