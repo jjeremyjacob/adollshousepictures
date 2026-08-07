@@ -714,7 +714,7 @@ z-index: 5;
 }
 
 .depth-video-4 {
-z-index: 4;
+z-index: 8;
 }
 
 .depth-video-5 {
@@ -1001,7 +1001,7 @@ MEDIA SECTION
 .scroll-media {
 width: 100%;
 min-height: auto;
-padding: 25px var(--mobile-right-gutter) 25px var(--page-gutter);
+padding: 25px var(--mobile-right-gutter) 15px var(--page-gutter);
 overflow: hidden;
 }
 
@@ -1027,14 +1027,14 @@ width: 100%;
 max-width: none;
 margin: 0;
 min-height: 60svh;
-padding: 25px var(--mobile-right-gutter) 25px var(--page-gutter);
+padding: 15px var(--mobile-right-gutter) 25px var(--page-gutter);
 overflow: hidden;
 }
 
 .end p {
 width: 100%;
 max-width: 100%;
-font-size: 6vw;
+font-size: 4vw;
 white-space: normal;
 }
 
