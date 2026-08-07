@@ -314,9 +314,10 @@ FLOATING LETTERS
 ===================================================== */
 
 .floating-letter {
-    z-index: 9998;
+position: fixed;
+z-index: 9998;
 display: inline-block;
-position: relative;
+pointer-events: none;
 will-change: transform;
 }
 
@@ -846,6 +847,16 @@ MOBILE
 :root {
 --page-gutter: 35px;
 --mobile-right-gutter: 55px;
+}
+
+.instagram-default,
+.email-default {
+display: none;
+}
+
+.instagram-hover,
+.email-hover {
+display: inline;
 }
 
 /* =================================================
