@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    history.scrollRestoration = "manual";
+
+    window.scrollTo(0, 0);
+
 /* =================================================
    CONTACT DRAWER
 ================================================= */
