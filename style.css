@@ -384,7 +384,7 @@ END / COPYRIGHT
 
 .end {
 min-height: 20vh;
-width: 100%;
+width: 80%;
 max-width: none;
 margin: 0;
 padding: 60px var(--page-gutter);
@@ -396,7 +396,7 @@ overflow: hidden;
 
 .end p {
 width: 100%;
-font-size: 12px;
+font-size: 10px;
 line-height: .8;
 font-weight: 700;
 white-space: nowrap;
