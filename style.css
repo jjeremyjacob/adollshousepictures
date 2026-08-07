@@ -314,6 +314,7 @@ FLOATING LETTERS
 ===================================================== */
 
 .floating-letter {
+    z-index: 9998;
 display: inline-block;
 position: relative;
 will-change: transform;
