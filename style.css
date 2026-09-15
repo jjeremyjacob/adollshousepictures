@@ -1183,20 +1183,21 @@ a {
         align-items: center;
     }
 
-    .about-image {
-        position: static;
-        transform: none;
-        width: 90vw;
-        margin-bottom: 42px;
-    }
+.about-image {
+    position: static;
+    transform: none;
+    width: 90vw;
+    margin-bottom: 0;
+}
 
-    .about-copy {
-        position: static;
-        transform: none;
-        width: 72vw;
-        margin-left: 18vw;
-        margin-right: auto;
-    }
+.about-copy {
+    position: static;
+    transform: none;
+    width: 72vw;
+    margin-left: 18vw;
+    margin-right: 10vw;
+    margin-top: -120vw;
+}
 
     .about-copy .project-category {
         margin-bottom: 10px;
