@@ -107,6 +107,15 @@ const projects = [
     },
 
     {
+        title: "Cole Haan",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1227036895",
+        format: "vertical",
+        description: "Cole Haan - Urban Jungle",
+        credits: []
+    },
+    {
         title: "Munner Farm",
         category: "Photography",
         type: "carousel",
@@ -293,15 +302,6 @@ const projects = [
         ]
     },
 
-    {
-        title: "Cole Haan",
-        category: "Social Campaigns",
-        type: "vimeo",
-        vimeo: "1226651550",
-        format: "vertical",
-        description: "",
-        credits: []
-    },
 
 
     {
@@ -351,6 +351,16 @@ const projects = [
                 ]
             }
         ]
+    },
+
+    {
+        title: "Cole Haan",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1227036896",
+        format: "vertical",
+        description: "Cole Haan - His & Hers",
+        credits: []
     },
 
     {
@@ -416,6 +426,16 @@ const projects = [
         vimeo: "816869497",
         format: "vertical",
         description: "",
+        credits: []
+    },
+
+    {
+        title: "Cole Haan",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1227036894",
+        format: "vertical",
+        description: "Cole Haan - Puppy Love",
         credits: []
     },
 
