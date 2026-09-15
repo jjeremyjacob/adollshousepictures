@@ -1,1232 +1,1069 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ============================================================
+   A DOLL'S HOUSE PICTURES
+   SCRIPT.JS
+   ============================================================ */
 
-    history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
 
-    /* =================================================
-       CONTACT DRAWER
-    ================================================= */
+/* ============================================================
+   PROJECT DATA
+   ============================================================ */
 
-    const contactTab =
-        document.querySelector(".contact-tab");
+const projects = [
 
-    const contactDrawer =
-        document.querySelector(".contact-drawer");
-
-    const drawerClose =
-        document.querySelector(".drawer-close");
-
-    const openDrawer = () => {
-
-        if (!contactDrawer || !contactTab) return;
-
-        contactDrawer.classList.add("active");
-
-        contactDrawer.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        contactTab.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-    };
-
-    const closeDrawer = () => {
-
-        if (!contactDrawer || !contactTab) return;
-
-        contactDrawer.classList.remove("active");
-
-        contactDrawer.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        contactTab.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    };
-
-    if (contactTab && contactDrawer) {
-
-        contactTab.addEventListener(
-            "click",
-            () => {
-
-                if (
-                    contactDrawer.classList.contains("active")
-                ) {
-
-                    closeDrawer();
-
-                } else {
-
-                    openDrawer();
-
-                }
-
+    {
+        title: "Trisha Brown Dance Company",
+        category: "Photography",
+        type: "carousel",
+        images: [
+            "images/TBDC_1.jpg",
+            "images/TBDC_2.jpg",
+            "images/TBDC_3.jpg",
+            "images/TBDC_4.jpg",
+            "images/TBDC_5.jpg",
+            "images/TBDC_6.jpg",
+            "images/TBDC_7.jpg"
+        ],
+        description: "",
+        credits: [
+            {
+                role: "Photography",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "For",
+                names: [
+                    "Trisha Brown Dance Company"
+                ]
             }
-        );
+        ]
+    },
 
-        if (drawerClose) {
-
-            drawerClose.addEventListener(
-                "click",
-                closeDrawer
-            );
-
-        }
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Escape") {
-
-                    closeDrawer();
-
-                }
-
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226955261",
+        format: "wide",
+        description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
             }
-        );
+        ]
+    },
 
+    {
+        title: "Talbott & Arding",
+        category: "Social Film",
+        type: "vimeo",
+        vimeo: "1226060926",
+        format: "wide",
+        description: "A series of short-form films created for Talbott & Arding in Hudson, New York.",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Munner Farm",
+        category: "Photography",
+        type: "carousel",
+        images: [
+            "images/MF_1.jpg",
+            "images/MF_2.jpg",
+            "images/MF_3.jpg",
+            "images/MF_4.jpg",
+            "images/MF_5.jpg",
+            "images/MF_6.jpg",
+            "images/MF_7.jpg"
+        ],
+        description: "",
+        credits: [
+            {
+                role: "Photography",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "For",
+                names: [
+                    "Trisha Brown Dance Company"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Romber Works",
+        category: "Profile Film",
+        type: "vimeo",
+        vimeo: "1119062430",
+        format: "wide",
+        description: "",
+        credits: []
+    },
+
+    {
+        title: "Lucinda Childs",
+        category: "Campaign",
+        type: "vimeo",
+        vimeo: "1180594270",
+        format: "wide",
+        description: "Fisher Center at Bard",
+        credits: []
+    },
+
+    {
+        title: "Suddenly Last Summer",
+        category: "Social Video",
+        type: "vimeo",
+        vimeo: "1189497026",
+        format: "wide",
+        description: "Fisher Center at Bard",
+        credits: []
+    },
+
+    {
+        title: "David",
+        category: "Dance Film",
+        type: "vimeo",
+        vimeo: "638919399",
+        format: "wide",
+        description: "American Ballet Theatre",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Choreography",
+                names: [
+                    "Pam Tanowitz"
+                ]
+            },
+            {
+                role: "Photography",
+                names: [
+                    "Daniel Rampulla"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "I was waiting for the echo of a better day",
+        category: "Film Trailer",
+        type: "vimeo",
+        vimeo: "657102461",
+        format: "wide",
+        description: "Fisher Center at Bard",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Choreography",
+                names: [
+                    "Pam Tanowitz"
+                ]
+            },
+            {
+                role: "Photography",
+                names: [
+                    "Daniel Rampulla"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Dear Merce",
+        category: "Film",
+        type: "vimeo",
+        vimeo: "1226947730",
+        format: "wide",
+        description: "",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Choreography",
+                names: [
+                    "Netta Yerushalmy"
+                ]
+            },
+            {
+                role: "Photography",
+                names: [
+                    "Daniel Rampulla"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Good Night",
+        category: "Film",
+        type: "vimeo",
+        vimeo: "1226948282",
+        format: "wide",
+        description: "Works & Process at the Guggenheim",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Text & Choreography",
+                names: [
+                    "Jack Ferver"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Cole Haan",
+        category: "Social Campaigns",
+        type: "vimeo",
+        vimeo: "1226651550",
+        format: "vertical",
+        description: "",
+        credits: []
+    },
+
+    {
+        title: "Nike",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226664744",
+        format: "wide",
+        description: "",
+        credits: []
+    },
+
+    {
+        title: "Gary Graham",
+        category: "Socail Campaign - Corsage",
+        type: "vimeo",
+        vimeo: "816869497",
+        format: "vertical",
+        description: "",
+        credits: []
+    },
+
+    {
+        title: "Gary Graham",
+        category: "Socail Campaign - Dressing",
+        type: "vimeo",
+        vimeo: "816869534",
+        format: "vertical",
+        description: "",
+        credits: []
+    },
+
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1110256553",
+        format: "vertical",
+        description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
+        credits: []
+    },
+
+    {
+        title: "Radioactive Practice",
+        category: "Film Trailer",
+        type: "vimeo",
+        vimeo: "1226957906",
+        format: "wide",
+        description: "Dance Film",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Choreography",
+                names: [
+                    "Abby Zbikowski"
+                ]
+            },
+            {
+                role: "Photography",
+                names: [
+                    "Jeremy Jacob and Daniel Rampulla"
+                ]
+            }
+        ]
+    },
+
+    {
+        title: "Rodelinda",
+        category: "Promotional Campaign",
+        type: "vimeo",
+        vimeo: "875550517",
+        format: "wide",
+        description: "Hudson Hall",
+        credits: []
+    },
+
+    {
+        title: "Not The Child",
+        category: "Music Video",
+        type: "vimeo",
+        vimeo: "1226960266",
+        format: "wide",
+        description: "Chris Garneau",
+        credits: []
+    },
+
+    {
+        title: "Pastoral",
+        category: "Promotional Campaign",
+        type: "vimeo",
+        vimeo: "1077279366",
+        format: "wide",
+        description: "Fisher Center at Bard",
+        credits: []
+    },   
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226973263",
+        format: "vertical",
+        description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
+        credits: []
+    },
+
+{
+    title: "A Doll's House Pictures",
+    category: "The Studio",
+    type: "about",
+    image: "images/about.jpg",
+    description: "A Doll's House Pictures is a creative studio founded by Jeremy Jacob, working across film, photography, animation, design and creative direction.",
+    credits: []
+}
+
+];
+
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let currentProjectIndex = 0;
+let currentVimeoPlayer = null;
+let currentVimeoEvents = [];
+let controlTimeout = null;
+
+let currentCarouselIndex = 0;
+let carouselTouchStartX = 0;
+let carouselTouchStartY = 0;
+
+
+/* ============================================================
+   ELEMENTS
+   ============================================================ */
+
+const archiveList =
+    document.getElementById("archiveList");
+
+const archiveTotal =
+    document.getElementById("archiveTotal");
+
+const projectElement =
+    document.getElementById("project");
+
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function formatNumber(number) {
+
+    return String(number).padStart(2, "0");
+
+}
+
+
+function formatTime(seconds) {
+
+    if (!Number.isFinite(seconds)) {
+        return "00:00";
     }
 
+    const total =
+        Math.max(0, Math.floor(seconds));
 
-    /* =================================================
-       EMAIL / INSTAGRAM HOVER
-    ================================================= */
+    const minutes =
+        Math.floor(total / 60);
 
-    const setupHoverSwap = (
-        selector,
-        defaultSelector,
-        hoverSelector
-    ) => {
+    const remaining =
+        total % 60;
 
-        document
-            .querySelectorAll(selector)
-            .forEach(link => {
+    return `${String(minutes).padStart(2, "0")}:${String(remaining).padStart(2, "0")}`;
 
-                const defaultText =
-                    link.querySelector(defaultSelector);
+}
 
-                const hoverText =
-                    link.querySelector(hoverSelector);
 
-                if (!defaultText || !hoverText) return;
+/* ============================================================
+   VIMEO CLEANUP
+   ============================================================ */
 
-                link.addEventListener(
-                    "mouseenter",
-                    () => {
+function destroyCurrentVimeo() {
 
-                        defaultText.style.display =
-                            "none";
+    if (controlTimeout) {
+        clearTimeout(controlTimeout);
+        controlTimeout = null;
+    }
 
-                        hoverText.style.display =
-                            "inline";
+    if (currentVimeoPlayer) {
 
-                    }
+        currentVimeoEvents.forEach(event => {
+
+            try {
+
+                currentVimeoPlayer.off(
+                    event.name,
+                    event.handler
                 );
 
-                link.addEventListener(
-                    "mouseleave",
-                    () => {
+            } catch (error) {
 
-                        defaultText.style.display =
-                            "inline";
+                /* Ignore cleanup errors */
 
-                        hoverText.style.display =
-                            "none";
+            }
 
-                    }
-                );
+        });
 
-            });
-
-    };
-
-    setupHoverSwap(
-        ".email-link",
-        ".email-default",
-        ".email-hover"
-    );
-
-    setupHoverSwap(
-        ".instagram-link",
-        ".instagram-default",
-        ".instagram-hover"
-    );
-
-
-    /* =================================================
-       RESPONSIVE STATE
-    ================================================= */
-
-    const mobileQuery =
-        window.matchMedia(
-            "(max-width: 700px)"
-        );
-
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-
-    /* =================================================
-       GLOBAL VIMEO BACKGROUND
-    ================================================= */
-
-    const baseVideo =
-        document.querySelector(".base-video");
-
-    const baseIframe =
-        baseVideo
-            ? baseVideo.querySelector("iframe")
-            : null;
-
-    const audioToggle =
-        document.querySelector(
-            ".vimeo-audio-toggle"
-        );
-
-    let activePlayer = null;
-    let audioOn = false;
-
-
-    function initializeVimeo() {
-
-        if (
-            !baseIframe ||
-            typeof Vimeo === "undefined"
-        ) {
-
-            console.log(
-                "Vimeo API or background iframe not found."
-            );
-
-            return;
-
-        }
-
-        baseIframe.classList.remove(
-            "video-loaded"
-        );
-
+        currentVimeoEvents = [];
 
         try {
 
-            activePlayer =
-                new Vimeo.Player(
-                    baseIframe
-                );
+            currentVimeoPlayer.destroy();
 
         } catch (error) {
 
-            console.log(
-                "Vimeo initialization error:",
-                error
-            );
-
-            return;
+            /* Ignore cleanup errors */
 
         }
 
+        currentVimeoPlayer = null;
 
-activePlayer.on(
-    "playing",
-    () => {
+    }
 
-        baseIframe.classList.add(
-            "video-loaded"
+}
+
+
+/* ============================================================
+   ARCHIVE
+   ============================================================ */
+
+function buildArchive() {
+
+    archiveList.innerHTML = "";
+
+    const numberedProjects =
+        projects.filter(project => project.type !== "about");
+
+    numberedProjects.forEach((project, index) => {
+
+        const projectIndex =
+            projects.indexOf(project);
+
+        const item =
+            document.createElement("button");
+
+        item.type = "button";
+
+        item.className = "archive-item";
+
+        item.dataset.index = projectIndex;
+
+        item.innerHTML = `
+            <span class="archive-number">
+                ${formatNumber(index + 1)}
+            </span>
+
+            <span class="archive-title">
+                ${escapeHTML(project.title)}
+            </span>
+
+            <span class="archive-category">
+                ${escapeHTML(project.category)}
+            </span>
+        `;
+
+        item.addEventListener(
+            "click",
+            () => {
+                selectProject(projectIndex);
+            }
+        );
+
+        archiveList.appendChild(item);
+
+    });
+
+
+    /* --------------------------------------------------------
+       ABOUT
+       -------------------------------------------------------- */
+
+    const aboutProject =
+        projects.find(
+            project => project.type === "about"
+        );
+
+    if (aboutProject) {
+
+        const aboutIndex =
+            projects.indexOf(aboutProject);
+
+        const aboutItem =
+            document.createElement("button");
+
+        aboutItem.type = "button";
+
+        aboutItem.className =
+            "archive-item archive-about";
+
+        aboutItem.dataset.index =
+            aboutIndex;
+
+        aboutItem.innerHTML = `
+            <span class="archive-number archive-number-empty">
+                &nbsp;
+            </span>
+
+            <span class="archive-title">
+                ${escapeHTML(aboutProject.title)}
+            </span>
+
+            <span class="archive-category">
+                ${escapeHTML(aboutProject.category)}
+            </span>
+        `;
+
+        aboutItem.addEventListener(
+            "click",
+            () => {
+                selectProject(aboutIndex);
+            }
+        );
+
+        archiveList.appendChild(aboutItem);
+
+    }
+
+
+    /* --------------------------------------------------------
+       TOTAL — ABOUT IS NOT COUNTED
+       -------------------------------------------------------- */
+
+    archiveTotal.textContent =
+        formatNumber(numberedProjects.length);
+
+}
+
+
+/* ============================================================
+   ARCHIVE STATE
+   ============================================================ */
+
+function updateArchiveState() {
+
+    const items =
+        archiveList.querySelectorAll(
+            ".archive-item"
+        );
+
+    items.forEach((item, index) => {
+
+        item.classList.toggle(
+            "active",
+            index === currentProjectIndex
+        );
+
+    });
+
+}
+
+
+/* ============================================================
+   PROJECT CREDITS
+   ============================================================ */
+
+function renderCredits(project) {
+
+    if (
+        !project.credits ||
+        !project.credits.length
+    ) {
+        return "";
+    }
+
+    return `
+        <div class="project-credits">
+
+            ${project.credits.map(credit => `
+
+                <span class="project-credit">
+
+                    <span class="credit-role">
+                        ${escapeHTML(credit.role)}
+                    </span>
+
+                    <span class="credit-names">
+                        ${credit.names
+                            .map(name => escapeHTML(name))
+                            .join(" / ")}
+                    </span>
+
+                </span>
+
+            `).join("")}
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   PROJECT DESCRIPTION
+   ============================================================ */
+
+function renderDescription(project) {
+
+    if (!project.description) {
+        return "";
+    }
+
+    const description =
+        escapeHTML(project.description)
+            .replace(/\n/g, "<br>");
+
+    return `
+        <div class="project-description">
+            ${description}
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   PROJECT INFORMATION
+   ============================================================ */
+
+function renderProjectInfo(project) {
+
+    return `
+        <div class="project-info">
+
+            <h1 class="project-title">
+                ${escapeHTML(project.title)}
+            </h1>
+
+            <div class="project-category">
+                ${escapeHTML(project.category)}
+            </div>
+
+            ${renderDescription(project)}
+
+            ${renderCredits(project)}
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   VIMEO MARKUP
+   ============================================================ */
+
+function renderVimeoMarkup(project) {
+
+    return `
+        <div class="vimeo-wrap ${project.format === "vertical" ? "vertical" : ""}">
+
+            <div class="vimeo-frame">
+
+                <iframe
+                    class="project-vimeo"
+                    src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}?controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    loading="eager"
+                    title="${escapeHTML(project.title)}"
+                ></iframe>
+
+                <div class="vimeo-controls">
+
+                    <button
+                        class="vimeo-control vimeo-play"
+                        type="button"
+                        aria-label="Play"
+                    >
+                        Play
+                    </button>
+
+                    <span class="vimeo-time">
+                        00:00 / 00:00
+                    </span>
+
+                    <div class="vimeo-progress-wrap">
+
+                        <input
+                            class="vimeo-progress"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step="0.1"
+                            aria-label="Video progress"
+                        >
+
+                    </div>
+
+                    <button
+                        class="vimeo-control vimeo-sound"
+                        type="button"
+                        aria-label="Toggle sound"
+                    >
+                        Sound On
+                    </button>
+
+                    <button
+                        class="vimeo-control vimeo-fullscreen"
+                        type="button"
+                        aria-label="Fullscreen"
+                    >
+                        Full
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   VIMEO CONTROLS
+   ============================================================ */
+
+function showControls(wrapper) {
+
+    if (!wrapper) {
+        return;
+    }
+
+    wrapper.classList.add(
+        "controls-visible"
+    );
+
+    if (controlTimeout) {
+        clearTimeout(controlTimeout);
+    }
+
+    controlTimeout =
+        setTimeout(() => {
+
+            wrapper.classList.remove(
+                "controls-visible"
+            );
+
+        }, 2200);
+
+}
+
+
+/* ============================================================
+   INITIALIZE VIMEO
+   ============================================================ */
+
+async function initializeVimeo() {
+
+    if (
+        !window.Vimeo ||
+        !projectElement
+    ) {
+        return;
+    }
+
+    const iframe =
+        projectElement.querySelector(
+            ".project-vimeo"
+        );
+
+    const wrapper =
+        projectElement.querySelector(
+            ".vimeo-wrap"
+        );
+
+    const frame =
+        projectElement.querySelector(
+            ".vimeo-frame"
+        );
+
+    if (
+        !iframe ||
+        !wrapper ||
+        !frame
+    ) {
+        return;
+    }
+
+    const player =
+        new Vimeo.Player(iframe);
+
+    currentVimeoPlayer =
+        player;
+
+    const playButton =
+        projectElement.querySelector(
+            ".vimeo-play"
+        );
+
+    const soundButton =
+        projectElement.querySelector(
+            ".vimeo-sound"
+        );
+
+    const fullscreenButton =
+        projectElement.querySelector(
+            ".vimeo-fullscreen"
+        );
+
+    const progress =
+        projectElement.querySelector(
+            ".vimeo-progress"
+        );
+
+    const time =
+        projectElement.querySelector(
+            ".vimeo-time"
+        );
+
+
+    /* --------------------------------------------------------
+       READY
+       -------------------------------------------------------- */
+
+    try {
+
+        await player.ready();
+
+    } catch (error) {
+
+        console.warn(
+            "Vimeo player could not initialize.",
+            error
+        );
+
+        return;
+
+    }
+
+
+    /* --------------------------------------------------------
+       ACTUAL VIDEO RATIO
+       -------------------------------------------------------- */
+
+    try {
+
+        const dimensions =
+            await Promise.all([
+                player.getVideoWidth(),
+                player.getVideoHeight()
+            ]);
+
+        const width =
+            Number(dimensions[0]);
+
+        const height =
+            Number(dimensions[1]);
+
+        if (
+            Number.isFinite(width) &&
+            Number.isFinite(height) &&
+            width > 0 &&
+            height > 0
+        ) {
+
+            frame.style.aspectRatio =
+                `${width} / ${height}`;
+
+            if (height > width) {
+
+                wrapper.classList.add(
+                    "vertical"
+                );
+
+            } else {
+
+                wrapper.classList.remove(
+                    "vertical"
+                );
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.warn(
+            "Could not determine Vimeo dimensions.",
+            error
         );
 
     }
-);
 
 
-        activePlayer.ready().then(
-            async () => {
+    /* --------------------------------------------------------
+       PLAY / PAUSE
+       -------------------------------------------------------- */
 
-                console.log(
-                    "Background Vimeo ready."
-                );
+    const togglePlay =
+        async () => {
 
+            try {
 
-                try {
+                const paused =
+                    await player.getPaused();
 
-                    await activePlayer.setVolume(
-                        0
-                    );
+                if (paused) {
 
-                } catch (error) {
+                    await player.play();
 
-                    console.log(
-                        "Vimeo volume error:",
-                        error
-                    );
+                } else {
+
+                    await player.pause();
 
                 }
 
+                showControls(wrapper);
 
-                try {
+            } catch (error) {
 
-                    await activePlayer.play();
-
-                } catch (error) {
-
-                    console.log(
-                        "Vimeo autoplay:",
-                        error
-                    );
-
-                }
-
-            }
-        ).catch(
-            error => {
-
-                console.log(
-                    "Vimeo ready error:",
+                console.warn(
+                    "Vimeo playback error.",
                     error
                 );
 
             }
-        );
+
+        };
 
 
-        if (!audioToggle) return;
+    /* --------------------------------------------------------
+       PLAY BUTTON
+       -------------------------------------------------------- */
 
+    if (playButton) {
 
-        audioToggle.addEventListener(
+        playButton.addEventListener(
             "click",
-            async () => {
+            event => {
 
-                if (!activePlayer) return;
+                event.stopPropagation();
 
-
-                try {
-
-                    audioOn =
-                        !audioOn;
-
-
-                    await activePlayer.setVolume(
-                        audioOn
-                            ? 1
-                            : 0
-                    );
-
-
-                    const label =
-                        audioToggle.querySelector(
-                            "span"
-                        );
-
-
-                    if (label) {
-
-                        label.textContent =
-                            audioOn
-                                ? "SOUND ON"
-                                : "SOUND OFF";
-
-                    }
-
-
-                    audioToggle.setAttribute(
-                        "aria-label",
-                        audioOn
-                            ? "Turn video audio off"
-                            : "Turn video audio on"
-                    );
-
-
-                    audioToggle.setAttribute(
-                        "aria-pressed",
-                        audioOn
-                            ? "true"
-                            : "false"
-                    );
-
-
-                } catch (error) {
-
-                    console.log(
-                        "Vimeo audio error:",
-                        error
-                    );
-
-                }
+                togglePlay();
 
             }
         );
 
     }
 
-    initializeVimeo();
 
+    /* --------------------------------------------------------
+       CLICK ANYWHERE ON VIDEO
+       -------------------------------------------------------- */
 
-    /* =================================================
-       INTRO — FLOATING LETTERS
-    ================================================= */
-
-    const intro =
-        document.querySelector(".intro");
-
-    const introTitle =
-        document.querySelector(".intro h1");
-
-    const desktopTitle =
-        document.querySelector(".desktop-title");
-
-    const mobileTitle =
-        document.querySelector(".mobile-title");
-
-
-    if (
-        intro &&
-        introTitle &&
-        desktopTitle &&
-        mobileTitle &&
-        !reducedMotion
-    ) {
-
-        let activeTitle = null;
-        let letters = [];
-
-        let lastTime =
-            performance.now();
-
-        let startTime =
-            performance.now();
-
-        const settleTime = 1000;
-        const releaseDuration = 12000;
-
-
-        function getActiveTitle() {
-
-            return mobileQuery.matches
-                ? mobileTitle
-                : desktopTitle;
-
-        }
-
-
-        function prepareTitle() {
-
-            const newActiveTitle =
-                getActiveTitle();
-
-
-            if (
-                newActiveTitle === activeTitle &&
-                letters.length
-            ) {
-
-                return;
-
-            }
-
-
-            activeTitle =
-                newActiveTitle;
-
-
-            const originalText =
-                activeTitle.dataset.originalText ||
-                activeTitle.textContent;
-
-
-            activeTitle.dataset.originalText =
-                originalText;
-
-
-            activeTitle.innerHTML = "";
-
-            letters = [];
-
-
-            [...originalText].forEach(
-                char => {
-
-                    if (char === "\n") {
-
-                        activeTitle.appendChild(
-                            document.createElement("br")
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (char === " ") {
-
-                        activeTitle.appendChild(
-                            document.createTextNode(" ")
-                        );
-
-                        return;
-
-                    }
-
-
-                    const span =
-                        document.createElement("span");
-
-
-                    span.className =
-                        "floating-letter";
-
-
-                    /*
-                     * Do not allow the CSS
-                     * floating-letter fade animation
-                     * to interfere with the movement.
-                     */
-
-span.style.animation = "floatingLetterFade 5s ease forwards";
-
-                    span.style.opacity =
-                        "1";
-
-                    span.style.color =
-                        "#ffffff";
-
-                    span.style.webkitTextStroke =
-                        "5px #ffffff";
-
-
-                    span.style.position =
-                        "static";
-
-
-                    span.textContent =
-                        char;
-
-
-                    activeTitle.appendChild(
-                        span
-                    );
-
-
-                    letters.push({
-
-                        element: span,
-
-                        baseX: 0,
-                        baseY: 0,
-
-                        x: 0,
-                        y: 0,
-
-                        vx: 0,
-                        vy: 0,
-
-                        width: 0,
-                        height: 0,
-
-                        rotation: 0,
-                        rotationVelocity: 0
-
-                    });
-
-                }
-            );
-
-
-            measureLetters();
-
-
-            /*
-             * Convert every letter to fixed positioning
-             * after its original location has been measured.
-             */
-
-            letters.forEach(
-                letter => {
-
-                    letter.element.style.position =
-                        "fixed";
-
-                    letter.element.style.left =
-                        `${letter.baseX}px`;
-
-                    letter.element.style.top =
-                        `${letter.baseY}px`;
-
-                    letter.element.style.transform =
-                        "translate3d(0,0,0)";
-
-
-                    /*
-                     * Small random starting velocity.
-                     */
-
-                    const angle =
-                        Math.random() *
-                        Math.PI *
-                        2;
-
-
-                    const speed =
-                        0.055 +
-                        Math.random() *
-                        0.045;
-
-
-                    letter.vx =
-                        Math.cos(angle) *
-                        speed;
-
-
-                    letter.vy =
-                        Math.sin(angle) *
-                        speed;
-
-
-                    letter.rotation =
-                        (
-                            Math.random() -
-                            0.5
-                        ) * 5;
-
-
-                    letter.rotationVelocity =
-                        (
-                            Math.random() -
-                            0.5
-                        ) * 0.01;
-
-                }
-            );
-
-        }
-
-
-        function measureLetters() {
-
-            if (!activeTitle) return;
-
-
-            letters.forEach(
-                letter => {
-
-                    /*
-                     * Return to normal document flow
-                     * while measuring.
-                     */
-
-                    letter.element.style.position =
-                        "static";
-
-                    letter.element.style.transform =
-                        "none";
-
-
-                    const rect =
-                        letter.element.getBoundingClientRect();
-
-
-                    letter.baseX =
-                        rect.left;
-
-                    letter.baseY =
-                        rect.top;
-
-                    letter.width =
-                        rect.width;
-
-                    letter.height =
-                        rect.height;
-
-                    letter.x =
-                        rect.left;
-
-                    letter.y =
-                        rect.top;
-
-                }
-            );
-
-        }
-
-
-        function collide(a, b) {
-
-            const overlapX =
-                Math.min(
-                    a.x + a.width,
-                    b.x + b.width
-                ) -
-                Math.max(
-                    a.x,
-                    b.x
-                );
-
-
-            const overlapY =
-                Math.min(
-                    a.y + a.height,
-                    b.y + b.height
-                ) -
-                Math.max(
-                    a.y,
-                    b.y
-                );
-
-
-            if (
-                overlapX <= 0 ||
-                overlapY <= 0
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                overlapX < overlapY
-            ) {
-
-                const centerA =
-                    a.x +
-                    a.width / 2;
-
-
-                const centerB =
-                    b.x +
-                    b.width / 2;
-
-
-                const direction =
-                    centerA < centerB
-                        ? -1
-                        : 1;
-
-
-                const push =
-                    overlapX / 2 +
-                    1;
-
-
-                a.x +=
-                    direction *
-                    push;
-
-
-                b.x -=
-                    direction *
-                    push;
-
-
-                const velocity =
-                    a.vx;
-
-
-                a.vx =
-                    b.vx;
-
-                b.vx =
-                    velocity;
-
-            } else {
-
-                const centerA =
-                    a.y +
-                    a.height / 2;
-
-
-                const centerB =
-                    b.y +
-                    b.height / 2;
-
-
-                const direction =
-                    centerA < centerB
-                        ? -1
-                        : 1;
-
-
-                const push =
-                    overlapY / 2 +
-                    1;
-
-
-                a.y +=
-                    direction *
-                    push;
-
-
-                b.y -=
-                    direction *
-                    push;
-
-
-                const velocity =
-                    a.vy;
-
-
-                a.vy =
-                    b.vy;
-
-                b.vy =
-                    velocity;
-
-            }
-
-        }
-
-
-        function keepInsidePage(letter) {
-
-            const pageWidth =
-                window.innerWidth;
-
-            const pageHeight =
-                window.innerHeight;
-
-
-            if (letter.x <= 0) {
-
-                letter.x = 0;
-
-                if (letter.vx < 0) {
-
-                    letter.vx *= -1;
-
-                }
-
-            }
-
-
-            if (
-                letter.x +
-                letter.width >=
-                pageWidth
-            ) {
-
-                letter.x =
-                    pageWidth -
-                    letter.width;
-
-
-                if (letter.vx > 0) {
-
-                    letter.vx *= -1;
-
-                }
-
-            }
-
-
-            if (letter.y <= 0) {
-
-                letter.y = 0;
-
-                if (letter.vy < 0) {
-
-                    letter.vy *= -1;
-
-                }
-
-            }
-
-
-            if (
-                letter.y +
-                letter.height >=
-                pageHeight
-            ) {
-
-                letter.y =
-                    pageHeight -
-                    letter.height;
-
-
-                if (letter.vy > 0) {
-
-                    letter.vy *= -1;
-
-                }
-
-            }
-
-        }
-
-
-        prepareTitle();
-
-
-        function animateIntro(now) {
-
-            const delta =
-                Math.min(
-                    now - lastTime,
-                    32
-                );
-
-
-            lastTime =
-                now;
-
-
-            const elapsed =
-                now - startTime;
-
-
-            /*
-             * First second:
-             * letters remain exactly where
-             * the title originally placed them.
-             */
-
-            if (
-                elapsed <
-                settleTime
-            ) {
-
-                letters.forEach(
-                    letter => {
-
-                        letter.x =
-                            letter.baseX;
-
-                        letter.y =
-                            letter.baseY;
-
-
-                        letter.element.style.left =
-                            `${letter.baseX}px`;
-
-
-                        letter.element.style.top =
-                            `${letter.baseY}px`;
-
-
-                        letter.element.style.transform =
-                            "translate3d(0,0,0)";
-
-
-                        /*
-                         * Absolutely no fading.
-                         */
-
-                        letter.element.style.opacity =
-                            "1";
-
-                        letter.element.style.color =
-                            "#ffffff";
-
-                        letter.element.style.webkitTextStroke =
-                            "5px #ffffff";
-
-                    }
-                );
-
-            } else {
-
-                const releaseProgress =
-                    Math.min(
-                        (
-                            elapsed -
-                            settleTime
-                        ) /
-                        releaseDuration,
-                        1
-                    );
-
-
-                const force =
-                    Math.min(
-                        releaseProgress *
-                        1.5,
-                        1
-                    );
-
-
-                letters.forEach(
-                    letter => {
-
-                        letter.x +=
-                            letter.vx *
-                            delta *
-                            force;
-
-
-                        letter.y +=
-                            letter.vy *
-                            delta *
-                            force;
-
-
-                        letter.rotation +=
-                            letter.rotationVelocity *
-                            delta *
-                            2;
-
-
-                        keepInsidePage(
-                            letter
-                        );
-
-                    }
-                );
-
-
-                /*
-                 * Letter collision detection.
-                 */
-
-                for (
-                    let i = 0;
-                    i < letters.length;
-                    i++
-                ) {
-
-                    for (
-                        let j = i + 1;
-                        j < letters.length;
-                        j++
-                    ) {
-
-                        collide(
-                            letters[i],
-                            letters[j]
-                        );
-
-                    }
-
-                }
-
-
-                /*
-                 * Render letters.
-                 */
-
-                letters.forEach(
-                    letter => {
-
-                        const offsetX =
-                            letter.x -
-                            letter.baseX;
-
-
-                        const offsetY =
-                            letter.y -
-                            letter.baseY;
-
-
-                        letter.element.style.left =
-                            `${letter.baseX}px`;
-
-
-                        letter.element.style.top =
-                            `${letter.baseY}px`;
-
-
-                        letter.element.style.transform =
-                            `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${letter.rotation}deg)`;
-
-
-                        /*
-                         * Keep face + outline permanently visible.
-                         */
-
-                        letter.element.style.opacity =
-                            "1";
-
-                        letter.element.style.color =
-                            "#ffffff";
-
-                        letter.element.style.webkitTextStroke =
-                            "5px #ffffff";
-
-                    }
-                );
-
-            }
-
-
-            requestAnimationFrame(
-                animateIntro
-            );
-
-        }
-
-
-        requestAnimationFrame(
-            animateIntro
-        );
-
-
-        /*
-         * Responsive recalculation.
-         */
-
-        let resizeTimeout = null;
-
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                clearTimeout(
-                    resizeTimeout
-                );
-
-
-                resizeTimeout =
-                    setTimeout(
-                        () => {
-
-                            prepareTitle();
-
-
-                            if (
-                                letters.length
-                            ) {
-
-                                letters.forEach(
-                                    letter => {
-
-                                        letter.element.style.position =
-                                            "static";
-
-                                    }
-                                );
-
-
-                                measureLetters();
-
-
-                                letters.forEach(
-                                    letter => {
-
-                                        letter.element.style.position =
-                                            "fixed";
-
-
-                                        letter.element.style.left =
-                                            `${letter.baseX}px`;
-
-
-                                        letter.element.style.top =
-                                            `${letter.baseY}px`;
-
-
-                                        letter.element.style.transform =
-                                            "translate3d(0,0,0)";
-
-                                    }
-                                );
-
-                            }
-
-                        },
-                        150
-                    );
-
-            }
-        );
-
-
-        /*
-         * Detect mobile / desktop breakpoint changes.
-         */
-
-        let previousMobileState =
-            mobileQuery.matches;
-
-
-        const checkBreakpoint =
-            () => {
-
-                const currentMobileState =
-                    mobileQuery.matches;
-
-
-                if (
-                    currentMobileState !==
-                    previousMobileState
-                ) {
-
-                    previousMobileState =
-                        currentMobileState;
-
-
-                    prepareTitle();
-
-
-                    startTime =
-                        performance.now();
-
-
-                    lastTime =
-                        performance.now();
-
-                }
-
-            };
-
-
-        if (
-            mobileQuery.addEventListener
-        ) {
-
-            mobileQuery.addEventListener(
-                "change",
-                checkBreakpoint
-            );
-
-        }
-
-    }
-
-
-    /* =================================================
-       POINTER FIELD
-    ================================================= */
-
-    let pointerX = 0;
-    let pointerY = 0;
-
-    let targetPointerX = 0;
-    let targetPointerY = 0;
-
-
-    function updatePointer(x, y) {
-
-        targetPointerX =
-            (x / window.innerWidth) *
-            2 -
-            1;
-
-
-        targetPointerY =
-            (y / window.innerHeight) *
-            2 -
-            1;
-
-    }
-
-
-    window.addEventListener(
-        "pointermove",
+    frame.addEventListener(
+        "click",
         event => {
 
-            updatePointer(
-                event.clientX,
-                event.clientY
-            );
+            if (
+                event.target.closest(
+                    ".vimeo-controls"
+                )
+            ) {
+                return;
+            }
+
+            togglePlay();
+
+        }
+    );
+
+
+    /* --------------------------------------------------------
+       HOVER CONTROLS
+       -------------------------------------------------------- */
+
+    frame.addEventListener(
+        "mousemove",
+        () => {
+
+            showControls(wrapper);
+
+        }
+    );
+
+
+    frame.addEventListener(
+        "touchstart",
+        () => {
+
+            showControls(wrapper);
 
         },
         {
@@ -1235,550 +1072,1161 @@ span.style.animation = "floatingLetterFade 5s ease forwards";
     );
 
 
-    /* =================================================
-       VIDEO DEPTH FIELD
-    ================================================= */
+    /* --------------------------------------------------------
+       PLAY EVENT
+       -------------------------------------------------------- */
 
-    const depthVideos =
-        [
-            ...document.querySelectorAll(
-                ".depth-video"
-            )
-        ];
+    const onPlay =
+        () => {
 
+            if (!playButton) {
+                return;
+            }
 
-    if (
-        depthVideos.length &&
-        !reducedMotion
-    ) {
+            playButton.textContent =
+                "Pause";
 
-        let currentX = 0;
-        let currentY = 0;
+            playButton.setAttribute(
+                "aria-label",
+                "Pause"
+            );
 
-
-        function animateDepth() {
-
-            currentX +=
-                (
-                    targetPointerX -
-                    currentX
-                ) *
-                0.035;
+        };
 
 
-            currentY +=
-                (
-                    targetPointerY -
-                    currentY
-                ) *
-                0.035;
+    player.on(
+        "play",
+        onPlay
+    );
+
+    currentVimeoEvents.push({
+        name: "play",
+        handler: onPlay
+    });
 
 
-            depthVideos.forEach(
-                (video, index) => {
+    /* --------------------------------------------------------
+       PAUSE EVENT
+       -------------------------------------------------------- */
 
-                    const depth =
-                        (
-                            index + 1
-                        ) /
-                        depthVideos.length;
+    const onPause =
+        () => {
 
+            if (!playButton) {
+                return;
+            }
 
-                    const movement =
-                        7 +
-                        depth * 20;
+            playButton.textContent =
+                "Play";
 
+            playButton.setAttribute(
+                "aria-label",
+                "Play"
+            );
 
-                    const x =
-                        currentX *
-                        movement;
-
-
-                    const y =
-                        currentY *
-                        movement *
-                        0.6;
+        };
 
 
-                    const rotation =
-                        currentX *
-                        (
-                            0.25 +
-                            depth * 0.4
-                        );
+    player.on(
+        "pause",
+        onPause
+    );
+
+    currentVimeoEvents.push({
+        name: "pause",
+        handler: onPause
+    });
 
 
-                    const scale =
-                        1 +
-                        currentY *
-                        0.002;
+    /* --------------------------------------------------------
+       TIME UPDATE
+       -------------------------------------------------------- */
+
+    const onTimeUpdate =
+        data => {
+
+            const duration =
+                Number(data.duration) || 0;
+
+            const seconds =
+                Number(data.seconds) || 0;
+
+            if (progress) {
+
+                progress.value =
+                    duration
+                        ? (seconds / duration) * 100
+                        : 0;
+
+            }
+
+            if (time) {
+
+                time.textContent =
+                    `${formatTime(seconds)} / ${formatTime(duration)}`;
+
+            }
+
+        };
 
 
-                    video.style.transform =
-                        `translate3d(${x}px, ${y}px, 0) rotate(${rotation}deg) scale(${scale})`;
+    player.on(
+        "timeupdate",
+        onTimeUpdate
+    );
+
+    currentVimeoEvents.push({
+        name: "timeupdate",
+        handler: onTimeUpdate
+    });
+
+
+    /* --------------------------------------------------------
+       LOADED
+       -------------------------------------------------------- */
+
+    const onLoaded =
+        data => {
+
+            if (!time) {
+                return;
+            }
+
+            time.textContent =
+                `00:00 / ${formatTime(data.duration)}`;
+
+        };
+
+
+    player.on(
+        "loaded",
+        onLoaded
+    );
+
+    currentVimeoEvents.push({
+        name: "loaded",
+        handler: onLoaded
+    });
+
+
+    /* --------------------------------------------------------
+       VOLUME
+       -------------------------------------------------------- */
+
+    if (soundButton) {
+
+        soundButton.addEventListener(
+            "click",
+            async event => {
+
+                event.stopPropagation();
+
+                try {
+
+                    const volume =
+                        await player.getVolume();
+
+                    if (volume > 0) {
+
+                        await player.setVolume(0);
+
+                        soundButton.textContent =
+                            "Sound Off";
+
+                    } else {
+
+                        await player.setVolume(1);
+
+                        soundButton.textContent =
+                            "Sound On";
+
+                    }
+
+                    showControls(wrapper);
+
+                } catch (error) {
+
+                    console.warn(
+                        "Could not change Vimeo volume.",
+                        error
+                    );
 
                 }
-            );
+
+            }
+        );
+
+    }
 
 
-            requestAnimationFrame(
-                animateDepth
-            );
+    /* --------------------------------------------------------
+       PROGRESS SEEK
+       -------------------------------------------------------- */
+
+    if (progress) {
+
+        progress.addEventListener(
+            "input",
+            async event => {
+
+                event.stopPropagation();
+
+                try {
+
+                    const duration =
+                        await player.getDuration();
+
+                    const percent =
+                        Number(event.target.value) / 100;
+
+                    await player.setCurrentTime(
+                        duration * percent
+                    );
+
+                    showControls(wrapper);
+
+                } catch (error) {
+
+                    console.warn(
+                        "Could not seek Vimeo video.",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+
+        progress.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+            }
+        );
+
+    }
+
+
+    /* --------------------------------------------------------
+       FULLSCREEN
+       -------------------------------------------------------- */
+
+    if (fullscreenButton) {
+
+        fullscreenButton.addEventListener(
+            "click",
+            async event => {
+
+                event.stopPropagation();
+
+                try {
+
+                    await player.requestFullscreen();
+
+                } catch (error) {
+
+                    console.warn(
+                        "Could not enter fullscreen.",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* --------------------------------------------------------
+       INITIAL STATE
+       -------------------------------------------------------- */
+
+    try {
+
+        const volume =
+            await player.getVolume();
+
+        if (soundButton) {
+
+            soundButton.textContent =
+                volume > 0
+                    ? "Sound On"
+                    : "Sound Off";
 
         }
 
+    } catch (error) {
 
-        requestAnimationFrame(
-            animateDepth
-        );
+        /* Ignore */
 
     }
 
+}
 
-    /* =================================================
-       CLIENT TICKER
-    ================================================= */
 
-    const clientSection =
-        document.querySelector(
-            ".client-section"
+/* ============================================================
+   IMAGE
+   ============================================================ */
+
+function renderImage(project) {
+
+    return `
+        <div class="image-project">
+
+            <img
+                src="${escapeHTML(project.image)}"
+                alt="${escapeHTML(project.title)}"
+                loading="eager"
+            >
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   CAROUSEL
+   ============================================================ */
+
+function renderCarousel(project) {
+
+    const images =
+        Array.isArray(project.images)
+            ? project.images
+            : [];
+
+    if (!images.length) {
+        return "";
+    }
+
+    currentCarouselIndex = 0;
+
+    return `
+        <div
+            class="image-carousel"
+            data-carousel-count="${images.length}"
+        >
+
+            <div class="carousel-stage">
+
+                <button
+                    class="carousel-arrow carousel-prev"
+                    type="button"
+                    aria-label="Previous image"
+                >
+                    <span aria-hidden="true">←</span>
+                </button>
+
+                <div class="carousel-image-wrap">
+
+                    ${images.map((image, index) => `
+
+                        <img
+                            class="carousel-image ${index === 0 ? "active" : ""}"
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(project.title)} — image ${index + 1} of ${images.length}"
+                            data-carousel-index="${index}"
+                            draggable="false"
+                        >
+
+                    `).join("")}
+
+                </div>
+
+                <button
+                    class="carousel-arrow carousel-next"
+                    type="button"
+                    aria-label="Next image"
+                >
+                    <span aria-hidden="true">→</span>
+                </button>
+
+            </div>
+
+            <div class="carousel-meta">
+
+                <span class="carousel-counter">
+
+                    <span class="carousel-current">
+                        01
+                    </span>
+
+                    <span class="carousel-separator">
+                        /
+                    </span>
+
+                    <span class="carousel-total">
+                        ${formatNumber(images.length)}
+                    </span>
+
+                </span>
+
+            </div>
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   UPDATE CAROUSEL
+   ============================================================ */
+
+function updateCarousel(
+    carousel,
+    index,
+    direction = 0
+) {
+
+    if (!carousel) {
+        return;
+    }
+
+    const images =
+        carousel.querySelectorAll(
+            ".carousel-image"
         );
 
+    if (!images.length) {
+        return;
+    }
 
-    if (
-        clientSection &&
-        "IntersectionObserver" in window
-    ) {
+    if (index < 0) {
+        index = images.length - 1;
+    }
 
-        const tickerObserver =
-            new IntersectionObserver(
-                entries => {
+    if (index >= images.length) {
+        index = 0;
+    }
 
-                    entries.forEach(
-                        entry => {
+    currentCarouselIndex =
+        index;
 
-                            clientSection.classList.toggle(
-                                "ticker-paused",
-                                !entry.isIntersecting
-                            );
+    images.forEach(
+        (image, imageIndex) => {
 
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0
-                }
+            image.classList.toggle(
+                "active",
+                imageIndex === index
             );
 
+            image.classList.remove(
+                "slide-next",
+                "slide-prev"
+            );
 
-        tickerObserver.observe(
-            clientSection
+            if (
+                imageIndex === index &&
+                direction !== 0
+            ) {
+
+                image.classList.add(
+                    direction > 0
+                        ? "slide-next"
+                        : "slide-prev"
+                );
+
+            }
+
+        }
+    );
+
+    const current =
+        carousel.querySelector(
+            ".carousel-current"
+        );
+
+    if (current) {
+
+        current.textContent =
+            formatNumber(index + 1);
+
+    }
+
+}
+
+
+/* ============================================================
+   INITIALIZE CAROUSEL
+   ============================================================ */
+
+function initializeCarousel() {
+
+    const carousel =
+        projectElement.querySelector(
+            ".image-carousel"
+        );
+
+    if (!carousel) {
+        return;
+    }
+
+    const images =
+        carousel.querySelectorAll(
+            ".carousel-image"
+        );
+
+    const previous =
+        carousel.querySelector(
+            ".carousel-prev"
+        );
+
+    const next =
+        carousel.querySelector(
+            ".carousel-next"
+        );
+
+
+    /* --------------------------------------------------------
+       NAVIGATION
+       -------------------------------------------------------- */
+
+    const goTo =
+        (index, direction = 0) => {
+
+            updateCarousel(
+                carousel,
+                index,
+                direction
+            );
+
+        };
+
+
+    const nextImage =
+        () => {
+
+            goTo(
+                currentCarouselIndex + 1,
+                1
+            );
+
+        };
+
+
+    const previousImage =
+        () => {
+
+            goTo(
+                currentCarouselIndex - 1,
+                -1
+            );
+
+        };
+
+
+    /* --------------------------------------------------------
+       ARROWS
+       -------------------------------------------------------- */
+
+    if (previous) {
+
+        previous.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                previousImage();
+
+            }
         );
 
     }
 
 
-    /* =================================================
-       ABOUT IMAGE PARALLAX
-    ================================================= */
+    if (next) {
 
-    const aboutImage =
-        document.querySelector(
-            ".about-image img"
+        next.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                nextImage();
+
+            }
         );
 
-
-    if (
-        aboutImage &&
-        !reducedMotion
-    ) {
-
-        let aboutTarget = 0;
-        let aboutCurrent = 0;
+    }
 
 
-        const updateAbout =
-            () => {
+    /* --------------------------------------------------------
+       CLICK IMAGE
+       -------------------------------------------------------- */
 
-                const rect =
-                    aboutImage.getBoundingClientRect();
+    images.forEach(image => {
 
+        image.addEventListener(
+            "click",
+            event => {
 
-                const imageCenter =
-                    rect.top +
-                    rect.height / 2;
+                event.stopPropagation();
 
+                nextImage();
 
-                const difference =
-                    (
-                        imageCenter -
-                        window.innerHeight / 2
-                    ) /
-                    window.innerHeight;
+            }
+        );
 
-
-                aboutTarget =
-                    Math.max(
-                        -1,
-                        Math.min(
-                            1,
-                            difference
-                        )
-                    );
-
-            };
+    });
 
 
-        const animateAbout =
-            () => {
+    /* --------------------------------------------------------
+       TOUCH / SWIPE
+       -------------------------------------------------------- */
 
-                aboutCurrent +=
-                    (
-                        aboutTarget -
-                        aboutCurrent
-                    ) *
-                    0.045;
+    const imageWrap =
+        carousel.querySelector(
+            ".carousel-image-wrap"
+        );
 
+    if (imageWrap) {
 
-                aboutImage.style.transform =
-                    `translate3d(0, ${aboutCurrent * -18}px, 0)`;
+        imageWrap.addEventListener(
+            "touchstart",
+            event => {
 
+                if (!event.touches.length) {
+                    return;
+                }
 
-                requestAnimationFrame(
-                    animateAbout
-                );
+                carouselTouchStartX =
+                    event.touches[0].clientX;
 
-            };
+                carouselTouchStartY =
+                    event.touches[0].clientY;
 
-
-        window.addEventListener(
-            "scroll",
-            updateAbout,
+            },
             {
                 passive: true
             }
         );
 
 
-        updateAbout();
+        imageWrap.addEventListener(
+            "touchend",
+            event => {
 
-        animateAbout();
+                if (!event.changedTouches.length) {
+                    return;
+                }
 
-    }
+                const endX =
+                    event.changedTouches[0].clientX;
 
-/* =================================================
-INTRO VIDEO FADE
-================================================= */
+                const endY =
+                    event.changedTouches[0].clientY;
 
-const introVideo =
-document.querySelector(
-".scroll-media iframe"
-);
+                const deltaX =
+                    endX - carouselTouchStartX;
 
-if (introVideo) {
+                const deltaY =
+                    endY - carouselTouchStartY;
 
+                if (
+                    Math.abs(deltaX) < 40 ||
+                    Math.abs(deltaX) < Math.abs(deltaY)
+                ) {
+                    return;
+                }
 
-const introMediaSection =
-    introVideo.closest(
-        ".scroll-media"
-    );
+                if (deltaX < 0) {
 
-if (introMediaSection) {
+                    nextImage();
 
-    introMediaSection.classList.remove(
-        "video-loaded"
-    );
+                } else {
 
-
-    introVideo.addEventListener(
-        "load",
-        () => {
-
-            introMediaSection.classList.add(
-                "video-loaded"
-            );
-
-        },
-        {
-            once: true
-        }
-    );
-
-}
-
-
-}
-
-
-/* =================================================
-SCROLL MEDIA PARALLAX
-================================================= */
-
-const scrollMedia =
-document.querySelectorAll(
-".scroll-media"
-);
-
-if (
-scrollMedia.length &&
-!reducedMotion
-) {
-
-const mediaTargets = [];
-const mediaCurrent = [];
-
-
-scrollMedia.forEach(
-    () => {
-
-        mediaTargets.push(0);
-        mediaCurrent.push(0);
-
-    }
-);
-
-
-const updateMediaTargets =
-    () => {
-
-        scrollMedia.forEach(
-            (
-                section,
-                index
-            ) => {
-
-                const rect =
-                    section.getBoundingClientRect();
-
-
-                const center =
-                    rect.top +
-                    rect.height / 2;
-
-
-                const distance =
-                    (
-                        center -
-                        window.innerHeight / 2
-                    ) /
-                    window.innerHeight;
-
-
-                mediaTargets[index] =
-                    Math.max(
-                        -1,
-                        Math.min(
-                            1,
-                            distance
-                        )
-                    );
-
-            }
-        );
-
-    };
-
-
-const animateMedia =
-    () => {
-
-        scrollMedia.forEach(
-            (
-                section,
-                index
-            ) => {
-
-                const wrapper =
-                    section.querySelector(
-                        ".vimeo-wrapper"
-                    );
-
-
-                if (!wrapper) return;
-
-
-                mediaCurrent[index] +=
-                    (
-                        mediaTargets[index] -
-                        mediaCurrent[index]
-                    ) *
-                    0.04;
-
-
-                wrapper.style.transform =
-                    `translate3d(0, ${mediaCurrent[index] * -14}px, 0)`;
-
-            }
-        );
-
-
-        requestAnimationFrame(
-            animateMedia
-        );
-
-    };
-
-
-window.addEventListener(
-    "scroll",
-    updateMediaTargets,
-    {
-        passive: true
-    }
-);
-
-
-updateMediaTargets();
-
-animateMedia();
-
-}
-
-
-    /* =================================================
-       TOUCH POINTER
-    ================================================= */
-
-    window.addEventListener(
-        "touchstart",
-        event => {
-
-            if (
-                !event.touches.length
-            ) return;
-
-
-            updatePointer(
-                event.touches[0].clientX,
-                event.touches[0].clientY
-            );
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    window.addEventListener(
-        "touchmove",
-        event => {
-
-            if (
-                !event.touches.length
-            ) return;
-
-
-            updatePointer(
-                event.touches[0].clientX,
-                event.touches[0].clientY
-            );
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    /* =================================================
-       EXTERNAL LINKS
-    ================================================= */
-
-    document
-        .querySelectorAll(
-            'a[href^="http"]'
-        )
-        .forEach(
-            link => {
-
-                try {
-
-                    const url =
-                        new URL(
-                            link.href
-                        );
-
-
-                    if (
-                        url.hostname !==
-                        window.location.hostname
-                    ) {
-
-                        link.target =
-                            "_blank";
-
-                        link.rel =
-                            "noopener noreferrer";
-
-                    }
-
-                } catch (error) {
-
-                    console.log(
-                        "Invalid link:",
-                        link.href
-                    );
+                    previousImage();
 
                 }
 
+            },
+            {
+                passive: true
             }
         );
 
+    }
 
-    /* =================================================
-       PREVENT IMAGE DRAGGING
-    ================================================= */
 
-    document
-        .querySelectorAll("img")
-        .forEach(
-            image => {
+    /* --------------------------------------------------------
+       INITIAL STATE
+       -------------------------------------------------------- */
 
-                image.addEventListener(
-                    "dragstart",
-                    event => {
+    updateCarousel(
+        carousel,
+        0,
+        0
+    );
 
-                        event.preventDefault();
+}
 
-                    }
-                );
 
-            }
+/* ============================================================
+   VIDEO
+   ============================================================ */
+
+function renderVideo(project) {
+
+    return `
+        <div class="project-media">
+
+            ${renderVimeoMarkup(project)}
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   TEXT
+   ============================================================ */
+
+function renderText(project) {
+
+    return `
+        <div class="project-text ${escapeHTML(project.style || "editorial")}">
+
+            ${escapeHTML(project.title)}
+
+            ${project.description ? `
+                <div class="text-project-description">
+                    ${escapeHTML(project.description)}
+                </div>
+            ` : ""}
+
+        </div>
+    `;
+
+}
+
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+
+
+function renderAbout(project) {
+    projectElement.innerHTML = `
+        <div class="about-content">
+
+            <div class="about-image">
+                <img
+                    src="${escapeHTML(project.image)}"
+                    alt="A Doll's House Pictures"
+                    loading="eager"
+                >
+            </div>
+
+            <div class="about-copy">
+
+                <div class="project-category">
+                    ${escapeHTML(project.category)}
+                </div>
+
+                <h1 class="project-title">
+                    ${escapeHTML(project.title)}
+                </h1>
+
+                <div class="about-columns">
+
+                    <div class="about-description">
+                        ${escapeHTML(project.description)}
+                    </div>
+
+                    <div class="about-contact">
+
+                        <a
+                            href="https://www.instagram.com/adollshousepictures/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Instagram
+                        </a>
+
+                        <a href="mailto:adollshousepictures@gmail.com">
+                            adollshousepictures@gmail.com
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+
+/* ============================================================
+   RENDER PROJECT
+   ============================================================ */
+
+function renderProject(project) {
+
+    destroyCurrentVimeo();
+
+    projectElement.innerHTML = "";
+
+
+    /* --------------------------------------------------------
+       ABOUT
+       -------------------------------------------------------- */
+
+if (project.type === "about") {
+
+    renderAbout(project);
+
+    return;
+
+}
+
+
+    /* --------------------------------------------------------
+       VIMEO
+       -------------------------------------------------------- */
+
+    if (project.type === "vimeo") {
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderVideo(project)
         );
 
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderProjectInfo(project)
+        );
 
-    /* =================================================
-       CLEANUP
-    ================================================= */
+    }
 
-    window.addEventListener(
-        "beforeunload",
+
+    /* --------------------------------------------------------
+       IMAGE
+       -------------------------------------------------------- */
+
+    else if (project.type === "image") {
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            `
+                <div class="project-media">
+                    ${renderImage(project)}
+                </div>
+            `
+        );
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderProjectInfo(project)
+        );
+
+    }
+
+
+    /* --------------------------------------------------------
+       CAROUSEL
+       -------------------------------------------------------- */
+
+    else if (project.type === "carousel") {
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            `
+                <div class="project-media">
+                    ${renderCarousel(project)}
+                </div>
+            `
+        );
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderProjectInfo(project)
+        );
+
+        initializeCarousel();
+
+    }
+
+
+    /* --------------------------------------------------------
+       TEXT
+       -------------------------------------------------------- */
+
+    else if (project.type === "text") {
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderText(project)
+        );
+
+    }
+
+
+    /* --------------------------------------------------------
+       INITIALIZE VIMEO
+       -------------------------------------------------------- */
+
+    if (project.type === "vimeo") {
+
+        initializeVimeo();
+
+    }
+
+}
+
+
+/* ============================================================
+   SELECT PROJECT
+   ============================================================ */
+
+function selectProject(index) {
+
+    if (
+        index < 0 ||
+        index >= projects.length
+    ) {
+        return;
+    }
+
+    if (
+        index === currentProjectIndex &&
+        projectElement.innerHTML
+    ) {
+        return;
+    }
+
+    projectElement.classList.add(
+        "is-changing"
+    );
+
+    setTimeout(
         () => {
 
-            if (!activePlayer) return;
+            currentProjectIndex =
+                index;
 
+            const project =
+                projects[index];
 
-            try {
+            renderProject(project);
 
-                activePlayer.destroy();
+            updateArchiveState();
 
-            } catch (error) {
-
-                console.log(
-                    "Vimeo cleanup:",
-                    error
+            const activeItem =
+                archiveList.querySelector(
+                    `.archive-item[data-index="${index}"]`
                 );
+
+            if (activeItem) {
+
+                activeItem.scrollIntoView({
+                    block: "nearest",
+                    behavior: "smooth"
+                });
+
+            }
+
+            requestAnimationFrame(
+                () => {
+
+                    projectElement.classList.remove(
+                        "is-changing"
+                    );
+
+                }
+            );
+
+        },
+        180
+    );
+
+}
+
+
+/* ============================================================
+   KEYBOARD NAVIGATION
+   ============================================================ */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        const tag =
+            document.activeElement
+                ?.tagName
+                ?.toLowerCase();
+
+        const isInput =
+            tag === "input" ||
+            tag === "textarea" ||
+            tag === "select";
+
+        if (isInput) {
+            return;
+        }
+
+
+        /* ----------------------------------------------------
+           CAROUSEL
+           ---------------------------------------------------- */
+
+        const carousel =
+            projectElement.querySelector(
+                ".image-carousel"
+            );
+
+        if (carousel) {
+
+            if (event.key === "ArrowLeft") {
+
+                event.preventDefault();
+
+                updateCarousel(
+                    carousel,
+                    currentCarouselIndex - 1,
+                    -1
+                );
+
+                return;
+
+            }
+
+            if (event.key === "ArrowRight") {
+
+                event.preventDefault();
+
+                updateCarousel(
+                    carousel,
+                    currentCarouselIndex + 1,
+                    1
+                );
+
+                return;
 
             }
 
         }
-    );
 
 
-    console.log(
-        "A Doll's House Pictures — site initialized."
-    );
+        /* ----------------------------------------------------
+           VIMEO
+           ---------------------------------------------------- */
 
-});
+        if (
+            currentVimeoPlayer &&
+            (
+                event.code === "Space" ||
+                event.key === "ArrowLeft" ||
+                event.key === "ArrowRight"
+            )
+        ) {
+
+            if (event.code === "Space") {
+
+                event.preventDefault();
+
+                currentVimeoPlayer
+                    .getPaused()
+                    .then(paused => {
+
+                        if (paused) {
+
+                            currentVimeoPlayer.play();
+
+                        } else {
+
+                            currentVimeoPlayer.pause();
+
+                        }
+
+                    });
+
+                return;
+
+            }
+
+
+            if (
+                event.key === "ArrowLeft" ||
+                event.key === "ArrowRight"
+            ) {
+
+                event.preventDefault();
+
+                currentVimeoPlayer
+                    .getCurrentTime()
+                    .then(currentTime => {
+
+                        const amount =
+                            event.key === "ArrowLeft"
+                                ? -5
+                                : 5;
+
+                        currentVimeoPlayer
+                            .setCurrentTime(
+                                Math.max(
+                                    0,
+                                    currentTime + amount
+                                )
+                            );
+
+                    });
+
+                return;
+
+            }
+
+        }
+
+
+        /* ----------------------------------------------------
+           ARCHIVE UP / DOWN
+           ---------------------------------------------------- */
+
+        if (event.key === "ArrowUp") {
+
+            event.preventDefault();
+
+            selectProject(
+                currentProjectIndex - 1
+            );
+
+        }
+
+        else if (event.key === "ArrowDown") {
+
+            event.preventDefault();
+
+            selectProject(
+                currentProjectIndex + 1
+            );
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   INITIALIZE
+   ============================================================ */
+
+buildArchive();
+
+currentProjectIndex = 0;
+
+renderProject(
+    projects[currentProjectIndex]
+);
+
+updateArchiveState();
