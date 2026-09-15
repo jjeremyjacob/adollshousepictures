@@ -10,16 +10,6 @@
 
 const projects = [
 
-              {
-        title: "Nike",
-        category: "Social Campaign",
-        type: "vimeo",
-        vimeo: "1226664744",
-        format: "wide",
-        description: "",
-        credits: []
-    },
-    
     {
         title: "Stissing House",
         category: "Social Campaign",
@@ -37,6 +27,18 @@ const projects = [
             }
         ]
     },
+    
+    {
+        title: "Nike",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226664744",
+        format: "wide",
+        description: "",
+        credits: []
+    },
+    
+
     
     {
         title: "Storm King - Girl Group",
