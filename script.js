@@ -10,6 +10,52 @@
 
 const projects = [
 
+              {
+        title: "Nike",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226664744",
+        format: "wide",
+        description: "",
+        credits: []
+    },
+    
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1226955261",
+        format: "wide",
+        description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }
+        ]
+    },
+    
+    {
+        title: "Storm King - Girl Group",
+        category: "Dance Film Highlights",
+        type: "vimeo",
+        vimeo: "1007644295",
+        format: "wide",
+        description: "Girl Group",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }
+        ]
+    },
+
     {
         title: "Trisha Brown Dance Company",
         category: "Photography",
@@ -40,23 +86,7 @@ const projects = [
         ]
     },
 
-    {
-        title: "Stissing House",
-        category: "Social Campaign",
-        type: "vimeo",
-        vimeo: "1226955261",
-        format: "wide",
-        description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
-        credits: [
-            {
-                role: "Creative Direction",
-                names: [
-                    "Jeremy Jacob",
-                    "A Doll's House Pictures"
-                ]
-            }
-        ]
-    },
+
 
     {
         title: "Talbott & Arding",
@@ -101,6 +131,23 @@ const projects = [
                 role: "For",
                 names: [
                     "Trisha Brown Dance Company"
+                ]
+            }
+        ]
+    },
+          {
+        title: "Storm King - Growth",
+        category: "Performance Film Highlights",
+        type: "vimeo",
+        vimeo: "1122967020",
+        format: "wide",
+        description: "Growth: The Watch",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
                 ]
             }
         ]
@@ -256,25 +303,6 @@ const projects = [
         credits: []
     },
 
-    {
-        title: "Nike",
-        category: "Social Campaign",
-        type: "vimeo",
-        vimeo: "1226664744",
-        format: "wide",
-        description: "",
-        credits: []
-    },
-
-    {
-        title: "Gary Graham",
-        category: "Socail Campaign - Corsage",
-        type: "vimeo",
-        vimeo: "816869497",
-        format: "vertical",
-        description: "",
-        credits: []
-    },
 
     {
         title: "Gary Graham",
@@ -344,7 +372,34 @@ const projects = [
         description: "Chris Garneau",
         credits: []
     },
-
+    {
+        title: "Little Lad: ANNA",
+        category: "Film",
+        type: "vimeo",
+        vimeo: "1227003478",
+        format: "wide",
+        description: "",
+        credits: [
+            {
+                role: "Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Text & Choreography",
+                names: [
+                    "Jack Ferver"
+                ]
+            },
+            {
+                role: "Photography",
+                names: [
+                    "Daniel Rampulla"
+                ]
+            }
+        ]
+    },
     {
         title: "Pastoral",
         category: "Promotional Campaign",
@@ -352,6 +407,25 @@ const projects = [
         vimeo: "1077279366",
         format: "wide",
         description: "Fisher Center at Bard",
+        credits: []
+    },
+        {
+        title: "Gary Graham",
+        category: "Socail Campaign - Corsage",
+        type: "vimeo",
+        vimeo: "816869497",
+        format: "vertical",
+        description: "",
+        credits: []
+    },
+
+        {
+        title: "Illinoise",
+        category: "Promotional Campaign",
+        type: "vimeo",
+        vimeo: "939996147",
+        format: "wide",
+        description: "Chicago Shakespeare Theater, Park Avenue Armory & Fisher Center at Bard",
         credits: []
     },
 
