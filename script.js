@@ -115,6 +115,23 @@ const projects = [
         description: "Cole Haan - Urban Jungle",
         credits: []
     },
+
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1135735488",
+        format: "vertical",
+        description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
+        credits: [{
+                Featuring: "Sticky Toffee",
+                names: [
+                    "Sticky Toffee"
+                ]
+            }]
+    },
+
+
     {
         title: "Munner Farm",
         category: "Photography",
@@ -144,6 +161,7 @@ const projects = [
             }
         ]
     },
+    
           {
         title: "Storm King - Growth",
         category: "Performance Film Highlights",
@@ -184,7 +202,7 @@ const projects = [
 
     {
         title: "Suddenly Last Summer",
-        category: "Social Video",
+        category: "Promotional Campaign",
         type: "vimeo",
         vimeo: "1189497026",
         format: "wide",
@@ -321,7 +339,12 @@ const projects = [
         vimeo: "1110256553",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-        credits: []
+         credits: [{
+                Featuring: "Fish Pie",
+                names: [
+                    "Fish Pie"
+                ]
+            }]
     },
 
     {
@@ -361,6 +384,21 @@ const projects = [
         format: "vertical",
         description: "Cole Haan - His & Hers",
         credits: []
+    }, 
+    
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1135779851",
+        format: "vertical",
+        description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
+        credits: [{
+                Featuring: "Duck",
+                names: [
+                    "Duck"
+                ]
+            }]
     },
 
     {
@@ -371,6 +409,20 @@ const projects = [
         format: "wide",
         description: "Hudson Hall",
         credits: []
+    },  
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+        vimeo: "1119623841",
+        format: "vertical",
+        description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
+         credits: [{
+                Featuring: "Cobbler",
+                names: [
+                    "Cobbler"
+                ]
+            }]
     },
 
     {
@@ -456,7 +508,12 @@ const projects = [
         vimeo: "1226973263",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-        credits: []
+                credits: [{
+                Featuring: "Squash",
+                names: [
+                    "Squash"
+                ]
+            }]
     },
 
     {
@@ -2316,7 +2373,168 @@ document.addEventListener(
 
 buildArchive();
 
-currentProjectIndex = 0;
+/*
+   Remember the last project that was open.
+
+   We use the Vimeo ID for video projects, the image path
+   for image projects, and the title/type combination for
+   other project types. This means the saved project will
+   continue to work even if the archive order changes.
+*/
+
+function getProjectKey(project) {
+
+    if (project.type === "vimeo" && project.vimeo) {
+        return `vimeo:${project.vimeo}`;
+    }
+
+    if (project.type === "carousel" && project.images?.length) {
+        return `carousel:${project.images[0]}`;
+    }
+
+    if (project.type === "image" && project.image) {
+        return `image:${project.image}`;
+    }
+
+    return `${project.type}:${project.title}`;
+}
+
+
+/*
+   Select a project and remember it.
+*/
+
+function selectProject(index) {
+
+    if (
+        index < 0 ||
+        index >= projects.length
+    ) {
+        return;
+    }
+
+    if (
+        index === currentProjectIndex &&
+        projectElement.innerHTML
+    ) {
+        return;
+    }
+
+    projectElement.classList.add(
+        "is-changing"
+    );
+
+    setTimeout(
+        () => {
+
+            currentProjectIndex =
+                index;
+
+            const project =
+                projects[index];
+
+            /*
+               Save the project that was selected.
+            */
+            try {
+
+                localStorage.setItem(
+                    "adhp-last-project",
+                    getProjectKey(project)
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Could not save last project.",
+                    error
+                );
+
+            }
+
+            renderProject(project);
+
+            updateArchiveState();
+
+            const activeItem =
+                archiveList.querySelector(
+                    `.archive-item[data-index="${index}"]`
+                );
+
+            if (activeItem) {
+
+                activeItem.scrollIntoView({
+                    block: "nearest",
+                    behavior: "smooth"
+                });
+
+            }
+
+            requestAnimationFrame(
+                () => {
+
+                    projectElement.classList.remove(
+                        "is-changing"
+                    );
+
+                }
+            );
+
+        },
+        180
+    );
+
+}
+
+
+/*
+   Restore the last project after a page reload.
+*/
+
+let initialProjectIndex = 0;
+
+try {
+
+    const savedProjectKey =
+        localStorage.getItem(
+            "adhp-last-project"
+        );
+
+    if (savedProjectKey) {
+
+        const savedIndex =
+            projects.findIndex(
+                project =>
+                    getProjectKey(project) ===
+                    savedProjectKey
+            );
+
+        if (savedIndex !== -1) {
+
+            initialProjectIndex =
+                savedIndex;
+
+        }
+
+    }
+
+} catch (error) {
+
+    console.warn(
+        "Could not restore last project.",
+        error
+    );
+
+}
+
+
+/*
+   Open the saved project.
+   If there isn't one, Nike remains the default.
+*/
+
+currentProjectIndex =
+    initialProjectIndex;
 
 renderProject(
     projects[currentProjectIndex]
