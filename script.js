@@ -353,7 +353,8 @@ const projects = [
         format: "wide",
         description: "Fisher Center at Bard",
         credits: []
-    },   
+    },
+
     {
         title: "Stissing House",
         category: "Social Campaign",
@@ -364,14 +365,18 @@ const projects = [
         credits: []
     },
 
-{
-    title: "A Doll's House Pictures",
-    category: "The Studio",
-    type: "about",
-    image: "images/about.jpg",
-    description: "A Doll's House Pictures is a creative studio founded by Jeremy Jacob, working across film, photography, animation, design and creative direction.",
+    {
+        title: "A Doll's House Pictures",
+        category: "The Studio",
+        type: "about",
+        image: "images/about.jpg",
+        description: `A Doll’s House Pictures is an independent creative studio working across film, video, motion, design, and visual storytelling. Founded by Jeremy Jacob, the studio collaborates with brands, artists, and cultural organizations to create distinctive work that is both visually considered and deeply connected to its subject.
+
+From commercial campaigns and branded content to experimental films and artist-driven projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking to develop work with a strong point of view. The studio moves fluidly between the worlds of culture, fashion, performance, and commerce, using image-making as a way to build identity, tell stories, and create lasting visual experiences.
+
+Based in the Hudson Valley and working in New York City and beyond, A Doll’s House Pictures is interested in the space where commercial craft and artistic experimentation meet.`,
     credits: []
-}
+},
 
 ];
 
@@ -458,30 +463,18 @@ function destroyCurrentVimeo() {
         controlTimeout = null;
     }
 
-    if (currentVimeoPlayer) {
+    if (!currentVimeoPlayer) {
+        return;
+    }
 
-        currentVimeoEvents.forEach(event => {
-
-            try {
-
-                currentVimeoPlayer.off(
-                    event.name,
-                    event.handler
-                );
-
-            } catch (error) {
-
-                /* Ignore cleanup errors */
-
-            }
-
-        });
-
-        currentVimeoEvents = [];
+    currentVimeoEvents.forEach(event => {
 
         try {
 
-            currentVimeoPlayer.destroy();
+            currentVimeoPlayer.off(
+                event.name,
+                event.handler
+            );
 
         } catch (error) {
 
@@ -489,9 +482,21 @@ function destroyCurrentVimeo() {
 
         }
 
-        currentVimeoPlayer = null;
+    });
+
+    currentVimeoEvents = [];
+
+    try {
+
+        currentVimeoPlayer.destroy();
+
+    } catch (error) {
+
+        /* Ignore cleanup errors */
 
     }
+
+    currentVimeoPlayer = null;
 
 }
 
@@ -505,7 +510,9 @@ function buildArchive() {
     archiveList.innerHTML = "";
 
     const numberedProjects =
-        projects.filter(project => project.type !== "about");
+        projects.filter(
+            project => project.type !== "about"
+        );
 
     numberedProjects.forEach((project, index) => {
 
@@ -516,9 +523,7 @@ function buildArchive() {
             document.createElement("button");
 
         item.type = "button";
-
         item.className = "archive-item";
-
         item.dataset.index = projectIndex;
 
         item.innerHTML = `
@@ -565,7 +570,6 @@ function buildArchive() {
             document.createElement("button");
 
         aboutItem.type = "button";
-
         aboutItem.className =
             "archive-item archive-about";
 
@@ -619,11 +623,11 @@ function updateArchiveState() {
             ".archive-item"
         );
 
-    items.forEach((item, index) => {
+    items.forEach(item => {
 
         item.classList.toggle(
             "active",
-            index === currentProjectIndex
+            Number(item.dataset.index) === currentProjectIndex
         );
 
     });
@@ -1093,7 +1097,6 @@ async function initializeVimeo() {
 
         };
 
-
     player.on(
         "play",
         onPlay
@@ -1125,7 +1128,6 @@ async function initializeVimeo() {
             );
 
         };
-
 
     player.on(
         "pause",
@@ -1169,7 +1171,6 @@ async function initializeVimeo() {
 
         };
 
-
     player.on(
         "timeupdate",
         onTimeUpdate
@@ -1196,7 +1197,6 @@ async function initializeVimeo() {
                 `00:00 / ${formatTime(data.duration)}`;
 
         };
-
 
     player.on(
         "loaded",
@@ -1812,17 +1812,19 @@ function renderText(project) {
    ABOUT
    ============================================================ */
 
-
 function renderAbout(project) {
+
     projectElement.innerHTML = `
         <div class="about-content">
 
             <div class="about-image">
+
                 <img
                     src="${escapeHTML(project.image)}"
                     alt="A Doll's House Pictures"
                     loading="eager"
                 >
+
             </div>
 
             <div class="about-copy">
@@ -1835,27 +1837,23 @@ function renderAbout(project) {
                     ${escapeHTML(project.title)}
                 </h1>
 
-                <div class="about-columns">
+                <div class="about-description">
+                    ${escapeHTML(project.description)}
+                </div>
 
-                    <div class="about-description">
-                        ${escapeHTML(project.description)}
-                    </div>
+                <div class="about-contact">
 
-                    <div class="about-contact">
+                    <a
+                        href="https://www.instagram.com/adollshousepictures/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        @adollshousepictures
+                    </a>
 
-                        <a
-                            href="https://www.instagram.com/adollshousepictures/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Instagram
-                        </a>
-
-                        <a href="mailto:adollshousepictures@gmail.com">
-                            adollshousepictures@gmail.com
-                        </a>
-
-                    </div>
+                    <a href="mailto:adollshousepictures@gmail.com">
+                        adollshousepictures@gmail.com
+                    </a>
 
                 </div>
 
@@ -1863,6 +1861,7 @@ function renderAbout(project) {
 
         </div>
     `;
+
 }
 
 
@@ -1882,13 +1881,13 @@ function renderProject(project) {
        ABOUT
        -------------------------------------------------------- */
 
-if (project.type === "about") {
+    if (project.type === "about") {
 
-    renderAbout(project);
+        renderAbout(project);
 
-    return;
+        return;
 
-}
+    }
 
 
     /* --------------------------------------------------------

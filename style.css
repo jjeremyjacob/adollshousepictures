@@ -17,29 +17,22 @@
 html {
     margin: 0;
     padding: 0;
-
     width: 100%;
     min-height: 100%;
-
     background: #090909;
     color: #e8e4dc;
-
     scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     padding: 0;
-
     width: 100%;
     min-height: 100vh;
-
     background: #090909;
     color: #e8e4dc;
-
     font-family: "Manrope", sans-serif;
     font-weight: 300;
-
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
 }
@@ -67,12 +60,9 @@ a {
 
 .archive {
     position: relative;
-
     width: 100%;
     min-height: 100vh;
-
     background: #090909;
-
     overflow-x: hidden;
 }
 
@@ -83,26 +73,18 @@ a {
 
 .archive-sidebar {
     position: fixed;
-
     left: 24px;
     top: 24px;
     bottom: 24px;
-
     width: calc(100vw - 48px);
-
     z-index: 50;
-
     display: flex;
     flex-direction: column;
-
     pointer-events: none;
-
     background: transparent;
     background-color: transparent;
-
     border: 0;
     box-shadow: none;
-
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
@@ -114,80 +96,52 @@ a {
 
 .archive-header {
     position: relative;
-
     display: block;
-
     width: 52vw;
     max-width: 760px;
-
     padding: 0;
-
     pointer-events: none;
-
     background: transparent;
 }
 
 .brand {
     display: flex;
     flex-direction: column;
-
     width: max-content;
-
     line-height: 0.82;
-
     background: transparent;
 }
 
 .brand-main {
     display: block;
-
     font-family: "Manrope", sans-serif;
-
     font-size: clamp(38px, 5vw, 78px);
-
     font-weight: 400;
-
     letter-spacing: -0.075em;
-
     white-space: nowrap;
-
     background: transparent;
 }
 
 .brand-serif {
     display: block;
-
     margin-top: 4px;
-
     font-family: "Cormorant Garamond", serif;
-
     font-size: clamp(48px, 6.5vw, 100px);
-
     font-style: italic;
-
     font-weight: 400;
-
     letter-spacing: -0.055em;
-
     white-space: nowrap;
-
     background: transparent;
 }
 
 .archive-total {
     position: absolute;
-
     left: 0;
     top: calc(100% + 12px);
-
     font-family: "DM Mono", monospace;
-
     font-size: 8px;
-
     letter-spacing: 0.08em;
-
     opacity: 0.4;
-
     background: transparent;
 }
 
@@ -198,22 +152,14 @@ a {
 
 .archive-list {
     width: 300px;
-
     flex: 1;
-
     min-height: 0;
-
     margin-top: 48px;
-
     overflow-y: auto;
     overflow-x: hidden;
-
     padding-right: 12px;
-
     pointer-events: auto;
-
     background: transparent;
-
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -229,81 +175,62 @@ a {
 
 .archive-item {
     position: relative;
-
     display: flex;
     align-items: baseline;
-
     width: 100%;
-
     padding: 4px 0;
-
     cursor: pointer;
-
     color: rgba(232, 228, 220, 0.58);
-
     background: transparent;
-
-    transition:
-        color 0.25s ease,
-        transform 0.25s ease;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .archive-item:hover {
     color: #e8e4dc;
-
     transform: translateX(4px);
-
     background: transparent;
 }
 
 .archive-item.active {
     color: #e8e4dc;
-
     background: transparent;
 }
 
 .archive-number {
     flex: 0 0 24px;
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     opacity: 0.32;
-
     background: transparent;
 }
 
 .archive-title {
     font-family: "Manrope", sans-serif;
-
     font-size: 10px;
-
     font-weight: 400;
-
     letter-spacing: -0.015em;
-
     line-height: 1.35;
-
     white-space: nowrap;
-
     background: transparent;
 }
 
 .archive-category {
     margin-left: 7px;
-
     font-family: "Cormorant Garamond", serif;
-
     font-size: 12px;
-
     font-style: italic;
-
     opacity: 0.45;
-
     white-space: nowrap;
-
     background: transparent;
+}
+
+
+/* ============================================================
+   ABOUT ARCHIVE ITEM
+   ============================================================ */
+
+.archive-about {
+    margin-top: 2.5rem;
 }
 
 
@@ -313,26 +240,16 @@ a {
 
 .archive-footer {
     width: 300px;
-
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     padding-top: 20px;
-
     pointer-events: auto;
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     letter-spacing: 0.08em;
-
     text-transform: uppercase;
-
     opacity: 0.38;
-
     background: transparent;
 }
 
@@ -343,48 +260,31 @@ a {
 
 .project-stage {
     position: relative;
-
     width: 100%;
     min-height: 100vh;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     padding: 60px 5vw;
-
     background: transparent;
 }
 
 .project {
     width: 100%;
-
     min-height: 100vh;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
-
     padding: 40px 0;
-
     opacity: 1;
-
     transform: translateY(0);
-
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-
+    transition: opacity 0.35s ease, transform 0.35s ease;
     background: transparent;
 }
 
 .project.is-changing {
     opacity: 0;
-
     transform: translateY(5px);
 }
 
@@ -395,12 +295,9 @@ a {
 
 .project-media {
     width: 100%;
-
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     background: transparent;
 }
 
@@ -411,17 +308,11 @@ a {
 
 .project-info {
     width: min(900px, 78vw);
-
     margin-top: 28px;
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     text-align: center;
-
     background: transparent;
 }
 
@@ -432,23 +323,14 @@ a {
 
 .project-title {
     margin: 0;
-
     color: #e8e4dc;
-
     font-family: "Cormorant Garamond", serif;
-
     font-size: clamp(56px, 8vw, 118px);
-
     font-weight: 500;
-
     font-style: italic;
-
     line-height: 0.78;
-
     letter-spacing: -0.055em;
-
     text-align: center;
-
     background: transparent;
 }
 
@@ -459,21 +341,13 @@ a {
 
 .project-category {
     margin-top: 9px;
-
     color: rgba(232, 228, 220, 0.48);
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     font-weight: 400;
-
     line-height: 1.2;
-
     letter-spacing: 0.08em;
-
     text-transform: uppercase;
-
     background: transparent;
 }
 
@@ -484,21 +358,13 @@ a {
 
 .project-description {
     width: min(650px, 72vw);
-
     margin-top: 22px;
-
     color: rgba(232, 228, 220, 0.62);
-
     font-family: "Manrope", sans-serif;
-
     font-size: 10px;
-
     font-weight: 300;
-
     line-height: 1.7;
-
     text-align: center;
-
     background: transparent;
 }
 
@@ -509,41 +375,25 @@ a {
 
 .project-credits {
     width: min(700px, 75vw);
-
     margin-top: 13px;
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: center;
-
     gap: 4px 18px;
-
     color: rgba(232, 228, 220, 0.34);
-
     font-family: "DM Mono", monospace;
-
     font-size: 6px;
-
     font-weight: 400;
-
     line-height: 1.5;
-
     letter-spacing: 0.05em;
-
     text-transform: uppercase;
-
     text-align: center;
-
     background: transparent;
 }
 
 .project-credit {
     display: inline-flex;
-
     gap: 5px;
-
     align-items: baseline;
 }
 
@@ -558,26 +408,18 @@ a {
 
 .vimeo-wrap {
     position: relative;
-
     width: min(1100px, 82vw);
-
     aspect-ratio: 16 / 9;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     background: transparent;
 }
 
 .vimeo-wrap.vertical {
     width: auto;
-
     height: min(72vh, 760px);
-
     max-width: 42vw;
-
     aspect-ratio: 9 / 16;
 }
 
@@ -588,29 +430,20 @@ a {
 
 .vimeo-frame {
     position: relative;
-
     width: 100%;
     height: 100%;
-
     overflow: hidden;
-
     background: transparent;
 }
 
 .vimeo-frame .project-vimeo {
     position: absolute;
-
     inset: 0;
-
     display: block;
-
     width: 100%;
     height: 100%;
-
     border: 0;
-
     pointer-events: none;
-
     background: transparent;
 }
 
@@ -621,43 +454,26 @@ a {
 
 .vimeo-controls {
     position: absolute;
-
     left: 50%;
     bottom: 12px;
-
     z-index: 5;
-
     width: max-content;
-
     max-width: calc(100% - 24px);
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     padding: 8px 12px;
-
     background: transparent;
-
     opacity: 0;
-
     transform: translate(-50%, 5px);
-
     pointer-events: none;
-
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .vimeo-wrap.controls-visible .vimeo-controls,
 .vimeo-wrap:hover .vimeo-controls {
     opacity: 1;
-
     transform: translate(-50%, 0);
-
     pointer-events: auto;
 }
 
@@ -668,25 +484,15 @@ a {
 
 .vimeo-control {
     appearance: none;
-
     background: transparent;
-
     color: #e8e4dc;
-
     cursor: pointer;
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     line-height: 1;
-
     letter-spacing: 0.04em;
-
     white-space: nowrap;
-
     opacity: 0.78;
-
     transition: opacity 0.2s ease;
 }
 
@@ -701,17 +507,11 @@ a {
 
 .vimeo-time {
     flex-shrink: 0;
-
     color: rgba(232, 228, 220, 0.68);
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     line-height: 1;
-
     white-space: nowrap;
-
     background: transparent;
 }
 
@@ -722,80 +522,57 @@ a {
 
 .vimeo-progress-wrap {
     position: relative;
-
     width: 180px;
     height: 16px;
-
     display: flex;
-
     align-items: center;
-
     cursor: pointer;
-
     background: transparent;
 }
 
 .vimeo-progress {
     appearance: none;
-
     width: 100%;
     height: 12px;
-
     margin: 0;
     padding: 0;
-
     background: transparent;
-
     cursor: pointer;
 }
 
 .vimeo-progress::-webkit-slider-runnable-track {
     width: 100%;
-
     height: 1px;
-
     background: rgba(232, 228, 220, 0.35);
 }
 
 .vimeo-progress::-webkit-slider-thumb {
     appearance: none;
-
     width: 5px;
     height: 5px;
-
     margin-top: -2px;
-
     border-radius: 50%;
-
     background: #e8e4dc;
-
     cursor: pointer;
 }
 
 .vimeo-progress::-moz-range-track {
     width: 100%;
-
     height: 1px;
-
     background: rgba(232, 228, 220, 0.35);
 }
 
 .vimeo-progress::-moz-range-progress {
     height: 1px;
-
     background: #e8e4dc;
 }
 
 .vimeo-progress::-moz-range-thumb {
     width: 5px;
     height: 5px;
-
     border: 0;
-
     border-radius: 50%;
-
     background: #e8e4dc;
-
     cursor: pointer;
 }
 
@@ -806,15 +583,10 @@ a {
 
 .image-carousel {
     position: relative;
-
     width: min(1100px, 82vw);
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     background: transparent;
 }
 
@@ -825,14 +597,10 @@ a {
 
 .carousel-stage {
     position: relative;
-
     width: 100%;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     background: transparent;
 }
 
@@ -843,107 +611,44 @@ a {
 
 .carousel-image-wrap {
     position: relative;
-
     width: 100%;
     height: min(72vh, 760px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
-
     background: transparent;
-
     cursor: pointer;
-
     user-select: none;
     -webkit-user-select: none;
-
     touch-action: pan-y;
-}
-
-.carousel-image {
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: auto;
-    height: 100%;
-
-    max-width: 100%;
-
-    object-fit: contain;
-
-    opacity: 0;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.985);
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.5s ease;
-
-    background: transparent;
-}
-
-.carousel-image.active {
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
-    pointer-events: auto;
 }
 
 
 /* ============================================================
-   CAROUSEL IMAGES
+   CAROUSEL IMAGE
    ============================================================ */
 
 .carousel-image {
     position: absolute;
-
     top: 50%;
     left: 50%;
-
     display: block;
-
     width: auto;
     height: auto;
-
     max-width: 100%;
     max-height: 72vh;
-
     object-fit: contain;
-
     opacity: 0;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.985);
-
+    transform: translate(-50%, -50%) scale(0.985);
     pointer-events: none;
-
-    transition:
-        opacity 0.4s ease,
-        transform 0.5s ease;
-
+    transition: opacity 0.4s ease, transform 0.5s ease;
     background: transparent;
 }
 
 .carousel-image.active {
     opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
+    transform: translate(-50%, -50%) scale(1);
     pointer-events: auto;
 }
 
@@ -961,39 +666,27 @@ a {
    ============================================================ */
 
 @keyframes carouselSlideNext {
-
     from {
         opacity: 0;
-        transform:
-            translate(calc(-50% + 30px), -50%)
-            scale(0.985);
+        transform: translate(calc(-50% + 30px), -50%) scale(0.985);
     }
 
     to {
         opacity: 1;
-        transform:
-            translate(-50%, -50%)
-            scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
-
 }
 
 @keyframes carouselSlidePrev {
-
     from {
         opacity: 0;
-        transform:
-            translate(calc(-50% - 30px), -50%)
-            scale(0.985);
+        transform: translate(calc(-50% - 30px), -50%) scale(0.985);
     }
 
     to {
         opacity: 1;
-        transform:
-            translate(-50%, -50%)
-            scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
-
 }
 
 
@@ -1003,41 +696,23 @@ a {
 
 .carousel-arrow {
     position: absolute;
-
     top: 50%;
-
     z-index: 5;
-
     width: 44px;
     height: 44px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     color: rgba(232, 228, 220, 0.7);
-
     background: transparent;
-
     cursor: pointer;
-
     font-family: "Manrope", sans-serif;
-
     font-size: 20px;
-
     font-weight: 300;
-
     line-height: 1;
-
     opacity: 0;
-
     transform: translateY(-50%);
-
-    transition:
-        opacity 0.25s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+    transition: opacity 0.25s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .carousel-stage:hover .carousel-arrow {
@@ -1057,13 +732,11 @@ a {
 }
 
 .carousel-prev:hover {
-    transform:
-        translate(-3px, -50%);
+    transform: translate(-3px, -50%);
 }
 
 .carousel-next:hover {
-    transform:
-        translate(3px, -50%);
+    transform: translate(3px, -50%);
 }
 
 
@@ -1073,35 +746,24 @@ a {
 
 .carousel-meta {
     width: 100%;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     margin-top: 12px;
-
     background: transparent;
 }
 
 .carousel-counter {
     color: rgba(232, 228, 220, 0.42);
-
     font-family: "DM Mono", monospace;
-
     font-size: 7px;
-
     line-height: 1;
-
     letter-spacing: 0.06em;
-
     background: transparent;
 }
 
 .carousel-separator {
     margin: 0 4px;
-
     opacity: 0.4;
 }
 
@@ -1112,59 +774,42 @@ a {
 
 .project-text {
     width: min(850px, 72vw);
-
     text-align: center;
-
     background: transparent;
 }
 
 .project-text.editorial {
     font-family: "Cormorant Garamond", serif;
-
     font-size: clamp(28px, 4vw, 60px);
-
     line-height: 0.98;
-
     letter-spacing: -0.035em;
 }
 
 .project-text.serif {
     font-family: "Cormorant Garamond", serif;
-
     font-size: clamp(30px, 5vw, 76px);
-
     line-height: 0.92;
-
     letter-spacing: -0.04em;
 }
 
 .project-text.script {
     font-family: "Parisienne", cursive;
-
     font-size: clamp(42px, 7vw, 100px);
-
     line-height: 0.9;
 }
 
 .project-text.oversized {
     font-family: "Manrope", sans-serif;
-
     font-size: clamp(40px, 9vw, 150px);
-
     line-height: 0.82;
-
     font-weight: 300;
-
     letter-spacing: -0.08em;
 }
 
 .project-text.minimal {
     font-family: "DM Mono", monospace;
-
     font-size: clamp(16px, 2vw, 28px);
-
     line-height: 1.4;
-
     letter-spacing: -0.02em;
 }
 
@@ -1175,17 +820,11 @@ a {
 
 .text-project-description {
     width: min(620px, 70vw);
-
     margin: 40px auto 0;
-
     color: rgba(232, 228, 220, 0.52);
-
     font-family: "Manrope", sans-serif;
-
     font-size: 10px;
-
     line-height: 1.7;
-
     background: transparent;
 }
 
@@ -1196,23 +835,99 @@ a {
 
 .image-project {
     width: min(1000px, 82vw);
-
     display: flex;
-
     justify-content: center;
-
     background: transparent;
 }
 
 .image-project img {
     display: block;
-
     width: 100%;
     height: auto;
-
     object-fit: contain;
-
     background: transparent;
+}
+
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+
+.about-content {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.about-image {
+    position: absolute;
+    left: 5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(520px, 38vw);
+}
+
+.about-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.about-copy {
+    width: min(310px, 22vw);
+    position: absolute;
+    left: 58%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.about-copy .project-category {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.about-copy .project-title {
+    margin-top: 0;
+    margin-bottom: 34px;
+}
+
+.about-description {
+    max-width: 310px;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    color: #e8e4dc;
+}
+
+.about-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 38px;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+}
+
+.about-contact a {
+    color: #e8e4dc;
+    text-decoration: none;
+    width: fit-content;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s ease;
+}
+
+.about-contact a:hover {
+    opacity: 0.45;
 }
 
 
@@ -1227,343 +942,295 @@ a {
         right: 14px;
         top: 14px;
         bottom: auto;
-
         width: auto;
-
         height: auto;
-
         max-height: 45vh;
-
         background: transparent;
         background-color: transparent;
-
         border: 0;
         box-shadow: none;
-
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-
         pointer-events: none;
     }
 
-
     .archive-header {
         width: 90vw;
-
         max-width: none;
-
         background: transparent;
     }
-
 
     .brand {
         background: transparent;
     }
 
-
     .brand-main {
         font-size: clamp(30px, 9vw, 46px);
     }
-
 
     .brand-serif {
         font-size: clamp(38px, 12vw, 60px);
     }
 
-
     .archive-total {
         font-size: 7px;
     }
 
-
     .archive-list {
         width: 250px;
-
         max-height: 25vh;
-
         margin-top: 42px;
-
         padding-right: 8px;
-
         background: transparent;
     }
-
 
     .archive-item {
         padding: 3px 0;
-
         background: transparent;
     }
 
-
     .archive-number {
         flex-basis: 21px;
-
         font-size: 6px;
     }
-
 
     .archive-title {
         font-size: 9px;
     }
 
-
     .archive-category {
         font-size: 11px;
     }
 
+    .archive-about {
+        margin-top: 2rem;
+    }
 
     .archive-footer {
         width: 250px;
-
         padding-top: 14px;
         padding-bottom: 2px;
-
         font-size: 6px;
-
         background: transparent;
     }
-
-
-    /* --------------------------------------------------------
-       PROJECT
-       -------------------------------------------------------- */
 
     .project-stage {
         min-height: 100svh;
-
         padding: 30px 18px;
-
         align-items: center;
-
         background: transparent;
     }
-
 
     .project {
         min-height: 100svh;
-
         padding-top: 38vh;
-
         background: transparent;
     }
-
-
-    /* --------------------------------------------------------
-       PROJECT INFORMATION
-       -------------------------------------------------------- */
 
     .project-info {
         width: 90vw;
-
         margin-top: 20px;
-
         background: transparent;
     }
-
 
     .project-title {
         font-size: clamp(52px, 17vw, 88px);
-
         line-height: 0.8;
-
         letter-spacing: -0.05em;
     }
 
-
     .project-category {
         margin-top: 7px;
-
         font-size: 6px;
     }
-
 
     .project-description {
         width: 88vw;
-
         margin-top: 17px;
-
         font-size: 9px;
-
         line-height: 1.65;
     }
 
-
     .project-credits {
         width: 88vw;
-
         margin-top: 10px;
-
         font-size: 6px;
-
         gap: 3px 10px;
     }
 
-
-    /* --------------------------------------------------------
-       VIMEO
-       -------------------------------------------------------- */
-
     .vimeo-wrap {
         width: 100%;
-
         max-width: 100%;
-
         background: transparent;
     }
-
 
     .vimeo-wrap.vertical {
         width: auto;
-
         height: min(58vh, 620px);
-
         max-width: 70vw;
     }
 
-
     .vimeo-controls {
         bottom: 8px;
-
         gap: 8px;
-
         padding: 7px 8px;
-
         max-width: calc(100% - 16px);
-
         background: transparent;
     }
-
 
     .vimeo-progress-wrap {
         width: 90px;
     }
 
-
     .vimeo-time {
         font-size: 6px;
     }
-
 
     .vimeo-control {
         font-size: 6px;
     }
 
-
-    /* --------------------------------------------------------
-       CAROUSEL
-       -------------------------------------------------------- */
-
     .image-carousel {
         width: 100%;
-
         max-width: 100%;
     }
 
+    .carousel-image-wrap {
+        height: 58vh;
+        min-height: 0;
+    }
 
-.carousel-image-wrap {
-    height: 58vh;
-
-    min-height: 0;
-}
-
-.carousel-image {
-    height: 100%;
-    max-width: 100%;
-}
-
+    .carousel-image {
+        height: 100%;
+        max-width: 100%;
+    }
 
     .carousel-arrow {
         width: 34px;
         height: 34px;
-
         font-size: 17px;
-
         opacity: 0.7;
     }
-
 
     .carousel-prev {
         left: -4px;
     }
 
-
     .carousel-next {
         right: -4px;
     }
-
 
     .carousel-meta {
         margin-top: 9px;
     }
 
-
     .carousel-counter {
         font-size: 6px;
     }
-
-
-    /* --------------------------------------------------------
-       DESCRIPTIVE TEXT
-       -------------------------------------------------------- */
 
     .project-description {
         width: 90vw;
     }
 
-
     .project-credits {
         width: 90vw;
     }
-
-
-    /* --------------------------------------------------------
-       TEXT PROJECTS
-       -------------------------------------------------------- */
 
     .project-text {
         width: 90vw;
     }
 
-
     .project-text.editorial {
         font-size: clamp(26px, 9vw, 48px);
     }
-
 
     .project-text.serif {
         font-size: clamp(30px, 11vw, 58px);
     }
 
-
     .project-text.script {
         font-size: clamp(40px, 15vw, 78px);
     }
-
 
     .project-text.oversized {
         font-size: clamp(42px, 17vw, 85px);
     }
 
-
     .project-text.minimal {
         font-size: 15px;
     }
 
-
     .text-project-description {
         width: 85vw;
-
         margin-top: 28px;
-
         font-size: 9px;
     }
-
 
     .image-project {
         width: 90vw;
     }
 
+
+    /* ========================================================
+       ABOUT — MOBILE
+       ======================================================== */
+
+    .about-content {
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-image {
+        position: static;
+        transform: none;
+        width: 90vw;
+        margin-bottom: 42px;
+    }
+
+    .about-copy {
+        position: static;
+        transform: none;
+        width: 72vw;
+        margin-left: 18vw;
+        margin-right: auto;
+    }
+
+    .about-copy .project-category {
+        margin-bottom: 10px;
+    }
+
+    .about-copy .project-title {
+        margin-bottom: 28px;
+    }
+
+    .about-description {
+        max-width: 100%;
+        font-family: "Manrope", sans-serif;
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 1.75;
+        letter-spacing: -0.01em;
+    }
+
+    .about-contact {
+        margin-top: 30px;
+        font-family: "Manrope", sans-serif;
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 1.75;
+        letter-spacing: -0.01em;
+    }
+
+    .about-contact a {
+        font-family: "Manrope", sans-serif;
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 1.75;
+        letter-spacing: -0.01em;
+    }
 }
 
 
@@ -1577,120 +1244,91 @@ a {
         left: 10px;
         right: 10px;
         top: 10px;
-
         background: transparent;
     }
-
 
     .brand-main {
         font-size: 19px;
     }
 
-
     .brand-serif {
         font-size: 26px;
     }
-
 
     .archive-list {
         max-height: 28vh;
     }
 
-
     .archive-category {
         display: none;
     }
-
 
     .project {
         padding-top: 39vh;
     }
 
-
     .project-info {
         width: 92vw;
     }
-
 
     .project-title {
         font-size: clamp(52px, 16vw, 82px);
     }
 
-
     .project-description {
         width: 90vw;
-
         font-size: 9px;
     }
-
 
     .project-credits {
         width: 90vw;
     }
 
-
     .vimeo-wrap.vertical {
         height: 54vh;
-
         max-width: 72vw;
     }
 
-
     .vimeo-controls {
         gap: 6px;
-
         padding: 6px;
-
         background: transparent;
     }
-
 
     .vimeo-progress-wrap {
         width: 65px;
     }
 
-
     .vimeo-time {
         display: none;
     }
-
-
-    /* --------------------------------------------------------
-       SMALL CAROUSEL
-       -------------------------------------------------------- */
 
     .carousel-image-wrap {
         min-height: 38vh;
     }
 
-
     .carousel-image {
         max-height: 52vh;
     }
 
-
     .carousel-arrow {
         width: 30px;
         height: 30px;
-
         font-size: 15px;
     }
-
 
     .carousel-prev {
         left: -7px;
     }
 
-
     .carousel-next {
         right: -7px;
     }
-
 }
 
 
 /* ============================================================
-   ACCESSIBILITY
+   REDUCED MOTION
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1699,423 +1337,8 @@ a {
     *::before,
     *::after {
         scroll-behavior: auto !important;
-
         transition-duration: 0.01ms !important;
-
         animation-duration: 0.01ms !important;
-
         animation-iteration-count: 1 !important;
     }
-
 }
-
-/* ============================================================
-   ABOUT ARCHIVE ENTRY
-   ============================================================ */
-
-.archive-item.about-item {
-    margin-top: 42px;
-    padding-top: 18px;
-}
-
-.archive-item.about-item .archive-item-number {
-    display: none;
-}
-
-.archive-item.about-item .archive-item-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 24px;
-    font-style: italic;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-}
-
-.archive-item.about-item .archive-item-meta {
-    display: none;
-}
-
-
-/* ABOUT PROJECT */
-
-.project.about-project {
-    width: min(760px, 72vw);
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.about-project .project-category {
-    margin-bottom: 28px;
-}
-
-.about-project .project-title {
-    margin-bottom: 42px;
-}
-
-.about-project .project-description {
-    max-width: 620px;
-    font-size: clamp(18px, 2vw, 28px);
-    line-height: 1.35;
-}
-
-.archive-about {
-    margin-top: 2.5rem;
-}
-
-/* ============================================================
-   ABOUT ARCHIVE ENTRY
-   ============================================================ */
-
-.archive-about {
-    margin-top: 2.5rem;
-}
-
-
-/* ============================================================
-   ABOUT PROJECT
-   ============================================================ */
-
-.project.about-project {
-    width: 100%;
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 40px 0;
-}
-
-
-/* ABOUT IMAGE */
-
-.about-image {
-    width: min(620px, 58vw);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 32px;
-
-    background: transparent;
-}
-
-.about-image img {
-    display: block;
-
-    width: 100%;
-    height: auto;
-
-    max-height: 58vh;
-
-    object-fit: contain;
-
-    background: transparent;
-}
-
-
-/* ABOUT INFORMATION */
-
-.about-project .project-info {
-    width: min(900px, 78vw);
-
-    margin-top: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-
-    text-align: center;
-}
-
-
-/* ABOUT TITLE */
-
-.about-project .project-title {
-    margin: 0;
-
-    font-family: "Cormorant Garamond", serif;
-
-    font-size: clamp(56px, 8vw, 118px);
-
-    font-weight: 500;
-    font-style: italic;
-
-    line-height: 0.78;
-
-    letter-spacing: -0.055em;
-
-    text-align: center;
-}
-
-
-/* ABOUT CATEGORY */
-
-.about-project .project-category {
-    margin-top: 9px;
-
-    margin-bottom: 0;
-
-    font-family: "DM Mono", monospace;
-
-    font-size: 7px;
-
-    font-weight: 400;
-
-    line-height: 1.2;
-
-    letter-spacing: 0.08em;
-
-    text-transform: uppercase;
-
-    color: rgba(232, 228, 220, 0.48);
-}
-
-
-/* ABOUT DESCRIPTION */
-
-.about-project .project-description {
-    width: min(650px, 72vw);
-
-    margin-top: 22px;
-
-    max-width: none;
-
-    color: rgba(232, 228, 220, 0.62);
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 10px;
-
-    font-weight: 300;
-
-    line-height: 1.7;
-
-    text-align: center;
-}
-
-
-/* ============================================================
-   ABOUT — MOBILE
-   ============================================================ */
-
-@media (max-width: 700px) {
-
-    .project.about-project {
-        min-height: 100svh;
-
-        padding-top: 38vh;
-        padding-bottom: 40px;
-
-        justify-content: flex-start;
-    }
-
-
-    .about-image {
-        width: min(82vw, 420px);
-
-        margin-bottom: 24px;
-    }
-
-
-    .about-image img {
-        width: 100%;
-
-        max-height: 48vh;
-    }
-
-
-    .about-project .project-info {
-        width: 90vw;
-
-        margin-top: 0;
-    }
-
-
-    .about-project .project-title {
-        font-size: clamp(52px, 17vw, 88px);
-
-        line-height: 0.8;
-
-        letter-spacing: -0.05em;
-    }
-
-
-    .about-project .project-category {
-        margin-top: 7px;
-
-        font-size: 6px;
-    }
-
-
-    .about-project .project-description {
-        width: 88vw;
-
-        margin-top: 17px;
-
-        font-size: 9px;
-
-        line-height: 1.65;
-    }
-
-}
-
-
-/* ============================================================
-   ABOUT — VERY SMALL SCREENS
-   ============================================================ */
-
-@media (max-width: 420px) {
-
-    .project.about-project {
-        padding-top: 39vh;
-    }
-
-
-    .about-image {
-        width: 84vw;
-
-        margin-bottom: 20px;
-    }
-
-
-    .about-image img {
-        max-height: 42vh;
-    }
-
-
-    .about-project .project-info {
-        width: 92vw;
-    }
-
-
-    .about-project .project-title {
-        font-size: clamp(52px, 16vw, 82px);
-    }
-
-
-    .about-project .project-description {
-        width: 90vw;
-
-        font-size: 9px;
-    }
-
-}
-
-
-/* ============================================================
-   ABOUT PAGE
-   ============================================================ */
-
-.about-content {
-    width: min(1100px, 82vw);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.about-image {
-    width: min(760px, 72vw);
-    margin-bottom: 46px;
-}
-
-.about-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.about-copy {
-    width: min(900px, 78vw);
-}
-
-.about-copy .project-category {
-    margin-top: 0;
-}
-
-.about-copy .project-title {
-    margin-top: 8px;
-}
-
-.about-columns {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.65fr);
-    gap: 70px;
-    margin-top: 34px;
-    align-items: start;
-}
-
-.about-description {
-    max-width: 600px;
-    font-family: "Manrope", sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 1.7;
-    letter-spacing: -0.01em;
-}
-
-.about-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-family: "DM Mono", monospace;
-    font-size: 8px;
-    line-height: 1.5;
-}
-
-.about-contact a {
-    color: #e8e4dc;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-}
-
-.about-contact a:hover {
-    opacity: 0.5;
-}
-
-
-/* ============================================================
-   ABOUT — MOBILE
-   ============================================================ */
-
-@media (max-width: 700px) {
-
-    .about-content {
-        width: 90vw;
-    }
-
-    .about-image {
-        width: 90vw;
-        margin-bottom: 32px;
-    }
-
-    .about-copy {
-        width: 90vw;
-    }
-
-    .about-columns {
-        grid-template-columns: 1fr;
-        gap: 28px;
-        margin-top: 24px;
-    }
-
-    .about-description {
-        max-width: none;
-        font-size: 10px;
-        line-height: 1.7;
-    }
-
-    .about-contact {
-        gap: 7px;
-        font-size: 8px;
-    }
-
-}
-  
