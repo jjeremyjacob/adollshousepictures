@@ -308,7 +308,7 @@ const projects = [
         description: "Works & Process at the Guggenheim",
         credits: [
             {
-                role: "Direction",
+                role: "Film by",
                 names: [
                     "Jeremy Jacob"
                 ]
@@ -2493,53 +2493,36 @@ function selectProject(index) {
    Restore the last project after a page reload.
 */
 
-let initialProjectIndex = 0;
-
-try {
-
-    const savedProjectKey =
-        localStorage.getItem(
-            "adhp-last-project"
-        );
-
-    if (savedProjectKey) {
-
-        const savedIndex =
-            projects.findIndex(
-                project =>
-                    getProjectKey(project) ===
-                    savedProjectKey
-            );
-
-        if (savedIndex !== -1) {
-
-            initialProjectIndex =
-                savedIndex;
-
-        }
-
-    }
-
-} catch (error) {
-
-    console.warn(
-        "Could not restore last project.",
-        error
-    );
-
-}
-
-
 /*
-   Open the saved project.
-   If there isn't one, Nike remains the default.
+  ALWAYS OPEN ON ABOUT
 */
 
-currentProjectIndex =
-    initialProjectIndex;
-
-renderProject(
-    projects[currentProjectIndex]
+const aboutProjectIndex = projects.findIndex(
+    project => project.type === "about"
 );
 
-updateArchiveState();
+if (aboutProjectIndex !== -1) {
+
+    currentProjectIndex = aboutProjectIndex;
+
+    renderProject(
+        projects[currentProjectIndex]
+    );
+
+    updateArchiveState();
+
+} else {
+
+    console.warn(
+        "About project could not be found."
+    );
+
+    currentProjectIndex = 0;
+
+    renderProject(
+        projects[currentProjectIndex]
+    );
+
+    updateArchiveState();
+
+}
