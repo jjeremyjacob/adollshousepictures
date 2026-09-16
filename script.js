@@ -268,6 +268,56 @@ const projects = [
                 ]
             }
         ]
+    },{
+        title: "J.Crew / Madewell",
+        category: "Prop Styling",
+        type: "carousel",
+        images: [
+            "images/MDWL_1.jpg",
+            "images/MDWL_2.jpg",
+            "images/MDWL_3.jpg",
+            "images/MDWL_4.jpg",
+            "images/MDWL_5.jpg",
+            "images/MDWL_6.jpg",
+            "images/MDWL_7.jpg",
+            "images/MDWL_8.jpg",
+            "images/MDWL_9.jpg",
+           "images/MDWL_10.jpg",
+            "images/MDWL_11.jpg",
+            "images/MDWL_12.jpg",
+             "images/MDWL_13.jpg",
+            "images/MDWL_14.jpg",
+            "images/MDWL_15.jpg",
+            "images/MDWL_16.jpg",
+        "images/MDWL_17.jpg",
+        "images/MDWL_18.jpg",
+        "images/MDWL_19.jpg",
+        "images/MDWL_20.jpg",
+        "images/MDWL_21.jpg",
+        "images/MDWL_22.jpg",
+        "images/MDWL_23.jpg",
+        "images/MDWL_24.jpg",
+        "images/MDWL_25.jpg",
+        "images/MDWL_26.jpg",
+        "images/MDWL_27.jpg",
+        "images/MDWL_28.jpg",
+        "images/MDWL_29.jpg",
+        "images/MDWL_30.jpg",
+        "images/MDWL_31.jpg",
+        "images/MDWL_32.jpg",
+        "images/MDWL_33.jpg",
+        "images/MDWL_34.jpg"
+       ],
+        description: "",
+        credits: [
+            {
+                role: "Prop Styling & Set Design",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+        
+        ]
     },
 
     {
@@ -1810,25 +1860,28 @@ function initializeCarousel() {
     }
 
 
-    /* --------------------------------------------------------
-       CLICK IMAGE
-       -------------------------------------------------------- */
+/* --------------------------------------------------------
+   CLICK LEFT / RIGHT HALF OF IMAGE
+   -------------------------------------------------------- */
 
-    images.forEach(image => {
+images.forEach(image => {
 
-        image.addEventListener(
-            "click",
-            event => {
+    image.addEventListener("click", event => {
 
-                event.stopPropagation();
+        event.stopPropagation();
 
-                nextImage();
+        const rect = image.getBoundingClientRect();
+        const clickX = event.clientX - rect.left;
 
-            }
-        );
+        if (clickX < rect.width / 2) {
+            previousImage();
+        } else {
+            nextImage();
+        }
 
     });
 
+});
 
     /* --------------------------------------------------------
        TOUCH / SWIPE
