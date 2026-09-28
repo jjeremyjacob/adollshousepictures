@@ -27,7 +27,7 @@ const projects = [
             }
         ]
     },
-    
+
     {
         title: "Nike",
         category: "Social Campaign",
@@ -37,9 +37,7 @@ const projects = [
         description: "",
         credits: []
     },
-    
 
-    
     {
         title: "Storm King - Girl Group",
         category: "Dance Film Highlights",
@@ -88,8 +86,6 @@ const projects = [
         ]
     },
 
-
-
     {
         title: "Talbott & Arding",
         category: "Social Film",
@@ -125,14 +121,15 @@ const projects = [
         vimeo: "1135735488",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-        credits: [{
+        credits: [
+            {
                 Featuring: "Sticky Toffee",
                 names: [
                     "Sticky Toffee"
                 ]
-            }]
+            }
+        ]
     },
-
 
     {
         title: "Munner Farm",
@@ -163,8 +160,8 @@ const projects = [
             }
         ]
     },
-    
-          {
+
+    {
         title: "Storm King - Growth",
         category: "Performance Film Highlights",
         type: "vimeo",
@@ -192,6 +189,17 @@ const projects = [
         credits: []
     },
 
+        {
+        title: "Bard College",
+        category: "It's Different",
+        type: "vimeo",
+        vimeo: "1229121057",
+            hash: "3f29c53761",
+        format: "wide",
+        description: "",
+        credits: []
+    },
+
     {
         title: "Lucinda Childs",
         category: "Campaign",
@@ -209,6 +217,19 @@ const projects = [
         vimeo: "1189497026",
         format: "wide",
         description: "Fisher Center at Bard",
+        credits: []
+    },
+
+    /* ========================================================
+       FISHER CENTER EDITORIAL PAGE
+       ======================================================== */
+
+    {
+        title: "Fisher Center",
+        category: "Client Profile",
+        type: "page",
+        page: "fishercenter.html",
+        description: "",
         credits: []
     },
 
@@ -268,7 +289,9 @@ const projects = [
                 ]
             }
         ]
-    },{
+    },
+
+    {
         title: "J.Crew / Madewell",
         category: "Prop Styling",
         type: "carousel",
@@ -282,32 +305,32 @@ const projects = [
             "images/MDWL_7.jpg",
             "images/MDWL_8.jpg",
             "images/MDWL_9.jpg",
-           "images/MDWL_10.jpg",
+            "images/MDWL_10.jpg",
             "images/MDWL_11.jpg",
             "images/MDWL_12.jpg",
-             "images/MDWL_13.jpg",
+            "images/MDWL_13.jpg",
             "images/MDWL_14.jpg",
             "images/MDWL_15.jpg",
             "images/MDWL_16.jpg",
-        "images/MDWL_17.jpg",
-        "images/MDWL_18.jpg",
-        "images/MDWL_19.jpg",
-        "images/MDWL_20.jpg",
-        "images/MDWL_21.jpg",
-        "images/MDWL_22.jpg",
-        "images/MDWL_23.jpg",
-        "images/MDWL_24.jpg",
-        "images/MDWL_25.jpg",
-        "images/MDWL_26.jpg",
-        "images/MDWL_27.jpg",
-        "images/MDWL_28.jpg",
-        "images/MDWL_29.jpg",
-        "images/MDWL_30.jpg",
-        "images/MDWL_31.jpg",
-        "images/MDWL_32.jpg",
-        "images/MDWL_33.jpg",
-        "images/MDWL_34.jpg"
-       ],
+            "images/MDWL_17.jpg",
+            "images/MDWL_18.jpg",
+            "images/MDWL_19.jpg",
+            "images/MDWL_20.jpg",
+            "images/MDWL_21.jpg",
+            "images/MDWL_22.jpg",
+            "images/MDWL_23.jpg",
+            "images/MDWL_24.jpg",
+            "images/MDWL_25.jpg",
+            "images/MDWL_26.jpg",
+            "images/MDWL_27.jpg",
+            "images/MDWL_28.jpg",
+            "images/MDWL_29.jpg",
+            "images/MDWL_30.jpg",
+            "images/MDWL_31.jpg",
+            "images/MDWL_32.jpg",
+            "images/MDWL_33.jpg",
+            "images/MDWL_34.jpg"
+        ],
         description: "",
         credits: [
             {
@@ -315,8 +338,7 @@ const projects = [
                 names: [
                     "Jeremy Jacob"
                 ]
-            },
-        
+            }
         ]
     },
 
@@ -372,8 +394,6 @@ const projects = [
         ]
     },
 
-
-
     {
         title: "Gary Graham",
         category: "Socail Campaign - Dressing",
@@ -391,12 +411,14 @@ const projects = [
         vimeo: "1110256553",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-         credits: [{
+        credits: [
+            {
                 Featuring: "Fish Pie",
                 names: [
                     "Fish Pie"
                 ]
-            }]
+            }
+        ]
     },
 
     {
@@ -436,8 +458,8 @@ const projects = [
         format: "vertical",
         description: "Cole Haan - His & Hers",
         credits: []
-    }, 
-    
+    },
+
     {
         title: "Stissing House",
         category: "Social Campaign",
@@ -445,12 +467,14 @@ const projects = [
         vimeo: "1135779851",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-        credits: [{
+        credits: [
+            {
                 Featuring: "Duck",
                 names: [
                     "Duck"
                 ]
-            }]
+            }
+        ]
     },
 
     {
@@ -461,7 +485,8 @@ const projects = [
         format: "wide",
         description: "Hudson Hall",
         credits: []
-    },  
+    },
+
     {
         title: "Stissing House",
         category: "Social Campaign",
@@ -469,12 +494,14 @@ const projects = [
         vimeo: "1119623841",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-         credits: [{
+        credits: [
+            {
                 Featuring: "Cobbler",
                 names: [
                     "Cobbler"
                 ]
-            }]
+            }
+        ]
     },
 
     {
@@ -486,6 +513,7 @@ const projects = [
         description: "Chris Garneau",
         credits: []
     },
+
     {
         title: "Little Lad: ANNA",
         category: "Film",
@@ -514,6 +542,7 @@ const projects = [
             }
         ]
     },
+
     {
         title: "Pastoral",
         category: "Promotional Campaign",
@@ -523,7 +552,8 @@ const projects = [
         description: "Fisher Center at Bard",
         credits: []
     },
-        {
+
+    {
         title: "Gary Graham",
         category: "Socail Campaign - Corsage",
         type: "vimeo",
@@ -543,7 +573,7 @@ const projects = [
         credits: []
     },
 
-        {
+    {
         title: "Illinoise",
         category: "Promotional Campaign",
         type: "vimeo",
@@ -560,12 +590,14 @@ const projects = [
         vimeo: "1226973263",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
-                credits: [{
+        credits: [
+            {
                 Featuring: "Squash",
                 names: [
                     "Squash"
                 ]
-            }]
+            }
+        ]
     },
 
     {
@@ -573,13 +605,13 @@ const projects = [
         category: "The Studio",
         type: "about",
         image: "images/about.jpg",
-    description: `A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language.
+        description: `A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language.
 
 Working with brands, artists, and cultural organizations, the studio develops commercial, editorial, and artist-driven projects across moving image and still photography. From campaigns and branded content to experimental films and visual projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking with a strong point of view.
 
 Based in the Hudson Valley and working in New York City and beyond, the studio moves between culture, fashion, performance, and commerce, exploring the space where commercial craft and artistic experimentation meet.`,
-credits: []
-},
+        credits: []
+    }
 
 ];
 
@@ -589,6 +621,7 @@ credits: []
    ============================================================ */
 
 let currentProjectIndex = 0;
+
 let currentVimeoPlayer = null;
 let currentVimeoEvents = [];
 let controlTimeout = null;
@@ -596,6 +629,10 @@ let controlTimeout = null;
 let currentCarouselIndex = 0;
 let carouselTouchStartX = 0;
 let carouselTouchStartY = 0;
+
+let fisherCleanup = null;
+
+let renderRequestId = 0;
 
 
 /* ============================================================
@@ -656,14 +693,42 @@ function formatTime(seconds) {
 
 
 /* ============================================================
+   FISHER CENTER CLEANUP
+   ============================================================ */
+
+function destroyFisherCenter() {
+
+    if (fisherCleanup) {
+
+        try {
+            fisherCleanup();
+        } catch (error) {
+            console.warn(
+                "Could not clean up Fisher Center.",
+                error
+            );
+        }
+
+        fisherCleanup = null;
+
+    }
+
+}
+
+
+/* ============================================================
    VIMEO CLEANUP
    ============================================================ */
 
 function destroyCurrentVimeo() {
 
+    destroyFisherCenter();
+
     if (controlTimeout) {
+
         clearTimeout(controlTimeout);
         controlTimeout = null;
+
     }
 
     if (!currentVimeoPlayer) {
@@ -854,23 +919,30 @@ function renderCredits(project) {
     return `
         <div class="project-credits">
 
-            ${project.credits.map(credit => `
+            ${project.credits.map(credit => {
 
-                <span class="project-credit">
+                const role =
+                    credit.role ||
+                    Object.keys(credit)[0] ||
+                    "";
 
-                    <span class="credit-role">
-                        ${escapeHTML(credit.role)}
+                return `
+                    <span class="project-credit">
+
+                        <span class="credit-role">
+                            ${escapeHTML(role)}
+                        </span>
+
+                        <span class="credit-names">
+                            ${(credit.names || [])
+                                .map(name => escapeHTML(name))
+                                .join(" / ")}
+                        </span>
+
                     </span>
+                `;
 
-                    <span class="credit-names">
-                        ${credit.names
-                            .map(name => escapeHTML(name))
-                            .join(" / ")}
-                    </span>
-
-                </span>
-
-            `).join("")}
+            }).join("")}
 
         </div>
     `;
@@ -939,14 +1011,14 @@ function renderVimeoMarkup(project) {
 
             <div class="vimeo-frame">
 
-                <iframe
-                    class="project-vimeo"
-                    src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}?controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                    loading="eager"
-                    title="${escapeHTML(project.title)}"
-                ></iframe>
+<iframe
+    class="project-vimeo"
+    src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}${project.hash ? `?h=${encodeURIComponent(project.hash)}&` : "?"}controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen
+    loading="eager"
+    title="${escapeHTML(project.title)}"
+></iframe>
 
                 <div class="vimeo-controls">
 
@@ -1017,7 +1089,9 @@ function showControls(wrapper) {
     );
 
     if (controlTimeout) {
+
         clearTimeout(controlTimeout);
+
     }
 
     controlTimeout =
@@ -1860,28 +1934,42 @@ function initializeCarousel() {
     }
 
 
-/* --------------------------------------------------------
-   CLICK LEFT / RIGHT HALF OF IMAGE
-   -------------------------------------------------------- */
+    /* --------------------------------------------------------
+       CLICK LEFT / RIGHT HALF OF IMAGE
+       -------------------------------------------------------- */
 
-images.forEach(image => {
+    images.forEach(image => {
 
-    image.addEventListener("click", event => {
+        image.addEventListener(
+            "click",
+            event => {
 
-        event.stopPropagation();
+                event.stopPropagation();
 
-        const rect = image.getBoundingClientRect();
-        const clickX = event.clientX - rect.left;
+                const rect =
+                    image.getBoundingClientRect();
 
-        if (clickX < rect.width / 2) {
-            previousImage();
-        } else {
-            nextImage();
-        }
+                const clickX =
+                    event.clientX - rect.left;
+
+                if (
+                    clickX <
+                    rect.width / 2
+                ) {
+
+                    previousImage();
+
+                } else {
+
+                    nextImage();
+
+                }
+
+            }
+        );
 
     });
 
-});
 
     /* --------------------------------------------------------
        TOUCH / SWIPE
@@ -2071,12 +2159,404 @@ function renderAbout(project) {
 }
 
 
+/* ============================================================
+   LOAD EXTERNAL PROJECT PAGE
+   ============================================================ */
+
+/*
+   fishercenter.html is NOT navigated to.
+
+   Instead, its body is fetched and inserted into the
+   existing #project container in index.html.
+
+   This allows Fisher Center to behave like another project
+   in the archive while keeping its own HTML file.
+*/
+
+async function renderExternalPage(
+    project,
+    requestId
+) {
+
+    if (!project.page) {
+
+        projectElement.innerHTML = `
+            <div class="project-error">
+                Page not specified.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch(project.page, {
+                cache: "no-cache"
+            });
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+
+        }
+
+        const html =
+            await response.text();
+
+
+        /*
+           If the user clicked another project while
+           the Fisher page was loading, do nothing.
+        */
+
+        if (
+            requestId !== renderRequestId
+        ) {
+            return;
+        }
+
+
+        const parser =
+            new DOMParser();
+
+        const parsedDocument =
+            parser.parseFromString(
+                html,
+                "text/html"
+            );
+
+        const body =
+            parsedDocument.body;
+
+        if (!body) {
+
+            throw new Error(
+                "Could not find page body."
+            );
+
+        }
+
+
+        /* ----------------------------------------------------
+           INSERT PAGE CONTENT
+           ---------------------------------------------------- */
+
+        projectElement.innerHTML =
+            body.innerHTML;
+
+
+        /* ----------------------------------------------------
+           COPY PAGE STYLES
+           ---------------------------------------------------- */
+
+        const styles =
+            parsedDocument.querySelectorAll(
+                "style"
+            );
+
+        styles.forEach(
+            (sourceStyle, index) => {
+
+                const styleId =
+                    `external-style-${project.title
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, "-")}-${index}`;
+
+                let existingStyle =
+                    document.getElementById(
+                        styleId
+                    );
+
+                if (!existingStyle) {
+
+                    existingStyle =
+                        document.createElement(
+                            "style"
+                        );
+
+                    existingStyle.id =
+                        styleId;
+
+                    document.head.appendChild(
+                        existingStyle
+                    );
+
+                }
+
+                existingStyle.textContent =
+                    sourceStyle.textContent;
+
+            }
+        );
+
+
+        /* ----------------------------------------------------
+           INITIALIZE FISHER CENTER
+           ---------------------------------------------------- */
+
+        if (
+            project.title === "Fisher Center"
+        ) {
+
+            initializeFisherCenter();
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Could not load external project page.",
+            error
+        );
+
+        projectElement.innerHTML = `
+            <div class="project-error">
+                <h1>${escapeHTML(project.title)}</h1>
+                <p>
+                    This project could not be loaded.
+                </p>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* ============================================================
+   FISHER CENTER INITIALIZATION
+   ============================================================ */
+
+function initializeFisherCenter() {
+
+    destroyFisherCenter();
+
+
+    const page =
+        projectElement.querySelector(
+            ".fisher-page"
+        );
+
+    if (!page) {
+
+        console.warn(
+            "Fisher Center page root .fisher-page was not found."
+        );
+
+        return;
+
+    }
+
+
+    const gallery =
+        page.querySelector(
+            "#fisherGallery"
+        );
+
+    const galleryInner =
+        page.querySelector(
+            ".fisher-gallery-inner"
+        );
+
+    const galleryImages =
+        page.querySelectorAll(
+            ".fisher-gallery-image"
+        );
+
+    const galleryCounter =
+        page.querySelector(
+            ".fisher-gallery-counter"
+        );
+
+
+    if (
+        gallery &&
+        galleryInner &&
+        galleryImages.length
+    ) {
+
+        let ticking = false;
+
+
+        const updateGallery =
+            () => {
+
+                ticking = false;
+
+                const rect =
+                    gallery.getBoundingClientRect();
+
+                const scrollDistance =
+                    gallery.offsetHeight -
+                    window.innerHeight;
+
+                if (
+                    scrollDistance <= 0
+                ) {
+
+                    galleryImages.forEach(
+                        (image, index) => {
+
+                            image.classList.toggle(
+                                "active",
+                                index === 0
+                            );
+
+                        }
+                    );
+
+                    if (galleryCounter) {
+
+                        galleryCounter.textContent =
+                            `01 / ${formatNumber(galleryImages.length)}`;
+
+                    }
+
+                    return;
+
+                }
+
+
+                /*
+                   The gallery begins when its top reaches
+                   the top of the viewport.
+
+                   Progress then moves from 0 → 1 while the
+                   sticky section remains in place.
+                */
+
+                const progress =
+                    Math.max(
+                        0,
+                        Math.min(
+                            1,
+                            -rect.top /
+                            scrollDistance
+                        )
+                    );
+
+
+                const imageCount =
+                    galleryImages.length;
+
+                const imagePosition =
+                    progress *
+                    (imageCount - 1);
+
+                const activeIndex =
+                    Math.round(
+                        imagePosition
+                    );
+
+
+                galleryImages.forEach(
+                    (image, index) => {
+
+                        image.classList.toggle(
+                            "active",
+                            index === activeIndex
+                        );
+
+                    }
+                );
+
+
+                if (galleryCounter) {
+
+                    galleryCounter.textContent =
+                        `${formatNumber(activeIndex + 1)} / ${formatNumber(imageCount)}`;
+
+                }
+
+            };
+
+
+        const requestGalleryUpdate =
+            () => {
+
+                if (ticking) {
+                    return;
+                }
+
+                ticking = true;
+
+                requestAnimationFrame(
+                    updateGallery
+                );
+
+            };
+
+
+        window.addEventListener(
+            "scroll",
+            requestGalleryUpdate,
+            {
+                passive: true
+            }
+        );
+
+        window.addEventListener(
+            "resize",
+            requestGalleryUpdate
+        );
+
+
+        requestGalleryUpdate();
+
+
+        /*
+           Store cleanup function so leaving Fisher Center
+           removes these listeners.
+        */
+
+        fisherCleanup =
+            () => {
+
+                window.removeEventListener(
+                    "scroll",
+                    requestGalleryUpdate
+                );
+
+                window.removeEventListener(
+                    "resize",
+                    requestGalleryUpdate
+                );
+
+            };
+
+    }
+
+
+    /* --------------------------------------------------------
+       FISHER CENTER VIDEOS
+       -------------------------------------------------------- */
+
+    /*
+       Vimeo videos inside fishercenter.html use their own
+       iframe embeds.
+
+       They intentionally do not use the main archive's
+       custom Vimeo controls.
+    */
+
+}
+
 
 /* ============================================================
    RENDER PROJECT
    ============================================================ */
 
-function renderProject(project) {
+async function renderProject(
+    project
+) {
+
+    const requestId =
+        ++renderRequestId;
 
     destroyCurrentVimeo();
 
@@ -2090,6 +2570,22 @@ function renderProject(project) {
     if (project.type === "about") {
 
         renderAbout(project);
+
+        return;
+
+    }
+
+
+    /* --------------------------------------------------------
+       EXTERNAL PAGE
+       -------------------------------------------------------- */
+
+    if (project.type === "page") {
+
+        await renderExternalPage(
+            project,
+            requestId
+        );
 
         return;
 
@@ -2181,11 +2677,61 @@ function renderProject(project) {
        INITIALIZE VIMEO
        -------------------------------------------------------- */
 
-    if (project.type === "vimeo") {
+    if (
+        project.type === "vimeo" &&
+        requestId === renderRequestId
+    ) {
 
         initializeVimeo();
 
     }
+
+}
+
+
+/* ============================================================
+   PROJECT KEY
+   ============================================================ */
+
+function getProjectKey(project) {
+
+    if (
+        project.type === "vimeo" &&
+        project.vimeo
+    ) {
+
+        return `vimeo:${project.vimeo}`;
+
+    }
+
+    if (
+        project.type === "carousel" &&
+        project.images?.length
+    ) {
+
+        return `carousel:${project.images[0]}`;
+
+    }
+
+    if (
+        project.type === "image" &&
+        project.image
+    ) {
+
+        return `image:${project.image}`;
+
+    }
+
+    if (
+        project.type === "page" &&
+        project.page
+    ) {
+
+        return `page:${project.page}`;
+
+    }
+
+    return `${project.type}:${project.title}`;
 
 }
 
@@ -2210,12 +2756,14 @@ function selectProject(index) {
         return;
     }
 
+
     projectElement.classList.add(
         "is-changing"
     );
 
+
     setTimeout(
-        () => {
+        async () => {
 
             currentProjectIndex =
                 index;
@@ -2223,9 +2771,43 @@ function selectProject(index) {
             const project =
                 projects[index];
 
-            renderProject(project);
+
+            /* ------------------------------------------------
+               REMEMBER PROJECT
+               ------------------------------------------------ */
+
+            try {
+
+                localStorage.setItem(
+                    "adhp-last-project",
+                    getProjectKey(project)
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Could not save last project.",
+                    error
+                );
+
+            }
+
+
+            /* ------------------------------------------------
+               RENDER
+               ------------------------------------------------ */
+
+            await renderProject(
+                project
+            );
+
 
             updateArchiveState();
+
+
+            /* ------------------------------------------------
+               KEEP ACTIVE ARCHIVE ITEM VISIBLE
+               ------------------------------------------------ */
 
             const activeItem =
                 archiveList.querySelector(
@@ -2240,6 +2822,11 @@ function selectProject(index) {
                 });
 
             }
+
+
+            /* ------------------------------------------------
+               END TRANSITION
+               ------------------------------------------------ */
 
             requestAnimationFrame(
                 () => {
@@ -2428,135 +3015,21 @@ document.addEventListener(
 
 buildArchive();
 
-/*
-   Remember the last project that was open.
 
-   We use the Vimeo ID for video projects, the image path
-   for image projects, and the title/type combination for
-   other project types. This means the saved project will
-   continue to work even if the archive order changes.
-*/
+/* ============================================================
+   ALWAYS OPEN ON ABOUT
+   ============================================================ */
 
-function getProjectKey(project) {
-
-    if (project.type === "vimeo" && project.vimeo) {
-        return `vimeo:${project.vimeo}`;
-    }
-
-    if (project.type === "carousel" && project.images?.length) {
-        return `carousel:${project.images[0]}`;
-    }
-
-    if (project.type === "image" && project.image) {
-        return `image:${project.image}`;
-    }
-
-    return `${project.type}:${project.title}`;
-}
-
-
-/*
-   Select a project and remember it.
-*/
-
-function selectProject(index) {
-
-    if (
-        index < 0 ||
-        index >= projects.length
-    ) {
-        return;
-    }
-
-    if (
-        index === currentProjectIndex &&
-        projectElement.innerHTML
-    ) {
-        return;
-    }
-
-    projectElement.classList.add(
-        "is-changing"
+const aboutProjectIndex =
+    projects.findIndex(
+        project => project.type === "about"
     );
 
-    setTimeout(
-        () => {
-
-            currentProjectIndex =
-                index;
-
-            const project =
-                projects[index];
-
-            /*
-               Save the project that was selected.
-            */
-            try {
-
-                localStorage.setItem(
-                    "adhp-last-project",
-                    getProjectKey(project)
-                );
-
-            } catch (error) {
-
-                console.warn(
-                    "Could not save last project.",
-                    error
-                );
-
-            }
-
-            renderProject(project);
-
-            updateArchiveState();
-
-            const activeItem =
-                archiveList.querySelector(
-                    `.archive-item[data-index="${index}"]`
-                );
-
-            if (activeItem) {
-
-                activeItem.scrollIntoView({
-                    block: "nearest",
-                    behavior: "smooth"
-                });
-
-            }
-
-            requestAnimationFrame(
-                () => {
-
-                    projectElement.classList.remove(
-                        "is-changing"
-                    );
-
-                }
-            );
-
-        },
-        180
-    );
-
-}
-
-
-/*
-   Restore the last project after a page reload.
-*/
-
-/*
-  ALWAYS OPEN ON ABOUT
-*/
-
-const aboutProjectIndex = projects.findIndex(
-    project => project.type === "about"
-);
 
 if (aboutProjectIndex !== -1) {
 
-    currentProjectIndex = aboutProjectIndex;
+    currentProjectIndex =
+        aboutProjectIndex;
 
     renderProject(
         projects[currentProjectIndex]
