@@ -241,7 +241,7 @@ const projects = [
 
     /* ========================================================
        FISHER CENTER EDITORIAL PAGE
-       ======================================================== */
+       ======================================================== 
 
     {
         title: "Fisher Center",
@@ -250,7 +250,7 @@ const projects = [
         page: "fishercenter.html",
         description: "",
         credits: []
-    },
+    },*/
 
     {
         title: "David",
