@@ -433,7 +433,7 @@ a {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: transparent;
+    background: #000;
 }
 
 .vimeo-frame .project-vimeo {
@@ -445,7 +445,7 @@ a {
     height: 100%;
     border: 0;
     pointer-events: none;
-    background: transparent;
+    background: #000;
 }
 
 
@@ -1062,7 +1062,7 @@ a {
     .vimeo-wrap {
         width: 100%;
         max-width: 100%;
-        background: transparent;
+        background: #000;
     }
 
     .vimeo-wrap.vertical {
@@ -1374,3 +1374,24 @@ a {
     }
 }
 
+/* ============================================================
+   EMBEDDED HTML PROJECTS
+   ============================================================ */
+
+.project-html-page {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    border: 0;
+    display: block;
+    background: #090909;
+}
+
+@media (max-width: 700px) {
+
+    .project-html-page {
+        height: 100svh;
+        min-height: 100svh;
+    }
+
+}
