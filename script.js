@@ -185,8 +185,8 @@ const projects = [
         type: "vimeo",
         vimeo: "1119062430",
         format: "wide",
-        description: "",
-        credits: []
+        description: "It's Different Campaign for Bard Admissions",
+        credits: [       ]
     },
 
         {
@@ -197,7 +197,26 @@ const projects = [
             hash: "3f29c53761",
         format: "wide",
         description: "",
-        credits: []
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "Written by",
+                names: [
+                    "Savannah Lucas Sanchez"
+                ]
+            },
+            {
+                role: "Sound Recordist",
+                names: [
+                    "Joao De La Cruz"
+                ]
+            }
+        ]
     },
 
     {
