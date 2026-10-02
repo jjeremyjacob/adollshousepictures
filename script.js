@@ -185,8 +185,14 @@ const projects = [
         type: "vimeo",
         vimeo: "1119062430",
         format: "wide",
-        description: "It's Different Campaign for Bard Admissions",
-        credits: [       ]
+        description: "Profile on Cabinet Maker Ross Brown of Romber Works in Hudson, New York.",
+        credits: [           {
+                role: "Creative Direction & Creator",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }       ]
     },
 
         {
@@ -283,7 +289,7 @@ const projects = [
 
     {
         title: "I was waiting for the echo of a better day",
-        category: "Film Trailer",
+        category: "Dance Film Trailer",
         type: "vimeo",
         vimeo: "657102461",
         format: "wide",
@@ -363,7 +369,7 @@ const projects = [
 
     {
         title: "Dear Merce",
-        category: "Film",
+        category: "Dance Film",
         type: "vimeo",
         vimeo: "1226947730",
         format: "wide",
@@ -535,7 +541,7 @@ const projects = [
 
     {
         title: "Little Lad: ANNA",
-        category: "Film",
+        category: "Short Film",
         type: "vimeo",
         vimeo: "1227003478",
         format: "wide",
