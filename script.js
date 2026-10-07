@@ -86,6 +86,8 @@ const projects = [
         ]
     },
 
+
+
     {
         title: "Talbott & Arding",
         category: "Social Film",
@@ -99,6 +101,34 @@ const projects = [
                 names: [
                     "Jeremy Jacob",
                     "A Doll's House Pictures"
+                ]
+            }
+        ]
+    },
+    
+          {
+        title: "MOPS",
+        category: "Branding & Web Design",
+        type: "carousel",
+        images: [
+            "images/MOPS1.jpg",
+            "images/MOPS2.jpg",
+            "images/MOPS3.jpg",
+            "images/MOPS4.jpg",
+            "images/MOPS5.jpg"
+        ],
+        description: "",
+        credits: [
+            {
+                role: "Photography",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
+            {
+                role: "For",
+                names: [
+                    "M"
                 ]
             }
         ]
