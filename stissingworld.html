@@ -6,31 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#e9e6de">
 
-  <title>Stissing House Craft Feast</title>
+  <title>Stissing World</title>
 
-<meta name="description" content="Stissing House Craft Feast — celebrating food, craft, and the Stissing House experience.">
+  <meta name="description" content="Stissing House Craft Feast — celebrating food, craft, and the Stissing House experience.">
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Home Pictures">
-<meta property="og:title" content="Stissing House Craft Feast">
-<meta property="og:description" content="Films celebrating food, craft, and the Stissing House experience.">
-<meta property="og:url" content="https://www.adollshousepictures.com/stissingworld">
-<meta property="og:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Home Pictures">
+  <meta property="og:title" content="Stissing House Craft Feast">
+  <meta property="og:description" content="Films celebrating food, craft, and the Stissing House experience.">
+  <meta property="og:url" content="https://www.adollshousepictures.com/stissingworld">
+  <meta property="og:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stissing House Craft Feast">
-<meta name="twitter:description" content="Films celebrating food, craft, and the Stissing House experience.">
-<meta name="twitter:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
-
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stissing House Craft Feast">
+  <meta name="twitter:description" content="Films celebrating food, craft, and the Stissing House experience.">
+  <meta name="twitter:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
 
   <link rel="preconnect" href="https://player.vimeo.com">
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -59,6 +55,11 @@
       font-family: Manrope, Arial, sans-serif;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .site-header {
       height: 120px;
       min-height: 120px;
@@ -79,11 +80,6 @@
       box-shadow: none;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     .mono,
     .eyebrow,
     .meta,
@@ -92,6 +88,48 @@
       font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+    }
+
+    /* World navigation */
+
+    .world-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: clamp(24px, 5vw, 72px);
+      padding: 0 var(--gutter) 32px;
+      color: var(--muted);
+    }
+
+    .world-nav a {
+      position: relative;
+      padding: 8px 0;
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 180ms ease;
+    }
+
+    .world-nav a:hover,
+    .world-nav a[aria-current="page"] {
+      color: #151515;
+    }
+
+    .world-nav a[aria-current="page"]::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .world-nav a:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 5px;
     }
 
     main {
@@ -388,6 +426,16 @@
         min-height: 100px;
       }
 
+      .world-nav {
+        gap: clamp(18px, 5vw, 30px);
+        padding-bottom: 26px;
+      }
+
+      .world-nav a {
+        font-size: 9px;
+        letter-spacing: 0.09em;
+      }
+
       footer {
         min-height: 180px;
         flex-basis: 180px;
@@ -460,6 +508,15 @@
     }
 
     @media (max-width: 420px) {
+      .world-nav {
+        gap: 16px;
+      }
+
+      .world-nav a {
+        font-size: 8px;
+        letter-spacing: 0.07em;
+      }
+
       .vertical-section {
         gap: 7px;
       }
@@ -489,6 +546,7 @@
       .player-ui {
         opacity: 0;
       }
+
       .frame:focus-within .player-ui {
         opacity: 1;
       }
@@ -509,76 +567,131 @@
 <body>
   <header class="site-header" aria-label="Home Pictures">
     <a href="#films" aria-label="Home Pictures — return to videos">
-      <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
+      <a href="stissinghouse.html"><img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto"></a>
     </a>
   </header>
 
+  <nav class="world-nav" aria-label="Stissing House films">
+    <a href="stissinghouse/craftfeast.html">Craft Feast</a>
+    <a href="stissinghouse/piefest.html" >Pie Fest</a>
+    <a href="stissinghouse/otherstories.html">Other Stories</a>
+    <a href="https://www.stissinghouse.com/" target="_blank" rel="noopener noreferrer">STISSINGHOUSE.COM</a>
+  </nav>
+
   <main id="films">
     <section class="sequence" aria-label="Video collection">
-      <article class="feature">
-        <div class="frame" data-vimeo="1238429867/751a20e1bf"><div class="placeholder"></div></div>
-      </article>
-
-            <section class="vertical-section" aria-label="Vertical videos">
-        <article class="film vertical"><div class="frame" data-vimeo="1238355345/204b5872f8"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1238354768/3c849b1a53"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1238353177/95dda1076c"><div class="placeholder"></div></div></article>
-      </section>
-
-            <article class="feature">
-        <div class="frame" data-vimeo="1039633743/a70c3e883e"><div class="placeholder"></div></div>
-      </article>
-
-
-      <section class="vertical-section" aria-label="Vertical videos">
-        <article class="film vertical"><div class="frame" data-vimeo="1050293981/a77771e961"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1135735488/f8b1225c5d"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1146943190/2cfaec4370"><div class="placeholder"></div></div></article>
-      </section>
 
       <article class="feature">
-        <div class="frame" data-vimeo="1039624436/48b108b936"><div class="placeholder"></div></div>
+        <div class="frame" data-vimeo="1238429867/751a20e1bf">
+          <div class="placeholder"></div>
+        </div>
       </article>
 
-
       <section class="vertical-section" aria-label="Vertical videos">
-        <article class="film vertical"><div class="frame" data-vimeo="1040369938/3dbcccf2a5"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1050293951/7166b63baf"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1135779851/ce3e333307"><div class="placeholder"></div></div></article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238355345/204b5872f8">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238354768/3c849b1a53">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238353177/95dda1076c">
+            <div class="placeholder"></div>
+          </div>
+        </article>
       </section>
 
-            <article class="feature">
-        <div class="frame" data-vimeo="1238433934/3b8b5e3ccb"><div class="placeholder"></div></div>
+      <article class="feature">
+        <div class="frame" data-vimeo="1039633743/a70c3e883e">
+          <div class="placeholder"></div>
+        </div>
       </article>
 
-
       <section class="vertical-section" aria-label="Vertical videos">
-        <article class="film vertical"><div class="frame" data-vimeo="1098156636/2435457838"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1226973263/ab87885cfa"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1099336822/5c95693113"><div class="placeholder"></div></div></article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1050293981/a77771e961">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1135735488/f8b1225c5d">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1146943190/2cfaec4370">
+            <div class="placeholder"></div>
+          </div>
+        </article>
       </section>
 
+      <article class="feature">
+        <div class="frame" data-vimeo="1039624436/48b108b936">
+          <div class="placeholder"></div>
+        </div>
+      </article>
 
-<article class="feature">
-  <div
-    class="frame"
-    data-vimeo="1039623829/5a372ced5a"
-    data-autoplay="true"
-  >
-    <div class="placeholder"></div>
-  </div>
-</article>
+      <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1040369938/3dbcccf2a5">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1050293951/7166b63baf">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1135779851/ce3e333307">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+      </section>
+
+      <article class="feature">
+        <div class="frame" data-vimeo="1238433934/3b8b5e3ccb">
+          <div class="placeholder"></div>
+        </div>
+      </article>
+
+      <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1098156636/2435457838">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1226973263/ab87885cfa">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1099336822/5c95693113">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+      </section>
+
+      <article class="feature">
+        <div
+          class="frame"
+          data-vimeo="1039623829/5a372ced5a"
+          data-autoplay="true">
+          <div class="placeholder"></div>
+        </div>
+      </article>
 
     </section>
   </main>
-  
-
 
   <footer id="about">
-    <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
+    <img src="stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
   </footer>
-
-  <!-- Vimeo Player API -->
 
   <script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -593,17 +706,14 @@
       const hash = parts[1];
 
       const iframe = document.createElement("iframe");
+      const autoplay = frame.dataset.autoplay === "true";
 
-      
-const autoplay = frame.dataset.autoplay === "true";
-
-iframe.src =
-  "https://player.vimeo.com/video/" +
-  encodeURIComponent(videoId) +
-  "?controls=0&title=0&byline=0&portrait=0&dnt=1" +
-  (hash ? "&h=" + encodeURIComponent(hash) : "") +
-  (autoplay ? "&autoplay=1&muted=1" : "");
-
+      iframe.src =
+        "https://player.vimeo.com/video/" +
+        encodeURIComponent(videoId) +
+        "?controls=0&title=0&byline=0&portrait=0&dnt=1" +
+        (hash ? "&h=" + encodeURIComponent(hash) : "") +
+        (autoplay ? "&autoplay=1&muted=1" : "");
 
       iframe.title = "Vimeo video";
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
@@ -612,7 +722,6 @@ iframe.src =
 
       frame.replaceChildren(iframe);
 
-      // Transparent click layer makes the entire video area toggle playback.
       const clickLayer = document.createElement("button");
       clickLayer.className = "video-click-layer";
       clickLayer.type = "button";
@@ -758,10 +867,7 @@ iframe.src =
           });
       }
 
-      // Clicking anywhere on the video toggles play/pause.
       clickLayer.addEventListener("click", togglePlayback);
-
-      // Keep the visible play/pause button working as before.
       playButton.addEventListener("click", togglePlayback);
 
       function seekToPosition(event) {
