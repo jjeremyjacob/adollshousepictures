@@ -18,7 +18,7 @@
 
   <style>
     :root {
-      --paper: #e9e6de;
+      --paper: #fbefda;
       --ink: #171714;
       --muted: #77756d;
       --rule: rgba(23, 23, 20, 0.25);
@@ -503,9 +503,20 @@
         <div class="frame" data-vimeo="1039720879/625c8d9212"><div class="placeholder"></div></div>
       </article>
 
+            <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical"><div class="frame" data-vimeo="1238355345/204b5872f8"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1238354768/3c849b1a53"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1238353177/95dda1076c"><div class="placeholder"></div></div></article>
+      </section>
+
+            <article class="feature">
+        <div class="frame" data-vimeo="1039633743/a70c3e883e"><div class="placeholder"></div></div>
+      </article>
+
+
       <section class="vertical-section" aria-label="Vertical videos">
         <article class="film vertical"><div class="frame" data-vimeo="1050293981/a77771e961"><div class="placeholder"></div></div></article>
-        <article class="film vertical"><div class="frame" data-vimeo="1238354768/3c849b1a53"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1135735488/f8b1225c5d"><div class="placeholder"></div></div></article>
         <article class="film vertical"><div class="frame" data-vimeo="1146943190/2cfaec4370"><div class="placeholder"></div></div></article>
       </section>
 
@@ -513,9 +524,6 @@
         <div class="frame" data-vimeo="1039624436/48b108b936"><div class="placeholder"></div></div>
       </article>
 
-      <article class="feature">
-        <div class="frame" data-vimeo="1039630305/6f9231274e"><div class="placeholder"></div></div>
-      </article>
 
       <section class="vertical-section" aria-label="Vertical videos">
         <article class="film vertical"><div class="frame" data-vimeo="1040369938/3dbcccf2a5"><div class="placeholder"></div></div></article>
@@ -523,9 +531,17 @@
         <article class="film vertical"><div class="frame" data-vimeo="1135779851/ce3e333307"><div class="placeholder"></div></div></article>
       </section>
 
-      <article class="feature">
-        <div class="frame" data-vimeo="1039633743/a70c3e883e"><div class="placeholder"></div></div>
-      </article>
+
+<article class="feature">
+  <div
+    class="frame"
+    data-vimeo="1039623829/5a372ced5a"
+    data-autoplay="true"
+  >
+    <div class="placeholder"></div>
+  </div>
+</article>
+
     </section>
   </main>
   
@@ -551,11 +567,16 @@
 
       const iframe = document.createElement("iframe");
 
-      iframe.src =
-        "https://player.vimeo.com/video/" +
-        encodeURIComponent(videoId) +
-        "?controls=0&title=0&byline=0&portrait=0&dnt=1" +
-        (hash ? "&h=" + encodeURIComponent(hash) : "");
+      
+const autoplay = frame.dataset.autoplay === "true";
+
+iframe.src =
+  "https://player.vimeo.com/video/" +
+  encodeURIComponent(videoId) +
+  "?controls=0&title=0&byline=0&portrait=0&dnt=1" +
+  (hash ? "&h=" + encodeURIComponent(hash) : "") +
+  (autoplay ? "&autoplay=1&muted=1" : "");
+
 
       iframe.title = "Vimeo video";
       iframe.allow = "autoplay; fullscreen; picture-in-picture";
