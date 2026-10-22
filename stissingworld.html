@@ -34,10 +34,33 @@
     }
 
     body {
+      min-height: 100vh;
       margin: 0;
+      display: flex;
+      flex-direction: column;
       background: var(--paper);
       color: var(--ink);
       font-family: Manrope, Arial, sans-serif;
+    }
+
+    .site-header {
+      height: 120px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px var(--gutter);
+    }
+
+    .site-header img,
+    footer img {
+      display: block;
+      width: 120px;
+      max-width: 34vw;
+      height: auto;
+      border: 0;
+      outline: 0;
+      box-shadow: none;
     }
 
     a {
@@ -56,7 +79,9 @@
     }
 
     main {
-      padding: 0 var(--gutter) 100px;
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 0 var(--gutter);
     }
 
     .edition {
@@ -110,9 +135,13 @@
       cursor: pointer;
     }
 
-    .video-click-layer:focus-visible {
-      outline: 1px solid #f2f0e9;
-      outline-offset: -5px;
+    .video-click-layer:focus,
+    .video-click-layer:focus-visible,
+    .frame,
+    .frame iframe {
+      outline: none !important;
+      border: 0 !important;
+      box-shadow: none !important;
     }
 
     .placeholder {
@@ -179,10 +208,13 @@
 
     .vertical .frame {
       width: auto;
-      height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter)) * 1.7778));
+      height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 2 * clamp(14px, 2.3vw, 34px)) / 3 * 1.7778));
       max-height: calc(100vh - 80px);
       aspect-ratio: 9 / 16;
       justify-self: center;
+      border: 0;
+      outline: none;
+      box-shadow: none;
     }
 
     /* Section headings */
@@ -323,9 +355,11 @@
     /* Footer */
 
     footer {
+      flex: 1 0 220px;
+      min-height: 220px;
       display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      align-items: center;
+      justify-content: center;
       padding: 24px var(--gutter) 30px;
       color: var(--muted);
     }
@@ -333,6 +367,16 @@
     /* Mobile */
 
     @media (max-width: 700px) {
+      .site-header {
+        height: 100px;
+        min-height: 100px;
+      }
+
+      footer {
+        min-height: 180px;
+        flex-basis: 180px;
+      }
+
       .edition {
         padding-bottom: 26px;
       }
@@ -347,7 +391,7 @@
       }
 
       .vertical .frame {
-        height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 20px) * 1.7778 / 3));
+        height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 20px) / 3 * 1.7778));
         max-width: 100%;
       }
 
@@ -427,6 +471,9 @@
 
     @media (hover: none) {
       .player-ui {
+        opacity: 0;
+      }
+      .frame:focus-within .player-ui {
         opacity: 1;
       }
     }
@@ -444,150 +491,40 @@
 </head>
 
 <body>
+  <header class="site-header" aria-label="Home Pictures">
+    <a href="#films" aria-label="Home Pictures — return to videos">
+      <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
+    </a>
+  </header>
+
   <main id="films">
-
-  
-
     <section class="sequence" aria-label="Video collection">
-
-      <!-- 01: Full-width horizontal video -->
-
       <article class="feature">
-        <div class="frame" data-vimeo="1039720879/625c8d9212">
-          <div class="placeholder"></div>
-        </div>
-
-        <div class="caption">
-          <h2></h2>
-          <span class="meta"></span>
-        </div>
+        <div class="frame" data-vimeo="1039720879/625c8d9212"><div class="placeholder"></div></div>
       </article>
 
-      <!-- 02–04: Three vertical videos -->
-
-      <section aria-label="">
-        <div class="section-head">
-          <span class="label"></span>
-          <span class="note"></span>
-        </div>
-
-        <div class="vertical-section">
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1050293981/a77771e961">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1238354768/3c849b1a53">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1146943190/2cfaec4370">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-        </div>
+      <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical"><div class="frame" data-vimeo="1050293981/a77771e961"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1238354768/3c849b1a53"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1146943190/2cfaec4370"><div class="placeholder"></div></div></article>
       </section>
 
-
-
-      <!-- 05: Full-width horizontal video -->
-
       <article class="feature">
-        <div class="frame" data-vimeo="1039624436/48b108b936">
-          <div class="placeholder"></div>
-        </div>
-
-            <div class="frame" data-vimeo="1039630305/6f9231274e">
-          <div class="placeholder"></div>
-        </div>
+        <div class="frame" data-vimeo="1039624436/48b108b936"><div class="placeholder"></div></div>
       </article>
 
+      <article class="feature">
+        <div class="frame" data-vimeo="1039630305/6f9231274e"><div class="placeholder"></div></div>
+      </article>
 
-      <!-- 02–04: Three vertical videos -->
-
-      <section aria-label="">
-        <div class="section-head">
-          <span class="label"></span>
-          <span class="note"></span>
-        </div>
-
-        <div class="vertical-section">
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1040369938/3dbcccf2a5">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1050293951/7166b63baf">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-          <article class="film vertical">
-            <div class="frame" data-vimeo="1135779851/ce3e333307">
-              <div class="placeholder"></div>
-            </div>
-
-            <div class="caption">
-              <h2></h2>
-              <span class="meta"></span>
-            </div>
-          </article>
-
-        </div>
+      <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical"><div class="frame" data-vimeo="1040369938/3dbcccf2a5"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1050293951/7166b63baf"><div class="placeholder"></div></div></article>
+        <article class="film vertical"><div class="frame" data-vimeo="1135779851/ce3e333307"><div class="placeholder"></div></div></article>
       </section>
-    
-
-          
-        </div>
-      </section>
-
-
-
-        <!-- 01: Full-width horizontal video -->
 
       <article class="feature">
-        <div class="frame" data-vimeo="1039633743/a70c3e883e">
-          <div class="placeholder"></div>
-        </div>
-
-        <div class="caption">
-          <h2></h2>
-          <span class="meta"></span>
-        </div>
+        <div class="frame" data-vimeo="1039633743/a70c3e883e"><div class="placeholder"></div></div>
       </article>
     </section>
   </main>
@@ -595,9 +532,7 @@
 
 
   <footer id="about">
-    <span class="mono"></span>
-    <span class="mono"><img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto"></span>
-    <span class="mono"></span>
+    <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
   </footer>
 
   <!-- Vimeo Player API -->
