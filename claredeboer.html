@@ -1,0 +1,859 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e6de">
+
+  <title>Clare De Boer </title>
+
+  <meta name="description" content="Stissing House Craft Feast — celebrating food, craft, and the Stissing House experience.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Home Pictures">
+  <meta property="og:title" content="Stissing House Craft Feast">
+  <meta property="og:description" content="Films celebrating food, craft, and the Stissing House experience.">
+  <meta property="og:url" content="https://www.adollshousepictures.com/stissingworld">
+  <meta property="og:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stissing House Craft Feast">
+  <meta name="twitter:description" content="Films celebrating food, craft, and the Stissing House experience.">
+  <meta name="twitter:image" content="https://www.adollshousepictures.com/stissinghouse/share-image.jpg">
+
+  <link rel="preconnect" href="https://player.vimeo.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f7f3ec;
+      --ink: #f7f3ec;
+      --muted: #77756d;
+      --rule: rgba(23, 23, 20, 0.25);
+      --gutter: clamp(18px, 4.4vw, 72px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Manrope, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      height: 120px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px var(--gutter);
+    }
+
+    .site-header img,
+    footer img {
+      display: block;
+      width: 120px;
+      max-width: 34vw;
+      height: auto;
+      border: 0;
+      outline: 0;
+      box-shadow: none;
+    }
+
+    .mono,
+    .eyebrow,
+    .meta,
+    .nav {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* World navigation */
+
+    .world-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: clamp(24px, 5vw, 72px);
+      padding: 0 var(--gutter) 32px;
+      color: var(--muted);
+    }
+
+    .world-nav a {
+      position: relative;
+      padding: 8px 0;
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 180ms ease;
+    }
+
+    .world-nav a:hover,
+    .world-nav a[aria-current="page"] {
+      color: #151515;
+    }
+
+    .world-nav a[aria-current="page"]::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .world-nav a:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 5px;
+    }
+
+    main {
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 0 var(--gutter);
+    }
+
+    .edition {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0 38px;
+      color: var(--muted);
+    }
+
+    .sequence {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(56px, 8vw, 120px);
+    }
+
+    /* Video frames */
+
+    .feature {
+      width: 100vw;
+      min-width: 0;
+      margin-left: calc(50% - 50vw);
+    }
+
+    .frame {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #fbefda;
+    }
+
+    .frame iframe {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-click-layer {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .video-click-layer:focus,
+    .video-click-layer:focus-visible,
+    .frame,
+    .frame iframe {
+      outline: none !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #b7b6a9, #77786d);
+      color: #f2f0e9;
+      font: italic clamp(22px, 4vw, 48px) "Playfair Display", Georgia, serif;
+    }
+
+    .placeholder::after {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      content: "VIMEO EMBED";
+      font: 9px "DM Mono", monospace;
+      letter-spacing: 0.14em;
+    }
+
+    /* Captions */
+
+    .caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 18px;
+      margin-top: 10px;
+      padding-top: 12px;
+    }
+
+    .feature .caption {
+      margin-inline: var(--gutter);
+    }
+
+    .caption h2 {
+      margin: 0;
+      font: 400 clamp(19px, 2.5vw, 31px) / 1.1 "Playfair Display", Georgia, serif;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 9px;
+      white-space: nowrap;
+    }
+
+    /* Vertical videos */
+
+    .vertical-section {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: clamp(14px, 2.3vw, 34px);
+    }
+
+    .vertical-section.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(100%, 1000px);
+      margin-inline: auto;
+      gap: clamp(20px, 4vw, 64px);
+    }
+
+    .vertical .frame {
+      width: auto;
+      height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 2 * clamp(14px, 2.3vw, 34px)) / 3 * 1.7778));
+      max-height: calc(100vh - 80px);
+      aspect-ratio: 9 / 16;
+      justify-self: center;
+      border: 0;
+      outline: none;
+      box-shadow: none;
+    }
+
+    /* Section headings */
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 25px;
+      padding-top: 12px;
+      color: var(--muted);
+    }
+
+    .section-head .label {
+      font: 10px "DM Mono", monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-head .note {
+      color: var(--ink);
+      font: italic 17px "Playfair Display", Georgia, serif;
+    }
+
+    .vertical .caption h2 {
+      font-size: clamp(16px, 1.8vw, 24px);
+    }
+
+    /* Custom Vimeo controls */
+
+    .player-ui {
+      position: absolute;
+      z-index: 5;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 14px 16px;
+      color: #f2f0e9;
+      opacity: 0;
+      pointer-events: none;
+      background: transparent;
+      transition: opacity 180ms ease;
+    }
+
+    .frame:hover .player-ui,
+    .frame:focus-within .player-ui,
+    .frame.is-paused .player-ui {
+      opacity: 1;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      pointer-events: auto;
+    }
+
+    .player-button {
+      display: grid;
+      place-items: center;
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .player-button svg {
+      display: block;
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .player-time {
+      font: 9px "DM Mono", monospace;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .player-progress {
+      position: relative;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      height: 24px;
+      min-width: 20px;
+      cursor: pointer;
+      touch-action: pan-y;
+    }
+
+    .player-track {
+      position: relative;
+      width: 100%;
+      height: 1px;
+      background: rgba(242, 240, 233, 0.45);
+    }
+
+    .player-played {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      background: #f2f0e9;
+    }
+
+    .player-thumb {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #f2f0e9;
+      transform: translate(-50%, -50%);
+    }
+
+    .player-button:hover {
+      opacity: 0.65;
+    }
+
+    .player-button:focus-visible,
+    .player-progress:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 4px;
+    }
+
+    /* Footer */
+
+    footer {
+      flex: 1 0 220px;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px var(--gutter) 30px;
+      color: var(--muted);
+    }
+
+    /* Mobile */
+
+    @media (max-width: 700px) {
+      .site-header {
+        height: 100px;
+        min-height: 100px;
+      }
+
+      .world-nav {
+        gap: clamp(18px, 5vw, 30px);
+        padding-bottom: 26px;
+      }
+
+      .world-nav a {
+        font-size: 9px;
+        letter-spacing: 0.09em;
+      }
+
+      footer {
+        min-height: 180px;
+        flex-basis: 180px;
+      }
+
+      .edition {
+        padding-bottom: 26px;
+      }
+
+      .sequence {
+        gap: 58px;
+      }
+
+      .vertical-section {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .vertical .frame {
+        height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 20px) / 3 * 1.7778));
+        max-width: 100%;
+      }
+
+      .vertical-section.two {
+        width: 100%;
+        gap: 14px;
+      }
+
+      .caption {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .caption h2 {
+        font-size: 17px;
+      }
+
+      .vertical .caption h2 {
+        font-size: 15px;
+      }
+
+      .meta {
+        font-size: 8px;
+      }
+
+      .player-ui {
+        padding: 8px;
+        opacity: 1;
+      }
+
+      .player-controls {
+        gap: 7px;
+      }
+
+      .player-button {
+        flex-basis: 25px;
+        width: 25px;
+        height: 25px;
+      }
+
+      .player-button svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .player-time {
+        font-size: 8px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .world-nav {
+        gap: 16px;
+      }
+
+      .world-nav a {
+        font-size: 8px;
+        letter-spacing: 0.07em;
+      }
+
+      .vertical-section {
+        gap: 7px;
+      }
+
+      .vertical .caption h2 {
+        font-size: 13px;
+      }
+
+      .vertical .meta {
+        font-size: 7px;
+      }
+
+      .section-head .note {
+        font-size: 15px;
+      }
+
+      .player-controls {
+        gap: 5px;
+      }
+
+      .player-time {
+        font-size: 7px;
+      }
+    }
+
+    @media (hover: none) {
+      .player-ui {
+        opacity: 0;
+      }
+
+      .frame:focus-within .player-ui {
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .player-ui {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" aria-label="Home Pictures">
+  </header>
+
+  <nav class="world-nav" aria-label="Stissing House films">
+    <a href="stissinghouse/index.html" aria-current="page">The Best Bits</a>
+
+  </nav>
+
+  <main id="films">
+    <section class="sequence" aria-label="Video collection">
+
+      <article class="feature">
+        <div class="frame" data-vimeo="1238791486/f812399b69">
+          <div class="placeholder"></div>
+        </div>
+      </article>
+
+      <section class="vertical-section" aria-label="Vertical videos">
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238795666/8722f91036">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238797685/fc0de46f67">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+        <article class="film vertical">
+          <div class="frame" data-vimeo="1238800030/dc52b029f4">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+      </section>
+
+    </section>
+  </main>
+
+  <footer id="about">
+  </footer>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <script>
+    document.querySelectorAll(".frame[data-vimeo]").forEach(function (frame) {
+      const value = (frame.dataset.vimeo || "").trim();
+
+      if (!value) return;
+
+      const parts = value.split("/");
+      const videoId = parts[0];
+      const hash = parts[1];
+
+      const iframe = document.createElement("iframe");
+      const autoplay = frame.dataset.autoplay === "true";
+
+      iframe.src =
+        "https://player.vimeo.com/video/" +
+        encodeURIComponent(videoId) +
+        "?controls=0&title=0&byline=0&portrait=0&dnt=1" +
+        (hash ? "&h=" + encodeURIComponent(hash) : "") +
+        (autoplay ? "&autoplay=1&muted=1" : "");
+
+      iframe.title = "Vimeo video";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+
+      frame.replaceChildren(iframe);
+
+      const clickLayer = document.createElement("button");
+      clickLayer.className = "video-click-layer";
+      clickLayer.type = "button";
+      clickLayer.setAttribute("aria-label", "Play or pause video");
+      frame.appendChild(clickLayer);
+
+      const ui = document.createElement("div");
+      ui.className = "player-ui";
+
+      ui.innerHTML = `
+        <div class="player-controls">
+          <button class="player-button play-toggle"
+            aria-label="Play video" type="button">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M6 3.5 L16 10 L6 16.5 Z"
+                fill="currentColor" stroke="none"/>
+            </svg>
+          </button>
+
+          <span class="player-time current-time">0:00</span>
+
+          <div class="player-progress"
+            role="slider"
+            tabindex="0"
+            aria-label="Video progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0">
+            <div class="player-track">
+              <div class="player-played"></div>
+              <div class="player-thumb"></div>
+            </div>
+          </div>
+
+          <span class="player-time duration">0:00</span>
+
+          <button class="player-button fullscreen-toggle"
+            aria-label="Enter fullscreen" type="button">
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3 7 V3 H7 M13 3 H17 V7
+                       M17 13 V17 H13 M7 17 H3 V13"/>
+            </svg>
+          </button>
+        </div>
+      `;
+
+      frame.appendChild(ui);
+
+      const player = new Vimeo.Player(iframe);
+      const playButton = ui.querySelector(".play-toggle");
+      const progress = ui.querySelector(".player-progress");
+      const played = ui.querySelector(".player-played");
+      const thumb = ui.querySelector(".player-thumb");
+      const currentTime = ui.querySelector(".current-time");
+      const duration = ui.querySelector(".duration");
+      const fullscreenButton = ui.querySelector(".fullscreen-toggle");
+
+      let videoDuration = 0;
+      let dragging = false;
+
+      function formatTime(seconds) {
+        if (!Number.isFinite(seconds)) return "0:00";
+
+        const total = Math.floor(seconds);
+        const minutes = Math.floor(total / 60);
+        const remaining = String(total % 60).padStart(2, "0");
+
+        return minutes + ":" + remaining;
+      }
+
+      function updateProgress(seconds) {
+        const percent = videoDuration
+          ? Math.min(100, Math.max(0, seconds / videoDuration * 100))
+          : 0;
+
+        played.style.width = percent + "%";
+        thumb.style.left = percent + "%";
+
+        progress.setAttribute(
+          "aria-valuenow",
+          String(Math.round(percent))
+        );
+
+        currentTime.textContent = formatTime(seconds);
+      }
+
+      function updatePlayButton(isPlaying) {
+        frame.classList.toggle("is-paused", !isPlaying);
+
+        playButton.setAttribute(
+          "aria-label",
+          isPlaying ? "Pause video" : "Play video"
+        );
+
+        playButton.innerHTML = isPlaying
+          ? `<svg viewBox="0 0 20 20" aria-hidden="true">
+               <path d="M6 4 V16 M14 4 V16"/>
+             </svg>`
+          : `<svg viewBox="0 0 20 20" aria-hidden="true">
+               <path d="M6 3.5 L16 10 L6 16.5 Z"
+                 fill="currentColor" stroke="none"/>
+             </svg>`;
+      }
+
+      player.ready()
+        .then(function () {
+          return player.getDuration();
+        })
+        .then(function (seconds) {
+          videoDuration = seconds;
+          duration.textContent = formatTime(seconds);
+        })
+        .catch(function (error) {
+          console.warn("Vimeo player initialization failed:", error);
+        });
+
+      player.on("play", function () {
+        updatePlayButton(true);
+      });
+
+      player.on("pause", function () {
+        updatePlayButton(false);
+      });
+
+      player.on("ended", function () {
+        updatePlayButton(false);
+        updateProgress(videoDuration);
+      });
+
+      player.on("timeupdate", function (data) {
+        if (!dragging) {
+          updateProgress(data.seconds);
+        }
+      });
+
+      function togglePlayback() {
+        player.getPaused()
+          .then(function (paused) {
+            return paused ? player.play() : player.pause();
+          })
+          .catch(function (error) {
+            console.warn("Playback action failed:", error);
+          });
+      }
+
+      clickLayer.addEventListener("click", togglePlayback);
+      playButton.addEventListener("click", togglePlayback);
+
+      function seekToPosition(event) {
+        const rect = progress.getBoundingClientRect();
+
+        const percent = Math.min(
+          1,
+          Math.max(0, (event.clientX - rect.left) / rect.width)
+        );
+
+        if (videoDuration) {
+          updateProgress(percent * videoDuration);
+
+          player.setCurrentTime(percent * videoDuration)
+            .catch(function () {});
+        }
+      }
+
+      progress.addEventListener("pointerdown", function (event) {
+        dragging = true;
+        progress.setPointerCapture(event.pointerId);
+        seekToPosition(event);
+      });
+
+      progress.addEventListener("pointermove", function (event) {
+        if (dragging) {
+          seekToPosition(event);
+        }
+      });
+
+      progress.addEventListener("pointerup", function () {
+        dragging = false;
+      });
+
+      progress.addEventListener("pointercancel", function () {
+        dragging = false;
+      });
+
+      progress.addEventListener("keydown", function (event) {
+        if (
+          event.key !== "ArrowLeft" &&
+          event.key !== "ArrowRight"
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+
+        player.getCurrentTime()
+          .then(function (seconds) {
+            const offset = event.key === "ArrowRight" ? 5 : -5;
+
+            return player.setCurrentTime(
+              Math.max(
+                0,
+                Math.min(videoDuration, seconds + offset)
+              )
+            );
+          })
+          .catch(function () {});
+      });
+
+      fullscreenButton.addEventListener("click", function () {
+        player.requestFullscreen().catch(function () {});
+      });
+
+      player.on("fullscreenchange", function (data) {
+        fullscreenButton.setAttribute(
+          "aria-label",
+          data.fullscreen ? "Exit fullscreen" : "Enter fullscreen"
+        );
+      });
+    });
+  </script>
+</body>
+</html>
