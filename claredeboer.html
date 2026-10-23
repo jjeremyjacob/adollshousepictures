@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#e9e6de">
 
-  <title>Clare De Boer </title>
+  <title>The Best Bits</title>
 
   <meta name="description" content="Stissing House Craft Feast — celebrating food, craft, and the Stissing House experience.">
 
@@ -31,7 +30,7 @@
   <style>
     :root {
       --paper: #f7f3ec;
-      --ink: #f7f3ec;
+      --ink: #181002;
       --muted: #77756d;
       --rule: rgba(23, 23, 20, 0.25);
       --gutter: clamp(18px, 4.4vw, 72px);
@@ -68,6 +67,15 @@
       justify-content: center;
       padding: 20px var(--gutter);
     }
+
+    .site-title {
+      color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 1.1;
+  text-align: center;
+}
 
     .site-header img,
     footer img {
@@ -408,15 +416,24 @@
 
     /* Footer */
 
-    footer {
-      flex: 1 0 220px;
-      min-height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px var(--gutter) 30px;
-      color: var(--muted);
-    }
+
+
+footer {
+  flex: 1 0 220px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px var(--gutter) 30px;
+  color: var(--ink);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 1.1;
+  text-align: center;
+}
+
+
 
     /* Mobile */
 
@@ -565,13 +582,11 @@
 </head>
 
 <body>
-  <header class="site-header" aria-label="Home Pictures">
+  <header class="site-header" aria-label="The Best Bits">
+    <div class="site-title">The Best Bits</div>
   </header>
 
-  <nav class="world-nav" aria-label="Stissing House films">
-    <a href="stissinghouse/index.html" aria-current="page">The Best Bits</a>
-
-  </nav>
+  
 
   <main id="films">
     <section class="sequence" aria-label="Video collection">
@@ -604,6 +619,7 @@
   </main>
 
   <footer id="about">
+    The Best Bits 
   </footer>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
