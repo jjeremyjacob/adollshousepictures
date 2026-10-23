@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -152,7 +151,7 @@
       gap: clamp(56px, 8vw, 120px);
     }
 
-    /* Video frames */
+    /* Full-width video frames */
 
     .feature {
       width: 100vw;
@@ -262,13 +261,38 @@
 
     .vertical .frame {
       width: auto;
-      height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 2 * clamp(14px, 2.3vw, 34px)) / 3 * 1.7778));
+      height: min(
+        calc(100svh - 80px),
+        calc((100vw - 2 * var(--gutter) - 2 * clamp(14px, 2.3vw, 34px)) / 3 * 1.7778)
+      );
       max-height: calc(100vh - 80px);
       aspect-ratio: 9 / 16;
       justify-self: center;
       border: 0;
       outline: none;
       box-shadow: none;
+    }
+
+    /* Three horizontal videos in one row */
+
+    .horizontal-section {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: clamp(7px, 2.3vw, 34px);
+      width: 100%;
+      min-width: 0;
+    }
+
+    .horizontal {
+      min-width: 0;
+    }
+
+    .horizontal .frame {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-height: none;
     }
 
     /* Section headings */
@@ -455,13 +479,23 @@
       }
 
       .vertical .frame {
-        height: min(calc(100svh - 80px), calc((100vw - 2 * var(--gutter) - 20px) / 3 * 1.7778));
+        height: min(
+          calc(100svh - 80px),
+          calc((100vw - 2 * var(--gutter) - 20px) / 3 * 1.7778)
+        );
         max-width: 100%;
       }
 
       .vertical-section.two {
         width: 100%;
         gap: 14px;
+      }
+
+      /* Keep all three horizontal videos side by side */
+
+      .horizontal-section {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
       }
 
       .caption {
@@ -505,6 +539,37 @@
       .player-time {
         font-size: 8px;
       }
+
+      /* Compact controls for the smaller horizontal frames */
+
+      .horizontal .player-ui {
+        padding: 3px;
+      }
+
+      .horizontal .player-controls {
+        gap: 2px;
+      }
+
+      .horizontal .player-button {
+        flex-basis: 16px;
+        width: 16px;
+        height: 16px;
+      }
+
+      .horizontal .player-button svg {
+        width: 11px;
+        height: 11px;
+      }
+
+      .horizontal .player-time {
+        font-size: 6px;
+        letter-spacing: 0;
+      }
+
+      .horizontal .player-progress {
+        min-width: 5px;
+        height: 16px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -540,6 +605,29 @@
       .player-time {
         font-size: 7px;
       }
+
+      .horizontal-section {
+        gap: 5px;
+      }
+
+      .horizontal .player-controls {
+        gap: 1px;
+      }
+
+      .horizontal .player-button {
+        flex-basis: 13px;
+        width: 13px;
+        height: 13px;
+      }
+
+      .horizontal .player-button svg {
+        width: 9px;
+        height: 9px;
+      }
+
+      .horizontal .player-time {
+        font-size: 5px;
+      }
     }
 
     @media (hover: none) {
@@ -570,7 +658,7 @@
   </header>
 
   <nav class="world-nav" aria-label="Stissing House films">
-    <a href="craftfeast.html" >Craft Feast</a>
+    <a href="craftfeast.html">Craft Feast</a>
     <a href="piefest.html" aria-current="page">Pie Fest</a>
     <a href="otherstories.html">Other Stories</a>
     <a href="https://www.stissinghouse.com/" target="_blank" rel="noopener noreferrer">STISSINGHOUSE.COM</a>
@@ -591,11 +679,13 @@
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238495061/0d3f2cba17">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238496746/675fbeebec">
             <div class="placeholder"></div>
@@ -609,23 +699,47 @@
         </div>
       </article>
 
+            <!-- Three horizontal videos in one row -->
+      <section class="horizontal-section" aria-label="Horizontal videos">
+        <article class="film horizontal">
+          <div class="frame" data-vimeo="1238760720/f45b97dafc">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+
+        <article class="film horizontal">
+          <div class="frame" data-vimeo="1238757073/3d700b56fa">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+
+        <article class="film horizontal">
+          <div class="frame" data-vimeo="1238761837/7458b6102d">
+            <div class="placeholder"></div>
+          </div>
+        </article>
+      </section>
+
       <section class="vertical-section" aria-label="Vertical videos">
         <article class="film vertical">
           <div class="frame" data-vimeo="1238499343/a74e9c3381">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238504050/aac9e6cc7e">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
-          <div class="frame" data-vimeo="1201736203/4f2671f1e2">
+          <div class="frame" data-vimeo="1238759766/c2e5cfc1c3">
             <div class="placeholder"></div>
           </div>
         </article>
       </section>
+
 
 
     </section>
