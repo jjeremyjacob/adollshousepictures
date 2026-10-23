@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,12 +71,12 @@
 
     .site-title {
       color: var(--ink);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 1.1;
-  text-align: center;
-}
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 13px;
+      font-weight: 100;
+      line-height: 1.1;
+      text-align: center;
+    }
 
     .site-header img,
     footer img {
@@ -97,8 +98,6 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-
-    /* World navigation */
 
     .world-nav {
       display: flex;
@@ -159,8 +158,6 @@
       flex-direction: column;
       gap: clamp(56px, 8vw, 120px);
     }
-
-    /* Video frames */
 
     .feature {
       width: 100vw;
@@ -226,8 +223,6 @@
       letter-spacing: 0.14em;
     }
 
-    /* Captions */
-
     .caption {
       display: flex;
       justify-content: space-between;
@@ -251,8 +246,6 @@
       font-size: 9px;
       white-space: nowrap;
     }
-
-    /* Vertical videos */
 
     .vertical-section {
       display: grid;
@@ -278,8 +271,6 @@
       outline: none;
       box-shadow: none;
     }
-
-    /* Section headings */
 
     .section-head {
       display: flex;
@@ -409,31 +400,85 @@
     }
 
     .player-button:focus-visible,
-    .player-progress:focus-visible {
+    .player-progress:focus-visible,
+    .volume-slider:focus-visible {
       outline: 1px solid currentColor;
       outline-offset: 4px;
     }
 
-    /* Footer */
+    /* Volume control */
 
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+    }
 
+    .volume-toggle {
+      flex: 0 0 28px;
+      width: 28px;
+    }
 
-footer {
-  flex: 1 0 220px;
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px var(--gutter) 30px;
-  color: var(--ink);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 1.1;
-  text-align: center;
-}
+    .volume-slider {
+      display: block;
+      width: 64px;
+      height: 18px;
+      margin: 0;
+      padding: 0;
+      accent-color: #f2f0e9;
+      cursor: pointer;
+      background: transparent;
+    }
 
+    .volume-slider {
+      appearance: none;
+      -webkit-appearance: none;
+    }
 
+    .volume-slider::-webkit-slider-runnable-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-moz-range-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 7px;
+      height: 7px;
+      margin-top: -3px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f0e9;
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 7px;
+      height: 7px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f0e9;
+    }
+
+    footer {
+      flex: 1 0 220px;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px var(--gutter) 30px;
+      color: var(--ink);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 13px;
+      font-weight: 100;
+      line-height: 1.1;
+      text-align: center;
+    }
 
     /* Mobile */
 
@@ -522,6 +567,19 @@ footer {
       .player-time {
         font-size: 8px;
       }
+
+      .volume-control {
+        gap: 4px;
+      }
+
+      .volume-toggle {
+        flex-basis: 25px;
+        width: 25px;
+      }
+
+      .volume-slider {
+        width: 42px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -551,20 +609,20 @@ footer {
       }
 
       .player-controls {
-        gap: 5px;
+        gap: 4px;
       }
 
       .player-time {
         font-size: 7px;
       }
+
+      .volume-slider {
+        width: 30px;
+      }
     }
 
     @media (hover: none) {
       .player-ui {
-        opacity: 0;
-      }
-
-      .frame:focus-within .player-ui {
         opacity: 1;
       }
     }
@@ -586,8 +644,6 @@ footer {
     <div class="site-title">The Best Bits</div>
   </header>
 
-  
-
   <main id="films">
     <section class="sequence" aria-label="Video collection">
 
@@ -603,11 +659,13 @@ footer {
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238797685/fc0de46f67">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238800030/dc52b029f4">
             <div class="placeholder"></div>
@@ -615,25 +673,25 @@ footer {
         </article>
       </section>
 
-
-            <article class="feature">
+      <article class="feature">
         <div class="frame" data-vimeo="1238872728/691022f8e8" data-autoplay="true">
           <div class="placeholder"></div>
         </div>
       </article>
 
-
-            <section class="vertical-section" aria-label="Vertical videos">
+      <section class="vertical-section" aria-label="Vertical videos">
         <article class="film vertical">
           <div class="frame" data-vimeo="1238867000/d2ca40a157">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238867022/0904fc337c">
             <div class="placeholder"></div>
           </div>
         </article>
+
         <article class="film vertical">
           <div class="frame" data-vimeo="1238867009/48c16fad70">
             <div class="placeholder"></div>
@@ -645,7 +703,7 @@ footer {
   </main>
 
   <footer id="about">
-    The Best Bits 
+    The Best Bits
   </footer>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
@@ -659,9 +717,9 @@ footer {
       const parts = value.split("/");
       const videoId = parts[0];
       const hash = parts[1];
+      const autoplay = frame.dataset.autoplay === "true";
 
       const iframe = document.createElement("iframe");
-      const autoplay = frame.dataset.autoplay === "true";
 
       iframe.src =
         "https://player.vimeo.com/video/" +
@@ -713,6 +771,28 @@ footer {
 
           <span class="player-time duration">0:00</span>
 
+          <div class="volume-control">
+            <button class="player-button volume-toggle"
+              type="button"
+              aria-label="Unmute video"
+              aria-pressed="true">
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M3 8 H6 L10 4 V16 L6 12 H3 Z"/>
+                <path d="M13 7 Q17 10 13 13"/>
+                <path d="M15 4 Q21 10 15 16"/>
+              </svg>
+            </button>
+
+            <input class="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="${autoplay ? "0" : "1"}"
+              aria-label="Volume"
+              title="Volume">
+          </div>
+
           <button class="player-button fullscreen-toggle"
             aria-label="Enter fullscreen" type="button">
             <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -733,9 +813,13 @@ footer {
       const currentTime = ui.querySelector(".current-time");
       const duration = ui.querySelector(".duration");
       const fullscreenButton = ui.querySelector(".fullscreen-toggle");
+      const volumeButton = ui.querySelector(".volume-toggle");
+      const volumeSlider = ui.querySelector(".volume-slider");
 
       let videoDuration = 0;
       let dragging = false;
+      let lastVolume = autoplay ? 0 : 1;
+      let isMuted = autoplay;
 
       function formatTime(seconds) {
         if (!Number.isFinite(seconds)) return "0:00";
@@ -755,11 +839,7 @@ footer {
         played.style.width = percent + "%";
         thumb.style.left = percent + "%";
 
-        progress.setAttribute(
-          "aria-valuenow",
-          String(Math.round(percent))
-        );
-
+        progress.setAttribute("aria-valuenow", String(Math.round(percent)));
         currentTime.textContent = formatTime(seconds);
       }
 
@@ -781,13 +861,60 @@ footer {
              </svg>`;
       }
 
+      function updateVolumeControl(volume, muted) {
+        const safeVolume = Math.min(1, Math.max(0, Number(volume) || 0));
+
+        isMuted = Boolean(muted) || safeVolume === 0;
+        volumeSlider.value = isMuted ? "0" : String(safeVolume);
+
+        volumeButton.setAttribute(
+          "aria-label",
+          isMuted ? "Unmute video" : "Mute video"
+        );
+
+        volumeButton.setAttribute("aria-pressed", String(isMuted));
+
+        if (isMuted) {
+          volumeButton.innerHTML = `
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3 8 H6 L10 4 V16 L6 12 H3 Z"/>
+              <path d="M13 8 L18 13 M18 8 L13 13"/>
+            </svg>`;
+        } else if (safeVolume < 0.5) {
+          volumeButton.innerHTML = `
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3 8 H6 L10 4 V16 L6 12 H3 Z"/>
+              <path d="M13 7 Q17 10 13 13"/>
+            </svg>`;
+        } else {
+          volumeButton.innerHTML = `
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M3 8 H6 L10 4 V16 L6 12 H3 Z"/>
+              <path d="M13 7 Q17 10 13 13"/>
+              <path d="M15 4 Q21 10 15 16"/>
+            </svg>`;
+        }
+      }
+
       player.ready()
         .then(function () {
-          return player.getDuration();
+          return Promise.all([
+            player.getDuration(),
+            player.getVolume(),
+            player.getMuted()
+          ]);
         })
-        .then(function (seconds) {
-          videoDuration = seconds;
-          duration.textContent = formatTime(seconds);
+        .then(function (values) {
+          videoDuration = values[0];
+          duration.textContent = formatTime(videoDuration);
+
+          updateVolumeControl(values[1], values[2]);
+
+          if (autoplay) {
+            return player.setMuted(true).then(function () {
+              updateVolumeControl(0, true);
+            });
+          }
         })
         .catch(function (error) {
           console.warn("Vimeo player initialization failed:", error);
@@ -810,6 +937,14 @@ footer {
         if (!dragging) {
           updateProgress(data.seconds);
         }
+      });
+
+      player.on("volumechange", function (data) {
+        if (data.volume > 0) {
+          lastVolume = data.volume;
+        }
+
+        updateVolumeControl(data.volume, data.muted);
       });
 
       function togglePlayback() {
@@ -862,10 +997,7 @@ footer {
       });
 
       progress.addEventListener("keydown", function (event) {
-        if (
-          event.key !== "ArrowLeft" &&
-          event.key !== "ArrowRight"
-        ) {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
           return;
         }
 
@@ -876,13 +1008,64 @@ footer {
             const offset = event.key === "ArrowRight" ? 5 : -5;
 
             return player.setCurrentTime(
-              Math.max(
-                0,
-                Math.min(videoDuration, seconds + offset)
-              )
+              Math.max(0, Math.min(videoDuration, seconds + offset))
             );
           })
           .catch(function () {});
+      });
+
+      volumeSlider.addEventListener("input", function () {
+        const volume = Number(volumeSlider.value);
+
+        if (volume > 0) {
+          lastVolume = volume;
+
+          player.setVolume(volume)
+            .then(function () {
+              return player.setMuted(false);
+            })
+            .then(function () {
+              updateVolumeControl(volume, false);
+            })
+            .catch(function () {});
+        } else {
+          player.setVolume(0)
+            .then(function () {
+              return player.setMuted(true);
+            })
+            .then(function () {
+              updateVolumeControl(0, true);
+            })
+            .catch(function () {});
+        }
+      });
+
+      volumeButton.addEventListener("click", function () {
+        if (isMuted) {
+          const restoreVolume = lastVolume > 0 ? lastVolume : 1;
+
+          player.setVolume(restoreVolume)
+            .then(function () {
+              return player.setMuted(false);
+            })
+            .then(function () {
+              updateVolumeControl(restoreVolume, false);
+            })
+            .catch(function () {});
+        } else {
+          player.getVolume()
+            .then(function (volume) {
+              if (volume > 0) {
+                lastVolume = volume;
+              }
+
+              return player.setMuted(true);
+            })
+            .then(function () {
+              updateVolumeControl(0, true);
+            })
+            .catch(function () {});
+        }
       });
 
       fullscreenButton.addEventListener("click", function () {
