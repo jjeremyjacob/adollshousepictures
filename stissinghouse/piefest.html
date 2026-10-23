@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -430,6 +431,72 @@
       outline-offset: 4px;
     }
 
+    /* Minimal volume control */
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .volume-control .player-button {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 24px;
+    }
+
+    .volume-control .player-button svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 1.2;
+    }
+
+    .volume-slider {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 48px;
+      height: 12px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .volume-slider::-webkit-slider-runnable-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-moz-range-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 4px;
+      height: 4px;
+      margin-top: -1.5px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f0e9;
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 4px;
+      height: 4px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f0e9;
+    }
+
+    .volume-slider:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 3px;
+    }
+
     /* Footer */
 
     footer {
@@ -491,8 +558,6 @@
         gap: 14px;
       }
 
-      /* Keep all three horizontal videos side by side */
-
       .horizontal-section {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 7px;
@@ -540,7 +605,21 @@
         font-size: 8px;
       }
 
-      /* Compact controls for the smaller horizontal frames */
+      .volume-control {
+        gap: 3px;
+      }
+
+      .volume-control .player-button {
+        flex-basis: 18px;
+        width: 18px;
+        height: 22px;
+      }
+
+      .volume-slider {
+        width: 32px;
+      }
+
+      /* Compact controls for smaller horizontal frames */
 
       .horizontal .player-ui {
         padding: 3px;
@@ -569,6 +648,26 @@
       .horizontal .player-progress {
         min-width: 5px;
         height: 16px;
+      }
+
+      .horizontal .volume-control {
+        gap: 1px;
+      }
+
+      .horizontal .volume-control .player-button {
+        flex-basis: 13px;
+        width: 13px;
+        height: 16px;
+      }
+
+      .horizontal .volume-control .player-button svg {
+        width: 9px;
+        height: 9px;
+      }
+
+      .horizontal .volume-slider {
+        width: 20px;
+        height: 10px;
       }
     }
 
@@ -606,6 +705,10 @@
         font-size: 7px;
       }
 
+      .volume-slider {
+        width: 24px;
+      }
+
       .horizontal-section {
         gap: 5px;
       }
@@ -627,6 +730,10 @@
 
       .horizontal .player-time {
         font-size: 5px;
+      }
+
+      .horizontal .volume-slider {
+        width: 15px;
       }
     }
 
@@ -699,7 +806,7 @@
         </div>
       </article>
 
-            <!-- Three horizontal videos in one row -->
+      <!-- Three horizontal videos in one row -->
       <section class="horizontal-section" aria-label="Horizontal videos">
         <article class="film horizontal">
           <div class="frame" data-vimeo="1238760720/f45b97dafc">
@@ -740,8 +847,6 @@
         </article>
       </section>
 
-
-
     </section>
   </main>
 
@@ -760,9 +865,9 @@
       const parts = value.split("/");
       const videoId = parts[0];
       const hash = parts[1];
+      const autoplay = frame.dataset.autoplay === "true";
 
       const iframe = document.createElement("iframe");
-      const autoplay = frame.dataset.autoplay === "true";
 
       iframe.src =
         "https://player.vimeo.com/video/" +
@@ -814,6 +919,25 @@
 
           <span class="player-time duration">0:00</span>
 
+          <div class="volume-control">
+            <button class="player-button volume-toggle"
+              aria-label="Mute video" type="button">
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M3 8 V12 H6 L11 16 V4 L6 8 Z"/>
+                <path class="volume-waves" d="M13 7 Q17 10 13 13"/>
+                <path class="volume-mute" d="M13 8 L17 12 M17 8 L13 12" style="display:none"/>
+              </svg>
+            </button>
+
+            <input class="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="1"
+              aria-label="Video volume">
+          </div>
+
           <button class="player-button fullscreen-toggle"
             aria-label="Enter fullscreen" type="button">
             <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -834,9 +958,16 @@
       const currentTime = ui.querySelector(".current-time");
       const duration = ui.querySelector(".duration");
       const fullscreenButton = ui.querySelector(".fullscreen-toggle");
+      const volumeButton = ui.querySelector(".volume-toggle");
+      const volumeSlider = ui.querySelector(".volume-slider");
+      const volumeWaves = ui.querySelector(".volume-waves");
+      const volumeMute = ui.querySelector(".volume-mute");
 
       let videoDuration = 0;
       let dragging = false;
+      let lastVolume = 1;
+      let currentVolume = 1;
+      let isMuted = autoplay;
 
       function formatTime(seconds) {
         if (!Number.isFinite(seconds)) return "0:00";
@@ -882,13 +1013,41 @@
              </svg>`;
       }
 
+      function updateVolumeUI(volume, muted) {
+        currentVolume = Number.isFinite(volume) ? volume : currentVolume;
+        isMuted = muted;
+
+        if (currentVolume > 0) {
+          lastVolume = currentVolume;
+        }
+
+        volumeSlider.value = String(muted ? 0 : currentVolume);
+        volumeButton.setAttribute(
+          "aria-label",
+          muted || currentVolume === 0 ? "Unmute video" : "Mute video"
+        );
+
+        volumeWaves.style.display =
+          muted || currentVolume === 0 ? "none" : "";
+
+        volumeMute.style.display =
+          muted || currentVolume === 0 ? "" : "none";
+      }
+
       player.ready()
         .then(function () {
-          return player.getDuration();
+          return Promise.all([
+            player.getDuration(),
+            player.getVolume(),
+            player.getMuted()
+          ]);
         })
-        .then(function (seconds) {
-          videoDuration = seconds;
-          duration.textContent = formatTime(seconds);
+        .then(function (values) {
+          videoDuration = values[0];
+          duration.textContent = formatTime(videoDuration);
+          currentVolume = values[1];
+          lastVolume = currentVolume > 0 ? currentVolume : 1;
+          updateVolumeUI(values[1], values[2]);
         })
         .catch(function (error) {
           console.warn("Vimeo player initialization failed:", error);
@@ -911,6 +1070,10 @@
         if (!dragging) {
           updateProgress(data.seconds);
         }
+      });
+
+      player.on("volumechange", function (data) {
+        updateVolumeUI(data.volume, data.muted);
       });
 
       function togglePlayback() {
@@ -984,6 +1147,54 @@
             );
           })
           .catch(function () {});
+      });
+
+      volumeSlider.addEventListener("input", function () {
+        const volume = Number(volumeSlider.value);
+
+        currentVolume = volume;
+
+        if (volume > 0) {
+          lastVolume = volume;
+        }
+
+        player.setVolume(volume)
+          .then(function () {
+            return player.setMuted(volume === 0);
+          })
+          .then(function () {
+            updateVolumeUI(volume, volume === 0);
+          })
+          .catch(function (error) {
+            console.warn("Volume adjustment failed:", error);
+          });
+      });
+
+      volumeButton.addEventListener("click", function () {
+        if (isMuted || currentVolume === 0) {
+          const volumeToRestore = lastVolume > 0 ? lastVolume : 1;
+
+          player.setVolume(volumeToRestore)
+            .then(function () {
+              return player.setMuted(false);
+            })
+            .then(function () {
+              updateVolumeUI(volumeToRestore, false);
+            })
+            .catch(function (error) {
+              console.warn("Unmute action failed:", error);
+            });
+        } else {
+          lastVolume = currentVolume;
+
+          player.setMuted(true)
+            .then(function () {
+              updateVolumeUI(currentVolume, true);
+            })
+            .catch(function (error) {
+              console.warn("Mute action failed:", error);
+            });
+        }
       });
 
       fullscreenButton.addEventListener("click", function () {
