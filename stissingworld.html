@@ -400,6 +400,65 @@
       opacity: 0.65;
     }
 
+    /* Volume control */
+
+    .player-volume {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .volume-toggle {
+      flex: 0 0 28px;
+    }
+
+    .volume-slider {
+      display: block;
+      width: 64px;
+      height: 18px;
+      margin: 0;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .volume-slider::-webkit-slider-runnable-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-moz-range-track {
+      height: 1px;
+      background: rgba(242, 240, 233, 0.5);
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      width: 5px;
+      height: 5px;
+      margin-top: -2px;
+      border: 0;
+      border-radius: 50%;
+      appearance: none;
+      -webkit-appearance: none;
+      background: #f2f0e9;
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 5px;
+      height: 5px;
+      border: 0;
+      border-radius: 50%;
+      background: #f2f0e9;
+    }
+
+    .volume-slider:focus-visible {
+      outline: 1px solid currentColor;
+      outline-offset: 4px;
+    }
+
     .player-button:focus-visible,
     .player-progress:focus-visible {
       outline: 1px solid currentColor;
@@ -505,6 +564,18 @@
       .player-time {
         font-size: 8px;
       }
+
+      .player-volume {
+        gap: 5px;
+      }
+
+      .volume-toggle {
+        flex-basis: 25px;
+      }
+
+      .volume-slider {
+        width: 42px;
+      }
     }
 
     @media (max-width: 420px) {
@@ -534,11 +605,15 @@
       }
 
       .player-controls {
-        gap: 5px;
+        gap: 4px;
       }
 
       .player-time {
         font-size: 7px;
+      }
+
+      .volume-slider {
+        width: 30px;
       }
     }
 
@@ -549,6 +624,10 @@
 
       .frame:focus-within .player-ui {
         opacity: 1;
+      }
+
+      .player-volume {
+        gap: 3px;
       }
     }
 
@@ -566,15 +645,13 @@
 
 <body>
   <header class="site-header" aria-label="Home Pictures">
-    <a href="#films" aria-label="Home Pictures — return to videos">
-     <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
-    </a>
+    <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
   </header>
 
   <nav class="world-nav" aria-label="Stissing House films">
-    <a href="stissinghouse/craftfeast.html">Craft Feast</a>
-    <a href="stissinghouse/piefest.html" >Pie Fest</a>
-    <a href="stissinghouse/otherstories.html">Other Stories</a>
+    <a href="stissinghouse/craftfeast.html" aria-current="page">Craft Feast</a>
+    <a href="stissinghouse/piefest.html">Pie Fest</a>
+    <a href="otherstories.html">Other Stories</a>
     <a href="https://www.stissinghouse.com/" target="_blank" rel="noopener noreferrer">STISSINGHOUSE.COM</a>
   </nav>
 
@@ -582,7 +659,7 @@
     <section class="sequence" aria-label="Video collection">
 
       <article class="feature">
-        <div class="frame" data-vimeo="1238429867/751a20e1bf">
+        <div class="frame" data-vimeo="1238429867/751a20e1bf" data-autoplay="true">
           <div class="placeholder"></div>
         </div>
       </article>
@@ -690,7 +767,7 @@
   </main>
 
   <footer id="about">
-    <img src="stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
+    <img src="stissinghouse/stissing_logo.png" alt="Stissing House logo" width="120" height="auto">
   </footer>
 
   <script src="https://player.vimeo.com/api/player.js"></script>
@@ -758,6 +835,30 @@
 
           <span class="player-time duration">0:00</span>
 
+          <div class="player-volume">
+            <button class="player-button volume-toggle"
+              type="button"
+              aria-label="Unmute video"
+              aria-pressed="true">
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M3 8 H6 L10 4 V16 L6 12 H3 Z"/>
+                <path class="volume-waves"
+                  d="M13 7 C15 9 15 11 13 13 M15 5 C19 8 19 12 15 15"/>
+                <path class="volume-muted"
+                  d="M13 8 L18 13 M18 8 L13 13"
+                  style="display:none"/>
+              </svg>
+            </button>
+
+            <input class="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.7"
+              aria-label="Video volume">
+          </div>
+
           <button class="player-button fullscreen-toggle"
             aria-label="Enter fullscreen" type="button">
             <svg viewBox="0 0 20 20" aria-hidden="true">
@@ -778,9 +879,15 @@
       const currentTime = ui.querySelector(".current-time");
       const duration = ui.querySelector(".duration");
       const fullscreenButton = ui.querySelector(".fullscreen-toggle");
+      const volumeButton = ui.querySelector(".volume-toggle");
+      const volumeSlider = ui.querySelector(".volume-slider");
+      const volumeWaves = ui.querySelector(".volume-waves");
+      const volumeMuted = ui.querySelector(".volume-muted");
 
       let videoDuration = 0;
       let dragging = false;
+      let lastVolume = 0.7;
+      let isMuted = autoplay;
 
       function formatTime(seconds) {
         if (!Number.isFinite(seconds)) return "0:00";
@@ -826,9 +933,62 @@
              </svg>`;
       }
 
+      function updateVolumeUI(volume, muted) {
+        isMuted = muted || volume === 0;
+
+        if (volume > 0) {
+          lastVolume = volume;
+        }
+
+        volumeSlider.value = isMuted ? "0" : String(volume);
+        volumeButton.setAttribute(
+          "aria-label",
+          isMuted ? "Unmute video" : "Mute video"
+        );
+        volumeButton.setAttribute(
+          "aria-pressed",
+          String(isMuted)
+        );
+
+        volumeWaves.style.display = isMuted ? "none" : "";
+        volumeMuted.style.display = isMuted ? "" : "none";
+      }
+
+      function setVolume(volume) {
+        const nextVolume = Math.max(0, Math.min(1, Number(volume)));
+
+        if (nextVolume > 0) {
+          lastVolume = nextVolume;
+          player.setMuted(false).catch(function () {});
+          player.setVolume(nextVolume).catch(function () {});
+          updateVolumeUI(nextVolume, false);
+        } else {
+          player.setVolume(0)
+            .then(function () {
+              return player.setMuted(true);
+            })
+            .catch(function () {});
+          updateVolumeUI(0, true);
+        }
+      }
+
       player.ready()
         .then(function () {
-          return player.getDuration();
+          if (autoplay) {
+            return player.setMuted(true)
+              .then(function () {
+                return player.setVolume(0);
+              })
+              .then(function () {
+                updateVolumeUI(0, true);
+                return player.getDuration();
+              });
+          }
+
+          return player.setVolume(lastVolume)
+            .then(function () {
+              return player.getDuration();
+            });
         })
         .then(function (seconds) {
           videoDuration = seconds;
@@ -837,6 +997,10 @@
         .catch(function (error) {
           console.warn("Vimeo player initialization failed:", error);
         });
+
+      player.on("volumechange", function (data) {
+        updateVolumeUI(data.volume, data.muted);
+      });
 
       player.on("play", function () {
         updatePlayButton(true);
@@ -869,6 +1033,39 @@
 
       clickLayer.addEventListener("click", togglePlayback);
       playButton.addEventListener("click", togglePlayback);
+
+      volumeButton.addEventListener("click", function () {
+        if (isMuted) {
+          const restoreVolume = lastVolume > 0 ? lastVolume : 0.7;
+
+          player.setVolume(restoreVolume)
+            .then(function () {
+              return player.setMuted(false);
+            })
+            .then(function () {
+              updateVolumeUI(restoreVolume, false);
+            })
+            .catch(function () {});
+        } else {
+          player.setMuted(true)
+            .then(function () {
+              updateVolumeUI(0, true);
+            })
+            .catch(function () {});
+        }
+      });
+
+      volumeSlider.addEventListener("input", function () {
+        setVolume(volumeSlider.value);
+      });
+
+      volumeSlider.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
+
+      volumeButton.addEventListener("click", function (event) {
+        event.stopPropagation();
+      });
 
       function seekToPosition(event) {
         const rect = progress.getBoundingClientRect();
