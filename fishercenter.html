@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+  <script>document.documentElement.classList.add("password-locked");</script>
 
  <meta charset="utf-8">
 
@@ -10,13 +11,9 @@
 
  <meta name="theme-color" content="#101011">
 
-
-
  <title>Family &amp; Alumni Weekend — Fisher Center at Bard</title>
 
  <meta name="description" content="Selected films presented for Family & Alumni Weekend 2026 at Fisher Center at Bard.">
-
-
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -24,11 +21,7 @@
 
  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 
-
-
  <script src="https://player.vimeo.com/api/player.js"></script>
-
-
 
  <style>
 
@@ -58,15 +51,11 @@
 
    }
 
-
-
    * {
 
      box-sizing: border-box;
 
    }
-
-
 
    html {
 
@@ -75,8 +64,6 @@
      background: var(--bg);
 
    }
-
-
 
    body {
 
@@ -92,8 +79,6 @@
 
    }
 
-
-
    a {
 
      color: inherit;
@@ -101,8 +86,6 @@
      text-decoration: none;
 
    }
-
-
 
    button,
 
@@ -112,15 +95,11 @@
 
    }
 
-
-
    button {
 
      color: inherit;
 
    }
-
-
 
    .topbar {
 
@@ -140,8 +119,6 @@
 
    }
 
-
-
    .event-name,
 
    .institution-link {
@@ -158,15 +135,11 @@
 
    }
 
-
-
    .event-name {
 
      color: var(--paper);
 
    }
-
-
 
    .institution-link {
 
@@ -178,15 +151,11 @@
 
    }
 
-
-
    .institution-link:hover {
 
      color: var(--paper);
 
    }
-
-
 
    .institution-link span {
 
@@ -195,8 +164,6 @@
      font-size: 13px;
 
    }
-
-
 
    .masthead {
 
@@ -211,8 +178,6 @@
      gap: 20px;
 
    }
-
-
 
    .masthead-label {
 
@@ -230,23 +195,17 @@
 
    }
 
-
-
    .masthead-label.right {
 
      text-align: right;
 
    }
 
-
-
    main {
 
      padding: 0 var(--gutter);
 
    }
-
-
 
    .intro {
 
@@ -255,8 +214,6 @@
      max-width: 1100px;
 
    }
-
-
 
    .eyebrow {
 
@@ -280,8 +237,6 @@
 
    }
 
-
-
    .eyebrow::before {
 
      content: "";
@@ -295,8 +250,6 @@
      background: var(--muted);
 
    }
-
-
 
    h1 {
 
@@ -312,8 +265,6 @@
 
    }
 
-
-
    h1 .serif {
 
      font-family: var(--serif);
@@ -325,8 +276,6 @@
      letter-spacing: -0.07em;
 
    }
-
-
 
    .intro-bottom {
 
@@ -342,8 +291,6 @@
 
    }
 
-
-
    .intro-copy {
 
      max-width: 430px;
@@ -357,8 +304,6 @@
      line-height: 1.65;
 
    }
-
-
 
    .intro-note {
 
@@ -379,8 +324,6 @@
      white-space: nowrap;
 
    }
-
-
 
    .films-heading {
 
@@ -412,8 +355,6 @@
 
    }
 
-
-
    .films {
 
      display: grid;
@@ -424,15 +365,11 @@
 
    }
 
-
-
    .film {
 
      min-width: 0;
 
    }
-
-
 
    .film-header {
 
@@ -447,8 +384,6 @@
      margin-bottom: 17px;
 
    }
-
-
 
    .film-number {
 
@@ -466,8 +401,6 @@
 
    }
 
-
-
    .film-title {
 
      margin: 0;
@@ -483,8 +416,6 @@
      letter-spacing: -0.035em;
 
    }
-
-
 
    .film-meta {
 
@@ -506,8 +437,6 @@
 
    }
 
-
-
    .video-shell {
 
      position: relative;
@@ -524,15 +453,11 @@
 
    }
 
-
-
    .video-shell.garnet {
 
      background: var(--garnet);
 
    }
-
-
 
    .video-shell.sapphire {
 
@@ -540,15 +465,11 @@
 
    }
 
-
-
    .video-shell.emerald {
 
      background: var(--emerald);
 
    }
-
-
 
    .video-shell iframe {
 
@@ -565,8 +486,6 @@
      border: 0;
 
    }
-
-
 
    .video-click-layer {
 
@@ -592,8 +511,6 @@
 
    }
 
-
-
    .video-click-layer:focus-visible {
 
      outline: 2px solid var(--paper);
@@ -602,37 +519,51 @@
 
    }
 
-
-
    .video-controls {
+
      position: absolute;
+
      right: 0;
+
      bottom: 0;
+
      left: 0;
+
      z-index: 4;
+
      display: flex;
+
      align-items: center;
+
      gap: clamp(9px, 1.5vw, 20px);
+
      min-height: 57px;
+
      padding: 12px 17px;
+
      background: transparent;
+
      opacity: 0;
+
      visibility: hidden;
+
      pointer-events: none;
+
      transition: opacity 200ms ease, visibility 200ms ease;
 
    }
 
-
-
    .video-shell:hover .video-controls,
+
    .video-shell:focus-within .video-controls {
+
      opacity: 1;
+
      visibility: visible;
+
      pointer-events: auto;
+
    }
-
-
 
    .control-button {
 
@@ -660,8 +591,6 @@
 
    }
 
-
-
    .control-button svg {
 
      width: 19px;
@@ -680,15 +609,11 @@
 
    }
 
-
-
    .control-button:hover {
 
      opacity: 0.7;
 
    }
-
-
 
    .time-display {
 
@@ -705,8 +630,6 @@
      font-variant-numeric: tabular-nums;
 
    }
-
-
 
    .seek-slider,
 
@@ -728,8 +651,6 @@
 
    }
 
-
-
    .seek-slider {
 
      flex: 1 1 auto;
@@ -737,8 +658,6 @@
      width: 100%;
 
    }
-
-
 
    .volume-slider {
 
@@ -749,63 +668,106 @@
    }
 
    .seek-slider,
+
    .volume-slider {
+
      appearance: none;
+
      -webkit-appearance: none;
+
      outline: none;
+
      border: 0;
+
      background: transparent;
+
      box-shadow: none;
+
    }
 
    .seek-slider:focus,
+
    .seek-slider:focus-visible,
+
    .volume-slider:focus,
+
    .volume-slider:focus-visible {
+
      outline: none;
+
      box-shadow: none;
+
    }
 
    .seek-slider::-webkit-slider-runnable-track,
+
    .volume-slider::-webkit-slider-runnable-track {
+
      height: 2px;
+
      border: 0;
+
      outline: none;
+
      background: rgba(233, 229, 220, 0.42);
+
    }
 
    .seek-slider::-moz-range-track,
+
    .volume-slider::-moz-range-track {
+
      height: 2px;
+
      border: 0;
+
      outline: none;
+
      background: rgba(233, 229, 220, 0.42);
+
    }
 
    .seek-slider::-webkit-slider-thumb,
+
    .volume-slider::-webkit-slider-thumb {
+
      -webkit-appearance: none;
+
      appearance: none;
+
      width: 7px;
+
      height: 7px;
+
      margin-top: -2.5px;
+
      border: 0;
+
      border-radius: 50%;
+
      background: var(--paper);
+
      box-shadow: none;
+
    }
 
    .seek-slider::-moz-range-thumb,
+
    .volume-slider::-moz-range-thumb {
+
      width: 7px;
+
      height: 7px;
+
      border: 0;
+
      border-radius: 50%;
+
      background: var(--paper);
+
      box-shadow: none;
+
    }
-
-
 
    .video-status {
 
@@ -839,15 +801,11 @@
 
    }
 
-
-
    .video-shell.has-player .video-status {
 
      display: none;
 
    }
-
-
 
    .video-shell.has-player.is-loading .video-status {
 
@@ -855,15 +813,11 @@
 
    }
 
-
-
    .video-shell.has-player .video-status:empty {
 
      display: none;
 
    }
-
-
 
    .film-caption {
 
@@ -889,15 +843,11 @@
 
    }
 
-
-
    .film-caption span:last-child {
 
      text-align: right;
 
    }
-
-
 
    .closing {
 
@@ -912,8 +862,6 @@
      border-top: 1px solid var(--line);
 
    }
-
-
 
    .closing-title {
 
@@ -931,15 +879,11 @@
 
    }
 
-
-
    .closing-title em {
 
      font-weight: 400;
 
    }
-
-
 
    .closing-details {
 
@@ -957,8 +901,6 @@
 
    }
 
-
-
    .closing-credit {
 
      margin: 0;
@@ -970,8 +912,6 @@
      line-height: 1.8;
 
    }
-
-
 
    .closing-credit span {
 
@@ -988,8 +928,6 @@
      text-transform: uppercase;
 
    }
-
-
 
    footer {
 
@@ -1019,15 +957,11 @@
 
    }
 
-
-
    footer a:hover {
 
      color: var(--paper);
 
    }
-
-
 
    @media (max-width: 700px) {
 
@@ -1039,8 +973,6 @@
 
      }
 
-
-
      .event-name,
 
      .institution-link {
@@ -1051,23 +983,17 @@
 
      }
 
-
-
      .masthead {
 
        padding-top: 23px;
 
      }
 
-
-
      .intro {
 
        padding-top: 88px;
 
      }
-
-
 
      .intro-bottom {
 
@@ -1079,15 +1005,11 @@
 
      }
 
-
-
      .intro-note {
 
        text-align: left;
 
      }
-
-
 
      .film-header {
 
@@ -1095,15 +1017,11 @@
 
      }
 
-
-
      .film-meta {
 
        max-width: 100px;
 
      }
-
-
 
      .video-controls {
 
@@ -1115,15 +1033,11 @@
 
      }
 
-
-
      .time-display {
 
        font-size: 8px;
 
      }
-
-
 
      .volume-slider {
 
@@ -1133,8 +1047,6 @@
 
      }
 
-
-
      .control-button {
 
        width: 23px;
@@ -1142,8 +1054,6 @@
        height: 25px;
 
      }
-
-
 
      .control-button svg {
 
@@ -1153,15 +1063,11 @@
 
      }
 
-
-
      .closing {
 
        grid-template-columns: 1fr;
 
      }
-
-
 
      .closing-details {
 
@@ -1170,8 +1076,6 @@
        text-align: left;
 
      }
-
-
 
      footer {
 
@@ -1184,6 +1088,7 @@
      }
 
    }
+
 @media (prefers-reduced-motion: reduce) {
 
      html {
@@ -1191,8 +1096,6 @@
        scroll-behavior: auto;
 
      }
-
-
 
      *,
 
@@ -1206,21 +1109,68 @@
 
    }
 
- </style>
+ 
+
+    html.password-locked body > *:not(#password-gate),
+    body.password-locked > *:not(#password-gate) { visibility: hidden !important; }
+    #password-gate {
+      position: fixed; inset: 0; z-index: 99999; display: flex;
+      align-items: center; justify-content: center; padding: 24px;
+      background: var(--bg, #101011); color: var(--paper, #e9e5dc);
+    }
+    #password-gate[hidden] { display: none !important; }
+    .password-panel { width: min(100%, 390px); text-align: center; }
+    .password-kicker {
+      margin: 0 0 24px; color: var(--muted, #85827c);
+      font-family: var(--mono, monospace); font-size: 10px;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .password-heading {
+      margin: 0 0 14px; font-family: var(--serif, Georgia, serif);
+      font-size: clamp(38px, 8vw, 58px); font-weight: 400; letter-spacing: -.04em;
+    }
+    .password-description { margin: 0 0 30px; color: #b4b0a8; font-size: 14px; line-height: 1.6; }
+    .password-form { display: flex; gap: 8px; }
+    #page-password {
+      min-width: 0; flex: 1; padding: 14px 15px; border: 1px solid var(--line, #33312f);
+      border-radius: 0; outline: none; background: transparent; color: var(--paper, #e9e5dc); font-size: 14px;
+    }
+    #page-password:focus { border-color: var(--paper, #e9e5dc); }
+    .password-submit {
+      padding: 0 17px; border: 1px solid var(--paper, #e9e5dc); border-radius: 0;
+      background: var(--paper, #e9e5dc); color: var(--bg, #101011);
+      font-family: var(--mono, monospace); font-size: 10px; letter-spacing: .08em;
+      text-transform: uppercase; cursor: pointer;
+    }
+    .password-error { min-height: 18px; margin: 12px 0 0; color: #d6a5a5; font-family: var(--mono, monospace); font-size: 10px; }
+
+  </style>
 
 </head>
 
-
-
-<body>
+<body class="password-locked">
+  <section id="password-gate" aria-label="Password required">
+    <div class="password-panel">
+      <p class="password-kicker">Fisher Center · 2026 · A Doll's House Pictures</p>
+      <h1 class="password-heading">Enter <br>Password:<br> for Access</h1>
+      <p class="password-description">Enter the password to view the selected footage.</p>
+      <form class="password-form" id="password-form">
+        <input id="page-password" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password" required>
+        <button class="password-submit" type="submit">Enter</button>
+      </form>
+      <p class="password-error" id="password-error" role="status" aria-live="polite"></p>
+    </div>
+  </section>
 
  <nav class="topbar" aria-label="Main navigation">
+
    <div class="event-links">
+
    </div>
+
    <a class="institution-link" href="https://fishercenter.bard.edu/" target="_blank" rel="noopener noreferrer">FisherCenter.Bard.edu <span>↗</span></a>
+
  </nav>
-
-
 
  <div class="masthead">
 
@@ -1242,15 +1192,11 @@
 
  </div>
 
-
-
  <main>
 
    <section class="intro">
 
      <div class="eyebrow">A screening selection</div>
-
-
 
      <h1>
 
@@ -1259,8 +1205,6 @@
        <span class="serif">Lab.</span>
 
      </h1>
-
-
 
      <div class="intro-bottom">
 
@@ -1271,8 +1215,6 @@
          at the Fisher Center at Bard.
 
        </p>
-
-
 
        <div class="intro-note">
 
@@ -1288,8 +1230,6 @@
 
    </section>
 
-
-
    <section aria-label="Selected films">
 
      <div class="films-heading">
@@ -1300,13 +1240,9 @@
 
      </div>
 
-
-
      <div class="films" id="films"></div>
 
    </section>
-
-
 
    <section class="closing">
 
@@ -1318,8 +1254,6 @@
 
      </h2>
 
-
-
      <div class="closing-details">
 
        <p class="closing-credit">
@@ -1329,8 +1263,6 @@
          A Doll’s House Pictures
 
        </p>
-
-
 
        <p class="closing-credit">
 
@@ -1346,8 +1278,6 @@
 
  </main>
 
-
-
  <footer>
 
    <span>Family &amp; Alumni Weekend 2026</span>
@@ -1362,21 +1292,46 @@
 
  </footer>
 
-
-
  <script>
+  (() => {
+    const PASSWORD = "pal";
+    const gate = document.getElementById("password-gate");
+    const form = document.getElementById("password-form");
+    const input = document.getElementById("page-password");
+    const error = document.getElementById("password-error");
+    const unlocked = sessionStorage.getItem("familyAlumniWeekendUnlocked") === "yes";
+
+    function unlockPage() {
+      document.body.classList.remove("password-locked");
+      document.documentElement.classList.remove("password-locked");
+      gate.hidden = true;
+    }
+
+    if (unlocked) unlockPage();
+    else window.addEventListener("DOMContentLoaded", () => input.focus(), { once: true });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (input.value === PASSWORD) {
+        sessionStorage.setItem("familyAlumniWeekendUnlocked", "yes");
+        unlockPage();
+      } else {
+        error.textContent = "That password isn’t correct. Please try again.";
+        input.select();
+      }
+    });
+  })();
+</script>
+
+<script>
 
    /*
 
      EDIT YOUR VIDEO LINKS HERE.
 
-
-
      Paste each Vimeo link in this format:
 
      "1239218742/e63af99bc6"
-
-
 
      The part before the slash is the Vimeo video ID.
 
@@ -1385,8 +1340,6 @@
      You do not need to edit the iframe URLs anywhere else.
 
    */
-
-
 
    const VIDEOS = [
 
@@ -1428,13 +1381,9 @@
 
    ];
 
-
-
    const filmsContainer = document.getElementById("films");
 
    const players = [];
-
-
 
    const icons = {
 
@@ -1450,8 +1399,6 @@
 
    };
 
-
-
    function formatTime(seconds) {
 
      if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -1464,16 +1411,12 @@
 
    }
 
-
-
    function parseVimeoLink(link) {
-      const clean = String(link || "").trim().replace(/^https?:\/\/(?:www\.)?vimeo\.com\//i, "");
-      const match = clean.match(/^(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/);
-      if (!match) return null;
-      return { id: match[1], hash: match[2] || "" };
-    }
-
-
+     const clean = String(link || "").trim().replace(/^https?:\/\/(?:www\.)?vimeo\.com\//i, "");
+     const match = clean.match(/^(?:video\/)?(\d+)(?:\/([a-zA-Z0-9]+))?/);
+     if (!match) return null;
+     return { id: match[1], hash: match[2] || "" };
+   }
 
    function createFilm(video, index) {
 
@@ -1482,8 +1425,6 @@
      const article = document.createElement("article");
 
      article.className = "film";
-
-
 
      article.innerHTML = `
 
@@ -1501,8 +1442,6 @@
 
        </header>
 
-
-
        <div class="video-shell ${video.color || "garnet"} is-loading">
 
          <div class="video-status">Loading film…</div>
@@ -1519,11 +1458,7 @@
 
          ></iframe>
 
-
-
          <button class="video-click-layer" type="button" aria-label="Play or pause film"></button>
-
-
 
          <div class="video-controls" aria-label="Video controls">
 
@@ -1533,11 +1468,7 @@
 
            </button>
 
-
-
            <span class="time-display current-time">0:00</span>
-
-
 
            <input
 
@@ -1557,19 +1488,13 @@
 
            >
 
-
-
            <span class="time-display duration">0:00</span>
-
-
 
            <button class="control-button mute-button" type="button" aria-label="Mute" title="Mute">
 
              ${icons.volume}
 
            </button>
-
-
 
            <input
 
@@ -1589,8 +1514,6 @@
 
            >
 
-
-
            <button class="control-button fullscreen-button" type="button" aria-label="Fullscreen" title="Fullscreen">
 
              ${icons.fullscreen}
@@ -1600,8 +1523,6 @@
          </div>
 
        </div>
-
-
 
        <div class="film-caption">
 
@@ -1613,19 +1534,13 @@
 
      `;
 
-
-
      article.querySelector(".film-title").textContent = video.title;
 
      article.querySelector("iframe").title = video.title + " — Vimeo video";
 
      article.querySelector(".film-subtitle").textContent = video.subtitle || "Selected work";
 
-
-
      filmsContainer.appendChild(article);
-
-
 
      const shell = article.querySelector(".video-shell");
 
@@ -1649,11 +1564,7 @@
 
      const fullscreenButton = article.querySelector(".fullscreen-button");
 
-
-
      const vimeo = parseVimeoLink(video.link);
-
-
 
      if (!vimeo) {
 
@@ -1668,8 +1579,6 @@
        return;
 
      }
-
-
 
      const embedUrl = new URL("https://player.vimeo.com/video/" + vimeo.id);
 
@@ -1687,8 +1596,6 @@
 
      iframe.src = embedUrl.toString();
 
-
-
      if (!window.Vimeo || !window.Vimeo.Player) {
 
        shell.classList.remove("is-loading");
@@ -1699,19 +1606,13 @@
 
      }
 
-
-
      const player = new Vimeo.Player(iframe);
 
      players.push(player);
 
-
-
      let seeking = false;
 
      let lastVolume = 1;
-
-
 
      function setPlaying(isPlaying) {
 
@@ -1727,15 +1628,11 @@
 
      }
 
-
-
      async function togglePlayback() {
 
        try {
 
          const paused = await player.getPaused();
-
-
 
          if (paused) {
 
@@ -1771,13 +1668,9 @@
 
      }
 
-
-
      playButton.addEventListener("click", togglePlayback);
 
      clickLayer.addEventListener("click", togglePlayback);
-
-
 
      seekSlider.addEventListener("input", async () => {
 
@@ -1789,8 +1682,6 @@
 
        currentTime.textContent = formatTime(target);
 
-
-
        try {
 
          await player.setCurrentTime(target);
@@ -1799,15 +1690,11 @@
 
      });
 
-
-
      seekSlider.addEventListener("change", () => {
 
        seeking = false;
 
      });
-
-
 
      volumeSlider.addEventListener("input", async () => {
 
@@ -1829,13 +1716,9 @@
 
      });
 
-
-
      muteButton.addEventListener("click", async () => {
 
        const currentVolume = Number(volumeSlider.value);
-
-
 
        try {
 
@@ -1873,8 +1756,6 @@
 
      });
 
-
-
      fullscreenButton.addEventListener("click", async () => {
 
        try {
@@ -1893,21 +1774,15 @@
 
      });
 
-
-
      player.on("play", () => setPlaying(true));
 
      player.on("pause", () => setPlaying(false));
 
      player.on("ended", () => setPlaying(false));
 
-
-
      player.on("timeupdate", (data) => {
 
        currentTime.textContent = formatTime(data.seconds);
-
-
 
        if (!seeking && data.duration) {
 
@@ -1916,6 +1791,7 @@
        }
 
      });
+
 player.ready().then(async () => {
 
        shell.classList.add("has-player");
@@ -1923,8 +1799,6 @@ player.ready().then(async () => {
        shell.classList.remove("is-loading");
 
        status.textContent = "";
-
-
 
        try {
 
@@ -1936,8 +1810,6 @@ player.ready().then(async () => {
 
        } catch (_) {}
 
-
-
        try {
 
          const volume = await player.getVolume();
@@ -1947,8 +1819,6 @@ player.ready().then(async () => {
          if (volume > 0) lastVolume = volume;
 
        } catch (_) {}
-
-
 
        setPlaying(false);
 
@@ -1962,13 +1832,9 @@ player.ready().then(async () => {
 
    }
 
-
-
    document.getElementById("film-count").textContent =
 
      String(VIDEOS.length).padStart(2, "0") + " films";
-
-
 
    VIDEOS.forEach(createFilm);
 
