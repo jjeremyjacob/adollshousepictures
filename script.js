@@ -1707,6 +1707,33 @@ async function initializeVimeo() {
 
     }
 
+       /* --------------------------------------------------------
+       AUTOPLAY — MUTED, WITH DELAY
+       -------------------------------------------------------- */
+
+    try {
+
+        await player.setVolume(0);
+
+        if (soundButton) {
+            soundButton.textContent = "Sound Off";
+        }
+
+        await new Promise(resolve => {
+            setTimeout(resolve, 400);
+        });
+
+        await player.play();
+
+    } catch (error) {
+
+        console.warn(
+            "Vimeo autoplay was blocked by the browser.",
+            error
+        );
+
+    }
+
 }
 
 
