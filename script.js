@@ -14,7 +14,8 @@ const projects = [
         title: "Stissing House",
         category: "Social Campaign",
         type: "vimeo",
-        vimeo: "1226955261",
+          vimeo: "1226955261",
+    hash: "c019cba0b1",
         format: "wide",
         description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
         credits: [
@@ -149,6 +150,7 @@ const projects = [
         category: "Social Campaign",
         type: "vimeo",
         vimeo: "1135735488",
+        hash: "f8b1225c5d",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
         credits: [
@@ -526,6 +528,7 @@ const projects = [
         category: "Social Campaign",
         type: "vimeo",
         vimeo: "1135779851",
+        hash: "ce3e333307",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
         credits: [
@@ -649,6 +652,7 @@ const projects = [
         category: "Social Campaign",
         type: "vimeo",
         vimeo: "1226973263",
+        hash: "ab87885cfa",
         format: "vertical",
         description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
         credits: [
