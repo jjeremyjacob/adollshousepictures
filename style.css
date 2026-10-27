@@ -1,98 +1,107 @@
 /* ============================================================
-   A DOLL'S HOUSE PICTURES
-   STYLE.CSS
-   ============================================================ */
-
+A DOLL'S HOUSE PICTURES
+STYLE.CSS
+============================================================ */
 
 /* ============================================================
-   RESET
-   ============================================================ */
+RESET
+============================================================ */
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+box-sizing: border-box;
 }
 
 html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    background: #090909;
-    color: #e8e4dc;
-    scroll-behavior: smooth;
+margin: 0;
+padding: 0;
+width: 100%;
+min-height: 100%;
+background: #000000;
+color: #e8e4dc;
+scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background: #090909;
-    color: #e8e4dc;
-    font-family: "Manrope", sans-serif;
-    font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+margin: 0;
+padding: 0;
+width: 100%;
+min-height: 100vh;
+background: #000000;
+color: #e8e4dc;
+font-family: "Manrope", sans-serif;
+font-weight: 300;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
 }
 
 button,
 input {
-    font: inherit;
+font: inherit;
 }
 
 button {
-    border: 0;
-    padding: 0;
-    margin: 0;
+border: 0;
+padding: 0;
+margin: 0;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+color: inherit;
+text-decoration: none;
 }
 
+/* ============================================================
+MEDIA BLACK SAFEGUARD
+============================================================ */
+
+iframe,
+video,
+embed,
+object {
+background: #000;
+border: 0;
+outline: 0;
+}
 
 /* ============================================================
-   ARCHIVE
-   ============================================================ */
+ARCHIVE
+============================================================ */
 
 .archive {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: #090909;
-    overflow-x: hidden;
+position: relative;
+width: 100%;
+min-height: 100vh;
+background: #000000;
+overflow-x: hidden;
 }
 
-
 /* ============================================================
-   FLOATING ARCHIVE NAVIGATION
-   ============================================================ */
+FLOATING ARCHIVE NAVIGATION
+============================================================ */
 
 .archive-sidebar {
-    position: fixed;
-    left: 24px;
-    top: 24px;
-    bottom: 24px;
-    width: calc(100vw - 48px);
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none;
-    background: transparent;
-    background-color: transparent;
-    border: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+position: fixed;
+left: 24px;
+top: 24px;
+bottom: 24px;
+width: calc(100vw - 48px);
+z-index: 50;
+display: flex;
+flex-direction: column;
+pointer-events: none;
+background: transparent;
+background-color: transparent;
+border: 0;
+box-shadow: none;
+backdrop-filter: none;
+-webkit-backdrop-filter: none;
 }
 
-
 /* ============================================================
-   ARCHIVE HEADER / BRAND
-   ============================================================ */
+ARCHIVE HEADER / BRAND
+============================================================ */
 
 .archive-header {
     position: relative;
@@ -100,7 +109,7 @@ a {
     width: 52vw;
     max-width: 760px;
     padding: 0;
-    pointer-events: none;
+    pointer-events: auto;
     background: transparent;
 }
 
@@ -109,1080 +118,1093 @@ a {
     flex-direction: column;
     width: max-content;
     line-height: 0.82;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
     background: transparent;
 }
 
 .brand-main {
-    display: block;
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(38px, 5vw, 78px);
-    font-weight: 400;
-    letter-spacing: -0.075em;
-    white-space: nowrap;
-    background: transparent;
+display: block;
+font-family: "Manrope", sans-serif;
+font-size: clamp(38px, 5vw, 78px);
+font-weight: 400;
+letter-spacing: -0.075em;
+white-space: nowrap;
+background: transparent;
 }
 
 .brand-serif {
-    display: block;
-    margin-top: 4px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(48px, 6.5vw, 100px);
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.055em;
-    white-space: nowrap;
-    background: transparent;
+display: block;
+margin-top: 4px;
+font-family: "Cormorant Garamond", serif;
+font-size: clamp(48px, 6.5vw, 100px);
+font-style: italic;
+font-weight: 400;
+letter-spacing: -0.055em;
+white-space: nowrap;
+background: transparent;
 }
 
 .archive-total {
-    position: absolute;
-    left: 0;
-    top: calc(100% + 12px);
-    font-family: "DM Mono", monospace;
-    font-size: 8px;
-    letter-spacing: 0.08em;
-    opacity: 0.4;
-    background: transparent;
+position: absolute;
+left: 0;
+top: calc(100% + 12px);
+font-family: "DM Mono", monospace;
+font-size: 8px;
+letter-spacing: 0.08em;
+opacity: 0.4;
+background: transparent;
 }
 
-
 /* ============================================================
-   ARCHIVE LIST
-   ============================================================ */
+ARCHIVE LIST
+============================================================ */
 
 .archive-list {
-    width: 300px;
-    flex: 1;
-    min-height: 0;
-    margin-top: 48px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 12px;
-    pointer-events: auto;
-    background: transparent;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+width: 300px;
+flex: 1;
+min-height: 0;
+margin-top: 48px;
+overflow-y: auto;
+overflow-x: hidden;
+padding-right: 12px;
+pointer-events: auto;
+background: transparent;
+scrollbar-width: none;
+-ms-overflow-style: none;
 }
 
 .archive-list::-webkit-scrollbar {
-    display: none;
+display: none;
 }
 
-
 /* ============================================================
-   ARCHIVE ITEMS
-   ============================================================ */
+ARCHIVE ITEMS
+============================================================ */
 
 .archive-item {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    width: 100%;
-    padding: 4px 0;
-    cursor: pointer;
-    color: rgba(232, 228, 220, 0.58);
-    background: transparent;
-    transition: color 0.25s ease, transform 0.25s ease;
+position: relative;
+display: flex;
+align-items: baseline;
+width: 100%;
+padding: 4px 0;
+cursor: pointer;
+color: rgba(232, 228, 220, 0.58);
+background: transparent;
+transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .archive-item:hover {
-    color: #e8e4dc;
-    transform: translateX(4px);
-    background: transparent;
+color: #e8e4dc;
+transform: translateX(4px);
+background: transparent;
 }
 
 .archive-item.active {
-    color: #e8e4dc;
-    background: transparent;
+color: #e8e4dc;
+background: transparent;
 }
 
 .archive-number {
-    flex: 0 0 24px;
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    opacity: 0.32;
-    background: transparent;
+flex: 0 0 24px;
+font-family: "DM Mono", monospace;
+font-size: 7px;
+opacity: 0.32;
+background: transparent;
 }
 
 .archive-title {
-    font-family: "Manrope", sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: -0.015em;
-    line-height: 1.35;
-    white-space: nowrap;
-    background: transparent;
+font-family: "Manrope", sans-serif;
+font-size: 11px;
+font-weight: 400;
+letter-spacing: -0.015em;
+line-height: 1.35;
+white-space: nowrap;
+background: transparent;
 }
 
 .archive-category {
-    margin-left: 7px;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 12px;
-    font-style: italic;
-    opacity: 0.45;
-    white-space: nowrap;
-    background: transparent;
+margin-left: 7px;
+font-family: "Cormorant Garamond", serif;
+font-size: 12px;
+font-style: italic;
+opacity: 0.45;
+white-space: nowrap;
+background: transparent;
 }
 
-
 /* ============================================================
-   ABOUT ARCHIVE ITEM
-   ============================================================ */
+ABOUT ARCHIVE ITEM
+============================================================ */
 
 .archive-about {
-    margin-top: 2.5rem;
+margin-top: 2.5rem;
 }
 
-
 /* ============================================================
-   ARCHIVE FOOTER
-   ============================================================ */
+ARCHIVE FOOTER
+============================================================ */
 
 .archive-footer {
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-    pointer-events: auto;
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.38;
-    background: transparent;
+width: 300px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-top: 20px;
+pointer-events: auto;
+font-family: "DM Mono", monospace;
+font-size: 7px;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+opacity: 0.38;
+background: transparent;
 }
 
-
 /* ============================================================
-   PROJECT STAGE
-   ============================================================ */
+PROJECT STAGE
+============================================================ */
 
 .project-stage {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 5vw;
-    background: transparent;
+position: relative;
+width: 100%;
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 60px 5vw;
+background: transparent;
 }
 
 .project {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 0;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    background: transparent;
+width: 100%;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 40px 0;
+opacity: 1;
+transform: translateY(0);
+transition: opacity 0.35s ease, transform 0.35s ease;
+background: transparent;
 }
 
 .project.is-changing {
-    opacity: 0;
-    transform: translateY(5px);
+opacity: 0;
+transform: translateY(5px);
 }
 
-
 /* ============================================================
-   PROJECT MEDIA
-   ============================================================ */
+PROJECT MEDIA
+============================================================ */
 
 .project-media {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   INDIVIDUAL PROJECT INFORMATION
-   ============================================================ */
+INDIVIDUAL PROJECT INFORMATION
+============================================================ */
 
 .project-info {
-    width: min(900px, 78vw);
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background: transparent;
+width: min(900px, 78vw);
+margin-top: 28px;
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   INDIVIDUAL PROJECT TITLE
-   ============================================================ */
+INDIVIDUAL PROJECT TITLE
+============================================================ */
 
 .project-title {
-    margin: 0;
-    color: #e8e4dc;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(56px, 8vw, 118px);
-    font-weight: 500;
-    font-style: italic;
-    line-height: 0.78;
-    letter-spacing: -0.055em;
-    text-align: center;
-    background: transparent;
+margin: 0;
+color: #e8e4dc;
+font-family: "Cormorant Garamond", serif;
+font-size: clamp(56px, 8vw, 118px);
+font-weight: 500;
+font-style: italic;
+line-height: 0.78;
+letter-spacing: -0.055em;
+text-align: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   INDIVIDUAL PROJECT CATEGORY
-   ============================================================ */
+INDIVIDUAL PROJECT CATEGORY
+============================================================ */
 
 .project-category {
-    margin-top: 9px;
-    color: rgba(232, 228, 220, 0.48);
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: transparent;
+margin-top: 9px;
+color: rgba(232, 228, 220, 0.48);
+font-family: "DM Mono", monospace;
+font-size: 7px;
+font-weight: 400;
+line-height: 1.2;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+background: transparent;
 }
 
-
 /* ============================================================
-   INDIVIDUAL PROJECT DESCRIPTION
-   ============================================================ */
+INDIVIDUAL PROJECT DESCRIPTION
+============================================================ */
 
 .project-description {
-    width: min(650px, 72vw);
-    margin-top: 22px;
-    color: rgba(232, 228, 220, 0.62);
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    line-height: 1.7;
-    text-align: center;
-    background: transparent;
+width: min(650px, 72vw);
+margin-top: 22px;
+color: rgba(232, 228, 220, 0.62);
+font-family: "Manrope", sans-serif;
+font-size: 10px;
+font-weight: 300;
+line-height: 1.7;
+text-align: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   INDIVIDUAL PROJECT CREDITS
-   ============================================================ */
+INDIVIDUAL PROJECT CREDITS
+============================================================ */
 
 .project-credits {
-    width: min(700px, 75vw);
-    margin-top: 13px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px 18px;
-    color: rgba(232, 228, 220, 0.34);
-    font-family: "DM Mono", monospace;
-    font-size: 9px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    text-align: center;
-    background: transparent;
+width: min(700px, 75vw);
+margin-top: 13px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 4px 18px;
+color: rgba(232, 228, 220, 0.34);
+font-family: "DM Mono", monospace;
+font-size: 9px;
+font-weight: 400;
+line-height: 1.5;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+text-align: center;
+background: transparent;
 }
 
 .project-credit {
-    display: inline-flex;
-    gap: 5px;
-    align-items: baseline;
+display: inline-flex;
+gap: 5px;
+align-items: baseline;
 }
 
 .credit-role {
-    opacity: 0.7;
+opacity: 0.7;
 }
 
-
 /* ============================================================
-   VIMEO WRAPPER
-   ============================================================ */
+VIMEO WRAPPER
+============================================================ */
 
 .vimeo-wrap {
-    position: relative;
-    width: min(1100px, 82vw);
-    aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
+position: relative;
+width: min(1100px, 82vw);
+aspect-ratio: 16 / 9;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #000;
+overflow: hidden;
 }
 
 .vimeo-wrap.vertical {
-    width: auto;
-    height: min(72vh, 760px);
-    max-width: 42vw;
-    aspect-ratio: 9 / 16;
+width: auto;
+height: min(72vh, 760px);
+max-width: 42vw;
+aspect-ratio: 9 / 16;
+background: #000;
+overflow: hidden;
 }
 
-
 /* ============================================================
-   VIMEO FRAME
-   ============================================================ */
+VIMEO FRAME
+============================================================ */
 
 .vimeo-frame {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
+position: relative;
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: #000;
+border: 0;
+outline: 0;
+box-shadow: none;
 }
-
-.vimeo-frame .project-vimeo {
-    position: absolute;
-    inset: 0;
-    left: -2px;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    pointer-events: none;
-    background: #000;
-}
-
 
 /* ============================================================
-   VIMEO CONTROLS
-   ============================================================ */
+VIMEO IFRAME
+============================================================ */
+
+.vimeo-frame .project-vimeo {
+position: absolute;
+inset: -1px;
+left: -1px;
+display: block;
+width: calc(100% + 2px);
+height: calc(100% + 2px);
+border: 0;
+outline: 0;
+box-shadow: none;
+pointer-events: none;
+background: #000;
+}
+
+/* ============================================================
+VIMEO CONTROLS
+============================================================ */
 
 .vimeo-controls {
-    position: absolute;
-    left: 50%;
-    bottom: 12px;
-    z-index: 5;
-    width: max-content;
-    max-width: calc(100% - 24px);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 12px;
-    background: transparent;
-    opacity: 0;
-    transform: translate(-50%, 5px);
-    pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+position: absolute;
+left: 50%;
+bottom: 12px;
+z-index: 5;
+width: max-content;
+max-width: calc(100% - 24px);
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 8px 12px;
+background: transparent;
+opacity: 0;
+transform: translate(-50%, 5px);
+pointer-events: none;
+transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .vimeo-wrap.controls-visible .vimeo-controls,
 .vimeo-wrap:hover .vimeo-controls {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
+opacity: 1;
+transform: translate(-50%, 0);
+pointer-events: auto;
 }
 
-
 /* ============================================================
-   VIMEO BUTTONS
-   ============================================================ */
+VIMEO BUTTONS
+============================================================ */
 
 .vimeo-control {
-    appearance: none;
-    background: transparent;
-    color: #e8e4dc;
-    cursor: pointer;
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    opacity: 0.78;
-    transition: opacity 0.2s ease;
+appearance: none;
+background: transparent;
+color: #e8e4dc;
+cursor: pointer;
+font-family: "DM Mono", monospace;
+font-size: 7px;
+line-height: 1;
+letter-spacing: 0.04em;
+white-space: nowrap;
+opacity: 0.78;
+transition: opacity 0.2s ease;
 }
 
 .vimeo-control:hover {
-    opacity: 1;
+opacity: 1;
 }
 
-
 /* ============================================================
-   VIMEO TIME
-   ============================================================ */
+VIMEO TIME
+============================================================ */
 
 .vimeo-time {
-    flex-shrink: 0;
-    color: rgba(232, 228, 220, 0.68);
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    line-height: 1;
-    white-space: nowrap;
-    background: transparent;
+flex-shrink: 0;
+color: rgba(232, 228, 220, 0.68);
+font-family: "DM Mono", monospace;
+font-size: 7px;
+line-height: 1;
+white-space: nowrap;
+background: transparent;
 }
 
-
 /* ============================================================
-   VIMEO PROGRESS
-   ============================================================ */
+VIMEO PROGRESS
+============================================================ */
 
 .vimeo-progress-wrap {
-    position: relative;
-    width: 180px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    background: transparent;
+position: relative;
+width: 180px;
+height: 16px;
+display: flex;
+align-items: center;
+cursor: pointer;
+background: transparent;
 }
 
 .vimeo-progress {
-    appearance: none;
-    width: 100%;
-    height: 12px;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    cursor: pointer;
+appearance: none;
+width: 100%;
+height: 12px;
+margin: 0;
+padding: 0;
+background: transparent;
+cursor: pointer;
 }
 
 .vimeo-progress::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 1px;
-    background: rgba(232, 228, 220, 0.35);
+width: 100%;
+height: 1px;
+background: rgba(232, 228, 220, 0.35);
 }
 
 .vimeo-progress::-webkit-slider-thumb {
-    appearance: none;
-    width: 5px;
-    height: 5px;
-    margin-top: -2px;
-    border-radius: 50%;
-    background: #e8e4dc;
-    cursor: pointer;
+appearance: none;
+width: 5px;
+height: 5px;
+margin-top: -2px;
+border-radius: 50%;
+background: #e8e4dc;
+cursor: pointer;
 }
 
 .vimeo-progress::-moz-range-track {
-    width: 100%;
-    height: 1px;
-    background: rgba(232, 228, 220, 0.35);
+width: 100%;
+height: 1px;
+background: rgba(232, 228, 220, 0.35);
 }
 
 .vimeo-progress::-moz-range-progress {
-    height: 1px;
-    background: #e8e4dc;
+height: 1px;
+background: #e8e4dc;
 }
 
 .vimeo-progress::-moz-range-thumb {
-    width: 5px;
-    height: 5px;
-    border: 0;
-    border-radius: 50%;
-    background: #e8e4dc;
-    cursor: pointer;
+width: 5px;
+height: 5px;
+border: 0;
+border-radius: 50%;
+background: #e8e4dc;
+cursor: pointer;
 }
 
-
 /* ============================================================
-   IMAGE CAROUSEL
-   ============================================================ */
+IMAGE CAROUSEL
+============================================================ */
 
 .image-carousel {
-    position: relative;
-    width: min(1100px, 82vw);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: transparent;
+position: relative;
+width: min(1100px, 82vw);
+display: flex;
+flex-direction: column;
+align-items: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   CAROUSEL STAGE
-   ============================================================ */
+CAROUSEL STAGE
+============================================================ */
 
 .carousel-stage {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
+position: relative;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+background: transparent;
 }
 
-
 /* ============================================================
-   CAROUSEL IMAGE WRAP
-   ============================================================ */
+CAROUSEL IMAGE WRAP
+============================================================ */
 
 .carousel-image-wrap {
-    position: relative;
-    width: 100%;
-    height: min(72vh, 760px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: transparent;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: pan-y;
+position: relative;
+width: 100%;
+height: min(72vh, 760px);
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+background: transparent;
+cursor: pointer;
+user-select: none;
+-webkit-user-select: none;
+touch-action: pan-y;
 }
 
-
 /* ============================================================
-   CAROUSEL IMAGE
-   ============================================================ */
+CAROUSEL IMAGE
+============================================================ */
 
 .carousel-image {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 72vh;
-    object-fit: contain;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.985);
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.5s ease;
-    background: transparent;
+position: absolute;
+top: 50%;
+left: 50%;
+display: block;
+width: auto;
+height: auto;
+max-width: 100%;
+max-height: 72vh;
+object-fit: contain;
+opacity: 0;
+transform: translate(-50%, -50%) scale(0.985);
+pointer-events: none;
+transition: opacity 0.4s ease, transform 0.5s ease;
+background: transparent;
 }
 
 .carousel-image.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    pointer-events: auto;
+opacity: 1;
+transform: translate(-50%, -50%) scale(1);
+pointer-events: auto;
 }
 
 .carousel-image.slide-next {
-    animation: carouselSlideNext 0.45s ease;
+animation: carouselSlideNext 0.45s ease;
 }
 
 .carousel-image.slide-prev {
-    animation: carouselSlidePrev 0.45s ease;
+animation: carouselSlidePrev 0.45s ease;
+}
+
+/* ============================================================
+CAROUSEL MOTION
+============================================================ */
+
+@keyframes carouselSlideNext {
+from {
+opacity: 0;
+transform: translate(calc(-50% + 30px), -50%) scale(0.985);
 }
 
 
-/* ============================================================
-   CAROUSEL MOTION
-   ============================================================ */
+to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
 
-@keyframes carouselSlideNext {
-    from {
-        opacity: 0;
-        transform: translate(calc(-50% + 30px), -50%) scale(0.985);
-    }
 
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
 }
 
 @keyframes carouselSlidePrev {
-    from {
-        opacity: 0;
-        transform: translate(calc(-50% - 30px), -50%) scale(0.985);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+from {
+opacity: 0;
+transform: translate(calc(-50% - 30px), -50%) scale(0.985);
 }
 
 
+to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+}
+
 /* ============================================================
-   CAROUSEL ARROWS
-   ============================================================ */
+CAROUSEL ARROWS
+============================================================ */
 
 .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 5;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(232, 228, 220, 0.7);
-    background: transparent;
-    cursor: pointer;
-    font-family: "Manrope", sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 1;
-    opacity: 0;
-    transform: translateY(-50%);
-    transition: opacity 0.25s ease, color 0.2s ease, transform 0.2s ease;
+position: absolute;
+top: 50%;
+z-index: 5;
+width: 44px;
+height: 44px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: rgba(232, 228, 220, 0.7);
+background: transparent;
+cursor: pointer;
+font-family: "Manrope", sans-serif;
+font-size: 20px;
+font-weight: 300;
+line-height: 1;
+opacity: 0;
+transform: translateY(-50%);
+transition: opacity 0.25s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .carousel-stage:hover .carousel-arrow {
-    opacity: 1;
+opacity: 1;
 }
 
 .carousel-arrow:hover {
-    color: #e8e4dc;
+color: #e8e4dc;
 }
 
 .carousel-prev {
-    left: 0;
+left: 0;
 }
 
 .carousel-next {
-    right: 0;
+right: 0;
 }
 
 .carousel-prev:hover {
-    transform: translate(-3px, -50%);
+transform: translate(-3px, -50%);
 }
 
 .carousel-next:hover {
-    transform: translate(3px, -50%);
+transform: translate(3px, -50%);
 }
 
-
 /* ============================================================
-   CAROUSEL COUNTER
-   ============================================================ */
+CAROUSEL COUNTER
+============================================================ */
 
 .carousel-meta {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 12px;
-    background: transparent;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 12px;
+background: transparent;
 }
 
 .carousel-counter {
-    color: rgba(232, 228, 220, 0.42);
-    font-family: "DM Mono", monospace;
-    font-size: 7px;
-    line-height: 1;
-    letter-spacing: 0.06em;
-    background: transparent;
+color: rgba(232, 228, 220, 0.42);
+font-family: "DM Mono", monospace;
+font-size: 7px;
+line-height: 1;
+letter-spacing: 0.06em;
+background: transparent;
 }
 
 .carousel-separator {
-    margin: 0 4px;
-    opacity: 0.4;
+margin: 0 4px;
+opacity: 0.4;
 }
 
-
 /* ============================================================
-   TEXT PROJECTS
-   ============================================================ */
+TEXT PROJECTS
+============================================================ */
 
 .project-text {
-    width: min(850px, 72vw);
-    text-align: center;
-    background: transparent;
+width: min(850px, 72vw);
+text-align: center;
+background: transparent;
 }
 
 .project-text.editorial {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(28px, 4vw, 60px);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
+font-family: "Cormorant Garamond", serif;
+font-size: clamp(28px, 4vw, 60px);
+line-height: 0.98;
+letter-spacing: -0.035em;
 }
 
 .project-text.serif {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(30px, 5vw, 76px);
-    line-height: 0.92;
-    letter-spacing: -0.04em;
+font-family: "Cormorant Garamond", serif;
+font-size: clamp(30px, 5vw, 76px);
+line-height: 0.92;
+letter-spacing: -0.04em;
 }
 
 .project-text.script {
-    font-family: "Parisienne", cursive;
-    font-size: clamp(42px, 7vw, 100px);
-    line-height: 0.9;
+font-family: "Parisienne", cursive;
+font-size: clamp(42px, 7vw, 100px);
+line-height: 0.9;
 }
 
 .project-text.oversized {
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(40px, 9vw, 150px);
-    line-height: 0.82;
-    font-weight: 300;
-    letter-spacing: -0.08em;
+font-family: "Manrope", sans-serif;
+font-size: clamp(40px, 9vw, 150px);
+line-height: 0.82;
+font-weight: 300;
+letter-spacing: -0.08em;
 }
 
 .project-text.minimal {
-    font-family: "DM Mono", monospace;
-    font-size: clamp(16px, 2vw, 28px);
-    line-height: 1.4;
-    letter-spacing: -0.02em;
+font-family: "DM Mono", monospace;
+font-size: clamp(16px, 2vw, 28px);
+line-height: 1.4;
+letter-spacing: -0.02em;
 }
 
-
 /* ============================================================
-   TEXT PROJECT DESCRIPTION
-   ============================================================ */
+TEXT PROJECT DESCRIPTION
+============================================================ */
 
 .text-project-description {
-    width: min(620px, 70vw);
-    margin: 40px auto 0;
-    color: rgba(232, 228, 220, 0.52);
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    line-height: 1.7;
-    background: transparent;
+width: min(620px, 70vw);
+margin: 40px auto 0;
+color: rgba(232, 228, 220, 0.52);
+font-family: "Manrope", sans-serif;
+font-size: 10px;
+line-height: 1.7;
+background: transparent;
 }
 
-
 /* ============================================================
-   IMAGE PROJECTS
-   ============================================================ */
+IMAGE PROJECTS
+============================================================ */
 
 .image-project {
-    width: min(1000px, 82vw);
-    display: flex;
-    justify-content: center;
-    background: transparent;
+width: min(1000px, 82vw);
+display: flex;
+justify-content: center;
+background: transparent;
 }
 
 .image-project img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    background: transparent;
+display: block;
+width: 100%;
+height: auto;
+object-fit: contain;
+background: transparent;
 }
 
-
 /* ============================================================
-   ABOUT
-   ============================================================ */
+ABOUT
+============================================================ */
 
 .about-content {
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
+width: 100%;
+min-height: 100vh;
+position: relative;
 }
 
 .about-image {
-    position: absolute;
-    left: 5vw;
-    top: 50%;
-    transform: translateY(-50%);
-    width: min(520px, 38vw);
+position: absolute;
+left: 5vw;
+top: 50%;
+transform: translateY(-50%);
+width: min(520px, 38vw);
 }
 
 .about-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+display: block;
+width: 100%;
+height: auto;
+object-fit: contain;
 }
 
 .about-copy {
-    width: min(310px, 22vw);
-    position: absolute;
-    left: 58%;
-    top: 50%;
-    transform: translateY(-50%);
+width: min(310px, 22vw);
+position: absolute;
+left: 58%;
+top: 50%;
+transform: translateY(-50%);
 }
 
 .about-copy .project-category {
-    margin-top: 0;
-    margin-bottom: 12px;
+margin-top: 0;
+margin-bottom: 12px;
 }
 
 .about-copy .project-title {
-    margin-top: 0;
-    margin-bottom: 34px;
+margin-top: 0;
+margin-bottom: 34px;
 }
 
 .about-description {
-    max-width: 310px;
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: -0.01em;
-    color: #e8e4dc;
+max-width: 310px;
+font-family: "Manrope", sans-serif;
+font-size: 10px;
+font-weight: 400;
+line-height: 1.75;
+letter-spacing: -0.01em;
+color: #e8e4dc;
 }
 
 .about-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 38px;
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: -0.01em;
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-top: 38px;
+font-family: "Manrope", sans-serif;
+font-size: 10px;
+font-weight: 400;
+line-height: 1.75;
+letter-spacing: -0.01em;
 }
 
 .about-contact a {
-    color: #e8e4dc;
-    text-decoration: none;
-    width: fit-content;
-    font-family: "Manrope", sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.75;
-    letter-spacing: -0.01em;
-    transition: opacity 0.2s ease;
+color: #e8e4dc;
+text-decoration: none;
+width: fit-content;
+font-family: "Manrope", sans-serif;
+font-size: 10px;
+font-weight: 400;
+line-height: 1.75;
+letter-spacing: -0.01em;
+transition: opacity 0.2s ease;
 }
 
 .about-contact a:hover {
-    opacity: 0.45;
+opacity: 0.45;
 }
 
-
 /* ============================================================
-   MOBILE
-   ============================================================ */
+MOBILE
+============================================================ */
 
 @media (max-width: 700px) {
 
-    .archive-sidebar {
-        left: 14px;
-        right: 14px;
-        top: 14px;
-        bottom: auto;
-        width: auto;
-        height: auto;
-        max-height: 45vh;
-        background: transparent;
-        background-color: transparent;
-        border: 0;
-        box-shadow: none;
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-        pointer-events: none;
-    }
 
-    .archive-header {
-        width: 90vw;
-        max-width: none;
-        background: transparent;
-    }
+.archive-sidebar {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+    bottom: auto;
+    width: auto;
+    height: auto;
+    max-height: 45vh;
+    background: transparent;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+}
 
-    .brand {
-        background: transparent;
-    }
+.archive-header {
+    width: 90vw;
+    max-width: none;
+    background: transparent;
+}
 
-    .brand-main {
-        font-size: clamp(30px, 9vw, 46px);
-    }
+.brand {
+    background: transparent;
+}
 
-    .brand-serif {
-        font-size: clamp(38px, 12vw, 60px);
-    }
+.brand-main {
+    font-size: clamp(30px, 9vw, 46px);
+}
 
-    .archive-total {
-        font-size: 7px;
-    }
+.brand-serif {
+    font-size: clamp(38px, 12vw, 60px);
+}
 
-    .archive-list {
-        width: 250px;
-        max-height: 25vh;
-        margin-top: 42px;
-        padding-right: 8px;
-        background: transparent;
-    }
+.archive-total {
+    font-size: 7px;
+}
 
-    .archive-item {
-        padding: 3px 0;
-        background: transparent;
-    }
+.archive-list {
+    width: 250px;
+    max-height: 25vh;
+    margin-top: 42px;
+    padding-right: 8px;
+    background: transparent;
+}
 
-    .archive-number {
-        flex-basis: 21px;
-        font-size: 6px;
-    }
+.archive-item {
+    padding: 3px 0;
+    background: transparent;
+}
 
-    .archive-title {
-        font-size: 9px;
-    }
+.archive-number {
+    flex-basis: 21px;
+    font-size: 6px;
+}
 
-    .archive-category {
-        font-size: 11px;
-    }
+.archive-title {
+    font-size: 9px;
+}
 
-    .archive-about {
-        margin-top: 2rem;
-    }
+.archive-category {
+    font-size: 11px;
+}
 
-    .archive-footer {
-        width: 250px;
-        padding-top: 14px;
-        padding-bottom: 2px;
-        font-size: 6px;
-        background: transparent;
-    }
+.archive-about {
+    margin-top: 2rem;
+}
 
-    .project-stage {
-        min-height: 100svh;
-        padding: 30px 18px;
-        align-items: center;
-        background: transparent;
-    }
+.archive-footer {
+    width: 250px;
+    padding-top: 14px;
+    padding-bottom: 2px;
+    font-size: 6px;
+    background: transparent;
+}
 
-    .project {
-        min-height: 100svh;
-        padding-top: 38vh;
-        background: transparent;
-    }
+.project-stage {
+    min-height: 100svh;
+    padding: 30px 18px;
+    align-items: center;
+    background: transparent;
+}
 
-    .project-info {
-        width: 90vw;
-        margin-top: 20px;
-        background: transparent;
-    }
+.project {
+    min-height: 100svh;
+    padding-top: 38vh;
+    background: transparent;
+}
 
-    .project-title {
-        font-size: clamp(52px, 17vw, 88px);
-        line-height: 0.8;
-        letter-spacing: -0.05em;
-    }
+.project-info {
+    width: 90vw;
+    margin-top: 20px;
+    background: transparent;
+}
 
-    .project-category {
-        margin-top: 7px;
-        font-size: 6px;
-    }
+.project-title {
+    font-size: clamp(52px, 17vw, 88px);
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+}
 
-    .project-description {
-        width: 88vw;
-        margin-top: 17px;
-        font-size: 9px;
-        line-height: 1.65;
-    }
+.project-category {
+    margin-top: 7px;
+    font-size: 6px;
+}
 
-    .project-credits {
-        width: 88vw;
-        margin-top: 10px;
-        font-size: 6px;
-        gap: 3px 10px;
-    }
+.project-description {
+    width: 88vw;
+    margin-top: 17px;
+    font-size: 9px;
+    line-height: 1.65;
+}
 
-    .vimeo-wrap {
-        width: 100%;
-        max-width: 100%;
-        background: #000;
-    }
+.project-credits {
+    width: 88vw;
+    margin-top: 10px;
+    font-size: 6px;
+    gap: 3px 10px;
+}
 
-    .vimeo-wrap.vertical {
-        width: auto;
-        height: min(58vh, 620px);
-        max-width: 70vw;
-    }
+.vimeo-wrap {
+    width: 100%;
+    max-width: 100%;
+    background: #000;
+    overflow: hidden;
+}
 
-    .vimeo-controls {
-        bottom: 8px;
-        gap: 8px;
-        padding: 7px 8px;
-        max-width: calc(100% - 16px);
-        background: transparent;
-    }
+.vimeo-wrap.vertical {
+    width: auto;
+    height: min(58vh, 620px);
+    max-width: 70vw;
+    background: #000;
+    overflow: hidden;
+}
 
-    .vimeo-progress-wrap {
-        width: 90px;
-    }
+.vimeo-frame {
+    background: #000;
+    border: 0;
+    outline: 0;
+}
 
-    .vimeo-time {
-        font-size: 6px;
-    }
+.vimeo-frame .project-vimeo {
+    inset: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: #000;
+    border: 0;
+    outline: 0;
+}
 
-    .vimeo-control {
-        font-size: 6px;
-    }
+.vimeo-controls {
+    bottom: 8px;
+    gap: 8px;
+    padding: 7px 8px;
+    max-width: calc(100% - 16px);
+    background: transparent;
+}
 
-    .image-carousel {
-        width: 100%;
-        max-width: 100%;
-    }
+.vimeo-progress-wrap {
+    width: 90px;
+}
 
-    .carousel-image-wrap {
-        height: 58vh;
-        min-height: 0;
-    }
+.vimeo-time {
+    font-size: 6px;
+}
 
-    .carousel-image {
-        height: 100%;
-        max-width: 100%;
-    }
+.vimeo-control {
+    font-size: 6px;
+}
 
-    .carousel-arrow {
-        width: 34px;
-        height: 34px;
-        font-size: 17px;
-        opacity: 0.7;
-    }
+.image-carousel {
+    width: 100%;
+    max-width: 100%;
+}
 
-    .carousel-prev {
-        left: -4px;
-    }
+.carousel-image-wrap {
+    height: 58vh;
+    min-height: 0;
+}
 
-    .carousel-next {
-        right: -4px;
-    }
+.carousel-image {
+    height: 100%;
+    max-width: 100%;
+}
 
-    .carousel-meta {
-        margin-top: 9px;
-    }
+.carousel-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+    opacity: 0.7;
+}
 
-    .carousel-counter {
-        font-size: 6px;
-    }
+.carousel-prev {
+    left: -4px;
+}
 
-    .project-description {
-        width: 90vw;
-    }
+.carousel-next {
+    right: -4px;
+}
 
-    .project-credits {
-        width: 90vw;
-    }
+.carousel-meta {
+    margin-top: 9px;
+}
 
-    .project-text {
-        width: 90vw;
-    }
+.carousel-counter {
+    font-size: 6px;
+}
 
-    .project-text.editorial {
-        font-size: clamp(26px, 9vw, 48px);
-    }
+.project-description {
+    width: 90vw;
+}
 
-    .project-text.serif {
-        font-size: clamp(30px, 11vw, 58px);
-    }
+.project-credits {
+    width: 90vw;
+}
 
-    .project-text.script {
-        font-size: clamp(40px, 15vw, 78px);
-    }
+.project-text {
+    width: 90vw;
+}
 
-    .project-text.oversized {
-        font-size: clamp(42px, 17vw, 85px);
-    }
+.project-text.editorial {
+    font-size: clamp(26px, 9vw, 48px);
+}
 
-    .project-text.minimal {
-        font-size: 15px;
-    }
+.project-text.serif {
+    font-size: clamp(30px, 11vw, 58px);
+}
 
-    .text-project-description {
-        width: 85vw;
-        margin-top: 28px;
-        font-size: 9px;
-    }
+.project-text.script {
+    font-size: clamp(40px, 15vw, 78px);
+}
 
-    .image-project {
-        width: 90vw;
-    }
+.project-text.oversized {
+    font-size: clamp(42px, 17vw, 85px);
+}
+
+.project-text.minimal {
+    font-size: 15px;
+}
+
+.text-project-description {
+    width: 85vw;
+    margin-top: 28px;
+    font-size: 9px;
+}
+
+.image-project {
+    width: 90vw;
+}
 
 
-    /* ========================================================
-       ABOUT — MOBILE
-       ======================================================== */
+/* ========================================================
+   ABOUT — MOBILE
+   ======================================================== */
 
-    .about-content {
-        width: 100%;
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.about-content {
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .about-image {
     position: static;
@@ -1200,198 +1222,311 @@ a {
     margin-top: -120vw;
 }
 
-    .about-copy .project-category {
-        margin-bottom: 10px;
-    }
+.about-copy .project-category {
+    margin-bottom: 10px;
+}
 
-    .about-copy .project-title {
-        margin-bottom: 28px;
-    }
+.about-copy .project-title {
+    margin-bottom: 28px;
+}
 
-    .about-description {
-        max-width: 100%;
-        font-family: "Manrope", sans-serif;
-        font-size: 9px;
-        font-weight: 400;
-        line-height: 1.75;
-        letter-spacing: -0.01em;
-    }
+.about-description {
+    max-width: 100%;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+}
 
-    .about-contact {
-        margin-top: 30px;
-        font-family: "Manrope", sans-serif;
-        font-size: 9px;
-        font-weight: 400;
-        line-height: 1.75;
-        letter-spacing: -0.01em;
-    }
+.about-contact {
+    margin-top: 30px;
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+}
 
-    .about-contact a {
-        font-family: "Manrope", sans-serif;
-        font-size: 9px;
-        font-weight: 400;
-        line-height: 1.75;
-        letter-spacing: -0.01em;
-    }
+.about-contact a {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
 }
 
 
+}
+
 /* ============================================================
-   VERY SMALL SCREENS
-   ============================================================ */
+VERY SMALL SCREENS
+============================================================ */
 
 @media (max-width: 420px) {
 
-    .archive-sidebar {
-        left: 10px;
-        right: 10px;
-        top: 10px;
-        background: transparent;
-    }
 
-    .brand-main {
-        font-size: 19px;
-    }
+.archive-sidebar {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+}
 
-    .brand-serif {
-        font-size: 26px;
-    }
+.brand-main {
+    font-size: 19px;
+}
 
-    .archive-list {
-        max-height: 28vh;
-    }
+.brand-serif {
+    font-size: 26px;
+}
 
-    .archive-category {
-        display: none;
-    }
+.archive-list {
+    max-height: 28vh;
+}
 
-    .project {
-        padding-top: 39vh;
-    }
+.archive-category {
+    display: none;
+}
 
-    .project-info {
-        width: 92vw;
-    }
+.project {
+    padding-top: 39vh;
+}
 
-    .project-title {
-        font-size: clamp(52px, 16vw, 82px);
-    }
+.project-info {
+    width: 92vw;
+}
 
-    .project-description {
-        width: 90vw;
-        font-size: 9px;
-    }
+.project-title {
+    font-size: clamp(52px, 16vw, 82px);
+}
 
-    .project-credits {
-        width: 90vw;
-    }
+.project-description {
+    width: 90vw;
+    font-size: 9px;
+}
 
-    .vimeo-wrap.vertical {
-        height: 54vh;
-        max-width: 72vw;
-    }
+.project-credits {
+    width: 90vw;
+}
 
-    .vimeo-controls {
-        gap: 6px;
-        padding: 6px;
-        background: transparent;
-    }
+.vimeo-wrap.vertical {
+    height: 54vh;
+    max-width: 72vw;
+}
 
-    .vimeo-progress-wrap {
-        width: 65px;
-    }
+.vimeo-controls {
+    gap: 6px;
+    padding: 6px;
+    background: transparent;
+}
 
-    .vimeo-time {
-        display: none;
-    }
+.vimeo-progress-wrap {
+    width: 65px;
+}
 
-    .carousel-image-wrap {
-        min-height: 38vh;
-    }
+.vimeo-time {
+    display: none;
+}
 
-    .carousel-image {
-        max-height: 52vh;
-    }
+.carousel-image-wrap {
+    min-height: 38vh;
+}
 
-    .carousel-arrow {
-        width: 30px;
-        height: 30px;
-        font-size: 15px;
-    }
+.carousel-image {
+    max-height: 52vh;
+}
 
-    .carousel-prev {
-        left: -7px;
-    }
+.carousel-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
 
-    .carousel-next {
-        right: -7px;
-    }
+.carousel-prev {
+    left: -7px;
+}
+
+.carousel-next {
+    right: -7px;
 }
 
 
+}
+
 /* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+REDUCED MOTION
+============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-    }
+
+*,
+*::before,
+*::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+}
+
+
 }
 
 /* ============================================================
-   TOP RIGHT LOGO
-   ============================================================ */
+TOP RIGHT LOGO
+============================================================ */
 
 .site-logo {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 60;
-    display: block;
-    width: 60px;
-    height: auto;
+position: fixed;
+top: 24px;
+right: 24px;
+z-index: 60;
+display: block;
+width: 60px;
+height: auto;
 }
 
 .site-logo img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+display: block;
+width: 100%;
+height: auto;
+object-fit: contain;
 }
 
 @media (max-width: 700px) {
-    .site-logo {
-        top: 14px;
-        right: 14px;
-        width: 40px;
-    }
+.site-logo {
+top: 14px;
+right: 14px;
+width: 40px;
+}
 }
 
 /* ============================================================
-   EMBEDDED HTML PROJECTS
-   ============================================================ */
+EMBEDDED HTML PROJECTS
+============================================================ */
 
 .project-html-page {
-    width: 100%;
-    height: 100vh;
-    min-height: 100vh;
-    border: 0;
-    display: block;
-    background: #090909;
+width: 100%;
+height: 100vh;
+min-height: 100vh;
+border: 0;
+display: block;
+background: #000000;
 }
 
 @media (max-width: 700px) {
 
-    .project-html-page {
-        height: 100svh;
-        min-height: 100svh;
-    }
 
+.project-html-page {
+    height: 100svh;
+    min-height: 100svh;
+    background: #000000;
+}
+
+
+}
+
+
+
+
+/* ============================================================
+   ROTATED VIMEO VIDEO — ABOUT / INDEX
+   ============================================================ */
+
+.about-image.about-video {
+    position: absolute;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    background: #000;
+    border: 0;
+    line-height: 0;
+    isolation: isolate;
+}
+
+.about-video-rotation {
+    position: absolute;
+    width: 177.7778%;
+    height: 56.25%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center;
+    overflow: hidden;
+    background: #000;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+}
+
+.about-video-rotation iframe {
+    position: absolute;
+    inset: -2px;
+    display: block;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 0;
+    outline: 0;
+    box-shadow: none;
+    background: #000;
+}
+
+/* Mobile sizing */
+@media (max-width: 700px) {
+    .about-image.about-video {
+        position: static;
+        width: 90vw;
+        max-width: 520px;
+        flex-shrink: 0;
+    }
+}
+
+
+/* ============================================================
+   BLACK LOADING BACKGROUNDS — ALL VIDEO EMBEDS
+   ============================================================ */
+
+/* Keep all video containers black before and during loading */
+.vimeo-wrap,
+.vimeo-frame,
+.project-media,
+.about-image.about-video,
+.about-video-rotation {
+    background-color: #000 !important;
+}
+
+/* Prevent iframe borders and default spacing */
+iframe,
+.vimeo-frame iframe,
+.about-video-rotation iframe,
+.project-html-page {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background-color: #000 !important;
+}
+
+/* Keep embedded players flush with their containers */
+.vimeo-frame,
+.about-video-rotation {
+    overflow: hidden;
+}
+
+/* Ensure native video elements also load against black */
+video {
+    background-color: #000 !important;
+}
+
+/* Avoid white backgrounds on the project stage during transitions */
+.project,
+.project-stage,
+.project.is-changing {
+    background-color: #090909;
+}
+
+
+.brand {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }

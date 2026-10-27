@@ -126,12 +126,7 @@ const projects = [
                     "Jeremy Jacob"
                 ]
             },
-            {
-                role: "For",
-                names: [
-                    "M"
-                ]
-            }
+   
         ]
     },
 
@@ -184,12 +179,7 @@ const projects = [
                     "Jeremy Jacob"
                 ]
             },
-            {
-                role: "For",
-                names: [
-                    "Trisha Brown Dance Company"
-                ]
-            }
+
         ]
     },
 
@@ -669,7 +659,8 @@ const projects = [
         title: "A Doll's House Pictures",
         category: "The Studio",
         type: "about",
-        image: "images/about.jpg",
+        vimeo: "790783764",
+hash: "88211bd923",
         description: `A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language.
 
 Working with brands, artists, and cultural organizations, the studio develops commercial, editorial, and artist-driven projects across moving image and still photography. From campaigns and branded content to experimental films and visual projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking with a strong point of view.
@@ -1078,7 +1069,8 @@ function renderVimeoMarkup(project) {
 
 <iframe
     class="project-vimeo"
-    src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}${project.hash ? `?h=${encodeURIComponent(project.hash)}&` : "?"}controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+
+src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}${project.hash ? `?h=${encodeURIComponent(project.hash)}&` : "?"}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
     allow="autoplay; fullscreen; picture-in-picture"
     allowfullscreen
     loading="eager"
@@ -2203,13 +2195,19 @@ function renderAbout(project) {
     projectElement.innerHTML = `
         <div class="about-content">
 
-            <div class="about-image">
+            <div class="about-image about-video">
 
-                <img
-                    src="${escapeHTML(project.image)}"
-                    alt="A Doll's House Pictures"
-                    loading="eager"
-                >
+                <div class="about-video-rotation">
+
+                    <iframe
+                        
+src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}?h=${encodeURIComponent(project.hash)}&transparent=0&autoplay=1&muted=1&loop=1&background=1&controls=0&playsinline=1"
+allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        title="A Doll's House Pictures"
+                    ></iframe>
+
+                </div>
 
             </div>
 
@@ -3107,6 +3105,22 @@ document.addEventListener(
 
 buildArchive();
 
+
+const aboutLink = document.getElementById("aboutLink");
+
+if (aboutLink) {
+    aboutLink.addEventListener("click", event => {
+        event.preventDefault();
+
+        const aboutIndex = projects.findIndex(
+            project => project.type === "about"
+        );
+
+        if (aboutIndex !== -1) {
+            selectProject(aboutIndex);
+        }
+    });
+}
 
 /* ============================================================
    ALWAYS OPEN ON ABOUT
