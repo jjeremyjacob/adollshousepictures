@@ -10,27 +10,32 @@
 
 const projects = [
 
-
-
-
     {
         title: "Stissing House",
-        category: "Social Campaign",
+        category: "2026 Craft Feast",
         type: "vimeo",
-          vimeo: "1226955261",
-    hash: "c019cba0b1",
+        vimeo: "1238355345",
+        hash: "204b5872f8",
         format: "wide",
-        description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
+        description: "",
         credits: [
+            {
+                role: "Direction, Photography, & Editing",
+                names: [
+                    "Jeremy Jacob"
+                ]
+            },
             {
                 role: "Creative Direction",
                 names: [
-                    "Jeremy Jacob",
-                    "A Doll's House Pictures"
+                    "Katie Pierce", "Stissing House"
                 ]
             }
+                
         ]
     },
+
+
 
     {
         title: "Nike",
@@ -134,6 +139,24 @@ const projects = [
     },
 
 
+    {
+        title: "Stissing House",
+        category: "Social Campaign",
+        type: "vimeo",
+          vimeo: "1226955261",
+    hash: "c019cba0b1",
+        format: "wide",
+        description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
+        credits: [
+            {
+                role: "Creative Direction",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }
+        ]
+    },
     
     {
         title: "Cole Haan",
