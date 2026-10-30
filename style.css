@@ -1530,3 +1530,99 @@ video {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+/* ============================================================
+   THREE-UP VERTICAL VIDEO PROJECT
+   ============================================================ */
+
+.triple-vertical-media {
+    width: min(1180px, 90vw);
+    margin: 0 auto;
+}
+
+.triple-vertical-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(10px, 1.5vw, 22px);
+}
+
+.triple-vimeo-wrap,
+.vimeo-wrap.vertical.triple-vimeo-wrap {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+}
+
+.triple-vimeo-wrap .vimeo-frame {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 9 / 16;
+}
+
+.triple-vimeo-wrap .vimeo-frame .project-vimeo {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+}
+
+.triple-vimeo-wrap .vimeo-controls {
+    gap: 7px;
+    max-width: calc(100% - 12px);
+    padding: 6px;
+}
+
+.triple-vimeo-wrap .vimeo-progress-wrap {
+    width: clamp(34px, 7vw, 100px);
+}
+
+@media (max-width: 700px) {
+    .triple-vertical-media {
+        width: 100%;
+    }
+
+    .triple-vertical-grid {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        gap: 22px;
+    }
+
+    .vimeo-wrap.vertical.triple-vimeo-wrap {
+        width: min(100%, 360px);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16;
+    }
+
+    .triple-vimeo-wrap .vimeo-frame {
+        aspect-ratio: 9 / 16;
+    }
+
+    .triple-vimeo-wrap .vimeo-controls {
+        gap: 8px;
+        padding: 7px 8px;
+        max-width: calc(100% - 16px);
+    }
+
+    .triple-vimeo-wrap .vimeo-progress-wrap {
+        width: 90px;
+    }
+}
+
+@media (max-width: 420px) {
+    .triple-vertical-grid {
+        gap: 18px;
+    }
+
+    .triple-vimeo-wrap .vimeo-controls {
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .triple-vimeo-wrap .vimeo-progress-wrap {
+        width: 65px;
+    }
+}

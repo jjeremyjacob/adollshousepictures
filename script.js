@@ -10,6 +10,9 @@
 
 const projects = [
 
+
+
+
     {
         title: "Stissing House",
         category: "Social Campaign",
@@ -106,7 +109,7 @@ const projects = [
             }
         ]
     },
-    
+
           {
         title: "MOPS",
         category: "Branding & Web Design",
@@ -126,10 +129,12 @@ const projects = [
                     "Jeremy Jacob"
                 ]
             },
-   
+
         ]
     },
 
+
+    
     {
         title: "Cole Haan",
         category: "Social Campaign",
@@ -249,7 +254,7 @@ const projects = [
                     "Joao De La Cruz"
                 ]
             }
-                      
+
         ]
     },
 
@@ -608,6 +613,7 @@ const projects = [
         category: "Promotional Campaign",
         type: "vimeo",
         vimeo: "1077279366",
+        hash: "ad0af898cb",
         format: "wide",
         description: "Fisher Center at Bard",
         credits: []
@@ -686,6 +692,7 @@ let currentProjectIndex = 0;
 
 let currentVimeoPlayer = null;
 let currentVimeoEvents = [];
+let currentTripleVimeoPlayers = [];
 let controlTimeout = null;
 
 let currentCarouselIndex = 0;
@@ -793,18 +800,28 @@ function destroyCurrentVimeo() {
 
     }
 
-    if (!currentVimeoPlayer) {
-        return;
-    }
+    if (currentVimeoPlayer) {
 
-    currentVimeoEvents.forEach(event => {
+        currentVimeoEvents.forEach(event => {
+
+            try {
+
+                currentVimeoPlayer.off(
+                    event.name,
+                    event.handler
+                );
+
+            } catch (error) {
+
+                /* Ignore cleanup errors */
+
+            }
+
+        });
 
         try {
 
-            currentVimeoPlayer.off(
-                event.name,
-                event.handler
-            );
+            currentVimeoPlayer.destroy();
 
         } catch (error) {
 
@@ -812,21 +829,22 @@ function destroyCurrentVimeo() {
 
         }
 
-    });
-
-    currentVimeoEvents = [];
-
-    try {
-
-        currentVimeoPlayer.destroy();
-
-    } catch (error) {
-
-        /* Ignore cleanup errors */
-
     }
 
+    currentVimeoEvents = [];
     currentVimeoPlayer = null;
+
+    currentTripleVimeoPlayers.forEach(player => {
+
+        try {
+            player.destroy();
+        } catch (error) {
+            /* Ignore cleanup errors */
+        }
+
+    });
+
+    currentTripleVimeoPlayers = [];
 
 }
 
@@ -1363,8 +1381,7 @@ async function initializeVimeo() {
 
             }
         );
-
-    }
+            }
 
 
     /* --------------------------------------------------------
@@ -1705,9 +1722,9 @@ async function initializeVimeo() {
 
     }
 
-       /* --------------------------------------------------------
+       /* -------------------------------------------------------
        AUTOPLAY — MUTED, WITH DELAY
-       -------------------------------------------------------- */
+       ------------------------------------------------------- */
 
     try {
 
@@ -2170,6 +2187,205 @@ function renderVideo(project) {
 
 
 /* ============================================================
+   THREE-UP VERTICAL VIDEO PROJECT
+   ============================================================ */
+
+function renderTripleVertical(project) {
+
+    const videos = Array.isArray(project.videos)
+        ? project.videos.slice(0, 3)
+        : [];
+
+    return `
+        <div class="project-media triple-vertical-media">
+            <div class="triple-vertical-grid">
+                ${videos.map((video, index) => `
+                    <div class="vimeo-wrap vertical triple-vimeo-wrap">
+                        <div class="vimeo-frame">
+                            <iframe
+                                class="project-vimeo triple-project-vimeo"
+                                src="https://player.vimeo.com/video/${encodeURIComponent(video.vimeo)}${video.hash ? `?h=${encodeURIComponent(video.hash)}&` : "?"}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen
+                                loading="eager"
+                                title="${escapeHTML(project.title)} — Video ${index + 1}"
+                            ></iframe>
+
+                            <div class="vimeo-controls">
+                                <button class="vimeo-control vimeo-play" type="button" aria-label="Play">Play</button>
+                                <span class="vimeo-time">00:00 / 00:00</span>
+                                <div class="vimeo-progress-wrap">
+                                    <input class="vimeo-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Video progress">
+                                </div>
+                                <button class="vimeo-control vimeo-sound" type="button" aria-label="Toggle sound">Sound On</button>
+                                <button class="vimeo-control vimeo-fullscreen" type="button" aria-label="Fullscreen">Full</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+
+}
+
+
+async function initializeTripleVimeo() {
+
+    if (!window.Vimeo || !projectElement) {
+        return;
+    }
+
+    const iframes = Array.from(
+        projectElement.querySelectorAll(".triple-project-vimeo")
+    );
+
+    const players = iframes.map(iframe => {
+        const player = new Vimeo.Player(iframe);
+        currentTripleVimeoPlayers.push(player);
+        return player;
+    });
+
+    await Promise.all(players.map(async (player, index) => {
+
+        const iframe = iframes[index];
+        const wrapper = iframe.closest(".vimeo-wrap");
+        const frame = iframe.closest(".vimeo-frame");
+
+        const playButton = wrapper.querySelector(".vimeo-play");
+        const soundButton = wrapper.querySelector(".vimeo-sound");
+        const fullscreenButton = wrapper.querySelector(".vimeo-fullscreen");
+        const progress = wrapper.querySelector(".vimeo-progress");
+        const time = wrapper.querySelector(".vimeo-time");
+
+        try {
+            await player.ready();
+        } catch (error) {
+            console.warn("Vimeo player could not initialize.", error);
+            return;
+        }
+
+        try {
+            const [width, height] = await Promise.all([
+                player.getVideoWidth(),
+                player.getVideoHeight()
+            ]);
+
+            if (width > 0 && height > 0) {
+                frame.style.aspectRatio = `${width} / ${height}`;
+                wrapper.classList.toggle("vertical", height > width);
+            }
+        } catch (error) {
+            console.warn("Could not determine Vimeo dimensions.", error);
+        }
+
+        const revealControls = () => {
+            wrapper.classList.add("controls-visible");
+            if (wrapper._controlsTimeout) {
+                clearTimeout(wrapper._controlsTimeout);
+            }
+            wrapper._controlsTimeout = setTimeout(() => {
+                wrapper.classList.remove("controls-visible");
+            }, 2200);
+        };
+
+        const togglePlay = async () => {
+            try {
+                if (await player.getPaused()) {
+                    await player.play();
+                } else {
+                    await player.pause();
+                }
+                revealControls();
+            } catch (error) {
+                console.warn("Vimeo playback error.", error);
+            }
+        };
+
+        playButton.addEventListener("click", event => {
+            event.stopPropagation();
+            togglePlay();
+        });
+
+        frame.addEventListener("click", event => {
+            if (!event.target.closest(".vimeo-controls")) {
+                togglePlay();
+            }
+        });
+
+        frame.addEventListener("mousemove", revealControls);
+        frame.addEventListener("touchstart", revealControls, { passive: true });
+
+        player.on("play", () => {
+            playButton.textContent = "Pause";
+            playButton.setAttribute("aria-label", "Pause");
+        });
+
+        player.on("pause", () => {
+            playButton.textContent = "Play";
+            playButton.setAttribute("aria-label", "Play");
+        });
+
+        player.on("timeupdate", data => {
+            const duration = Number(data.duration) || 0;
+            const seconds = Number(data.seconds) || 0;
+
+            progress.value = duration ? (seconds / duration) * 100 : 0;
+            time.textContent = `${formatTime(seconds)} / ${formatTime(duration)}`;
+        });
+
+        player.on("loaded", data => {
+            time.textContent = `00:00 / ${formatTime(data.duration)}`;
+        });
+
+        soundButton.addEventListener("click", async event => {
+            event.stopPropagation();
+            try {
+                const volume = await player.getVolume();
+                await player.setVolume(volume > 0 ? 0 : 1);
+                soundButton.textContent = volume > 0 ? "Sound Off" : "Sound On";
+                revealControls();
+            } catch (error) {
+                console.warn("Could not change Vimeo volume.", error);
+            }
+        });
+
+        progress.addEventListener("input", async event => {
+            event.stopPropagation();
+            try {
+                const duration = await player.getDuration();
+                await player.setCurrentTime(duration * (Number(progress.value) / 100));
+                revealControls();
+            } catch (error) {
+                console.warn("Could not seek Vimeo video.", error);
+            }
+        });
+
+        progress.addEventListener("click", event => event.stopPropagation());
+
+        fullscreenButton.addEventListener("click", async event => {
+            event.stopPropagation();
+            try {
+                await player.requestFullscreen();
+            } catch (error) {
+                console.warn("Could not enter fullscreen.", error);
+            }
+        });
+
+        try {
+            await player.setVolume(0);
+            soundButton.textContent = "Sound Off";
+            await player.play();
+        } catch (error) {
+            console.warn("Vimeo autoplay was blocked by the browser.", error);
+        }
+
+    }));
+
+}
+
+
+/* ============================================================
    TEXT
    ============================================================ */
 
@@ -2206,7 +2422,7 @@ function renderAbout(project) {
                 <div class="about-video-rotation">
 
                     <iframe
-                        
+
 src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}?h=${encodeURIComponent(project.hash)}&transparent=0&autoplay=1&muted=1&loop=1&background=1&controls=0&playsinline=1"
 allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen
@@ -2708,6 +2924,29 @@ async function renderProject(
 
 
     /* --------------------------------------------------------
+       THREE-UP VERTICAL
+       -------------------------------------------------------- */
+
+    else if (project.type === "triple-vertical") {
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderTripleVertical(project)
+        );
+
+        projectElement.insertAdjacentHTML(
+            "beforeend",
+            renderProjectInfo(project)
+        );
+
+        if (requestId === renderRequestId) {
+            initializeTripleVimeo();
+        }
+
+    }
+
+
+    /* --------------------------------------------------------
        IMAGE
        -------------------------------------------------------- */
 
@@ -2797,6 +3036,15 @@ function getProjectKey(project) {
     ) {
 
         return `vimeo:${project.vimeo}`;
+
+    }
+
+    if (
+        project.type === "triple-vertical" &&
+        project.videos?.length
+    ) {
+
+        return `triple-vertical:${project.videos.map(video => video.vimeo).join("-")}`;
 
     }
 
