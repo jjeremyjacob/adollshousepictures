@@ -227,7 +227,7 @@ const projects = [
         description: "",
         credits: [
             {
-                role: "Creative Direction",
+                role: "Creative Director & Producer",
                 names: [
                     "Jeremy Jacob"
                 ]
@@ -237,6 +237,11 @@ const projects = [
                 names: [
                     "Savannah Lucas Sanchez"
                 ]
+            },  {
+                role: "Photography, Editing, and Music by",
+                names: [
+                    "Jeremy Jacob"
+                ]
             },
             {
                 role: "Sound Recordist",
@@ -244,6 +249,7 @@ const projects = [
                     "Joao De La Cruz"
                 ]
             }
+                      
         ]
     },
 
