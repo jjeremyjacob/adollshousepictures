@@ -675,7 +675,7 @@ const projects = [
         type: "vimeo",
         vimeo: "1041157693",
         format: "wide",
-        description: "Custom Cabinetry project by Romber Works in Clermont, New York.",
+        description: "Portrait of Custom Cabinetry project by Romber Works in Clermont, New York.",
         credits: [           {
                 role: "Creative Direction & Creator",
                 names: [
