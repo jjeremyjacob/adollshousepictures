@@ -537,6 +537,22 @@ const projects = [
         ]
     },
 
+        {
+        title: "Romber Works",
+        category: "Hamlet on the Hudson",
+        type: "vimeo",
+        vimeo: "1052327824",
+        format: "wide",
+        description: "Custom Cabinetry project behind-the-scenes for Romberworks in Clermont, New York.",
+        credits: [           {
+                role: "Creative Direction & Creator",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }       ]
+    },
+
     {
         title: "Cole Haan",
         category: "Social Campaign",
@@ -651,6 +667,24 @@ const projects = [
         description: "",
         credits: []
     },
+
+
+        {
+        title: "Romber Works",
+        category: "Hamlet on the Hudson Library",
+        type: "vimeo",
+        vimeo: "1041157693",
+        format: "wide",
+        description: "Custom Cabinetry project by Romberworks in Clermont, New York.",
+        credits: [           {
+                role: "Creative Direction & Creator",
+                names: [
+                    "Jeremy Jacob",
+                    "A Doll's House Pictures"
+                ]
+            }       ]
+    },
+
 
     {
         title: "Cole Haan",
