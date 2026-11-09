@@ -529,8 +529,6 @@ const projects = [
     title: "A Doll's House Pictures",
     category: "The Studio",
     type: "about",
-    vimeo: "790783764",
-    hash: "88211bd923",
     description: `A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language.
 
 Working with brands, artists, and cultural organizations, the studio develops commercial, editorial, and artist-driven projects across moving image and still photography. From campaigns and branded content to experimental films and visual projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking with a strong point of view.

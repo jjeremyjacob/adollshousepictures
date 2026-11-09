@@ -862,9 +862,9 @@ ABOUT — DESKTOP
 }
 
 .about-copy {
-    width: min(310px, 22vw);
+    width: min(480px, 36vw);
     position: absolute;
-    left: 58%;
+    left: 45%;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
@@ -1626,4 +1626,97 @@ THREE-UP VERTICAL VIDEO PROJECT
     .triple-vimeo-wrap .vimeo-progress-wrap {
         width: 65px;
     }
+}
+
+
+/* ============================================================
+   FULL BLEED VIMEO BACKGROUND
+   ============================================================ */
+
+html,
+body {
+    background: #090909;
+}
+
+/* Vimeo background */
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    background: #090909;
+}
+
+.background-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-width: 177.78vh;
+    min-height: 100vh;
+    transform: translate(-50%, -50%);
+    border: 0;
+    pointer-events: none;
+}
+
+/* Subtle darkening overlay */
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.20);
+}
+
+/* Archive above video */
+
+.archive {
+    position: relative;
+    z-index: 2;
+    background: transparent !important;
+}
+
+/* Transparent content surfaces */
+
+.archive-sidebar,
+.archive-header,
+.archive-list,
+.archive-footer,
+.project-stage,
+.project,
+.project-media,
+.project-info,
+.site-logo {
+    background-color: transparent;
+}
+
+/* Keep embedded project backgrounds independent */
+
+.project-html-page {
+    background: #000000;
+}
+
+/* Mobile background */
+
+@media (max-width: 700px) {
+    .background-video iframe {
+        width: 177.78vh;
+        height: 100vh;
+        min-width: 100vw;
+        min-height: 56.25vw;
+    }
+}
+
+/* ============================================================
+   HIDE ABOUT VIDEO
+   ============================================================ */
+
+.about-image.about-video {
+    display: none !important;
 }
