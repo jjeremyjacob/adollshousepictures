@@ -2453,67 +2453,78 @@ body.detail-open .topbar.nav-hidden {
   }
 }
 
-
 /* ============================================================
-   SECTION 22 — MAIN NAVIGATION ABOVE PROJECT LIGHTBOX
+   SECTION 22 — LIGHTBOX NAVIGATION ALIGNMENT
 ============================================================ */
 
-/* Keep the dynamically loaded site navigation visible */
-
-#site-navigation {
-  position: relative;
-  z-index: 100002;
+:root {
+  --actual-site-nav-height: var(--site-nav-height);
 }
 
-/* Keep the main navigation above the lightbox */
+/* Main navigation stays fixed above the project lightbox */
 
 body.detail-open #site-navigation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100002;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: var(--actual-site-nav-height) !important;
+  z-index: 100002 !important;
 }
 
-/* The lightbox sits below the main site navigation */
+/* Actual injected navigation header */
+
+body.detail-open #site-navigation .site-nav-header {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  width: 100% !important;
+  height: var(--actual-site-nav-height) !important;
+  min-height: var(--actual-site-nav-height) !important;
+  transform: none !important;
+  margin: 0 !important;
+  background: #10100f !important;
+}
+
+/* Project lightbox */
 
 body.detail-open .detail-view {
-  z-index: 9000;
+  z-index: 9000 !important;
 }
 
-/* Move the lightbox navigation below the main navigation */
+/* Secondary navigation sits immediately below the main navigation */
 
 body.detail-open .detail-topbar {
-  top: 82px !important;
+  position: fixed !important;
+  top: var(--actual-site-nav-height) !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: var(--detail-nav-height) !important;
+  margin: 0 !important;
+  transform: none !important;
   z-index: 100001 !important;
+  background: #10100f !important;
 }
 
-/* Move project content below both navigation bars */
+/* Project content begins below both navigation bars */
 
 body.detail-open .detail-content {
-  padding-top: calc(82px + var(--detail-nav-height) + 30px);
+  padding-top: calc(
+    var(--actual-site-nav-height) +
+    var(--detail-nav-height) +
+    30px
+  ) !important;
 }
-
-/* Tablet and mobile navigation height */
-
-@media (max-width: 1000px) {
-  body.detail-open .detail-topbar {
-    top: 68px !important;
-  }
-
-  body.detail-open .detail-content {
-    padding-top: calc(68px + var(--detail-nav-height) + 24px);
-  }
-}
-
-/* Mobile */
 
 @media (max-width: 650px) {
-  body.detail-open .detail-topbar {
-    top: 68px !important;
-  }
-
   body.detail-open .detail-content {
-    padding-top: calc(68px + var(--detail-nav-height) + 20px);
+    padding-top: calc(
+      var(--actual-site-nav-height) +
+      var(--detail-nav-height) +
+      20px
+    ) !important;
   }
 }
