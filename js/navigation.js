@@ -762,6 +762,10 @@
       button.addEventListener("click", openAbout);
     });
 
+    // Connect homepage About button to the shared About lightbox
+document
+  .getElementById("studioAboutButton")
+  ?.addEventListener("click", openAbout);
 
     /* ==========================================================
        GENERAL BUTTONS
