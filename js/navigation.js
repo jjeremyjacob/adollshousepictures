@@ -875,4 +875,38 @@ document
       `;
     });
 
+/* ============================================================
+   LIGHTBOX NAVIGATION HEIGHT SYNCHRONIZATION
+============================================================ */
+
+function syncLightboxNavigation() {
+  const siteNavigation = document.querySelector("#site-navigation");
+  const header = siteNavigation?.querySelector(".site-nav-header");
+
+  if (!header) return;
+
+  const height = header.getBoundingClientRect().height;
+
+  document.documentElement.style.setProperty(
+    "--actual-site-nav-height",
+    `${height}px`
+  );
+}
+
+window.addEventListener("resize", syncLightboxNavigation);
+window.addEventListener("load", syncLightboxNavigation);
+
+const navigationObserver = new MutationObserver(() => {
+  requestAnimationFrame(syncLightboxNavigation);
+});
+
+if (mount) {
+  navigationObserver.observe(mount, {
+    childList: true,
+    subtree: true
+  });
+}
+
+requestAnimationFrame(syncLightboxNavigation);
+
 })();
