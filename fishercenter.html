@@ -22,7 +22,13 @@
   <meta name="twitter:description" content="Discover performances, artists, and new perspectives at Fisher Center at Bard.">
   <meta name="twitter:image" content="https://www.adollshousepictures.com/images/fcshareimage.jpg">
 
+  <!-- PRIORITIZE HERO VIDEO -->
   <link rel="preconnect" href="https://player.vimeo.com">
+  <link rel="preconnect" href="https://i.vimeocdn.com">
+  <link rel="preconnect" href="https://f.vimeocdn.com">
+  <link rel="dns-prefetch" href="//player.vimeo.com">
+
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -93,6 +99,7 @@
       inset: 0;
       overflow: hidden;
       background: #000;
+      contain: paint;
     }
 
     .hero-image::after {
@@ -419,7 +426,7 @@
       text-transform: uppercase;
     }
 
-    /* SECTION 02 — VERTICAL VIDEO ROW ONLY */
+    /* VERTICAL VIDEO GRID */
 
     .vertical-video-grid {
       display: grid;
@@ -656,7 +663,6 @@
 
 <body>
 
-  <!-- SHARED SITE NAVIGATION -->
   <div id="site-navigation"></div>
 
   <main>
@@ -667,11 +673,12 @@
 
       <div class="hero-image">
         <iframe
-          src="https://player.vimeo.com/video/1097503593?h=a40ba8cef6&amp;background=1&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;controls=0&amp;title=0&amp;byline=0&amp;portrait=0&amp;transparent=0"
+          src="https://player.vimeo.com/video/1097503593?h=a40ba8cef6&background=1&autoplay=1&muted=1&loop=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
           title="Fisher Center at Bard — Performance"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
-          loading="eager">
+          loading="eager"
+          fetchpriority="high">
         </iframe>
       </div>
 
@@ -723,7 +730,7 @@
 
     </section>
 
-    <!-- 01 ON STAGE — PRESERVED AS FULL-WIDTH 16:9 -->
+    <!-- 01 ON STAGE -->
 
     <section class="section" id="on-stage">
 
@@ -764,7 +771,7 @@
 
     </section>
 
-    <!-- 02 THEATER — VERTICAL VIDEO ROW -->
+    <!-- 02 THEATER -->
 
     <section class="section" id="the-artists">
 
@@ -779,7 +786,7 @@
           <div class="video-frame"
             data-vimeo="1168237754"
             data-hash="98c722212d"
-            data-title="Julietta — Fisher Center at Bard">
+            data-title="Summerscape — Fisher Center at Bard">
           </div>
 
           <div class="caption">
@@ -788,11 +795,11 @@
           </div>
         </article>
 
-                <article>
+        <article>
           <div class="video-frame"
             data-vimeo="1195634810"
             data-hash="eca25cfa1b"
-            data-title="Julietta — Fisher Center at Bard">
+            data-title="Suddenly Last Summer — Fisher Center at Bard">
           </div>
 
           <div class="caption">
@@ -801,11 +808,11 @@
           </div>
         </article>
 
-                <article>
+        <article>
           <div class="video-frame"
             data-vimeo="1208394894"
             data-hash="3b4760c000"
-            data-title="Julietta — Fisher Center at Bard">
+            data-title="Bard Music Festival — Fisher Center at Bard">
           </div>
 
           <div class="caption">
@@ -814,11 +821,11 @@
           </div>
         </article>
 
-                        <article>
+        <article>
           <div class="video-frame"
             data-vimeo="1208395130"
             data-hash="c5c1a0b963"
-            data-title="Julietta — Fisher Center at Bard">
+            data-title="Bard Opera — Fisher Center at Bard">
           </div>
 
           <div class="caption">
@@ -827,11 +834,11 @@
           </div>
         </article>
 
-                                <article>
+        <article>
           <div class="video-frame"
             data-vimeo="1208412279"
             data-hash="2048378cef"
-            data-title="Julietta — Fisher Center at Bard">
+            data-title="The Egyptian Helen — Fisher Center at Bard">
           </div>
 
           <div class="caption">
@@ -839,8 +846,6 @@
             <span>Social Media Reel</span>
           </div>
         </article>
-
-        
 
       </div>
 
@@ -968,8 +973,6 @@
 
   <script>
     (() => {
-
-      /* VIMEO PLAYER CONTROLS */
 
       const icons = {
         play: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 16 10 6 16.5Z"/></svg>',
