@@ -1,12 +1,8 @@
+
 /* ============================================================
    A DOLL'S HOUSE PICTURES
-   SCRIPT.JS
-   ============================================================ */
-
-
-/* ============================================================
-   PROJECT DATA
-   ============================================================ */
+   PORTFOLIO / PROJECT DETAIL
+============================================================ */
 
 const projects = [
 
@@ -21,15 +17,10 @@ const projects = [
     ],
     format: "vertical",
     description: "",
+    thumbnail: "images/thumbnails/stissinghouse_craftfeast.jpg",
     credits: [
-        {
-            role: "Direction, Photography, & Editing",
-            names: ["Jeremy Jacob"]
-        },
-        {
-            role: "Creative Direction",
-            names: ["Katie Pierce", "Stissing House"]
-        }
+        { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
@@ -38,7 +29,8 @@ const projects = [
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1226664744",
-    format: "wide",
+    thumbnail: "images/thumbnails/nike.jpg",
+    format: "vertical",
     description: "",
     credits: []
 },
@@ -48,13 +40,11 @@ const projects = [
     category: "Dance Film Highlights",
     type: "vimeo",
     vimeo: "1007644295",
+    thumbnail: "images/thumbnails/stormking_girlgroup.jpg",
     format: "wide",
     description: "Girl Group",
     credits: [
-        {
-            role: "Creative Direction",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -71,6 +61,7 @@ const projects = [
         "images/TBDC_6.jpg",
         "images/TBDC_7.jpg"
     ],
+    thumbnail: "images/thumbnails/trishabrown.jpg",
     description: "",
     credits: [
         { role: "Photography", names: ["Jeremy Jacob"] },
@@ -83,13 +74,11 @@ const projects = [
     category: "Social Film",
     type: "vimeo",
     vimeo: "1226060926",
-    format: "wide",
+    thumbnail: "images/thumbnails/talbottandarding.jpg",
+    format: "vertical",
     description: "A series of short-form films created for Talbott & Arding in Hudson, New York.",
     credits: [
-        {
-            role: "Creative Direction",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -104,6 +93,7 @@ const projects = [
         "images/MOPS4.jpg",
         "images/MOPS5.jpg"
     ],
+    thumbnail: "images/thumbnails/mops.jpg",
     description: "",
     credits: [
         { role: "Photography", names: ["Jeremy Jacob"] }
@@ -117,12 +107,10 @@ const projects = [
     vimeo: "1226955261",
     hash: "c019cba0b1",
     format: "wide",
+    thumbnail: "images/thumbnails/stissinghouse_oysters.jpg",
     description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
     credits: [
-        {
-            role: "Creative Direction",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -132,6 +120,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1227036895",
     format: "vertical",
+    thumbnail: "images/thumbnails/colehaan.jpg",
     description: "Cole Haan - Urban Jungle",
     credits: []
 },
@@ -142,6 +131,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1135735488",
     hash: "f8b1225c5d",
+    thumbnail: "images/thumbnails/stissinghouse_toffee.jpg",
     format: "vertical",
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
@@ -176,10 +166,7 @@ const projects = [
     format: "wide",
     description: "Growth: The Watch",
     credits: [
-        {
-            role: "Creative Direction",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -191,10 +178,7 @@ const projects = [
     format: "wide",
     description: "Profile on Cabinet Maker Ross Brown of Romber Works in Hudson, New York.",
     credits: [
-        {
-            role: "Creative Direction & Creator",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction & Creator", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -204,6 +188,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1229121057",
     hash: "3f29c53761",
+    thumbnail: "images/thumbnails/bard.jpg",
     format: "wide",
     description: "",
     credits: [
@@ -338,10 +323,12 @@ const projects = [
 
 {
     title: "Gary Graham",
-    category: "Socail Campaign - Dressing",
+    category: "Social Campaign - Dressing",
     type: "vimeo",
     vimeo: "816869534",
     format: "vertical",
+        thumbnail: "images/thumbnails/garygraham.jpg",
+
     description: "",
     credits: []
 },
@@ -352,6 +339,8 @@ const projects = [
     type: "vimeo",
     vimeo: "1110256553",
     format: "vertical",
+            thumbnail: "images/thumbnails/stissinghouse_fishpie.jpg",
+
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
         { role: "Featuring", names: ["Fish Pie"] }
@@ -380,10 +369,7 @@ const projects = [
     format: "wide",
     description: "Custom Cabinetry project behind-the-scenes for Romber Works in Clermont, New York.",
     credits: [
-        {
-            role: "Creative Direction & Creator",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction & Creator", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -393,6 +379,8 @@ const projects = [
     type: "vimeo",
     vimeo: "1227036896",
     format: "vertical",
+        thumbnail: "images/thumbnails/colehaan2.jpg",
+
     description: "Cole Haan - His & Hers",
     credits: []
 },
@@ -404,6 +392,8 @@ const projects = [
     vimeo: "1135779851",
     hash: "ce3e333307",
     format: "vertical",
+        thumbnail: "images/thumbnails/stissinghouse_duck.jpg",
+
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
         { role: "Featuring", names: ["Duck"] }
@@ -463,13 +453,15 @@ const projects = [
     vimeo: "1077279366",
     hash: "ad0af898cb",
     format: "wide",
+        thumbnail: "images/thumbnails/pastoral.jpg",
+
     description: "Fisher Center at Bard",
     credits: []
 },
 
 {
     title: "Gary Graham",
-    category: "Socail Campaign - Corsage",
+    category: "Social Campaign - Corsage",
     type: "vimeo",
     vimeo: "816869497",
     format: "vertical",
@@ -485,10 +477,7 @@ const projects = [
     format: "wide",
     description: "Portrait of Custom Cabinetry project by Romber Works in Clermont, New York.",
     credits: [
-        {
-            role: "Creative Direction & Creator",
-            names: ["Jeremy Jacob", "A Doll's House Pictures"]
-        }
+        { role: "Creative Direction & Creator", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
     ]
 },
 
@@ -498,6 +487,8 @@ const projects = [
     type: "vimeo",
     vimeo: "1227036894",
     format: "vertical",
+        thumbnail: "images/thumbnails/colehaan_dog.jpg",
+
     description: "Cole Haan - Puppy Love",
     credits: []
 },
@@ -519,206 +510,382 @@ const projects = [
     vimeo: "1226973263",
     hash: "ab87885cfa",
     format: "vertical",
+        thumbnail: "images/thumbnails/stissinghouse_squash.jpg",
+
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
         { role: "Featuring", names: ["Squash"] }
     ]
-},
-
-{
-    title: "A Doll's House Pictures",
-    category: "The Studio",
-    type: "about",
-    description: `A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language.
-
-Working with brands, artists, and cultural organizations, the studio develops commercial, editorial, and artist-driven projects across moving image and still photography. From campaigns and branded content to experimental films and visual projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking with a strong point of view.
-
-Based in the Hudson Valley and working in New York City and beyond, the studio moves between culture, fashion, performance, and commerce, exploring the space where commercial craft and artistic experimentation meet.`,
-    credits: []
 }
 
 ];
 
 
 /* ============================================================
-   STATE
-   ============================================================ */
+   SITE STATE + DOM
+============================================================ */
 
-let currentProjectIndex = 0;
-let currentVimeoPlayer = null;
-let currentVimeoEvents = [];
-let currentTripleVimeoPlayers = [];
-let controlTimeout = null;
+const $ = (selector, root = document) => root?.querySelector(selector);
+const $$ = (selector, root = document) => root ? [...root.querySelectorAll(selector)] : [];
 
-let currentCarouselIndex = 0;
-let carouselTouchStartX = 0;
-let carouselTouchStartY = 0;
+const portfolioProjects = projects;
 
-let fisherCleanup = null;
-let renderRequestId = 0;
+let currentProjectIndex = -1;
+let activePlayer = null;
+let activePlayers = [];
+let carouselIndex = 0;
+let carouselTouchX = 0;
+let carouselTouchY = 0;
+let drawerOpen = false;
 
-
-/* ============================================================
-   ELEMENTS
-   ============================================================ */
-
-const archiveList = document.getElementById("archiveList");
-const archiveTotal = document.getElementById("archiveTotal");
-const projectElement = document.getElementById("project");
+const projectGrid = $("#projectGrid");
+const projectElement = $("#project");
+const detailView = $("#detailView");
+const drawer = $("#projectsDrawer");
+const drawerBackdrop = $("#drawerBackdrop");
+const drawerList = $("#drawerArchiveList");
 
 
 /* ============================================================
-   HELPERS
-   ============================================================ */
+   UTILITIES
+============================================================ */
 
 function escapeHTML(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
 }
 
-function formatNumber(number) {
+function pad(number) {
     return String(number).padStart(2, "0");
 }
 
 function formatTime(seconds) {
     if (!Number.isFinite(seconds)) return "00:00";
 
-    const total = Math.max(0, Math.floor(seconds));
-    const minutes = Math.floor(total / 60);
-    const remaining = total % 60;
+    const n = Math.max(0, Math.floor(seconds));
 
-    return `${String(minutes).padStart(2, "0")}:${String(remaining).padStart(2, "0")}`;
+    return `${pad(Math.floor(n / 60))}:${pad(n % 60)}`;
+}
+
+function getVimeoId(project) {
+    if (project.vimeo) return project.vimeo;
+
+    if (project.videos?.length) {
+        return project.videos[0].vimeo;
+    }
+
+    return "";
+}
+
+function getThumbnail(project) {
+    if (project.thumbnail) return project.thumbnail;
+
+    const id = getVimeoId(project);
+
+    if (id) {
+        return `https://vumbnail.com/${encodeURIComponent(id)}.jpg`;
+    }
+
+    if (project.images?.length) {
+        return project.images[0];
+    }
+
+    if (project.image) {
+        return project.image;
+    }
+
+    return "";
+}
+
+function projectGroup(project) {
+    const category = `${project.category || ""} ${project.title || ""}`.toLowerCase();
+
+    if (/photograph|photo/.test(category)) return "Photography";
+    if (/brand|design|web/.test(category)) return "Design";
+    if (/dance|performance|choreograph/.test(category)) return "Performance";
+    if (/campaign|social|promotional|commercial/.test(category)) return "Campaign";
+
+    return "Film";
 }
 
 
 /* ============================================================
-   FISHER CENTER CLEANUP
-   ============================================================ */
+   PLAYER MANAGEMENT
+============================================================ */
 
-function destroyFisherCenter() {
-    if (fisherCleanup) {
+function closePlayers() {
+    if (activePlayer) {
         try {
-            fisherCleanup();
-        } catch (error) {
-            console.warn("Could not clean up Fisher Center.", error);
-        }
+            activePlayer.destroy();
+        } catch (_) {}
 
-        fisherCleanup = null;
-    }
-}
-
-
-/* ============================================================
-   VIMEO CLEANUP
-   ============================================================ */
-
-function destroyCurrentVimeo() {
-    destroyFisherCenter();
-
-    if (controlTimeout) {
-        clearTimeout(controlTimeout);
-        controlTimeout = null;
+        activePlayer = null;
     }
 
-    currentVimeoEvents.forEach(event => {
-        try {
-            currentVimeoPlayer?.off(event.name, event.handler);
-        } catch (error) {}
-    });
-
-    if (currentVimeoPlayer) {
-        try {
-            currentVimeoPlayer.destroy();
-        } catch (error) {}
-    }
-
-    currentVimeoEvents = [];
-    currentVimeoPlayer = null;
-
-    currentTripleVimeoPlayers.forEach(player => {
+    activePlayers.forEach(player => {
         try {
             player.destroy();
-        } catch (error) {}
+        } catch (_) {}
     });
 
-    currentTripleVimeoPlayers = [];
+    activePlayers = [];
 }
 
 
 /* ============================================================
-   ARCHIVE
-   ============================================================ */
+   PROJECT DRAWER
+============================================================ */
 
-function buildArchive() {
-    if (!archiveList || !archiveTotal) return;
+function closeDrawer() {
+    if (!drawer || !drawerBackdrop) return;
 
-    archiveList.innerHTML = "";
+    drawerOpen = false;
 
-    const numberedProjects = projects.filter(
-        project => project.type !== "about"
-    );
+    drawer.classList.remove("is-open");
+    drawerBackdrop.classList.remove("is-open");
 
-    numberedProjects.forEach((project, index) => {
-        const projectIndex = projects.indexOf(project);
+    document.body.classList.remove("drawer-open");
 
-        const item = document.createElement("button");
-        item.type = "button";
-        item.className = "archive-item";
-        item.dataset.index = projectIndex;
+    drawer.setAttribute("aria-hidden", "true");
 
-        item.innerHTML = `
-            <span class="archive-number">${formatNumber(index + 1)}</span>
-            <span class="archive-title">${escapeHTML(project.title)}</span>
-            <span class="archive-category">${escapeHTML(project.category)}</span>
-        `;
+    const menuButton = $("#menuButton");
 
-        item.addEventListener("click", () => selectProject(projectIndex));
-        archiveList.appendChild(item);
-    });
-
-    const aboutProject = projects.find(project => project.type === "about");
-
-    if (aboutProject) {
-        const aboutIndex = projects.indexOf(aboutProject);
-        const aboutItem = document.createElement("button");
-
-        aboutItem.type = "button";
-        aboutItem.className = "archive-item archive-about";
-        aboutItem.dataset.index = aboutIndex;
-
-        aboutItem.innerHTML = `
-            <span class="archive-number archive-number-empty">&nbsp;</span>
-            <span class="archive-title">${escapeHTML(aboutProject.title)}</span>
-            <span class="archive-category">${escapeHTML(aboutProject.category)}</span>
-        `;
-
-        aboutItem.addEventListener("click", () => selectProject(aboutIndex));
-        archiveList.appendChild(aboutItem);
+    if (menuButton) {
+        menuButton.setAttribute("aria-expanded", "false");
     }
-
-    archiveTotal.textContent = formatNumber(numberedProjects.length);
 }
 
+function openDrawer() {
+    if (!drawer || !drawerBackdrop) return;
 
-function updateArchiveState() {
-    if (!archiveList) return;
+    drawerOpen = true;
 
-    archiveList.querySelectorAll(".archive-item").forEach(item => {
+    drawer.classList.add("is-open");
+    drawerBackdrop.classList.add("is-open");
+
+    document.body.classList.add("drawer-open");
+
+    drawer.setAttribute("aria-hidden", "false");
+
+    const menuButton = $("#menuButton");
+
+    if (menuButton) {
+        menuButton.setAttribute("aria-expanded", "true");
+    }
+}
+
+function updateDrawerActive() {
+    $$(".drawer-project", drawerList).forEach(item => {
         item.classList.toggle(
-            "active",
+            "is-active",
             Number(item.dataset.index) === currentProjectIndex
         );
     });
 }
 
+/* ============================================================
+   DYNAMIC HERO
+   Studio identity and editorial introduction.
+============================================================ */
+
+function buildHero() {
+    const heroCategory = $("#heroCategory");
+    const heroYear = $("#heroYear");
+
+    if (heroCategory) {
+        heroCategory.textContent = "AN INDEPENDENT CREATIVE STUDIO";
+    }
+
+    if (heroYear) {
+        heroYear.textContent = new Date().getFullYear();
+    }
+}
+
+/* ============================================================
+   PORTFOLIO CARDS
+============================================================ */
+
+function createCard(project, index, number) {
+    const card = document.createElement("button");
+    const thumb = getThumbnail(project);
+
+    const isPortrait =
+        project.format === "vertical" ||
+        project.type === "triple-vimeo";
+
+    const isSquare =
+        project.type === "carousel" &&
+        /MOPS/.test(project.title);
+
+    card.type = "button";
+
+    card.className =
+        `project-card${isPortrait ? " is-portrait" : ""}${isSquare ? " is-square" : ""}`;
+
+    card.dataset.index = index;
+    card.dataset.group = projectGroup(project);
+
+    card.setAttribute(
+        "aria-label",
+        `Open ${project.title}, ${project.category || "project"}`
+    );
+
+    card.innerHTML = `
+        <div class="card-media">
+            ${
+                thumb
+                    ? `<img src="${escapeHTML(thumb)}"
+                            alt="${escapeHTML(project.title)}"
+                            loading="lazy"
+                            decoding="async">`
+                    : ""
+            }
+
+            <span class="card-overlay"></span>
+            <span class="card-play" aria-hidden="true">↗</span>
+        </div>
+
+        <div class="card-meta">
+            <h3 class="card-title">${escapeHTML(project.title)}</h3>
+            <span class="card-category">${escapeHTML(project.category || "")}</span>
+        </div>
+
+        <div class="card-number">
+            ${pad(number)} / ${escapeHTML(projectGroup(project))}
+        </div>
+    `;
+
+    card.addEventListener("click", () => {
+        selectProject(index);
+    });
+
+    return card;
+}
+
+function buildPortfolio() {
+    if (!projectGrid) {
+        console.error("Portfolio could not initialize: #projectGrid was not found.");
+        return;
+    }
+
+    projectGrid.innerHTML = "";
+
+    if (drawerList) {
+        drawerList.innerHTML = "";
+    }
+
+    portfolioProjects.forEach((project, number) => {
+        const index = projects.indexOf(project);
+
+        projectGrid.appendChild(
+            createCard(project, index, number + 1)
+        );
+
+        if (drawerList) {
+            const item = document.createElement("button");
+
+            item.type = "button";
+            item.className = "drawer-project";
+            item.dataset.index = index;
+
+            item.innerHTML = `
+                <span class="drawer-project-number">${pad(number + 1)}</span>
+                <span>${escapeHTML(project.title)}</span>
+            `;
+
+            item.addEventListener("click", () => {
+                closeDrawer();
+                selectProject(index);
+            });
+
+            drawerList.appendChild(item);
+        }
+    });
+
+    const count = `${pad(portfolioProjects.length)} projects`;
+
+    const workTotal = $("#workTotal");
+    const navCount = $("#navCount");
+    const drawerProjectCount = $("#drawerProjectCount");
+
+    if (workTotal) workTotal.textContent = count;
+    if (navCount) navCount.textContent = pad(portfolioProjects.length);
+    if (drawerProjectCount) drawerProjectCount.textContent = pad(portfolioProjects.length);
+
+    const groupCounts = {
+        Film: 0,
+        Campaign: 0,
+        Photography: 0,
+        Design: 0,
+        Performance: 0
+    };
+
+    portfolioProjects.forEach(project => {
+        groupCounts[projectGroup(project)] += 1;
+    });
+
+    const allCount = $("#count-all");
+
+    if (allCount) {
+        allCount.textContent = pad(portfolioProjects.length);
+    }
+
+    Object.entries(groupCounts).forEach(([group, total]) => {
+        const countElement = $(`#count-${group}`);
+
+        if (countElement) {
+            countElement.textContent = pad(total);
+        }
+    });
+}
+
+
+/* ============================================================
+   CATEGORY FILTERS
+============================================================ */
+
+function applyFilter(filter) {
+    const cards = $$(".project-card", projectGrid);
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+        const visible =
+            filter === "all" ||
+            card.dataset.group === filter;
+
+        card.hidden = !visible;
+
+        if (visible) {
+            visibleCount += 1;
+        }
+    });
+
+    $$(".filter-option", $("#categoryBrowser")).forEach(button => {
+        const active = button.dataset.filter === filter;
+
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+    });
+
+    const workTotal = $("#workTotal");
+
+    if (workTotal) {
+        workTotal.textContent = filter === "all"
+            ? `${pad(visibleCount)} projects`
+            : `${pad(visibleCount)} / ${pad(cards.length)} projects`;
+    }
+}
+
 
 /* ============================================================
    PROJECT INFORMATION
-   ============================================================ */
+============================================================ */
 
 function renderCredits(project) {
     if (!project.credits?.length) return "";
@@ -726,14 +893,16 @@ function renderCredits(project) {
     return `
         <div class="project-credits">
             ${project.credits.map(credit => {
-                const role = credit.role || Object.keys(credit)[0] || "";
+                const role = credit.role || "";
+
+                const names = (credit.names || [])
+                    .map(escapeHTML)
+                    .join(" / ");
 
                 return `
                     <span class="project-credit">
                         <span class="credit-role">${escapeHTML(role)}</span>
-                        <span class="credit-names">
-                            ${(credit.names || []).map(escapeHTML).join(" / ")}
-                        </span>
+                        <span>${names}</span>
                     </span>
                 `;
             }).join("")}
@@ -741,24 +910,21 @@ function renderCredits(project) {
     `;
 }
 
-
-function renderDescription(project) {
-    if (!project.description) return "";
-
-    return `
-        <div class="project-description">
-            ${escapeHTML(project.description).replace(/\n/g, "<br>")}
-        </div>
-    `;
-}
-
-
 function renderProjectInfo(project) {
     return `
         <div class="project-info">
             <h1 class="project-title">${escapeHTML(project.title)}</h1>
-            <div class="project-category">${escapeHTML(project.category)}</div>
-            ${renderDescription(project)}
+
+            <div class="project-category">
+                ${escapeHTML(project.category || "")}
+            </div>
+
+            ${
+                project.description
+                    ? `<div class="project-description">${escapeHTML(project.description).replace(/\n/g, "<br>")}</div>`
+                    : ""
+            }
+
             ${renderCredits(project)}
         </div>
     `;
@@ -766,94 +932,174 @@ function renderProjectInfo(project) {
 
 
 /* ============================================================
-   VIMEO MARKUP
-   ============================================================ */
+   VIMEO PLAYER
+============================================================ */
 
 function renderVimeoMarkup(project) {
+    const hash = project.hash
+        ? `?h=${encodeURIComponent(project.hash)}&`
+        : "?";
+
+    const id = encodeURIComponent(project.vimeo);
+
     return `
         <div class="vimeo-wrap ${project.format === "vertical" ? "vertical" : ""}">
             <div class="vimeo-frame">
+
                 <iframe
                     class="project-vimeo"
-                    src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}${project.hash ? `?h=${encodeURIComponent(project.hash)}&` : "?"}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+                    src="https://player.vimeo.com/video/${id}${hash}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen
                     loading="eager"
-                    title="${escapeHTML(project.title)}"
-                ></iframe>
+                    title="${escapeHTML(project.title)}">
+                </iframe>
+
+                <button
+                    class="vimeo-click-overlay"
+                    type="button"
+                    aria-label="Play or pause video">
+                </button>
 
                 <div class="vimeo-controls">
-                    <button class="vimeo-control vimeo-play" type="button" aria-label="Play">Play</button>
+                    <button class="vimeo-control vimeo-play" type="button">Play</button>
+
                     <span class="vimeo-time">00:00 / 00:00</span>
+
                     <div class="vimeo-progress-wrap">
-                        <input class="vimeo-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Video progress">
+                        <input
+                            class="vimeo-progress"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step=".1"
+                            aria-label="Video progress">
                     </div>
-                    <button class="vimeo-control vimeo-sound" type="button" aria-label="Toggle sound">Sound On</button>
-                    <button class="vimeo-control vimeo-fullscreen" type="button" aria-label="Fullscreen">Full</button>
+
+                    <button class="vimeo-control vimeo-sound" type="button">Sound off</button>
+                    <button class="vimeo-control vimeo-fullscreen" type="button">Full</button>
                 </div>
+
             </div>
         </div>
     `;
 }
 
+let vimeoApiPromise = null;
 
-function showControls(wrapper) {
-    if (!wrapper) return;
+function loadVimeoAPI() {
+    if (window.Vimeo && window.Vimeo.Player) {
+        return Promise.resolve(true);
+    }
 
-    wrapper.classList.add("controls-visible");
+    if (vimeoApiPromise) {
+        return vimeoApiPromise;
+    }
 
-    if (controlTimeout) clearTimeout(controlTimeout);
+    vimeoApiPromise = new Promise(resolve => {
+        const existing = document.querySelector('script[data-vimeo-api]');
 
-    controlTimeout = setTimeout(() => {
-        wrapper.classList.remove("controls-visible");
-    }, 2200);
+        const script = existing || document.createElement("script");
+
+        let settled = false;
+
+        const finish = value => {
+            if (settled) return;
+
+            settled = true;
+            resolve(value);
+        };
+
+        script.addEventListener(
+            "load",
+            () => finish(!!(window.Vimeo && window.Vimeo.Player)),
+            { once: true }
+        );
+
+        script.addEventListener(
+            "error",
+            () => finish(false),
+            { once: true }
+        );
+
+        if (!existing) {
+            script.src = "https://player.vimeo.com/api/player.js";
+            script.async = true;
+            script.dataset.vimeoApi = "true";
+
+            document.head.appendChild(script);
+        }
+
+        window.setTimeout(() => {
+            finish(!!(window.Vimeo && window.Vimeo.Player));
+        }, 8000);
+    });
+
+    return vimeoApiPromise;
 }
 
 
 /* ============================================================
-   INITIALIZE SINGLE VIMEO
-   ============================================================ */
+   SINGLE VIMEO INITIALIZATION
+============================================================ */
 
-async function initializeVimeo() {
-    if (!window.Vimeo || !projectElement) return;
+async function initializeSingleVimeo() {
+    const iframe = $(".project-vimeo", projectElement);
 
-    const iframe = projectElement.querySelector(".project-vimeo");
-    const wrapper = projectElement.querySelector(".vimeo-wrap");
-    const frame = projectElement.querySelector(".vimeo-frame");
+    if (!iframe) return;
 
-    if (!iframe || !wrapper || !frame) return;
+    const wrapper = iframe.closest(".vimeo-wrap");
 
-    const player = new Vimeo.Player(iframe);
-    currentVimeoPlayer = player;
+    const apiAvailable = await loadVimeoAPI();
 
-    const playButton = wrapper.querySelector(".vimeo-play");
-    const soundButton = wrapper.querySelector(".vimeo-sound");
-    const fullscreenButton = wrapper.querySelector(".vimeo-fullscreen");
-    const progress = wrapper.querySelector(".vimeo-progress");
-    const time = wrapper.querySelector(".vimeo-time");
+    if (
+        !apiAvailable ||
+        !window.Vimeo ||
+        !window.Vimeo.Player ||
+        !iframe.isConnected
+    ) {
+        iframe.src = iframe.src.replace("controls=0", "controls=1");
 
-    try {
-        await player.ready();
-    } catch (error) {
-        console.warn("Vimeo player could not initialize.", error);
+        const controls = $(".vimeo-controls", wrapper);
+
+        if (controls) controls.hidden = true;
+
         return;
     }
 
-    if (player !== currentVimeoPlayer) return;
+    const player = new Vimeo.Player(iframe);
+
+    activePlayer = player;
+
+    const play = $(".vimeo-play", wrapper);
+    const overlay = $(".vimeo-click-overlay", wrapper);
+    const sound = $(".vimeo-sound", wrapper);
+    const full = $(".vimeo-fullscreen", wrapper);
+    const progress = $(".vimeo-progress", wrapper);
+    const time = $(".vimeo-time", wrapper);
 
     try {
-        const [width, height] = await Promise.all([
-            player.getVideoWidth(),
-            player.getVideoHeight()
-        ]);
-
-        if (width > 0 && height > 0) {
-            frame.style.aspectRatio = `${width} / ${height}`;
-            wrapper.classList.toggle("vertical", height > width);
+        await player.ready();
+    } catch (_) {
+        if (player === activePlayer) {
+            activePlayer = null;
         }
-    } catch (error) {
-        console.warn("Could not determine Vimeo dimensions.", error);
+
+        return;
     }
+
+    if (player !== activePlayer || !iframe.isConnected) return;
+
+    const showControls = () => {
+        wrapper.classList.add("controls-visible");
+
+        clearTimeout(wrapper._hideControls);
+
+        wrapper._hideControls = setTimeout(() => {
+            wrapper.classList.remove("controls-visible");
+        }, 2300);
+    };
 
     const togglePlay = async () => {
         try {
@@ -862,222 +1108,190 @@ async function initializeVimeo() {
             } else {
                 await player.pause();
             }
-            showControls(wrapper);
+
+            showControls();
         } catch (error) {
-            console.warn("Vimeo playback error.", error);
+            console.warn("Vimeo playback could not start.", error);
         }
     };
 
-    playButton?.addEventListener("click", event => {
-        event.stopPropagation();
-        togglePlay();
+    play?.addEventListener("click", togglePlay);
+    overlay?.addEventListener("click", togglePlay);
+
+    wrapper.addEventListener("mousemove", showControls);
+    wrapper.addEventListener("touchstart", showControls, { passive: true });
+
+    player.on("play", () => {
+        if (play) play.textContent = "Pause";
     });
 
-    frame.addEventListener("click", event => {
-        if (!event.target.closest(".vimeo-controls")) togglePlay();
+    player.on("pause", () => {
+        if (play) play.textContent = "Play";
     });
 
-    frame.addEventListener("mousemove", () => showControls(wrapper));
-    frame.addEventListener("touchstart", () => showControls(wrapper), { passive: true });
-
-    const onPlay = () => {
-        if (!playButton) return;
-        playButton.textContent = "Pause";
-        playButton.setAttribute("aria-label", "Pause");
-    };
-
-    const onPause = () => {
-        if (!playButton) return;
-        playButton.textContent = "Play";
-        playButton.setAttribute("aria-label", "Play");
-    };
-
-    const onTimeUpdate = data => {
-        const duration = Number(data.duration) || 0;
-        const seconds = Number(data.seconds) || 0;
-
+    player.on("timeupdate", data => {
         if (progress) {
-            progress.value = duration ? (seconds / duration) * 100 : 0;
+            progress.value = data.duration
+                ? data.seconds / data.duration * 100
+                : 0;
         }
 
         if (time) {
-            time.textContent = `${formatTime(seconds)} / ${formatTime(duration)}`;
+            time.textContent =
+                `${formatTime(data.seconds)} / ${formatTime(data.duration)}`;
         }
-    };
-
-    const onLoaded = data => {
-        if (time) time.textContent = `00:00 / ${formatTime(data.duration)}`;
-    };
-
-    [
-        ["play", onPlay],
-        ["pause", onPause],
-        ["timeupdate", onTimeUpdate],
-        ["loaded", onLoaded]
-    ].forEach(([name, handler]) => {
-        player.on(name, handler);
-        currentVimeoEvents.push({ name, handler });
     });
 
-    soundButton?.addEventListener("click", async event => {
-        event.stopPropagation();
+    player.on("loaded", data => {
+        if (time) {
+            time.textContent = `00:00 / ${formatTime(data.duration)}`;
+        }
+    });
 
+    sound?.addEventListener("click", async () => {
         try {
             const volume = await player.getVolume();
+
             await player.setVolume(volume > 0 ? 0 : 1);
-            soundButton.textContent = volume > 0 ? "Sound Off" : "Sound On";
-            showControls(wrapper);
-        } catch (error) {
-            console.warn("Could not change Vimeo volume.", error);
-        }
+
+            sound.textContent = volume > 0 ? "Sound off" : "Sound on";
+
+            showControls();
+        } catch (_) {}
     });
 
-    progress?.addEventListener("input", async event => {
-        event.stopPropagation();
-
+    progress?.addEventListener("input", async () => {
         try {
             const duration = await player.getDuration();
-            await player.setCurrentTime(duration * (Number(progress.value) / 100));
-            showControls(wrapper);
-        } catch (error) {
-            console.warn("Could not seek Vimeo video.", error);
-        }
+
+            await player.setCurrentTime(
+                duration * Number(progress.value) / 100
+            );
+        } catch (_) {}
     });
 
-    progress?.addEventListener("click", event => event.stopPropagation());
-
-    fullscreenButton?.addEventListener("click", async event => {
-        event.stopPropagation();
-
+    full?.addEventListener("click", async () => {
         try {
             await player.requestFullscreen();
-        } catch (error) {
-            console.warn("Could not enter fullscreen.", error);
-        }
+        } catch (_) {}
     });
 
     try {
         await player.setVolume(0);
-        if (soundButton) soundButton.textContent = "Sound Off";
-
-        await new Promise(resolve => setTimeout(resolve, 400));
-
-        if (player !== currentVimeoPlayer) return;
-
-        await player.play();
-    } catch (error) {
-        console.warn("Vimeo autoplay was blocked by the browser.", error);
-    }
+    } catch (_) {}
 }
 
 
 /* ============================================================
-   THREE-UP VERTICAL VIDEO PROJECT
-   ============================================================ */
+   TRIPLE VIMEO PROJECT
+============================================================ */
 
-function renderTripleVertical(project) {
-    const videos = Array.isArray(project.videos)
-        ? project.videos.slice(0, 3)
-        : [];
+function renderTriple(project) {
+    const videos = (project.videos || []).slice(0, 3);
 
     return `
-        <div class="project-media triple-vertical-media">
+        <div class="project-media">
             <div class="triple-vertical-grid">
-                ${videos.map((video, index) => `
-                    <div class="vimeo-wrap vertical triple-vimeo-wrap">
-                        <div class="vimeo-frame">
-                            <iframe
-                                class="project-vimeo triple-project-vimeo"
-                                src="https://player.vimeo.com/video/${encodeURIComponent(video.vimeo)}${video.hash ? `?h=${encodeURIComponent(video.hash)}&` : "?"}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
-                                allow="autoplay; fullscreen; picture-in-picture"
-                                allowfullscreen
-                                loading="eager"
-                                title="${escapeHTML(project.title)} — Video ${index + 1}"
-                            ></iframe>
 
-                            <div class="vimeo-controls">
-                                <button class="vimeo-control vimeo-play" type="button" aria-label="Play">Play</button>
-                                <span class="vimeo-time">00:00 / 00:00</span>
-                                <div class="vimeo-progress-wrap">
-                                    <input class="vimeo-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Video progress">
+                ${videos.map((video, index) => {
+                    const hash = video.hash
+                        ? `?h=${encodeURIComponent(video.hash)}&`
+                        : "?";
+
+                    return `
+                        <div class="vimeo-wrap vertical triple-vimeo-wrap">
+                            <div class="vimeo-frame">
+
+                                <iframe
+                                    class="triple-project-vimeo"
+                                    src="https://player.vimeo.com/video/${encodeURIComponent(video.vimeo)}${hash}transparent=0&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1"
+                                    allow="autoplay; fullscreen; picture-in-picture"
+                                    allowfullscreen
+                                    loading="lazy"
+                                    title="${escapeHTML(project.title)} — video ${index + 1}">
+                                </iframe>
+
+                                <button
+                                    class="vimeo-click-overlay"
+                                    type="button"
+                                    aria-label="Play or pause video">
+                                </button>
+
+                                <div class="vimeo-controls">
+                                    <button class="vimeo-control vimeo-play" type="button">Play</button>
+
+                                    <span class="vimeo-time">00:00 / 00:00</span>
+
+                                    <div class="vimeo-progress-wrap">
+                                        <input
+                                            class="vimeo-progress"
+                                            type="range"
+                                            min="0"
+                                            max="100"
+                                            value="0"
+                                            step=".1"
+                                            aria-label="Video progress">
+                                    </div>
+
+                                    <button class="vimeo-control vimeo-sound" type="button">Sound off</button>
+                                    <button class="vimeo-control vimeo-fullscreen" type="button">Full</button>
                                 </div>
-                                <button class="vimeo-control vimeo-sound" type="button" aria-label="Toggle sound">Sound On</button>
-                                <button class="vimeo-control vimeo-fullscreen" type="button" aria-label="Fullscreen">Full</button>
+
                             </div>
                         </div>
-                    </div>
-                `).join("")}
+                    `;
+                }).join("")}
+
             </div>
         </div>
     `;
 }
 
-
-/* ============================================================
-   INITIALIZE THREE VIMEO PLAYERS
-   ============================================================ */
-
 async function initializeTripleVimeo() {
-    if (!window.Vimeo || !projectElement) return;
+    const iframes = $$(".triple-project-vimeo", projectElement);
 
-    const iframes = Array.from(
-        projectElement.querySelectorAll(".triple-project-vimeo")
-    );
+    if (!iframes.length) return;
 
-    const players = iframes.map(iframe => {
-        const player = new Vimeo.Player(iframe);
-        currentTripleVimeoPlayers.push(player);
-        return player;
-    });
+    const apiAvailable = await loadVimeoAPI();
 
-    const activePlayers = players;
-
-    await Promise.all(activePlayers.map(async (player, index) => {
-        const iframe = iframes[index];
-        const wrapper = iframe.closest(".vimeo-wrap");
-        const frame = iframe.closest(".vimeo-frame");
-
-        if (!wrapper || !frame) return;
-
-        const playButton = wrapper.querySelector(".vimeo-play");
-        const soundButton = wrapper.querySelector(".vimeo-sound");
-        const fullscreenButton = wrapper.querySelector(".vimeo-fullscreen");
-        const progress = wrapper.querySelector(".vimeo-progress");
-        const time = wrapper.querySelector(".vimeo-time");
-
-        try {
-            await player.ready();
-        } catch (error) {
-            console.warn("Vimeo player could not initialize.", error);
-            return;
-        }
-
-        if (!currentTripleVimeoPlayers.includes(player)) return;
-
-        try {
-            const [width, height] = await Promise.all([
-                player.getVideoWidth(),
-                player.getVideoHeight()
-            ]);
-
-            if (width > 0 && height > 0) {
-                frame.style.aspectRatio = `${width} / ${height}`;
-                wrapper.classList.toggle("vertical", height > width);
+    if (!apiAvailable || !window.Vimeo || !window.Vimeo.Player) {
+        iframes.forEach(iframe => {
+            if (iframe.isConnected) {
+                iframe.src = iframe.src.replace("controls=0", "controls=1");
             }
-        } catch (error) {
-            console.warn("Could not determine Vimeo dimensions.", error);
-        }
 
-        const revealControls = () => {
+            const controls = $(".vimeo-controls", iframe.closest(".triple-vimeo-wrap"));
+
+            if (controls) controls.hidden = true;
+        });
+
+        return;
+    }
+
+    for (const iframe of iframes) {
+        if (!iframe.isConnected) continue;
+
+        const wrapper = iframe.closest(".triple-vimeo-wrap");
+
+        const player = new Vimeo.Player(iframe);
+
+        activePlayers.push(player);
+
+        const play = $(".vimeo-play", wrapper);
+        const overlay = $(".vimeo-click-overlay", wrapper);
+        const sound = $(".vimeo-sound", wrapper);
+        const full = $(".vimeo-fullscreen", wrapper);
+        const progress = $(".vimeo-progress", wrapper);
+        const time = $(".vimeo-time", wrapper);
+
+        const showControls = () => {
             wrapper.classList.add("controls-visible");
 
-            if (wrapper._controlsTimeout) {
-                clearTimeout(wrapper._controlsTimeout);
-            }
+            clearTimeout(wrapper._hideControls);
 
-            wrapper._controlsTimeout = setTimeout(() => {
+            wrapper._hideControls = setTimeout(() => {
                 wrapper.classList.remove("controls-visible");
-            }, 2200);
+            }, 2300);
         };
 
         const togglePlay = async () => {
@@ -1087,390 +1301,272 @@ async function initializeTripleVimeo() {
                 } else {
                     await player.pause();
                 }
-                revealControls();
+
+                showControls();
             } catch (error) {
-                console.warn("Vimeo playback error.", error);
+                console.warn("Vimeo playback could not start.", error);
             }
         };
 
-        playButton?.addEventListener("click", event => {
-            event.stopPropagation();
-            togglePlay();
-        });
+        try {
+            await player.ready();
+        } catch (_) {
+            continue;
+        }
 
-        frame.addEventListener("click", event => {
-            if (!event.target.closest(".vimeo-controls")) {
-                togglePlay();
-            }
-        });
+        if (!iframe.isConnected) {
+            try {
+                player.destroy();
+            } catch (_) {}
 
-        frame.addEventListener("mousemove", revealControls);
-        frame.addEventListener("touchstart", revealControls, { passive: true });
+            continue;
+        }
+
+        play?.addEventListener("click", togglePlay);
+        overlay?.addEventListener("click", togglePlay);
+
+        wrapper.addEventListener("mousemove", showControls);
+        wrapper.addEventListener("touchstart", showControls, { passive: true });
 
         player.on("play", () => {
-            if (!playButton) return;
-            playButton.textContent = "Pause";
-            playButton.setAttribute("aria-label", "Pause");
+            if (play) play.textContent = "Pause";
         });
 
         player.on("pause", () => {
-            if (!playButton) return;
-            playButton.textContent = "Play";
-            playButton.setAttribute("aria-label", "Play");
+            if (play) play.textContent = "Play";
         });
 
         player.on("timeupdate", data => {
-            const duration = Number(data.duration) || 0;
-            const seconds = Number(data.seconds) || 0;
-
             if (progress) {
-                progress.value = duration ? (seconds / duration) * 100 : 0;
+                progress.value = data.duration
+                    ? data.seconds / data.duration * 100
+                    : 0;
             }
 
             if (time) {
-                time.textContent = `${formatTime(seconds)} / ${formatTime(duration)}`;
+                time.textContent =
+                    `${formatTime(data.seconds)} / ${formatTime(data.duration)}`;
             }
         });
 
         player.on("loaded", data => {
-            if (time) time.textContent = `00:00 / ${formatTime(data.duration)}`;
+            if (time) {
+                time.textContent = `00:00 / ${formatTime(data.duration)}`;
+            }
         });
 
-        soundButton?.addEventListener("click", async event => {
-            event.stopPropagation();
-
+        sound?.addEventListener("click", async () => {
             try {
                 const volume = await player.getVolume();
+
                 await player.setVolume(volume > 0 ? 0 : 1);
-                soundButton.textContent = volume > 0 ? "Sound Off" : "Sound On";
-                revealControls();
-            } catch (error) {
-                console.warn("Could not change Vimeo volume.", error);
-            }
+
+                sound.textContent = volume > 0 ? "Sound off" : "Sound on";
+
+                showControls();
+            } catch (_) {}
         });
 
-        progress?.addEventListener("input", async event => {
-            event.stopPropagation();
-
+        progress?.addEventListener("input", async () => {
             try {
                 const duration = await player.getDuration();
+
                 await player.setCurrentTime(
-                    duration * (Number(progress.value) / 100)
+                    duration * Number(progress.value) / 100
                 );
-                revealControls();
-            } catch (error) {
-                console.warn("Could not seek Vimeo video.", error);
-            }
+            } catch (_) {}
         });
 
-        progress?.addEventListener("click", event => event.stopPropagation());
-
-        fullscreenButton?.addEventListener("click", async event => {
-            event.stopPropagation();
-
+        full?.addEventListener("click", async () => {
             try {
                 await player.requestFullscreen();
-            } catch (error) {
-                console.warn("Could not enter fullscreen.", error);
-            }
+            } catch (_) {}
         });
 
         try {
             await player.setVolume(0);
-
-            if (soundButton) soundButton.textContent = "Sound Off";
-
-            await new Promise(resolve => setTimeout(resolve, 400));
-
-            if (!currentTripleVimeoPlayers.includes(player)) return;
-
-            await player.play();
-        } catch (error) {
-            console.warn("Vimeo autoplay was blocked by the browser.", error);
-        }
-    }));
+        } catch (_) {}
+    }
 }
 
 
 /* ============================================================
-   IMAGE
-   ============================================================ */
-
-function renderImage(project) {
-    return `
-        <div class="image-project">
-            <img
-                src="${escapeHTML(project.image)}"
-                alt="${escapeHTML(project.title)}"
-                loading="eager"
-            >
-        </div>
-    `;
-}
-
-
-/* ============================================================
-   CAROUSEL
-   ============================================================ */
+   IMAGE CAROUSEL
+============================================================ */
 
 function renderCarousel(project) {
-    const images = Array.isArray(project.images) ? project.images : [];
+    const images = project.images || [];
 
-    if (!images.length) return "";
+    carouselIndex = 0;
 
-    currentCarouselIndex = 0;
-
-    return `
-        <div class="image-carousel" data-carousel-count="${images.length}">
-            <div class="carousel-stage">
-                <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">
-                    <span aria-hidden="true">←</span>
-                </button>
-
-                <div class="carousel-image-wrap">
-                    ${images.map((image, index) => `
-                        <img
-                            class="carousel-image ${index === 0 ? "active" : ""}"
-                            src="${escapeHTML(image)}"
-                            alt="${escapeHTML(project.title)} — image ${index + 1} of ${images.length}"
-                            data-carousel-index="${index}"
-                            draggable="false"
-                        >
-                    `).join("")}
-                </div>
-
-                <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">
-                    <span aria-hidden="true">→</span>
-                </button>
-            </div>
-
-            <div class="carousel-meta">
-                <span class="carousel-counter">
-                    <span class="carousel-current">01</span>
-                    <span class="carousel-separator">/</span>
-                    <span class="carousel-total">${formatNumber(images.length)}</span>
-                </span>
-            </div>
-        </div>
-    `;
-}
-
-
-function updateCarousel(carousel, index, direction = 0) {
-    if (!carousel) return;
-
-    const images = carousel.querySelectorAll(".carousel-image");
-    if (!images.length) return;
-
-    if (index < 0) index = images.length - 1;
-    if (index >= images.length) index = 0;
-
-    currentCarouselIndex = index;
-
-    images.forEach((image, imageIndex) => {
-        image.classList.toggle("active", imageIndex === index);
-        image.classList.remove("slide-next", "slide-prev");
-
-        if (imageIndex === index && direction !== 0) {
-            image.classList.add(direction > 0 ? "slide-next" : "slide-prev");
-        }
-    });
-
-    const current = carousel.querySelector(".carousel-current");
-    if (current) current.textContent = formatNumber(index + 1);
-}
-
-
-function initializeCarousel() {
-    const carousel = projectElement.querySelector(".image-carousel");
-    if (!carousel) return;
-
-    const images = carousel.querySelectorAll(".carousel-image");
-    const previous = carousel.querySelector(".carousel-prev");
-    const next = carousel.querySelector(".carousel-next");
-
-    const goTo = (index, direction = 0) => {
-        updateCarousel(carousel, index, direction);
-    };
-
-    const nextImage = () => goTo(currentCarouselIndex + 1, 1);
-    const previousImage = () => goTo(currentCarouselIndex - 1, -1);
-
-    previous?.addEventListener("click", event => {
-        event.stopPropagation();
-        previousImage();
-    });
-
-    next?.addEventListener("click", event => {
-        event.stopPropagation();
-        nextImage();
-    });
-
-    images.forEach(image => {
-        image.addEventListener("click", event => {
-            event.stopPropagation();
-
-            const rect = image.getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-
-            if (clickX < rect.width / 2) {
-                previousImage();
-            } else {
-                nextImage();
-            }
-        });
-    });
-
-    const imageWrap = carousel.querySelector(".carousel-image-wrap");
-
-    if (imageWrap) {
-        imageWrap.addEventListener("touchstart", event => {
-            if (!event.touches.length) return;
-
-            carouselTouchStartX = event.touches[0].clientX;
-            carouselTouchStartY = event.touches[0].clientY;
-        }, { passive: true });
-
-        imageWrap.addEventListener("touchend", event => {
-            if (!event.changedTouches.length) return;
-
-            const endX = event.changedTouches[0].clientX;
-            const endY = event.changedTouches[0].clientY;
-
-            const deltaX = endX - carouselTouchStartX;
-            const deltaY = endY - carouselTouchStartY;
-
-            if (
-                Math.abs(deltaX) < 40 ||
-                Math.abs(deltaX) < Math.abs(deltaY)
-            ) return;
-
-            if (deltaX < 0) nextImage();
-            else previousImage();
-        }, { passive: true });
-    }
-
-    updateCarousel(carousel, 0, 0);
-}
-
-
-/* ============================================================
-   VIDEO
-   ============================================================ */
-
-function renderVideo(project) {
     return `
         <div class="project-media">
-            ${renderVimeoMarkup(project)}
-        </div>
-    `;
-}
+            <div class="image-carousel">
 
+                <div class="carousel-stage">
 
-/* ============================================================
-   TEXT
-   ============================================================ */
+                    <button
+                        class="carousel-arrow carousel-prev"
+                        type="button"
+                        aria-label="Previous image">←</button>
 
-function renderText(project) {
-    return `
-        <div class="project-text ${escapeHTML(project.style || "editorial")}">
-            ${escapeHTML(project.title)}
-            ${project.description ? `
-                <div class="text-project-description">
-                    ${escapeHTML(project.description)}
+                    <div class="carousel-image-wrap">
+                        ${images.map((image, index) => `
+                            <img
+                                class="carousel-image${index === 0 ? " active" : ""}"
+                                src="${escapeHTML(image)}"
+                                alt="${escapeHTML(project.title)} — ${index + 1} of ${images.length}"
+                                loading="${index < 2 ? "eager" : "lazy"}"
+                                draggable="false">
+                        `).join("")}
+                    </div>
+
+                    <button
+                        class="carousel-arrow carousel-next"
+                        type="button"
+                        aria-label="Next image">→</button>
+
                 </div>
-            ` : ""}
-        </div>
-    `;
-}
 
-
-/* ============================================================
-   ABOUT
-   ============================================================ */
-
-function renderAbout(project) {
-    projectElement.innerHTML = `
-        <div class="about-content">
-            <div class="about-image about-video">
-                <div class="about-video-rotation">
-                    <iframe
-                        src="https://player.vimeo.com/video/${encodeURIComponent(project.vimeo)}?h=${encodeURIComponent(project.hash)}&transparent=0&autoplay=1&muted=1&loop=1&background=1&controls=0&playsinline=1"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen
-                        title="A Doll's House Pictures"
-                    ></iframe>
+                <div class="carousel-meta">
+                    <span class="carousel-current">01</span> / ${pad(images.length)}
                 </div>
-            </div>
 
-            <div class="about-copy">
-                <div class="project-category">${escapeHTML(project.category)}</div>
-                <h1 class="project-title">${escapeHTML(project.title)}</h1>
-                <div class="about-description">${escapeHTML(project.description)}</div>
-
-                <div class="about-contact">
-                    <a href="https://www.instagram.com/adollshousepictures/" target="_blank" rel="noopener noreferrer">
-                        @adollshousepictures
-                    </a>
-                    <a href="mailto:adollshousepictures@gmail.com">
-                        adollshousepictures@gmail.com
-                    </a>
-                </div>
             </div>
         </div>
     `;
 }
 
+function setCarousel(index) {
+    const carousel = $(".image-carousel", projectElement);
+
+    if (!carousel) return;
+
+    const images = $$(".carousel-image", carousel);
+
+    if (!images.length) return;
+
+    carouselIndex = (index + images.length) % images.length;
+
+    images.forEach((image, i) => {
+        image.classList.toggle("active", i === carouselIndex);
+    });
+
+    const current = $(".carousel-current", carousel);
+
+    if (current) {
+        current.textContent = pad(carouselIndex + 1);
+    }
+}
+
+function initializeCarousel() {
+    const carousel = $(".image-carousel", projectElement);
+
+    if (!carousel) return;
+
+    $(".carousel-prev", carousel)?.addEventListener("click", () => {
+        setCarousel(carouselIndex - 1);
+    });
+
+    $(".carousel-next", carousel)?.addEventListener("click", () => {
+        setCarousel(carouselIndex + 1);
+    });
+
+    const wrap = $(".carousel-image-wrap", carousel);
+
+    if (!wrap) return;
+
+    wrap.addEventListener("touchstart", event => {
+        carouselTouchX = event.touches[0].clientX;
+        carouselTouchY = event.touches[0].clientY;
+    }, { passive: true });
+
+    wrap.addEventListener("touchend", event => {
+        const dx = event.changedTouches[0].clientX - carouselTouchX;
+        const dy = event.changedTouches[0].clientY - carouselTouchY;
+
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+            setCarousel(carouselIndex + (dx < 0 ? 1 : -1));
+        }
+    }, { passive: true });
+}
+
 
 /* ============================================================
-   EXTERNAL PROJECT PAGE
-   ============================================================ */
+   PROJECT RENDERING
+============================================================ */
 
-async function renderExternalPage(project, requestId) {
-    if (!project.page) {
-        projectElement.innerHTML = `<div class="project-error">Page not specified.</div>`;
+async function renderProject(project) {
+    closePlayers();
+
+    if (!projectElement) return;
+
+    projectElement.innerHTML = "";
+
+    if (project.type === "page") {
+        try {
+            const response = await fetch(project.page);
+
+            if (!response.ok) {
+                throw new Error("Page unavailable");
+            }
+
+            const parsed = new DOMParser().parseFromString(
+                await response.text(),
+                "text/html"
+            );
+
+            projectElement.innerHTML = parsed.body?.innerHTML || "";
+
+        } catch (_) {
+            projectElement.innerHTML = `
+                <div class="project-error">
+                    <h1>${escapeHTML(project.title)}</h1>
+                    <p>This project could not be loaded.</p>
+                </div>
+            `;
+        }
+
         return;
     }
 
-    try {
-        const response = await fetch(project.page, { cache: "no-cache" });
+    if (project.type === "vimeo") {
+        projectElement.innerHTML =
+            renderVimeoMarkup(project) +
+            renderProjectInfo(project);
 
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        initializeSingleVimeo();
 
-        const html = await response.text();
+    } else if (project.type === "triple-vimeo") {
+        projectElement.innerHTML =
+            renderTriple(project) +
+            renderProjectInfo(project);
 
-        if (requestId !== renderRequestId) return;
+        initializeTripleVimeo();
 
-        const parsedDocument = new DOMParser().parseFromString(html, "text/html");
-        const body = parsedDocument.body;
+    } else if (project.type === "carousel") {
+        projectElement.innerHTML =
+            renderCarousel(project) +
+            renderProjectInfo(project);
 
-        if (!body) throw new Error("Could not find page body.");
+        initializeCarousel();
 
-        projectElement.innerHTML = body.innerHTML;
-
-        parsedDocument.querySelectorAll("style").forEach((sourceStyle, index) => {
-            const styleId = `external-style-${project.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${index}`;
-
-            let existingStyle = document.getElementById(styleId);
-
-            if (!existingStyle) {
-                existingStyle = document.createElement("style");
-                existingStyle.id = styleId;
-                document.head.appendChild(existingStyle);
-            }
-
-            existingStyle.textContent = sourceStyle.textContent;
-        });
-
-        if (project.title === "Fisher Center") initializeFisherCenter();
-
-    } catch (error) {
-        console.error("Could not load external project page.", error);
-
+    } else if (project.type === "image") {
         projectElement.innerHTML = `
-            <div class="project-error">
-                <h1>${escapeHTML(project.title)}</h1>
-                <p>This project could not be loaded.</p>
+            <div class="project-media image-project">
+                <img src="${escapeHTML(project.image)}"
+                     alt="${escapeHTML(project.title)}">
+            </div>
+            ${renderProjectInfo(project)}
+        `;
+
+    } else if (project.type === "text") {
+        projectElement.innerHTML = `
+            <div class="project-text">
+                ${escapeHTML(project.title)}
+                <div class="text-project-description">
+                    ${escapeHTML(project.description || "")}
+                </div>
             </div>
         `;
     }
@@ -1478,318 +1574,252 @@ async function renderExternalPage(project, requestId) {
 
 
 /* ============================================================
-   FISHER CENTER INITIALIZATION
-   ============================================================ */
-
-function initializeFisherCenter() {
-    destroyFisherCenter();
-
-    const page = projectElement.querySelector(".fisher-page");
-
-    if (!page) {
-        console.warn("Fisher Center page root .fisher-page was not found.");
-        return;
-    }
-
-    const gallery = page.querySelector("#fisherGallery");
-    const galleryImages = page.querySelectorAll(".fisher-gallery-image");
-    const galleryCounter = page.querySelector(".fisher-gallery-counter");
-
-    if (!gallery || !galleryImages.length) return;
-
-    let ticking = false;
-
-    const updateGallery = () => {
-        ticking = false;
-
-        const rect = gallery.getBoundingClientRect();
-        const scrollDistance = gallery.offsetHeight - window.innerHeight;
-
-        if (scrollDistance <= 0) {
-            galleryImages.forEach((image, index) => {
-                image.classList.toggle("active", index === 0);
-            });
-
-            if (galleryCounter) {
-                galleryCounter.textContent = `01 / ${formatNumber(galleryImages.length)}`;
-            }
-
-            return;
-        }
-
-        const progress = Math.max(0, Math.min(1, -rect.top / scrollDistance));
-        const imageCount = galleryImages.length;
-        const activeIndex = Math.round(progress * (imageCount - 1));
-
-        galleryImages.forEach((image, index) => {
-            image.classList.toggle("active", index === activeIndex);
-        });
-
-        if (galleryCounter) {
-            galleryCounter.textContent = `${formatNumber(activeIndex + 1)} / ${formatNumber(imageCount)}`;
-        }
-    };
-
-    const requestGalleryUpdate = () => {
-        if (ticking) return;
-
-        ticking = true;
-        requestAnimationFrame(updateGallery);
-    };
-
-    window.addEventListener("scroll", requestGalleryUpdate, { passive: true });
-    window.addEventListener("resize", requestGalleryUpdate);
-
-    requestGalleryUpdate();
-
-    fisherCleanup = () => {
-        window.removeEventListener("scroll", requestGalleryUpdate);
-        window.removeEventListener("resize", requestGalleryUpdate);
-    };
-}
-
-
-/* ============================================================
-   RENDER PROJECT
-   ============================================================ */
-
-async function renderProject(project) {
-    const requestId = ++renderRequestId;
-
-    destroyCurrentVimeo();
-    projectElement.innerHTML = "";
-
-    if (project.type === "about") {
-        renderAbout(project);
-        return;
-    }
-
-    if (project.type === "page") {
-        await renderExternalPage(project, requestId);
-        return;
-    }
-
-    if (project.type === "vimeo") {
-        projectElement.insertAdjacentHTML("beforeend", renderVideo(project));
-        projectElement.insertAdjacentHTML("beforeend", renderProjectInfo(project));
-    }
-
-    else if (project.type === "triple-vimeo") {
-        projectElement.insertAdjacentHTML("beforeend", renderTripleVertical(project));
-        projectElement.insertAdjacentHTML("beforeend", renderProjectInfo(project));
-
-        if (requestId === renderRequestId) {
-            initializeTripleVimeo();
-        }
-    }
-
-    else if (project.type === "image") {
-        projectElement.insertAdjacentHTML("beforeend", `
-            <div class="project-media">
-                ${renderImage(project)}
-            </div>
-        `);
-
-        projectElement.insertAdjacentHTML("beforeend", renderProjectInfo(project));
-    }
-
-    else if (project.type === "carousel") {
-        projectElement.insertAdjacentHTML("beforeend", `
-            <div class="project-media">
-                ${renderCarousel(project)}
-            </div>
-        `);
-
-        projectElement.insertAdjacentHTML("beforeend", renderProjectInfo(project));
-        initializeCarousel();
-    }
-
-    else if (project.type === "text") {
-        projectElement.insertAdjacentHTML("beforeend", renderText(project));
-    }
-
-    if (project.type === "vimeo" && requestId === renderRequestId) {
-        initializeVimeo();
-    }
-}
-
-
-/* ============================================================
-   PROJECT KEY
-   ============================================================ */
-
-function getProjectKey(project) {
-    if (project.type === "vimeo" && project.vimeo) {
-        return `vimeo:${project.vimeo}`;
-    }
-
-    if (project.type === "triple-vimeo" && project.videos?.length) {
-        return `triple-vimeo:${project.videos.map(video => video.vimeo).join("-")}`;
-    }
-
-    if (project.type === "carousel" && project.images?.length) {
-        return `carousel:${project.images[0]}`;
-    }
-
-    if (project.type === "image" && project.image) {
-        return `image:${project.image}`;
-    }
-
-    if (project.type === "page" && project.page) {
-        return `page:${project.page}`;
-    }
-
-    return `${project.type}:${project.title}`;
-}
-
-
-/* ============================================================
-   SELECT PROJECT
-   ============================================================ */
+   OPEN / CLOSE PROJECT DETAIL
+============================================================ */
 
 function selectProject(index) {
     if (index < 0 || index >= projects.length) return;
+    if (!detailView || !projectElement) return;
 
-    if (index === currentProjectIndex && projectElement.innerHTML) return;
+    currentProjectIndex = index;
 
-    projectElement.classList.add("is-changing");
+    const project = projects[index];
 
-    setTimeout(async () => {
-        currentProjectIndex = index;
+    detailView.classList.add("is-open");
+    detailView.setAttribute("aria-hidden", "false");
 
-        const project = projects[index];
+    document.body.classList.add("detail-open");
 
-        try {
-            localStorage.setItem("adhp-last-project", getProjectKey(project));
-        } catch (error) {
-            console.warn("Could not save last project.", error);
-        }
+    const displayIndex = index + 1;
 
-        await renderProject(project);
+    const detailCount = $("#detailCount");
+    const previousButton = $("#previousProject");
+    const nextButton = $("#nextProject");
 
-        updateArchiveState();
+    if (detailCount) {
+        detailCount.textContent =
+            `${pad(displayIndex)} / ${pad(portfolioProjects.length)}`;
+    }
 
-        const activeItem = archiveList?.querySelector(
-            `.archive-item[data-index="${index}"]`
+    if (previousButton) previousButton.disabled = false;
+    if (nextButton) nextButton.disabled = false;
+
+    updateDrawerActive();
+
+    renderProject(project);
+
+    detailView.scrollTop = 0;
+
+    try {
+        history.replaceState(
+            null,
+            "",
+            `#project-${index + 1}`
         );
+    } catch (_) {}
+}
 
-        activeItem?.scrollIntoView({
-            block: "nearest",
-            behavior: "smooth"
-        });
+function closeDetail() {
+    closePlayers();
 
-        requestAnimationFrame(() => {
-            projectElement.classList.remove("is-changing");
-        });
+    if (!detailView) return;
 
-    }, 180);
+    detailView.classList.remove("is-open");
+    detailView.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("detail-open");
+
+    currentProjectIndex = -1;
+
+    try {
+        history.replaceState(
+            null,
+            "",
+            location.pathname + location.search
+        );
+    } catch (_) {}
+}
+
+function goProject(direction) {
+    if (!projects.length) return;
+
+    const next =
+        (currentProjectIndex + direction + projects.length) % projects.length;
+
+    selectProject(next);
 }
 
 
 /* ============================================================
-   KEYBOARD NAVIGATION
-   ============================================================ */
+   STORIES DROPDOWN
+============================================================ */
+
+document.addEventListener("click", event => {
+    const dropdown = $("#storiesDropdown");
+    const button = $("#storiesDropdownButton");
+
+    if (!dropdown || !button) return;
+
+    if (button.contains(event.target)) {
+        const open = dropdown.classList.toggle("is-open");
+
+        button.setAttribute("aria-expanded", String(open));
+
+    } else if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("is-open");
+
+        button.setAttribute("aria-expanded", "false");
+    }
+});
 
 document.addEventListener("keydown", event => {
-    const tag = document.activeElement?.tagName?.toLowerCase();
+    if (event.key !== "Escape") return;
 
-    if (["input", "textarea", "select"].includes(tag)) return;
+    const dropdown = $("#storiesDropdown");
+    const button = $("#storiesDropdownButton");
 
-    const carousel = projectElement.querySelector(".image-carousel");
-
-    if (carousel) {
-        if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            updateCarousel(carousel, currentCarouselIndex - 1, -1);
-            return;
-        }
-
-        if (event.key === "ArrowRight") {
-            event.preventDefault();
-            updateCarousel(carousel, currentCarouselIndex + 1, 1);
-            return;
-        }
-    }
-
-    if (
-        currentVimeoPlayer &&
-        (event.code === "Space" || event.key === "ArrowLeft" || event.key === "ArrowRight")
-    ) {
-        if (event.code === "Space") {
-            event.preventDefault();
-
-            currentVimeoPlayer.getPaused().then(paused => {
-                if (paused) currentVimeoPlayer.play();
-                else currentVimeoPlayer.pause();
-            });
-
-            return;
-        }
-
-        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-            event.preventDefault();
-
-            currentVimeoPlayer.getCurrentTime().then(currentTime => {
-                const amount = event.key === "ArrowLeft" ? -5 : 5;
-
-                currentVimeoPlayer.setCurrentTime(
-                    Math.max(0, currentTime + amount)
-                );
-            });
-
-            return;
-        }
-    }
-
-    if (event.key === "ArrowUp") {
-        event.preventDefault();
-        selectProject(currentProjectIndex - 1);
-    }
-
-    else if (event.key === "ArrowDown") {
-        event.preventDefault();
-        selectProject(currentProjectIndex + 1);
+    if (dropdown && button) {
+        dropdown.classList.remove("is-open");
+        button.setAttribute("aria-expanded", "false");
+        button.blur();
     }
 });
 
 
 /* ============================================================
-   INITIALIZE
-   ============================================================ */
+   SITE EVENTS
+   Delegated navigation events also work if navigation.js
+   inserts the shared navigation after this file loads.
+============================================================ */
 
-buildArchive();
+document.addEventListener("click", event => {
+    const target = event.target;
 
-const aboutLink = document.getElementById("aboutLink");
+    const menuButton = target.closest("#menuButton");
+    const drawerClose = target.closest("#drawerClose");
+    const backdrop = target.closest("#drawerBackdrop");
+    const backButton = target.closest("#backButton");
+    const previousButton = target.closest("#previousProject");
+    const nextButton = target.closest("#nextProject");
+    const drawerWorkLink = target.closest("#drawerWorkLink");
+    const workNav = target.closest("#workNav");
 
-if (aboutLink) {
-    aboutLink.addEventListener("click", event => {
+    if (menuButton) {
         event.preventDefault();
 
-        const aboutIndex = projects.findIndex(
-            project => project.type === "about"
-        );
+        if (drawerOpen) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
 
-        if (aboutIndex !== -1) selectProject(aboutIndex);
-    });
-}
+        return;
+    }
+
+    if (drawerClose || backdrop) {
+        closeDrawer();
+        return;
+    }
+
+    if (backButton) {
+        closeDetail();
+        return;
+    }
+
+    if (previousButton) {
+        goProject(-1);
+        return;
+    }
+
+    if (nextButton) {
+        goProject(1);
+        return;
+    }
+
+    if (drawerWorkLink) {
+        closeDrawer();
+        return;
+    }
+
+    if (workNav) {
+        closeDetail();
+    }
+});
 
 
 /* ============================================================
-   ALWAYS OPEN ON ABOUT
-   ============================================================ */
+   CATEGORY FILTER EVENTS
+============================================================ */
 
-const aboutProjectIndex = projects.findIndex(
-    project => project.type === "about"
-);
+$$(".filter-option", $("#categoryBrowser")).forEach(button => {
+    button.addEventListener("click", () => {
+        applyFilter(button.dataset.filter);
+    });
+});
 
-if (aboutProjectIndex !== -1) {
-    currentProjectIndex = aboutProjectIndex;
-    renderProject(projects[currentProjectIndex]);
-    updateArchiveState();
+
+/* ============================================================
+   KEYBOARD NAVIGATION
+============================================================ */
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        if (drawerOpen) {
+            closeDrawer();
+        } else if (detailView?.classList.contains("is-open")) {
+            closeDetail();
+        }
+    }
+
+    if (!detailView?.classList.contains("is-open")) return;
+
+    if (event.key === "ArrowLeft") {
+        goProject(-1);
+    }
+
+    if (event.key === "ArrowRight") {
+        goProject(1);
+    }
+});
+
+
+/* ============================================================
+   INITIALIZATION
+============================================================ */
+
+function initializeSite() {
+    // First section: dynamic studio hero.
+    buildHero();
+
+    // Portfolio grid and project archive.
+    buildPortfolio();
+
+    const currentYear = $("#currentYear");
+
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+    }
+
+    const workTotal = $("#workTotal");
+
+    if (workTotal) {
+        workTotal.textContent =
+            `${pad(portfolioProjects.length)} projects`;
+    }
+
+    const hash = location.hash.match(/^#project-(\d+)$/);
+
+    if (hash) {
+        const target = projects[Number(hash[1]) - 1];
+
+        if (target) {
+            selectProject(Number(hash[1]) - 1);
+        }
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeSite);
 } else {
-    console.warn("About project could not be found.");
-
-    currentProjectIndex = 0;
-    renderProject(projects[currentProjectIndex]);
-    updateArchiveState();
+    initializeSite();
 }
