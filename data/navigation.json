@@ -1,0 +1,109 @@
+{
+  "brand": {
+    "name": "A Doll's House",
+    "subname": "Pictures",
+    "description": "Independent creative studio",
+    "location": "New York / Hudson Valley"
+  },
+  "links": [
+    {
+      "label": "Work",
+      "url": "/#work"
+    },
+    {
+  "label": "Stories",
+  "children": [
+    {
+      "label": "Stissing House",
+      "url": "/stissinghouse.html"
+    },
+    {
+      "label": "Fisher Center",
+      "url": "/fishercenter.html"
+    }
+  ]
+},
+    {
+      "label": "About",
+      "action": "about"
+    },
+    {
+      "label": "Contact",
+      "action": "contact"
+    }
+  ],
+  "footer": {
+    "description": "Independent creative studio",
+    "location": "Germantown, New York"
+  },
+  "about": {
+    "category": "THE STUDIO",
+    "kicker": "Independent creative studio",
+    "location": "New York / Hudson Valley",
+    "headline": "We develop ideas. Shape identities. Craft stories.",
+    "manifestoLeft": "Strategy. Design. Production.",
+    "manifestoRight": "Storytelling is the thread.",
+    "marquee": [
+      "FILM",
+      "PHOTOGRAPHY",
+      "MOTION",
+      "DESIGN"
+    ],
+    "video": {
+      "id": "853944778",
+      "hash": "21e405ad8a",
+      "title": "A Doll's House Pictures — Studio"
+    },
+    "sections": [
+      {
+        "number": "01",
+        "label": "WHO WE ARE",
+        "paragraph": "A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language."
+      },
+      {
+        "number": "02",
+        "label": "WHAT WE DO",
+        "paragraph": "Working with brands, artists, and cultural organizations, the studio develops commercial, editorial, and artist-driven projects across moving image and still photography. From campaigns and branded content to experimental films and visual projects, A Doll’s House Pictures brings together creative direction, production, design, and filmmaking with a strong point of view."
+      },
+      {
+        "number": "03",
+        "label": "WHERE WE WORK",
+        "paragraph": "Based in the Hudson Valley and working in New York City and beyond, the studio moves between culture, fashion, performance, and commerce, exploring the space where commercial craft and artistic experimentation meet."
+      }
+    ],
+    "contactLabel": "04 — GET IN TOUCH",
+    "contactHeadline": "Have a project in mind?",
+    "email": "adollshousepictures@gmail.com",
+    "emailUrl": "mailto:adollshousepictures@gmail.com",
+    "instagram": "@adollshousepictures",
+    "instagramUrl": "https://www.instagram.com/adollshousepictures/",
+    "footerLeft": "A Doll's House Pictures",
+    "footerRight": "New York / Hudson Valley"
+  },
+  "contact": {
+    "category": "CONTACT",
+    "headline": "Let's talk.",
+    "description": "Have a project in mind, or simply want to start a conversation? We'd like to hear from you.",
+    "video": {
+      "id": "1124182293",
+      "hash": "ba0e95bebe",
+      "title": "A Doll's House Pictures — Studio"
+    },
+    "email": "adollshousepictures@gmail.com",
+    "emailUrl": "mailto:adollshousepictures@gmail.com",
+    "instagram": "@adollshousepictures",
+    "instagramUrl": "https://www.instagram.com/adollshousepictures/",
+    "details": [
+      {
+        "label": "BASED IN",
+        "value": "Hudson Valley, New York"
+      },
+      {
+        "label": "WORKING ACROSS",
+        "value": "Film, Photography, Motion & Design"
+      }
+    ],
+    "footerLeft": "A Doll's House Pictures",
+    "footerRight": "New York / Hudson Valley"
+  }
+}
