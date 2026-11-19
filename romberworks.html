@@ -1,0 +1,1490 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171714">
+
+<title>Romber Works — A Doll's House Pictures</title>
+
+<meta name="description" content="A portrait of a Hudson Valley craftsman dedicated to creating custom cabinetry. A film and photography project by A Doll's House Pictures.">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="A Doll's House Pictures">
+<meta property="og:title" content="Romber Works — A Doll's House Pictures">
+<meta property="og:description" content="A portrait of a craftsman, his materials, and the enduring practice of making things well.">
+<meta property="og:url" content="https://www.adollshousepictures.com/romberworks.html">
+<meta property="og:image" content="https://www.adollshousepictures.com/images/thumbnails/romberworks.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Romber Works — A Doll's House Pictures">
+<meta name="twitter:description" content="A portrait of a craftsman, his materials, and the enduring practice of making things well.">
+<meta name="twitter:image" content="https://www.adollshousepictures.com/images/thumbnails/romberworks.jpg">
+
+<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://i.vimeocdn.com">
+<link rel="preconnect" href="https://f.vimeocdn.com">
+<link rel="dns-prefetch" href="//player.vimeo.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/navigation.css">
+
+<style>
+:root {
+  --paper:#171714;
+  --ink:#eee9dc;
+  --muted:#aaa89b;
+  --line:rgba(238,233,220,.2);
+  --gutter:clamp(20px,5vw,78px);
+  --mono:"DM Mono",monospace;
+  --sans:Manrope,Arial,sans-serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+}
+
+* { box-sizing:border-box }
+
+html {
+  scroll-behavior:smooth;
+  background:var(--paper);
+}
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+
+a { color:inherit;text-decoration:none }
+button { font:inherit }
+body.menu-open { overflow:hidden }
+
+.mono,.eyebrow,.meta {
+  font:9px/1.4 var(--mono);
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+/* HERO */
+
+.hero {
+  min-height:min(820px,calc(100svh - 74px));
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:#353329;
+  color:#f1ecdf;
+}
+
+.hero-image {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:#000;
+}
+
+.hero-image:after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(15,14,10,.08) 10%,
+    rgba(15,14,10,.12) 40%,
+    rgba(15,14,10,.75) 100%
+  );
+  pointer-events:none;
+}
+
+.hero-image iframe {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:max(100%,177.78vh);
+  height:max(100%,56.25vw);
+  min-width:100%;
+  min-height:100%;
+  border:0;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  background:#000;
+}
+
+.hero-inner {
+  position:relative;
+  width:100%;
+  padding:clamp(28px,5vw,76px) var(--gutter) clamp(34px,5vw,70px);
+}
+
+.hero-meta {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,.45);
+  color:rgba(255,255,255,.82);
+}
+
+.hero h1 {
+  margin:clamp(22px,4vw,52px) 0 0;
+  font:400 clamp(82px,16vw,230px)/.72 var(--serif);
+  letter-spacing:-.075em;
+}
+
+.hero-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-top:clamp(34px,6vw,82px);
+}
+
+.hero-bottom p {
+  max-width:440px;
+  margin:0;
+  font:400 clamp(18px,2vw,26px)/1.3 var(--serif);
+}
+
+.hero-index {
+  font:9px var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+/* INTRO */
+
+.intro {
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:30px;
+  padding:clamp(66px,10vw,150px) var(--gutter);
+  align-items:start;
+}
+
+.intro-label { color:var(--muted) }
+
+.intro-copy {
+  max-width:780px;
+  font:400 clamp(30px,4.5vw,62px)/1.04 var(--serif);
+  letter-spacing:-.035em;
+}
+
+.intro-copy em { font-weight:400 }
+
+.intro-side {
+  justify-self:end;
+  max-width:180px;
+  color:var(--muted);
+  font:9px/1.8 var(--mono);
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
+
+/* SECTIONS */
+
+.section {
+  padding:0 var(--gutter) clamp(80px,11vw,160px);
+}
+
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:20px;
+  padding:0 0 15px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:24px;
+}
+
+.section-head h2 {
+  margin:0;
+  font:400 clamp(27px,4vw,50px)/1 var(--serif);
+  letter-spacing:-.035em;
+}
+
+.section-head .meta { color:var(--muted) }
+
+.wide-feature {
+  width:100%;
+  margin:0 auto;
+}
+
+/* VIDEO */
+
+.video-frame {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:#000;
+  aspect-ratio:16/9;
+  width:100%;
+  height:auto;
+  outline:none;
+  flex:none;
+}
+
+.video-frame.vertical {
+  aspect-ratio:9/16;
+  width:100%;
+  height:auto;
+}
+
+.video-frame iframe {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  pointer-events:none;
+}
+
+.video-poster {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background-position:center;
+  background-size:cover;
+  transition:opacity .35s;
+  pointer-events:none;
+}
+
+.video-poster::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.18),transparent 35%);
+}
+
+.video-frame.is-ready .video-poster { opacity:0 }
+
+.video-hit {
+  position:absolute;
+  z-index:2;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.video-hit:focus-visible {
+  outline:1px solid white;
+  outline-offset:-8px;
+}
+
+.video-controls {
+  position:absolute;
+  z-index:4;
+  right:0;
+  bottom:0;
+  left:0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  color:#f8f5ed;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s;
+  background:linear-gradient(0deg,rgba(0,0,0,.3),transparent);
+}
+
+.video-frame:hover .video-controls,
+.video-frame:focus-within .video-controls,
+.video-frame.is-paused .video-controls,
+.video-frame.is-playing .video-controls {
+  opacity:1;
+}
+
+.video-controls button,
+.video-controls input { pointer-events:auto }
+
+/* HIDE CUSTOM CONTROLS WHEN REQUESTED */
+
+.video-frame[data-controls="false"] .video-controls {
+  display:none !important;
+}
+
+.video-frame[data-controls="false"] .video-hit {
+  display:none;
+}
+
+.control-button {
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border:0;
+  background:transparent;
+  color:inherit;
+  padding:0;
+  cursor:pointer;
+}
+
+.control-button svg {
+  width:17px;
+  height:17px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.35;
+  stroke-linecap:square;
+  stroke-linejoin:miter;
+}
+
+.video-time {
+  font:9px var(--mono);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+
+.video-progress {
+  appearance:none;
+  -webkit-appearance:none;
+  flex:1;
+  min-width:30px;
+  height:18px;
+  margin:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.video-progress::-webkit-slider-runnable-track {
+  height:1px;
+  background:linear-gradient(
+    to right,
+    #f8f5ed var(--progress,0%),
+    rgba(248,245,237,.45) var(--progress,0%)
+  );
+}
+
+.video-progress::-moz-range-track {
+  height:1px;
+  background:rgba(248,245,237,.45);
+}
+
+.video-progress::-moz-range-progress {
+  height:1px;
+  background:#f8f5ed;
+}
+
+.video-progress::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#f8f5ed;
+  margin-top:-2px;
+}
+
+.video-progress::-moz-range-thumb {
+  width:5px;
+  height:5px;
+  border:0;
+  border-radius:50%;
+  background:#f8f5ed;
+}
+
+.caption {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:baseline;
+  padding-top:12px;
+  color:var(--muted);
+}
+
+.caption strong {
+  font:400 clamp(17px,2vw,24px)/1.1 var(--serif);
+  color:var(--ink);
+}
+
+.caption span {
+  font:9px var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* TRIPTYCH */
+
+.triptych {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(12px,2.3vw,34px);
+  align-items:start;
+}
+
+.triptych .video-frame.vertical {
+  width:100%;
+  aspect-ratio:9/16;
+}
+
+.triptych .caption { display:block }
+.triptych .caption span {
+  display:block;
+  margin-top:7px;
+}
+
+/* PHOTOGRAPHY */
+
+.photo-grid {
+  display:grid;
+  grid-template-columns:1.1fr .9fr 1.1fr;
+  gap:clamp(10px,2vw,28px);
+  align-items:start;
+}
+
+.photo { margin:0;cursor:zoom-in }
+.photo:nth-child(2) { margin-top:clamp(45px,9vw,130px) }
+
+.photo img {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  background:#30302a;
+}
+
+.photo:nth-child(2) img { aspect-ratio:3/4 }
+
+.photo figcaption {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding-top:9px;
+  color:var(--muted);
+  font:9px var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+/* SHORT FILMS */
+
+.story-grid {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(8px,1.5vw,20px);
+  align-items:start;
+}
+
+.story-grid .video-frame.vertical { aspect-ratio:9/16 }
+.story-grid .caption { display:block }
+.story-grid .caption strong { font-size:18px }
+
+.story-grid .caption span {
+  display:block;
+  margin-top:7px;
+  font-size:8px;
+}
+
+/* INTERLUDE */
+
+.interlude {
+  padding:clamp(75px,11vw,160px) var(--gutter);
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:30px;
+  align-items:start;
+}
+
+.interlude blockquote {
+  margin:0;
+  max-width:1000px;
+  font:400 clamp(36px,6.5vw,90px)/.95 var(--serif);
+  letter-spacing:-.045em;
+}
+
+.interlude blockquote em { font-weight:400 }
+
+/* CREDITS */
+
+.credits {
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:30px;
+  padding:30px var(--gutter) 85px;
+  border-top:1px solid var(--line);
+}
+
+.credits-list {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:25px;
+}
+
+.credit-label {
+  display:block;
+  margin-bottom:8px;
+  color:var(--muted);
+  font:9px var(--mono);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.credit-value {
+  font:400 18px/1.35 var(--serif);
+}
+
+/* FOOTER */
+
+.footer {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:25px var(--gutter);
+  border-top:1px solid var(--line);
+  font:9px var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.footer a { color:var(--ink) }
+
+/* LIGHTBOX */
+
+.lightbox {
+  position:fixed;
+  z-index:50;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:rgba(8,9,7,.97);
+  cursor:zoom-out;
+}
+
+.lightbox.is-open { display:flex }
+
+.lightbox img {
+  max-width:94vw;
+  max-height:90vh;
+  object-fit:contain;
+}
+
+.lightbox button {
+  position:absolute;
+  top:20px;
+  right:25px;
+  border:0;
+  background:none;
+  color:white;
+  font:30px var(--serif);
+  cursor:pointer;
+}
+
+/* PROJECT DETAIL — EXTERNAL VISIT LINK */
+
+.visit-link {
+  display:inline-flex;
+  align-items:center;
+  gap:18px;
+  width:max-content;
+  margin-top:28px;
+  padding:0 0 7px;
+  border-bottom:1px solid rgba(238,234,226,.4);
+  color:var(--ink);
+  font:9px/1.4 var(--mono);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:color .25s ease,border-color .25s ease;
+}
+
+.visit-link:hover {
+  color:#fff;
+  border-color:rgba(255,255,255,.8);
+}
+
+.visit-link span {
+  font:14px/1 var(--sans);
+  transition:transform .25s ease;
+}
+
+.visit-link:hover span {
+  transform:translate(3px,-2px);
+}
+
+/* TABLET */
+
+@media(max-width:1000px) {
+  .intro { grid-template-columns:1fr 2fr }
+
+  .intro-side {
+    grid-column:2;
+    justify-self:start;
+  }
+
+  .story-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    row-gap:35px;
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+  .hero { min-height:78svh }
+
+  .hero h1 { font-size:clamp(75px,20vw,130px) }
+
+  .hero-meta { font-size:8px }
+
+  .hero-bottom {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .intro {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding-block:70px;
+  }
+
+  .intro-side { grid-column:auto }
+  .intro-copy { font-size:clamp(34px,10vw,51px) }
+
+  .section { padding-bottom:85px }
+
+  .section-head {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .triptych { gap:8px }
+  .triptych .caption strong { font-size:14px }
+  .triptych .caption span { font-size:7px }
+
+  .photo-grid {
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .photo:nth-child(2) { margin-top:36px }
+
+  .photo:nth-child(3) {
+    grid-column:1/-1;
+    width:68%;
+    margin-left:auto;
+    margin-top:-12px;
+  }
+
+  .story-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:26px 12px;
+  }
+
+  .story-grid .caption strong { font-size:17px }
+
+  .interlude {
+    grid-template-columns:1fr;
+    gap:22px;
+    padding-block:80px;
+  }
+
+  .interlude blockquote {
+    font-size:clamp(45px,13vw,68px);
+  }
+
+  .credits {
+    grid-template-columns:1fr;
+    gap:22px;
+    padding-bottom:60px;
+  }
+
+  .credits-list { gap:18px }
+
+  .footer {
+    align-items:flex-start;
+    flex-wrap:wrap;
+    font-size:8px;
+  }
+
+  .video-controls {
+    opacity:1;
+    padding:8px;
+    gap:5px;
+  }
+
+  .control-button {
+    width:25px;
+    height:25px;
+  }
+
+  .video-time { font-size:7px }
+  .video-progress { min-width:18px }
+}
+
+@media(hover:none) {
+  .video-controls { opacity:1 }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto }
+
+  *,*::before,*::after {
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="site-navigation"></div>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero" aria-label="Romber Works">
+
+    <div class="hero-image">
+      <iframe
+        src="https://player.vimeo.com/video/839873573?background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
+        title="Romber Works — A portrait of the craft"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="eager">
+      </iframe>
+    </div>
+
+    <div class="hero-inner">
+
+      <div class="hero-meta mono">
+        <span>A craftsman's story / 2026</span>
+        <span>Hudson Valley, New York</span>
+      </div>
+
+      <h1>Romber<br>Works<span style="font-style:italic">.</span></h1>
+
+      <div class="hero-bottom">
+        <p>A portrait of a craftsman, his materials, and the enduring practice of making things well.</p>
+        <span class="hero-index">A Doll's House Pictures / 002</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <div class="intro-label eyebrow">
+      A portrait of the practice
+    </div>
+
+    <div class="intro-copy">
+      A life spent working with wood. A dedication to <em>making things that belong.</em>
+      Romber Works is the story of a craftsman creating custom cabinetry in the Hudson Valley.
+    </div>
+
+    <div class="intro-side">
+      Custom cabinetry<br>
+      Traditional craftsmanship<br>
+      Hudson Valley, NY
+    </div>
+
+  </section>
+
+  <!-- 01 THE PRACTICE -->
+
+  <section class="section" id="the-practice">
+
+    <div class="section-head">
+      <h2>01 — The practice</h2>
+      <span class="meta">Moving image / 16:9</span>
+    </div>
+
+    <article class="wide-feature">
+
+      <div class="video-frame"
+        data-vimeo="https://vimeo.com/1119062430"
+        data-title="Romber Works — The Practice"
+        data-poster="images/thumbnails/romberworks-practice.jpg">
+      </div>
+
+      <div class="caption">
+        <strong>A craft of one's own</strong>
+        <span>Romber Works / Film</span>
+      </div>
+
+    </article>
+
+  </section>
+
+  <!-- 02 THE PROCESS -->
+
+  <section class="section" id="process">
+
+    <div class="section-head">
+      <h2>02 — The process</h2>
+      <span class="meta">Inside Look / 9:16</span>
+    </div>
+
+    <div class="triptych">
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248305302/e6d6bd086e"
+          data-title="Romber Works — The Making"
+          data-poster="images/thumbnails/romberworks-making.jpg">
+        </div>
+
+        <div class="caption">
+          <strong>The crafting</strong>
+          <span>Process / 01</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248308340/7e3f1a8733"
+          data-title="Romber Works — The Material"
+          data-poster="images/thumbnails/romberworks-material.jpg">
+        </div>
+
+        <div class="caption">
+          <strong>The installation</strong>
+          <span>Process / 02</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1077953571"
+          data-title="Romber Works — The Finish"
+          data-poster="images/thumbnails/romberworks-finish.jpg">
+        </div>
+
+        <div class="caption">
+          <strong>The finish</strong>
+          <span>Process / 03</span>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- INTERLUDE -->
+
+  <section class="interlude">
+
+    <div class="eyebrow">03 — A way of working</div>
+
+    <blockquote>
+      Good work takes time. And the things made with care are the things <em>that stay with us.</em>
+    </blockquote>
+
+  </section>
+
+  <!-- 04 THE WORK -->
+
+  <section class="section" id="the-work">
+
+    <div class="section-head">
+      <h2>04 — Made for a place</h2>
+      <span class="meta">Moving image / 16:9</span>
+    </div>
+
+    <article class="wide-feature">
+
+      <div class="video-frame"
+        data-vimeo="https://vimeo.com/1248314203/530a21be1a"
+        data-title="Romber Works — Made for a Place"
+        data-poster="images/thumbnails/romberworks-installation.jpg">
+      </div>
+
+      <div class="caption">
+        <strong>Made for a place</strong>
+        <span>Custom cabinetry / Projects</span>
+      </div>
+
+    </article>
+
+  </section>
+
+  <!-- 05 DETAILS -->
+
+  <section class="section" id="details">
+
+    <div class="section-head">
+      <h2>05 — The details</h2>
+      <span class="meta">The everyday / Short films</span>
+    </div>
+
+    <div class="story-grid">
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248306234/9cc3a48ac9"
+          data-title="Romber Works — The Grain"
+          data-autoplay="true"
+          data-controls="false">
+        </div>
+        <div class="caption">
+          <strong>Sand</strong>
+          <span>Romber Works</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248305973/b83facc252"
+          data-title="Romber Works — The Joint"
+          data-autoplay="true"
+          data-controls="false">
+        </div>
+        <div class="caption">
+          <strong>Saw</strong>
+          <span>Romber Works</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248305970/4afb80c0c9"
+          data-title="Romber Works — The Hand"
+          data-autoplay="true"
+          data-controls="false">
+        </div>
+        <div class="caption">
+          <strong>Measure</strong>
+          <span>Romber Works</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248305969/0682589e5e"
+          data-title="Romber Works — The Fit"
+          data-autoplay="true"
+          data-controls="false">
+        </div>
+        <div class="caption">
+          <strong>Look</strong>
+          <span>Romber Works</span>
+        </div>
+      </article>
+
+      <article>
+        <div class="video-frame vertical"
+          data-vimeo="https://vimeo.com/1248308338/08ee4228f9"
+          data-title="Romber Works — The Finish"
+          data-autoplay="true"
+          data-controls="false">
+        </div>
+        <div class="caption">
+          <strong>Level</strong>
+          <span>Romber Works</span>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- CLOSING -->
+
+  <section class="interlude">
+
+    <div class="eyebrow">
+      Discover the craft
+    </div>
+
+    <div>
+      <blockquote>
+        Made with intention.
+        <em>Built to belong.</em>
+      </blockquote>
+
+      <a
+        class="visit-link"
+        href="https://www.romberworks.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+        Explore Romber Works
+        <span>↗</span>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- CREDITS -->
+
+  <section class="credits">
+
+    <div class="eyebrow">Behind the collaboration</div>
+
+    <div class="credits-list">
+
+      <div>
+        <span class="credit-label">Direction, photography & editing</span>
+        <div class="credit-value">Jeremy Jacob</div>
+      </div>
+
+      <div>
+        <span class="credit-label">In Collaboration With</span>
+        <div class="credit-value">Ross Brown</div>
+      </div>
+
+    </div>
+
+    <div class="intro-side">
+      A Doll's House Pictures<br>
+      New York / Hudson Valley
+    </div>
+
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <a href="./">A Doll's House Pictures</a>
+  <span>Germantown, New York</span>
+  <a href="mailto:adollshousepictures@gmail.com">Start a conversation ↗</a>
+</footer>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image viewer">
+
+  <button type="button" aria-label="Close image">×</button>
+  <img src="" alt="">
+
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ==========================================================
+     VIMEO URL PARSER
+
+     Accepts:
+     https://vimeo.com/123456789
+     https://vimeo.com/123456789/abcdef1234
+     https://player.vimeo.com/video/123456789?h=abcdef1234
+     123456789
+     123456789/abcdef1234
+  ========================================================== */
+
+  const parseVimeo = value => {
+    value = String(value || "").trim();
+
+    let id = "";
+    let hash = "";
+
+    try {
+      if (/^https?:\/\//i.test(value)) {
+        const url = new URL(value);
+
+        const parts = url.pathname
+          .split("/")
+          .filter(Boolean);
+
+        const idIndex = parts.findIndex(part =>
+          /^\d+$/.test(part)
+        );
+
+        if (idIndex !== -1) {
+          id = parts[idIndex];
+          hash = url.searchParams.get("h") || parts[idIndex + 1] || "";
+        }
+
+      } else {
+        const parts = value.split("/").filter(Boolean);
+
+        id = parts[0] || "";
+        hash = parts[1] || "";
+      }
+    } catch (error) {
+      console.warn("Invalid Vimeo URL:", value);
+    }
+
+    return { id, hash };
+  };
+
+
+  /* ==========================================================
+     VIMEO PLAYER
+  ========================================================== */
+
+  const icons = {
+    play: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 16 10 6 16.5Z"/></svg>',
+    pause: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4v12M13.5 4v12"/></svg>',
+    sound: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z"/><path d="M13 7a4 4 0 0 1 0 6M15 5a7 7 0 0 1 0 10"/></svg>',
+    mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3ZM13 8l5 5m0-5-5 5"/></svg>',
+    full: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M17 13v4h-4M3 13v4h4"/></svg>'
+  };
+
+  const fmt = n => {
+    if (!Number.isFinite(n)) return "00:00";
+
+    n = Math.max(0, Math.floor(n));
+
+    return String(Math.floor(n / 60)).padStart(2, "0") +
+      ":" +
+      String(n % 60).padStart(2, "0");
+  };
+
+
+  /* ==========================================================
+     BUILD PLAYER ELEMENTS
+  ========================================================== */
+
+  const initializeVideo = frame => {
+
+    if (frame.dataset.initialized === "true") return;
+
+    const { id, hash: parsedHash } = parseVimeo(
+      frame.dataset.vimeo
+    );
+
+    const hash = frame.dataset.hash || parsedHash;
+    const title = frame.dataset.title || "Romber Works film";
+
+    if (!id || !/^\d+$/.test(id)) return;
+
+    frame.dataset.initialized = "true";
+
+    const autoplay = frame.dataset.autoplay === "true";
+    const controlsEnabled = frame.dataset.controls !== "false";
+
+    // Autoplay videos are muted to satisfy browser autoplay policies.
+    const muted = autoplay || frame.dataset.muted === "true";
+
+    const params = new URLSearchParams({
+      autoplay: autoplay ? "1" : "0",
+      muted: muted ? "1" : "0",
+      loop: "0",
+      controls: "0",
+      transparent: "0",
+      playsinline: "1",
+      dnt: "1"
+    });
+
+    if (hash) params.set("h", hash);
+
+    /* POSTER */
+
+    const poster = frame.dataset.poster;
+
+    if (poster) {
+      const p = document.createElement("div");
+
+      p.className = "video-poster";
+      p.style.backgroundImage = `url("${poster}")`;
+
+      frame.appendChild(p);
+    }
+
+    /* IFRAME */
+
+    const iframe = document.createElement("iframe");
+
+    iframe.src =
+      `https://player.vimeo.com/video/${id}?${params.toString()}`;
+
+    iframe.allow = "autoplay; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.title = title;
+
+    frame.appendChild(iframe);
+
+    /* INTERACTION OVERLAY */
+
+    const hit = document.createElement("button");
+
+    hit.className = "video-hit";
+    hit.type = "button";
+    hit.setAttribute("aria-label", `Play or pause ${title}`);
+
+    frame.appendChild(hit);
+
+    /* CONTROLS */
+
+    const controls = document.createElement("div");
+
+    controls.className = "video-controls";
+
+    controls.innerHTML = `
+      <button class="control-button play-toggle" type="button" aria-label="Play">${icons.play}</button>
+      <span class="video-time current">00:00</span>
+      <input class="video-progress" type="range" min="0" max="1000" value="0" aria-label="Seek video">
+      <span class="video-time duration">00:00</span>
+      <button class="control-button sound-toggle" type="button" aria-label="${muted ? "Unmute" : "Mute"}">${muted ? icons.mute : icons.sound}</button>
+      <button class="control-button fullscreen-toggle" type="button" aria-label="Fullscreen">${icons.full}</button>
+    `;
+
+    frame.appendChild(controls);
+
+    // Keep the controls available to the script, but hide them
+    // visually when data-controls="false".
+    if (!controlsEnabled) {
+      controls.setAttribute("aria-hidden", "true");
+    }
+
+    const player = new Vimeo.Player(iframe);
+
+    const playButton = controls.querySelector(".play-toggle");
+    const soundButton = controls.querySelector(".sound-toggle");
+    const fullscreenButton = controls.querySelector(".fullscreen-toggle");
+    const progress = controls.querySelector(".video-progress");
+    const current = controls.querySelector(".current");
+    const duration = controls.querySelector(".duration");
+
+    let isMuted = muted;
+
+    /* PLAY / PAUSE */
+
+    const setPlaying = playing => {
+      frame.classList.toggle("is-playing", playing);
+      frame.classList.toggle("is-paused", !playing);
+
+      playButton.innerHTML = playing ? icons.pause : icons.play;
+
+      playButton.setAttribute(
+        "aria-label",
+        playing ? "Pause" : "Play"
+      );
+    };
+
+    const toggle = async () => {
+      try {
+        if (await player.getPaused()) {
+          await player.play();
+        } else {
+          await player.pause();
+        }
+      } catch (error) {
+        console.warn("Vimeo playback error:", error);
+      }
+    };
+
+    if (controlsEnabled) {
+      hit.addEventListener("click", toggle);
+      playButton.addEventListener("click", toggle);
+
+      /* SOUND */
+
+      soundButton.addEventListener("click", async () => {
+        try {
+          isMuted = !isMuted;
+
+          await player.setMuted(isMuted);
+
+          soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
+
+          soundButton.setAttribute(
+            "aria-label",
+            isMuted ? "Unmute" : "Mute"
+          );
+
+        } catch (error) {
+          console.warn("Vimeo sound error:", error);
+        }
+      });
+
+      /* FULLSCREEN */
+
+      fullscreenButton.addEventListener("click", async () => {
+        try {
+          await player.requestFullscreen();
+        } catch (error) {
+          console.warn("Vimeo fullscreen error:", error);
+        }
+      });
+
+      /* PROGRESS */
+
+      progress.addEventListener("input", async () => {
+        try {
+          const d = await player.getDuration();
+
+          await player.setCurrentTime(
+            d * (Number(progress.value) / 1000)
+          );
+        } catch (error) {}
+      });
+    }
+
+    /* PLAYER EVENTS */
+
+    player.on("play", () => {
+      setPlaying(true);
+      frame.classList.add("is-ready");
+    });
+
+    player.on("pause", () => setPlaying(false));
+
+    player.on("ended", () => setPlaying(false));
+
+    player.on("loaded", async () => {
+      try {
+        duration.textContent = fmt(await player.getDuration());
+      } catch (error) {}
+    });
+
+    player.on("timeupdate", data => {
+      current.textContent = fmt(data.seconds);
+      duration.textContent = fmt(data.duration);
+
+      progress.value = String(
+        data.duration
+          ? Math.round(data.seconds / data.duration * 1000)
+          : 0
+      );
+
+      progress.style.setProperty(
+        "--progress",
+        `${progress.value / 10}%`
+      );
+    });
+
+    player.on("error", error => {
+      frame.classList.add("video-error");
+      console.warn("Vimeo player error:", error);
+    });
+
+    frame._vimeoPlayer = player;
+
+    /* INITIAL MUTE STATE */
+
+    if (muted) {
+      player.setMuted(true).catch(() => {});
+    }
+
+    /* AUTOPLAY */
+
+    if (autoplay) {
+      player.ready().then(() => {
+        return player.setMuted(true);
+      }).then(() => {
+        return player.play();
+      }).catch(error => {
+        console.warn("Autoplay was blocked or unavailable:", error);
+      });
+    }
+  };
+
+
+  /* ==========================================================
+     LAZY LOADING
+
+     Initialize players when they approach the viewport.
+     Autoplay videos are muted before playback.
+  ========================================================== */
+
+  const videoFrames = document.querySelectorAll(
+    ".video-frame[data-vimeo]"
+  );
+
+  if ("IntersectionObserver" in window) {
+
+    const videoObserver = new IntersectionObserver((entries, observer) => {
+
+      entries.forEach(entry => {
+
+        if (!entry.isIntersecting) return;
+
+        initializeVideo(entry.target);
+
+        observer.unobserve(entry.target);
+
+      });
+
+    }, {
+      rootMargin: "500px 0px",
+      threshold: 0
+    });
+
+    videoFrames.forEach(frame => {
+
+      if (
+        !frame.dataset.vimeo ||
+        frame.dataset.vimeo === "REPLACE_VIDEO_ID"
+      ) return;
+
+      videoObserver.observe(frame);
+
+    });
+
+  } else {
+
+    videoFrames.forEach(frame => {
+
+      if (
+        frame.dataset.vimeo &&
+        frame.dataset.vimeo !== "REPLACE_VIDEO_ID"
+      ) {
+        initializeVideo(frame);
+      }
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     PHOTO LIGHTBOX
+  ========================================================== */
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = lightbox.querySelector("img");
+
+  document.querySelectorAll(".photo img").forEach(img => {
+
+    img.addEventListener("click", () => {
+
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+
+      lightbox.classList.add("is-open");
+
+    });
+
+  });
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+  };
+
+  lightbox.addEventListener("click", closeLightbox);
+
+  lightbox.querySelector("button").addEventListener("click", e => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeLightbox();
+  });
+
+})();
+</script>
+
+<script src="js/navigation.js" defer></script>
+
+</body>
+</html>
