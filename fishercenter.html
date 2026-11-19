@@ -406,6 +406,13 @@
       background: #f8f5ed;
     }
 
+    /* SPECIAL VIDEO: AUTOPLAY WITHOUT CONTROLS */
+
+    .video-frame[data-controls="false"] .video-controls,
+    .video-frame[data-controls="false"] .video-hit {
+      display: none !important;
+    }
+
     .caption {
       display: flex;
       justify-content: space-between;
@@ -786,7 +793,9 @@
           <div class="video-frame"
             data-vimeo="1168237754"
             data-hash="98c722212d"
-            data-title="Summerscape — Fisher Center at Bard">
+            data-title="Summerscape — Fisher Center at Bard"
+            data-autoplay="true"
+            data-controls="false">
           </div>
 
           <div class="caption">
@@ -799,7 +808,9 @@
           <div class="video-frame"
             data-vimeo="1195634810"
             data-hash="eca25cfa1b"
-            data-title="Suddenly Last Summer — Fisher Center at Bard">
+            data-title="Suddenly Last Summer — Fisher Center at Bard"
+            data-autoplay="true"
+            data-controls="false">
           </div>
 
           <div class="caption">
@@ -812,7 +823,9 @@
           <div class="video-frame"
             data-vimeo="1208394894"
             data-hash="3b4760c000"
-            data-title="Bard Music Festival — Fisher Center at Bard">
+            data-title="Bard Music Festival — Fisher Center at Bard"
+            data-autoplay="true"
+            data-controls="false">
           </div>
 
           <div class="caption">
@@ -825,7 +838,9 @@
           <div class="video-frame"
             data-vimeo="1208395130"
             data-hash="c5c1a0b963"
-            data-title="Bard Opera — Fisher Center at Bard">
+            data-title="Bard Opera — Fisher Center at Bard"
+            data-autoplay="true"
+            data-controls="false">
           </div>
 
           <div class="caption">
@@ -838,7 +853,9 @@
           <div class="video-frame"
             data-vimeo="1208412279"
             data-hash="2048378cef"
-            data-title="The Egyptian Helen — Fisher Center at Bard">
+            data-title="The Egyptian Helen — Fisher Center at Bard"
+            data-autoplay="true"
+            data-controls="false">
           </div>
 
           <div class="caption">
@@ -996,12 +1013,15 @@
 
         const id = frame.dataset.vimeo;
         const hash = frame.dataset.hash || '';
-        const title = frame.dataset.title || 'Fisher Center at Bard film';
+        const title = frame.dataset.title || 'Fisher Center at Bard';
+
+        const autoplay = frame.dataset.autoplay === 'true';
+        const hideControls = frame.dataset.controls === 'false';
 
         const params = new URLSearchParams({
           autoplay: '0',
-          muted: '0',
-          loop: '0',
+          muted: autoplay ? '1' : '0',
+          loop: autoplay ? '1' : '0',
           controls: '0',
           transparent: '0',
           playsinline: '1',
@@ -1023,6 +1043,67 @@
         iframe.loading = index === 0 ? 'eager' : 'lazy';
 
         frame.appendChild(iframe);
+
+        const player = new Vimeo.Player(iframe);
+
+        frame._vimeoPlayer = player;
+
+        /*
+          SPECIAL AUTOPLAY VIDEOS
+
+          Only videos with data-autoplay="true" use this behavior.
+          They play muted and loop while visible, then pause when
+          scrolled out of view.
+        */
+
+        if (autoplay) {
+
+          player.ready().then(async () => {
+            try {
+              await player.setMuted(true);
+              await player.setLoop(true);
+            } catch(e) {}
+          });
+
+          const autoplayObserver = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+
+                player.play().catch(() => {});
+
+              } else {
+
+                player.pause().catch(() => {});
+
+              }
+
+            });
+
+          }, {
+            threshold: [0,0.35,0.6]
+          });
+
+          autoplayObserver.observe(frame);
+
+          player.on('play',() => {
+            frame.classList.add('is-ready');
+          });
+
+          player.on('error',() => {
+            frame.classList.add('video-error');
+          });
+
+          return;
+        }
+
+        /*
+          STANDARD VIDEOS
+
+          All videos without data-autoplay retain the existing
+          custom playback controls and manual playback behavior.
+        */
 
         const hit = document.createElement('button');
 
@@ -1063,8 +1144,6 @@
         `;
 
         frame.appendChild(controls);
-
-        const player = new Vimeo.Player(iframe);
 
         const playButton = controls.querySelector('.play-toggle');
         const soundButton = controls.querySelector('.sound-toggle');
@@ -1164,8 +1243,6 @@
         player.on('error',() => {
           frame.classList.add('video-error');
         });
-
-        frame._vimeoPlayer = player;
 
       });
 
