@@ -14,12 +14,16 @@
   "label": "Stories",
   "children": [
     {
-      "label": "Stissing House",
-      "url": "/stissinghouse.html"
+      "label": "Fisher Center at Bard",
+      "url": "/fishercenter.html"
     },
     {
-      "label": "Fisher Center",
-      "url": "/fishercenter.html"
+      "label": "Romber Works",
+      "url": "/romberworks.html"
+    },
+    {
+      "label": "Stissing House",
+      "url": "/stissinghouse.html"
     }
   ]
 },
