@@ -79,7 +79,7 @@
       text-transform: uppercase;
     }
 
-    /* ==========================================================
+        /* ==========================================================
        HERO
     ========================================================== */
 
@@ -119,6 +119,19 @@
       opacity: 0;
     }
 
+    .hero-video::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15,14,10,.04) 20%,
+        rgba(15,14,10,.56) 100%
+      );
+      pointer-events: none;
+    }
+
     .hero-video iframe {
       position: absolute;
       z-index: 0;
@@ -131,19 +144,7 @@
       border: 0;
       transform: translate(-50%,-50%);
       pointer-events: none;
-    }
-
-    .hero-video::after {
-      content: "";
-      position: absolute;
-      z-index: 3;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(15,14,10,.04) 20%,
-        rgba(15,14,10,.56) 100%
-      );
-      pointer-events: none;
+      background: #000;
     }
 
     .hero-inner {
@@ -186,6 +187,26 @@
       font: 9px var(--mono);
       letter-spacing: .1em;
       text-transform: uppercase;
+    }
+
+    @media(max-width:700px) {
+      .hero {
+        min-height: 78svh;
+      }
+
+      .hero h1 {
+        font-size: clamp(75px,20vw,130px);
+      }
+
+      .hero-meta {
+        font-size: 8px;
+      }
+
+      .hero-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
     }
 
     /* ==========================================================

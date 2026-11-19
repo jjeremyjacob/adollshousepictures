@@ -84,7 +84,7 @@
       text-transform: uppercase;
     }
 
-    /* ==========================================================
+        /* ==========================================================
        HERO
     ========================================================== */
 
@@ -149,6 +149,7 @@
       border: 0;
       transform: translate(-50%,-50%);
       pointer-events: none;
+      background: #000;
     }
 
     .hero-inner {
@@ -193,6 +194,25 @@
       text-transform: uppercase;
     }
 
+    @media(max-width:700px) {
+      .hero {
+        min-height: 78svh;
+      }
+
+      .hero h1 {
+        font-size: clamp(75px,20vw,130px);
+      }
+
+      .hero-meta {
+        font-size: 8px;
+      }
+
+      .hero-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
     /* ==========================================================
        INTRO
     ========================================================== */
