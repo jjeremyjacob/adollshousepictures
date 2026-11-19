@@ -61,6 +61,13 @@
 <link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="dns-prefetch" href="//player.vimeo.com">
 
+<!-- PRELOAD HERO POSTER -->
+<link
+  rel="preload"
+  as="image"
+  href="images/og-image.jpg"
+  fetchpriority="high">
+
 <!-- FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,6 +77,50 @@
 <!-- STYLESHEETS -->
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/navigation.css">
+
+<!-- HERO POSTER / VIDEO TRANSITION -->
+<style>
+.studio-hero-image {
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:#10100f;
+  isolation:isolate;
+}
+
+.studio-hero-image iframe {
+  position:absolute;
+  z-index:1;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#10100f;
+}
+
+.studio-hero-poster {
+  position:absolute;
+  z-index:2;
+  inset:0;
+  background-image:url("images/og-image.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:1;
+  transition:opacity .5s ease;
+  pointer-events:none;
+}
+
+.studio-hero-image.is-playing .studio-hero-poster {
+  opacity:0;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .studio-hero-poster {
+    transition:none;
+  }
+}
+</style>
 
 </head>
 
@@ -83,20 +134,27 @@
 
     <!-- =====================================================
          01 — HOMEPAGE HERO
-         HIGH PRIORITY VIDEO
+         POSTER REMAINS UNTIL VIMEO PLAYBACK BEGINS
     ====================================================== -->
 
     <section class="hero studio-hero" id="homeHero" aria-label="A Doll's House Pictures">
 
-      <div class="studio-hero-image">
+      <div class="studio-hero-image" id="studioHeroImage">
+
         <iframe
+          id="studioHeroPlayer"
           src="https://player.vimeo.com/video/1247956538?h=6841a6b5e1&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
           title="A Doll's House Pictures"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
-          loading="eager"
-          fetchpriority="high">
+          loading="eager">
         </iframe>
+
+        <div
+          class="studio-hero-poster"
+          aria-hidden="true">
+        </div>
+
       </div>
 
       <div class="hero-shade"></div>
@@ -367,6 +425,52 @@
 <script src="https://player.vimeo.com/api/player.js" defer></script>
 <script src="script.js" defer></script>
 <script src="js/navigation.js" defer></script>
+
+<!-- =====================================================
+     09 — HERO VIDEO LOADING
+
+     This runs after deferred scripts have loaded.
+     The poster is removed only on Vimeo's "playing" event.
+====================================================== -->
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  "use strict";
+
+  const heroContainer = document.getElementById("studioHeroImage");
+  const heroIframe = document.getElementById("studioHeroPlayer");
+
+  if (!heroContainer || !heroIframe) return;
+
+  if (!window.Vimeo || !window.Vimeo.Player) {
+    // Keep the poster visible if the Vimeo API is unavailable.
+    return;
+  }
+
+  const heroPlayer = new Vimeo.Player(heroIframe);
+
+  heroPlayer.on("playing", () => {
+    heroContainer.classList.add("is-playing");
+  });
+
+  heroPlayer.on("error", error => {
+    console.warn("Homepage hero video error:", error);
+
+    // Leave the poster in place if playback fails.
+  });
+
+  // The iframe already requests autoplay.
+  // This confirms the muted state without removing the poster.
+  heroPlayer.ready()
+    .then(() => heroPlayer.setMuted(true))
+    .catch(error => {
+      console.warn("Homepage hero player initialization:", error);
+
+      // Poster remains visible.
+    });
+
+});
+</script>
 
 </body>
 </html>
