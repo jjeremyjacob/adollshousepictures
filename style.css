@@ -448,7 +448,6 @@ a {
   background: rgba(255, 255, 255, .55);
 }
 
-
 /* ============================================================
    SECTION 04 — HOMEPAGE HERO
    EDITORIAL VIDEO / SERIF + SANS WORDMARK
@@ -457,14 +456,18 @@ a {
 .studio-hero {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .studio-hero .studio-hero-image {
   position: absolute;
   inset: 0;
+  z-index: 0;
   overflow: hidden;
+  background: #10100f;
 }
 
+/* Full-bleed Vimeo background */
 .studio-hero .studio-hero-image iframe {
   position: absolute;
   top: 50%;
@@ -2049,15 +2052,18 @@ body.detail-open .topbar {
     letter-spacing: -.035em;
   }
 
-  .studio-hero .hero-title-sub {
-    margin-top: 8px;
-    padding-left: 0;
-    font-family: var(--sans);
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: .34em;
-  }
+.studio-hero .hero-title-sub {
+  display: block;
+  margin-top: 8px;
+  padding-left: 5px;
+  font-family: var(--sans);
+  font-size: clamp(25px, 7.5vw, 43px);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .24em;
+  line-height: 1;
+  white-space: nowrap;
+}
 
   .studio-hero .hero-bottom {
     display: grid;
@@ -2527,6 +2533,37 @@ body.detail-open .detail-content {
       20px
     ) !important;
   }
+}
+
+
+/* DESKTOP */
+.mobile-title {
+  display: none;
+}
+
+.desktop-title {
+  display: inline;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 700px) {
+
+  .desktop-title {
+    display: none;
+  }
+
+  .mobile-title {
+    display: inline;
+  }
+
+  .studio-hero .hero-title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(76px, 19vw, 112px);
+    font-weight: 500;
+    letter-spacing: -.065em;
+    line-height: .73;
+  }
+
 }
 
 
