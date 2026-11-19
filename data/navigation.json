@@ -5,11 +5,8 @@
     "description": "Independent creative studio",
     "location": "New York / Hudson Valley"
   },
-  "links": [
-    {
-      "label": "Work",
-      "url": "/#work"
-    },
+"links": [
+  
     {
   "label": "Stories",
   "children": [
@@ -34,7 +31,11 @@
     {
       "label": "Contact",
       "action": "contact"
-    }
+    },
+    {
+    "label": "Home",
+    "url": "/"
+  }
   ],
   "footer": {
     "description": "Independent creative studio",
