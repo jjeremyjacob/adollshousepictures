@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,13 +54,13 @@
 }
 </script>
 
-<!-- PRIORITIZE HERO VIDEO CONNECTIONS -->
+<!-- VIMEO CONNECTIONS -->
 <link rel="preconnect" href="https://player.vimeo.com">
 <link rel="preconnect" href="https://i.vimeocdn.com">
 <link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="dns-prefetch" href="//player.vimeo.com">
 
-<!-- PRELOAD HERO POSTER -->
+<!-- PRELOAD HOMEPAGE HERO POSTER -->
 <link
   rel="preload"
   as="image"
@@ -78,17 +77,33 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="css/navigation.css">
 
-<!-- HERO POSTER / VIDEO TRANSITION -->
+<!-- =====================================================
+     HERO POSTER / VIDEO TRANSITIONS
+====================================================== -->
+
 <style>
+
+/* SHARED HERO VIDEO CONTAINERS */
+
+.studio-hero-image,
+.hero-image {
+  position:relative;
+  overflow:hidden;
+  background:#10100f;
+}
+
+/* HOMEPAGE HERO CONTAINER */
+
 .studio-hero-image {
   position:absolute;
   inset:0;
-  overflow:hidden;
-  background:#10100f;
   isolation:isolate;
 }
 
-.studio-hero-image iframe {
+/* VIDEO IFRAMES */
+
+.studio-hero-image iframe,
+.hero-image .hero-video {
   position:absolute;
   z-index:1;
   inset:0;
@@ -98,28 +113,35 @@
   background:#10100f;
 }
 
-.studio-hero-poster {
+/* POSTER IMAGE */
+
+.hero-poster {
   position:absolute;
   z-index:2;
   inset:0;
-  background-image:url("images/og-image.jpg");
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
   opacity:1;
-  transition:opacity .5s ease;
+  transition:opacity .45s ease;
   pointer-events:none;
 }
 
-.studio-hero-image.is-playing .studio-hero-poster {
+/* REMOVE POSTER ONLY AFTER ACTUAL PLAYBACK */
+
+.studio-hero-image.is-playing .hero-poster,
+.hero-image.is-playing .hero-poster {
   opacity:0;
 }
 
+/* REDUCED MOTION */
+
 @media(prefers-reduced-motion:reduce) {
-  .studio-hero-poster {
+  .hero-poster {
     transition:none;
   }
 }
+
 </style>
 
 </head>
@@ -134,7 +156,6 @@
 
     <!-- =====================================================
          01 — HOMEPAGE HERO
-         POSTER REMAINS UNTIL VIMEO PLAYBACK BEGINS
     ====================================================== -->
 
     <section class="hero studio-hero" id="homeHero" aria-label="A Doll's House Pictures">
@@ -151,7 +172,8 @@
         </iframe>
 
         <div
-          class="studio-hero-poster"
+          class="hero-poster"
+          style="background-image:url('images/og-image.jpg');"
           aria-hidden="true">
         </div>
 
@@ -222,7 +244,7 @@
 
     <!-- =====================================================
          03 — FEATURED PROJECT
-         LAZY-LOADED VIDEO
+         POSTER REMAINS UNTIL VIMEO PLAYBACK BEGINS
     ====================================================== -->
 
     <section class="featuredproject" id="featuredProject" aria-label="Featured project">
@@ -231,12 +253,19 @@
 
         <iframe
           class="hero-video"
+          id="featuredProjectPlayer"
           src="https://player.vimeo.com/video/1238761837?h=7458b6102d&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
           title="Stissing House — Featured Project"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
           loading="lazy">
         </iframe>
+
+        <div
+          class="hero-poster"
+          style="background-image:url('images/stissingindex.jpg');"
+          aria-hidden="true">
+        </div>
 
       </div>
 
@@ -426,48 +455,72 @@
 <script src="script.js" defer></script>
 <script src="js/navigation.js" defer></script>
 
-<!-- =====================================================
-     09 — HERO VIDEO LOADING
 
-     This runs after deferred scripts have loaded.
-     The poster is removed only on Vimeo's "playing" event.
+<!-- =====================================================
+     09 — SHARED HERO VIDEO INITIALIZATION
+
+     Both hero videos use the same Vimeo event handling.
+
+     The poster remains visible until Vimeo emits "playing".
+     If playback fails or autoplay is blocked, the poster
+     stays visible.
 ====================================================== -->
 
 <script>
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  const heroContainer = document.getElementById("studioHeroImage");
-  const heroIframe = document.getElementById("studioHeroPlayer");
-
-  if (!heroContainer || !heroIframe) return;
-
   if (!window.Vimeo || !window.Vimeo.Player) {
-    // Keep the poster visible if the Vimeo API is unavailable.
     return;
   }
 
-  const heroPlayer = new Vimeo.Player(heroIframe);
+  const initializeHeroVideo = (containerId, iframeId, label) => {
 
-  heroPlayer.on("playing", () => {
-    heroContainer.classList.add("is-playing");
-  });
+    const container = document.getElementById(containerId);
+    const iframe = document.getElementById(iframeId);
 
-  heroPlayer.on("error", error => {
-    console.warn("Homepage hero video error:", error);
+    if (!container || !iframe) return;
 
-    // Leave the poster in place if playback fails.
-  });
+    const player = new Vimeo.Player(iframe);
 
-  // The iframe already requests autoplay.
-  // This confirms the muted state without removing the poster.
-  heroPlayer.ready()
-    .then(() => heroPlayer.setMuted(true))
-    .catch(error => {
-      console.warn("Homepage hero player initialization:", error);
-
-      // Poster remains visible.
+    player.on("playing", () => {
+      container.classList.add("is-playing");
     });
+
+    player.on("error", error => {
+      console.warn(label + " video error:", error);
+
+      // Keep the poster visible if playback fails.
+    });
+
+    player.ready()
+      .then(() => player.setMuted(true))
+      .then(() => player.play())
+      .catch(error => {
+        console.warn(label + " video initialization:", error);
+
+        // Keep the poster visible if autoplay is unavailable.
+      });
+
+  };
+
+
+  /* HOMEPAGE HERO */
+
+  initializeHeroVideo(
+    "studioHeroImage",
+    "studioHeroPlayer",
+    "Homepage hero"
+  );
+
+
+  /* FEATURED PROJECT */
+
+  initializeHeroVideo(
+    "heroImage",
+    "featuredProjectPlayer",
+    "Featured project"
+  );
 
 });
 </script>
