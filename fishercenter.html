@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +79,9 @@
       text-transform: uppercase;
     }
 
-    /* HERO */
+    /* ==========================================================
+       HERO
+    ========================================================== */
 
     .hero {
       min-height: min(820px,calc(100svh - 74px));
@@ -88,33 +89,39 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+      isolation: isolate;
       background: #202b20;
       color: #f4f0e5;
     }
 
-    .hero-image {
+    .hero-video {
       position: absolute;
+      z-index: 0;
       inset: 0;
       overflow: hidden;
-      background: #000;
+      background: #202b20;
       contain: paint;
     }
 
-    .hero-image::after {
-      content: "";
+    .hero-poster {
       position: absolute;
+      z-index: 2;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(15,14,10,.04) 20%,
-        rgba(15,14,10,.65) 100%
-      );
+      background-image: url("images/fishercenterhero.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      transition: opacity .45s ease;
       pointer-events: none;
     }
 
-    .hero-image iframe {
-      background: #000;
+    .hero-video.is-playing .hero-poster {
+      opacity: 0;
+    }
+
+    .hero-video iframe {
       position: absolute;
+      z-index: 0;
       top: 50%;
       left: 50%;
       width: max(100%,177.78vh);
@@ -126,8 +133,22 @@
       pointer-events: none;
     }
 
+    .hero-video::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(15,14,10,.04) 20%,
+        rgba(15,14,10,.56) 100%
+      );
+      pointer-events: none;
+    }
+
     .hero-inner {
       position: relative;
+      z-index: 4;
       width: 100%;
       padding: clamp(28px,5vw,76px) var(--gutter) clamp(34px,5vw,70px);
     }
@@ -167,7 +188,9 @@
       text-transform: uppercase;
     }
 
-    /* INTRO */
+    /* ==========================================================
+       INTRO
+    ========================================================== */
 
     .intro {
       display: grid;
@@ -200,7 +223,9 @@
       text-transform: uppercase;
     }
 
-    /* SECTIONS */
+    /* ==========================================================
+       SECTIONS
+    ========================================================== */
 
     .section {
       padding: 0 var(--gutter) clamp(80px,11vw,160px);
@@ -231,7 +256,9 @@
       margin: 0 auto;
     }
 
-    /* VIDEO FRAMES */
+    /* ==========================================================
+       VIDEO FRAMES
+    ========================================================== */
 
     .video-frame {
       position: relative;
@@ -247,6 +274,7 @@
 
     .video-frame iframe {
       position: absolute;
+      z-index: 0;
       inset: 0;
       width: 100%;
       height: 100%;
@@ -256,11 +284,12 @@
 
     .video-poster {
       position: absolute;
-      inset: 0;
       z-index: 1;
+      inset: 0;
       background-position: center;
       background-size: cover;
-      transition: opacity .35s;
+      opacity: 1;
+      transition: opacity .35s ease;
       pointer-events: none;
     }
 
@@ -296,7 +325,9 @@
       outline-offset: -8px;
     }
 
-    /* CUSTOM VIDEO CONTROLS */
+    /* ==========================================================
+       CUSTOM VIDEO CONTROLS
+    ========================================================== */
 
     .video-controls {
       position: absolute;
@@ -323,8 +354,6 @@
     .video-controls input {
       pointer-events: auto;
     }
-
-    /* HIDE CUSTOM CONTROLS ONLY WHEN EXPLICITLY REQUESTED */
 
     .video-frame[data-controls="false"] .video-controls {
       display: none !important;
@@ -409,7 +438,9 @@
       background: #f8f5ed;
     }
 
-    /* CAPTIONS */
+    /* ==========================================================
+       CAPTIONS
+    ========================================================== */
 
     .caption {
       display: flex;
@@ -431,7 +462,9 @@
       text-transform: uppercase;
     }
 
-    /* VERTICAL VIDEO GRID */
+    /* ==========================================================
+       VERTICAL VIDEO GRID
+    ========================================================== */
 
     .vertical-video-grid {
       display: grid;
@@ -449,7 +482,9 @@
       width: 100%;
     }
 
-    /* INTERLUDE */
+    /* ==========================================================
+       INTERLUDE
+    ========================================================== */
 
     .interlude {
       padding: clamp(75px,11vw,160px) var(--gutter);
@@ -470,7 +505,9 @@
       font-weight: 400;
     }
 
-    /* VISIT CTA */
+    /* ==========================================================
+       VISIT CTA
+    ========================================================== */
 
     .visit-link {
       display: inline-flex;
@@ -489,7 +526,9 @@
       opacity: .65;
     }
 
-    /* CREDITS */
+    /* ==========================================================
+       CREDITS
+    ========================================================== */
 
     .credits {
       display: grid;
@@ -518,7 +557,9 @@
       font: 400 18px/1.35 var(--serif);
     }
 
-    /* FOOTER */
+    /* ==========================================================
+       FOOTER
+    ========================================================== */
 
     .footer {
       display: flex;
@@ -536,64 +577,10 @@
     .footer a {
       color: var(--ink);
     }
-    /* HERO */
 
-.hero{
-  min-height:min(820px,calc(100svh - 74px));
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  overflow:hidden;
-  background:#202b20;
-  color:#f4f0e5;
-}
-
-.hero-video{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  background-color:#202b20;
-  background-image:url('images/stissinghero.jpg');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  contain:paint;
-}
-
-.hero-video::after{
-  content:"";
-  position:absolute;
-  z-index:1;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(15,14,10,.04) 20%,
-    rgba(15,14,10,.56) 100%
-  );
-  pointer-events:none;
-}
-
-.hero-video iframe{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:max(100%,177.78vh);
-  height:max(100%,56.25vw);
-  min-width:100%;
-  min-height:100%;
-  border:0;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-
-.hero-inner{
-  position:relative;
-  z-index:2;
-  width:100%;
-  padding:clamp(28px,5vw,76px) var(--gutter) clamp(34px,5vw,70px);
-}
-
-    /* TABLET */
+    /* ==========================================================
+       TABLET
+    ========================================================== */
 
     @media(max-width:1000px) {
       .intro {
@@ -604,9 +591,15 @@
         grid-column: 2;
         justify-self: start;
       }
+
+      .vertical-video-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+      }
     }
 
-    /* MOBILE */
+    /* ==========================================================
+       MOBILE
+    ========================================================== */
 
     @media(max-width:700px) {
       .hero {
@@ -716,7 +709,7 @@
       *,
       *::before,
       *::after {
-        transition-duration: .01ms!important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -732,7 +725,11 @@
 
     <section class="hero" aria-label="Fisher Center at Bard">
 
-<div class="hero-video" style="background-image: url('images/fishercenterhero.jpg');">        <iframe
+      <div class="hero-video">
+
+        <div class="hero-poster"></div>
+
+        <iframe
           src="https://player.vimeo.com/video/1097503593?h=a40ba8cef6&background=1&autoplay=1&muted=1&loop=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
           title="Fisher Center at Bard — Performance"
           allow="autoplay; fullscreen; picture-in-picture"
@@ -740,6 +737,7 @@
           loading="eager"
           fetchpriority="high">
         </iframe>
+
       </div>
 
       <div class="hero-inner">
@@ -755,6 +753,7 @@
         </h1>
 
         <div class="hero-bottom">
+
           <p>
             A place to experience extraordinary performances, discover new
             perspectives, and encounter the artists shaping what comes next.
@@ -763,9 +762,11 @@
           <span class="hero-index">
             A Doll's House Pictures&nbsp; / &nbsp;001
           </span>
+
         </div>
 
       </div>
+
     </section>
 
     <!-- INTRO -->
@@ -801,7 +802,8 @@
 
       <div class="wide-feature">
 
-        <div class="video-frame"
+        <div
+          class="video-frame"
           data-vimeo="1189497026"
           data-hash="544bd60fa9"
           data-title="Pam Tanowitz — Fisher Center at Bard">
@@ -843,7 +845,9 @@
       <div class="vertical-video-grid">
 
         <article>
-          <div class="video-frame"
+
+          <div
+            class="video-frame"
             data-vimeo="1168237754"
             data-hash="98c722212d"
             data-title="Summerscape — Fisher Center at Bard"
@@ -855,10 +859,13 @@
             <strong>Summerscape</strong>
             <span>Social Media Reel</span>
           </div>
+
         </article>
 
         <article>
-          <div class="video-frame"
+
+          <div
+            class="video-frame"
             data-vimeo="1195634810"
             data-hash="eca25cfa1b"
             data-title="Suddenly Last Summer — Fisher Center at Bard"
@@ -870,10 +877,13 @@
             <strong>Suddenly Last Summer</strong>
             <span>Social Media Reel</span>
           </div>
+
         </article>
 
         <article>
-          <div class="video-frame"
+
+          <div
+            class="video-frame"
             data-vimeo="1208394894"
             data-hash="3b4760c000"
             data-title="Bard Music Festival — Fisher Center at Bard"
@@ -885,10 +895,13 @@
             <strong>Bard Music Festival</strong>
             <span>Social Media Reel</span>
           </div>
+
         </article>
 
         <article>
-          <div class="video-frame"
+
+          <div
+            class="video-frame"
             data-vimeo="1208395130"
             data-hash="c5c1a0b963"
             data-title="Bard Opera — Fisher Center at Bard"
@@ -900,10 +913,13 @@
             <strong>Bard Opera</strong>
             <span>Social Media Reel</span>
           </div>
+
         </article>
 
         <article>
-          <div class="video-frame"
+
+          <div
+            class="video-frame"
             data-vimeo="1208412279"
             data-hash="2048378cef"
             data-title="The Egyptian Helen — Fisher Center at Bard"
@@ -915,6 +931,7 @@
             <strong>The Egyptian Helen</strong>
             <span>Social Media Reel</span>
           </div>
+
         </article>
 
       </div>
@@ -947,7 +964,8 @@
 
       <div class="wide-feature">
 
-        <div class="video-frame"
+        <div
+          class="video-frame"
           data-vimeo="1180594270"
           data-hash="e61094d60c"
           data-title="Work in Progress — Fisher Center at Bard">
@@ -971,6 +989,7 @@
       </div>
 
       <div>
+
         <blockquote>
           There's always something new to discover.
           <em>Come see what's on stage.</em>
@@ -984,6 +1003,7 @@
           Explore the Fisher Center
           <span>↗</span>
         </a>
+
       </div>
 
     </section>
@@ -1030,11 +1050,15 @@
   <!-- FOOTER -->
 
   <footer class="footer">
+
     <a href="./">A Doll's House Pictures</a>
+
     <span>Annandale-on-Hudson, New York</span>
+
     <a href="mailto:adollshousepictures@gmail.com">
       Start a conversation ↗
     </a>
+
   </footer>
 
   <!-- VIMEO PLAYER API -->
@@ -1042,390 +1066,476 @@
   <script src="https://player.vimeo.com/api/player.js"></script>
 
   <script>
-  (() => {
-    "use strict";
+    (() => {
+      "use strict";
 
-    /* ==========================================================
-       VIMEO URL PARSER
+      /* ==========================================================
+         VIMEO URL PARSER
 
-       Accepts:
-       https://vimeo.com/123456789
-       https://vimeo.com/123456789/abcdef1234
-       https://player.vimeo.com/video/123456789?h=abcdef1234
-       123456789
-       123456789/abcdef1234
-    ========================================================== */
+         Accepts:
+         https://vimeo.com/123456789
+         https://vimeo.com/123456789/abcdef1234
+         https://player.vimeo.com/video/123456789?h=abcdef1234
+         123456789
+         123456789/abcdef1234
+      ========================================================== */
 
-    const parseVimeo = value => {
-      value = String(value || "").trim();
+      const parseVimeo = value => {
+        value = String(value || "").trim();
 
-      let id = "";
-      let hash = "";
+        let id = "";
+        let hash = "";
 
-      try {
-        if (/^https?:\/\//i.test(value)) {
-          const url = new URL(value);
-
-          const parts = url.pathname
-            .split("/")
-            .filter(Boolean);
-
-          const idIndex = parts.findIndex(part =>
-            /^\d+$/.test(part)
-          );
-
-          if (idIndex !== -1) {
-            id = parts[idIndex];
-            hash = url.searchParams.get("h") || parts[idIndex + 1] || "";
-          }
-
-        } else {
-          const parts = value.split("/").filter(Boolean);
-
-          id = parts[0] || "";
-          hash = parts[1] || "";
-        }
-      } catch (error) {
-        console.warn("Invalid Vimeo URL:", value);
-      }
-
-      return { id, hash };
-    };
-
-
-    /* ==========================================================
-       VIMEO PLAYER
-    ========================================================== */
-
-    const icons = {
-      play: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 16 10 6 16.5Z"/></svg>',
-      pause: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4v12M13.5 4v12"/></svg>',
-      sound: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z"/><path d="M13 7a4 4 0 0 1 0 6M15 5a7 7 0 0 1 0 10"/></svg>',
-      mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3ZM13 8l5 5m0-5-5 5"/></svg>',
-      full: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M17 13v4h-4M3 13v4h4"/></svg>'
-    };
-
-    const fmt = n => {
-      if (!Number.isFinite(n)) return "00:00";
-
-      n = Math.max(0, Math.floor(n));
-
-      return String(Math.floor(n / 60)).padStart(2, "0") +
-        ":" +
-        String(n % 60).padStart(2, "0");
-    };
-
-
-    /* ==========================================================
-       BUILD PLAYER ELEMENTS
-
-       All videos use the same player initialization.
-
-       data-autoplay="true"
-       Starts muted autoplay.
-
-       data-controls="false"
-       Hides the custom controls and interaction overlay.
-
-       Neither attribute is dependent on the other.
-    ========================================================== */
-
-    const initializeVideo = frame => {
-
-      if (frame.dataset.initialized === "true") return;
-
-      const { id, hash: parsedHash } = parseVimeo(
-        frame.dataset.vimeo
-      );
-
-      const hash = frame.dataset.hash || parsedHash;
-      const title = frame.dataset.title || "Fisher Center at Bard";
-
-      if (!id || !/^\d+$/.test(id)) return;
-
-      frame.dataset.initialized = "true";
-
-      const autoplay = frame.dataset.autoplay === "true";
-      const controlsEnabled = frame.dataset.controls !== "false";
-
-      // Autoplay videos are muted to satisfy browser autoplay policies.
-      const muted = autoplay || frame.dataset.muted === "true";
-
-      const params = new URLSearchParams({
-        autoplay: autoplay ? "1" : "0",
-        muted: muted ? "1" : "0",
-        loop: "0",
-        controls: "0",
-        transparent: "0",
-        playsinline: "1",
-        dnt: "1"
-      });
-
-      if (hash) params.set("h", hash);
-
-      /* POSTER */
-
-      const poster = frame.dataset.poster;
-
-      if (poster) {
-        const p = document.createElement("div");
-
-        p.className = "video-poster";
-        p.style.backgroundImage = `url("${poster}")`;
-
-        frame.appendChild(p);
-      }
-
-      /* IFRAME */
-
-      const iframe = document.createElement("iframe");
-
-      iframe.src =
-        `https://player.vimeo.com/video/${id}?${params.toString()}`;
-
-      iframe.allow = "autoplay; fullscreen; picture-in-picture";
-      iframe.allowFullscreen = true;
-      iframe.title = title;
-
-      frame.appendChild(iframe);
-
-      /* INTERACTION OVERLAY */
-
-      const hit = document.createElement("button");
-
-      hit.className = "video-hit";
-      hit.type = "button";
-      hit.setAttribute("aria-label", `Play or pause ${title}`);
-
-      frame.appendChild(hit);
-
-      /* CONTROLS */
-
-      const controls = document.createElement("div");
-
-      controls.className = "video-controls";
-
-      controls.innerHTML = `
-        <button class="control-button play-toggle" type="button" aria-label="Play">${icons.play}</button>
-        <span class="video-time current">00:00</span>
-        <input class="video-progress" type="range" min="0" max="1000" value="0" aria-label="Seek video">
-        <span class="video-time duration">00:00</span>
-        <button class="control-button sound-toggle" type="button" aria-label="${muted ? "Unmute" : "Mute"}">${muted ? icons.mute : icons.sound}</button>
-        <button class="control-button fullscreen-toggle" type="button" aria-label="Fullscreen">${icons.full}</button>
-      `;
-
-      frame.appendChild(controls);
-
-      // Keep controls available to the script, but hide them
-      // visually when data-controls="false".
-      if (!controlsEnabled) {
-        controls.setAttribute("aria-hidden", "true");
-        hit.setAttribute("aria-hidden", "true");
-      }
-
-      const player = new Vimeo.Player(iframe);
-
-      const playButton = controls.querySelector(".play-toggle");
-      const soundButton = controls.querySelector(".sound-toggle");
-      const fullscreenButton = controls.querySelector(".fullscreen-toggle");
-      const progress = controls.querySelector(".video-progress");
-      const current = controls.querySelector(".current");
-      const duration = controls.querySelector(".duration");
-
-      let isMuted = muted;
-
-      /* PLAY / PAUSE */
-
-      const setPlaying = playing => {
-        frame.classList.toggle("is-playing", playing);
-        frame.classList.toggle("is-paused", !playing);
-
-        playButton.innerHTML = playing ? icons.pause : icons.play;
-
-        playButton.setAttribute(
-          "aria-label",
-          playing ? "Pause" : "Play"
-        );
-      };
-
-      const toggle = async () => {
         try {
-          if (await player.getPaused()) {
-            await player.play();
+          if (/^https?:\/\//i.test(value)) {
+            const url = new URL(value);
+
+            const parts = url.pathname
+              .split("/")
+              .filter(Boolean);
+
+            const idIndex = parts.findIndex(part =>
+              /^\d+$/.test(part)
+            );
+
+            if (idIndex !== -1) {
+              id = parts[idIndex];
+              hash = url.searchParams.get("h") || parts[idIndex + 1] || "";
+            }
+
           } else {
-            await player.pause();
+            const parts = value.split("/").filter(Boolean);
+
+            id = parts[0] || "";
+            hash = parts[1] || "";
           }
+
         } catch (error) {
-          console.warn("Vimeo playback error:", error);
+          console.warn("Invalid Vimeo URL:", value);
         }
+
+        return { id, hash };
       };
 
-      if (controlsEnabled) {
-        hit.addEventListener("click", toggle);
-        playButton.addEventListener("click", toggle);
 
-        /* SOUND */
+      /* ==========================================================
+         PLAYER ICONS
+      ========================================================== */
 
-        soundButton.addEventListener("click", async () => {
-          try {
-            isMuted = !isMuted;
+      const icons = {
+        play: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 16 10 6 16.5Z"/></svg>',
 
-            await player.setMuted(isMuted);
+        pause: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4v12M13.5 4v12"/></svg>',
 
-            soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
+        sound: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z"/><path d="M13 7a4 4 0 0 1 0 6M15 5a7 7 0 0 1 0 10"/></svg>',
 
-            soundButton.setAttribute(
-              "aria-label",
-              isMuted ? "Unmute" : "Mute"
-            );
+        mute: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3ZM13 8l5 5m0-5-5 5"/></svg>',
 
-          } catch (error) {
-            console.warn("Vimeo sound error:", error);
-          }
+        full: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M17 13v4h-4M3 13v4h4"/></svg>'
+      };
+
+
+      /* ==========================================================
+         TIME FORMAT
+      ========================================================== */
+
+      const fmt = n => {
+        if (!Number.isFinite(n)) return "00:00";
+
+        n = Math.max(0, Math.floor(n));
+
+        return String(Math.floor(n / 60)).padStart(2, "0") +
+          ":" +
+          String(n % 60).padStart(2, "0");
+      };
+
+
+      /* ==========================================================
+         BUILD VIDEO PLAYER
+
+         data-autoplay="true"
+         Starts muted autoplay.
+
+         data-controls="false"
+         Hides custom controls and interaction overlay.
+
+         data-poster="images/example.jpg"
+         Optional poster image displayed until playback begins.
+      ========================================================== */
+
+      const initializeVideo = frame => {
+
+        if (frame.dataset.initialized === "true") return;
+
+        const { id, hash: parsedHash } = parseVimeo(
+          frame.dataset.vimeo
+        );
+
+        const hash = frame.dataset.hash || parsedHash;
+        const title = frame.dataset.title || "Fisher Center at Bard";
+
+        if (!id || !/^\d+$/.test(id)) return;
+
+        frame.dataset.initialized = "true";
+
+        const autoplay = frame.dataset.autoplay === "true";
+        const controlsEnabled = frame.dataset.controls !== "false";
+
+        // Autoplay videos are muted to satisfy browser autoplay policies.
+        const muted = autoplay || frame.dataset.muted === "true";
+
+        const params = new URLSearchParams({
+          autoplay: autoplay ? "1" : "0",
+          muted: muted ? "1" : "0",
+          loop: "0",
+          controls: "0",
+          transparent: "0",
+          playsinline: "1",
+          dnt: "1"
         });
 
-        /* FULLSCREEN */
+        if (hash) {
+          params.set("h", hash);
+        }
 
-        fullscreenButton.addEventListener("click", async () => {
+
+        /* POSTER */
+
+        const poster = frame.dataset.poster;
+
+        if (poster) {
+          const posterElement = document.createElement("div");
+
+          posterElement.className = "video-poster";
+          posterElement.style.backgroundImage = `url("${poster}")`;
+
+          frame.appendChild(posterElement);
+        }
+
+
+        /* IFRAME */
+
+        const iframe = document.createElement("iframe");
+
+        iframe.src =
+          `https://player.vimeo.com/video/${id}?${params.toString()}`;
+
+        iframe.allow = "autoplay; fullscreen; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.title = title;
+
+        frame.appendChild(iframe);
+
+
+        /* INTERACTION OVERLAY */
+
+        const hit = document.createElement("button");
+
+        hit.className = "video-hit";
+        hit.type = "button";
+        hit.setAttribute("aria-label", `Play or pause ${title}`);
+
+        frame.appendChild(hit);
+
+
+        /* CONTROLS */
+
+        const controls = document.createElement("div");
+
+        controls.className = "video-controls";
+
+        controls.innerHTML = `
+          <button class="control-button play-toggle" type="button" aria-label="Play">
+            ${icons.play}
+          </button>
+
+          <span class="video-time current">00:00</span>
+
+          <input
+            class="video-progress"
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            aria-label="Seek video">
+
+          <span class="video-time duration">00:00</span>
+
+          <button class="control-button sound-toggle" type="button" aria-label="${muted ? "Unmute" : "Mute"}">
+            ${muted ? icons.mute : icons.sound}
+          </button>
+
+          <button class="control-button fullscreen-toggle" type="button" aria-label="Fullscreen">
+            ${icons.full}
+          </button>
+        `;
+
+        frame.appendChild(controls);
+
+        if (!controlsEnabled) {
+          controls.setAttribute("aria-hidden", "true");
+          hit.setAttribute("aria-hidden", "true");
+        }
+
+
+        /* PLAYER */
+
+        const player = new Vimeo.Player(iframe);
+
+        const playButton = controls.querySelector(".play-toggle");
+        const soundButton = controls.querySelector(".sound-toggle");
+        const fullscreenButton = controls.querySelector(".fullscreen-toggle");
+        const progress = controls.querySelector(".video-progress");
+        const current = controls.querySelector(".current");
+        const duration = controls.querySelector(".duration");
+
+        let isMuted = muted;
+
+
+        /* PLAY / PAUSE */
+
+        const setPlaying = playing => {
+          frame.classList.toggle("is-playing", playing);
+          frame.classList.toggle("is-paused", !playing);
+
+          playButton.innerHTML = playing ? icons.pause : icons.play;
+
+          playButton.setAttribute(
+            "aria-label",
+            playing ? "Pause" : "Play"
+          );
+        };
+
+        const toggle = async () => {
           try {
-            await player.requestFullscreen();
+            if (await player.getPaused()) {
+              await player.play();
+            } else {
+              await player.pause();
+            }
           } catch (error) {
-            console.warn("Vimeo fullscreen error:", error);
+            console.warn("Vimeo playback error:", error);
           }
+        };
+
+
+        /* CONTROL EVENTS */
+
+        if (controlsEnabled) {
+
+          hit.addEventListener("click", toggle);
+          playButton.addEventListener("click", toggle);
+
+
+          /* SOUND */
+
+          soundButton.addEventListener("click", async () => {
+            try {
+              isMuted = !isMuted;
+
+              await player.setMuted(isMuted);
+
+              soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
+
+              soundButton.setAttribute(
+                "aria-label",
+                isMuted ? "Unmute" : "Mute"
+              );
+
+            } catch (error) {
+              console.warn("Vimeo sound error:", error);
+            }
+          });
+
+
+          /* FULLSCREEN */
+
+          fullscreenButton.addEventListener("click", async () => {
+            try {
+              await player.requestFullscreen();
+            } catch (error) {
+              console.warn("Vimeo fullscreen error:", error);
+            }
+          });
+
+
+          /* PROGRESS */
+
+          progress.addEventListener("input", async () => {
+            try {
+              const videoDuration = await player.getDuration();
+
+              await player.setCurrentTime(
+                videoDuration * (Number(progress.value) / 1000)
+              );
+            } catch (error) {}
+          });
+
+        }
+
+
+        /* ======================================================
+           PLAYER EVENTS
+
+           The poster is only removed on "playing", not "play".
+           This prevents a black frame while Vimeo is still buffering.
+        ====================================================== */
+
+        player.on("play", () => {
+          setPlaying(true);
         });
 
-        /* PROGRESS */
+        player.on("playing", () => {
+          frame.classList.add("is-ready");
+        });
 
-        progress.addEventListener("input", async () => {
+        player.on("pause", () => {
+          setPlaying(false);
+        });
+
+        player.on("ended", () => {
+          setPlaying(false);
+        });
+
+        player.on("loaded", async () => {
           try {
-            const d = await player.getDuration();
-
-            await player.setCurrentTime(
-              d * (Number(progress.value) / 1000)
-            );
+            duration.textContent = fmt(await player.getDuration());
           } catch (error) {}
         });
-      }
 
-      /* PLAYER EVENTS */
+        player.on("timeupdate", data => {
+          current.textContent = fmt(data.seconds);
+          duration.textContent = fmt(data.duration);
 
-      player.on("play", () => {
-        setPlaying(true);
-        frame.classList.add("is-ready");
-      });
+          progress.value = String(
+            data.duration
+              ? Math.round(data.seconds / data.duration * 1000)
+              : 0
+          );
 
-      player.on("pause", () => setPlaying(false));
-
-      player.on("ended", () => setPlaying(false));
-
-      player.on("loaded", async () => {
-        try {
-          duration.textContent = fmt(await player.getDuration());
-        } catch (error) {}
-      });
-
-      player.on("timeupdate", data => {
-        current.textContent = fmt(data.seconds);
-        duration.textContent = fmt(data.duration);
-
-        progress.value = String(
-          data.duration
-            ? Math.round(data.seconds / data.duration * 1000)
-            : 0
-        );
-
-        progress.style.setProperty(
-          "--progress",
-          `${progress.value / 10}%`
-        );
-      });
-
-      player.on("error", error => {
-        frame.classList.add("video-error");
-        console.warn("Vimeo player error:", error);
-      });
-
-      frame._vimeoPlayer = player;
-
-      /* INITIAL MUTE STATE */
-
-      if (muted) {
-        player.setMuted(true).catch(() => {});
-      }
-
-      /* AUTOPLAY */
-
-      if (autoplay) {
-        player.ready().then(() => {
-          return player.setMuted(true);
-        }).then(() => {
-          return player.play();
-        }).catch(error => {
-          console.warn("Autoplay was blocked or unavailable:", error);
-        });
-      }
-    };
-
-
-    /* ==========================================================
-       LAZY LOADING
-
-       Initialize players when they approach the viewport.
-
-       Autoplay videos are muted before playback.
-       Standard videos initialize with manual playback.
-    ========================================================== */
-
-    const videoFrames = document.querySelectorAll(
-      ".video-frame[data-vimeo]"
-    );
-
-    if ("IntersectionObserver" in window) {
-
-      const videoObserver = new IntersectionObserver((entries, observer) => {
-
-        entries.forEach(entry => {
-
-          if (!entry.isIntersecting) return;
-
-          initializeVideo(entry.target);
-
-          observer.unobserve(entry.target);
-
+          progress.style.setProperty(
+            "--progress",
+            `${progress.value / 10}%`
+          );
         });
 
-      }, {
-        rootMargin: "500px 0px",
-        threshold: 0
-      });
+        player.on("error", error => {
+          frame.classList.add("video-error");
+          console.warn("Vimeo player error:", error);
+        });
 
-      videoFrames.forEach(frame => {
+        frame._vimeoPlayer = player;
 
-        if (
-          !frame.dataset.vimeo ||
-          frame.dataset.vimeo === "REPLACE_VIDEO_ID"
-        ) return;
 
-        videoObserver.observe(frame);
+        /* INITIAL MUTE STATE */
 
-      });
-
-    } else {
-
-      videoFrames.forEach(frame => {
-
-        if (
-          frame.dataset.vimeo &&
-          frame.dataset.vimeo !== "REPLACE_VIDEO_ID"
-        ) {
-          initializeVideo(frame);
+        if (muted) {
+          player.setMuted(true).catch(() => {});
         }
 
-      });
 
-    }
+        /* AUTOPLAY */
 
-  })();
+        if (autoplay) {
+          player.ready()
+            .then(() => player.setMuted(true))
+            .then(() => player.play())
+            .catch(error => {
+              console.warn("Autoplay was blocked or unavailable:", error);
+            });
+        }
+
+      };
+
+
+      /* ==========================================================
+         LAZY LOADING
+
+         Initialize players as they approach the viewport.
+      ========================================================== */
+
+      const videoFrames = document.querySelectorAll(
+        ".video-frame[data-vimeo]"
+      );
+
+      if ("IntersectionObserver" in window) {
+
+        const videoObserver = new IntersectionObserver(
+          (entries, observer) => {
+
+            entries.forEach(entry => {
+
+              if (!entry.isIntersecting) return;
+
+              initializeVideo(entry.target);
+
+              observer.unobserve(entry.target);
+
+            });
+
+          },
+          {
+            rootMargin: "500px 0px",
+            threshold: 0
+          }
+        );
+
+        videoFrames.forEach(frame => {
+
+          if (
+            !frame.dataset.vimeo ||
+            frame.dataset.vimeo === "REPLACE_VIDEO_ID"
+          ) return;
+
+          videoObserver.observe(frame);
+
+        });
+
+      } else {
+
+        videoFrames.forEach(frame => {
+
+          if (
+            frame.dataset.vimeo &&
+            frame.dataset.vimeo !== "REPLACE_VIDEO_ID"
+          ) {
+            initializeVideo(frame);
+          }
+
+        });
+
+      }
+
+
+      /* ==========================================================
+         HERO VIDEO — POSTER TRANSITION
+
+         Keep the poster visible until Vimeo confirms playback.
+         No ready/getPaused shortcut: the player can be unpaused
+         while the video is still buffering.
+      ========================================================== */
+
+      const heroVideo = document.querySelector(".hero-video");
+      const heroIframe = heroVideo?.querySelector("iframe");
+
+      if (heroVideo && heroIframe) {
+
+        const heroPlayer = new Vimeo.Player(heroIframe);
+
+        let heroRevealed = false;
+
+        const revealHero = () => {
+          if (heroRevealed) return;
+
+          heroRevealed = true;
+          heroVideo.classList.add("is-playing");
+        };
+
+        heroPlayer.on("playing", revealHero);
+
+      }
+
+    })();
   </script>
 
   <script src="js/navigation.js" defer></script>
