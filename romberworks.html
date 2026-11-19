@@ -281,6 +281,8 @@ body.menu-open { overflow:hidden }
   outline-offset:-8px;
 }
 
+/* CUSTOM VIDEO CONTROLS */
+
 .video-controls {
   position:absolute;
   z-index:4;
@@ -292,23 +294,18 @@ body.menu-open { overflow:hidden }
   gap:12px;
   padding:16px 18px;
   color:#f8f5ed;
-  opacity:0;
-  pointer-events:none;
+  opacity:1;
+  pointer-events:auto;
   transition:opacity .2s;
   background:linear-gradient(0deg,rgba(0,0,0,.3),transparent);
 }
 
-.video-frame:hover .video-controls,
-.video-frame:focus-within .video-controls,
-.video-frame.is-paused .video-controls,
-.video-frame.is-playing .video-controls {
-  opacity:1;
+.video-controls button,
+.video-controls input {
+  pointer-events:auto;
 }
 
-.video-controls button,
-.video-controls input { pointer-events:auto }
-
-/* HIDE CUSTOM CONTROLS WHEN REQUESTED */
+/* HIDE CUSTOM CONTROLS ONLY WHEN EXPLICITLY REQUESTED */
 
 .video-frame[data-controls="false"] .video-controls {
   display:none !important;
@@ -928,7 +925,6 @@ body.menu-open { overflow:hidden }
 
     <div class="story-grid">
 
-
       <article>
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248305969/0682589e5e"
@@ -941,8 +937,6 @@ body.menu-open { overflow:hidden }
           <span>Romber Works</span>
         </div>
       </article>
-
-
 
       <article>
         <div class="video-frame vertical"
@@ -969,7 +963,7 @@ body.menu-open { overflow:hidden }
           <span>Romber Works</span>
         </div>
       </article>
-      
+
       <article>
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248306234/9cc3a48ac9"
@@ -982,9 +976,6 @@ body.menu-open { overflow:hidden }
           <span>Romber Works</span>
         </div>
       </article>
-
-
-
 
       <article>
         <div class="video-frame vertical"
@@ -1245,7 +1236,7 @@ body.menu-open { overflow:hidden }
 
     frame.appendChild(controls);
 
-    // Keep the controls available to the script, but hide them
+    // Keep controls available to the script, but hide them
     // visually when data-controls="false".
     if (!controlsEnabled) {
       controls.setAttribute("aria-hidden", "true");

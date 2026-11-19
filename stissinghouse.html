@@ -279,6 +279,8 @@ body.menu-open{overflow:hidden}
   outline-offset:-8px;
 }
 
+/* VIDEO CONTROLS — VISIBLE BY DEFAULT */
+
 .video-controls{
   position:absolute;
   z-index:4;
@@ -290,19 +292,16 @@ body.menu-open{overflow:hidden}
   gap:12px;
   padding:16px 18px;
   color:#f8f5ed;
-  opacity:0;
-  pointer-events:none;
+  opacity:1;
+  pointer-events:auto;
   transition:opacity .2s;
   background:linear-gradient(0deg,rgba(0,0,0,.3),transparent);
 }
 
-.video-frame:hover .video-controls,
-.video-frame:focus-within .video-controls,
-.video-frame.is-paused .video-controls,
-.video-frame.is-playing .video-controls{opacity:1}
-
 .video-controls button,
-.video-controls input{pointer-events:auto}
+.video-controls input{
+  pointer-events:auto;
+}
 
 .control-button{
   width:28px;
