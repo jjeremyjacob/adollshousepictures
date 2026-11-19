@@ -164,6 +164,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1122967020",
     format: "wide",
+    thumbnail: "images/thumbnails/stormking_growth.jpg",
     description: "Growth: The Watch",
     credits: [
         { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
