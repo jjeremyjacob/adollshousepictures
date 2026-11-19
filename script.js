@@ -368,6 +368,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1052327824",
     format: "wide",
+        thumbnail: "images/thumbnails/romberworks_hamlet.jpg",
     description: "Custom Cabinetry project behind-the-scenes for Romber Works in Clermont, New York.",
     credits: [
         { role: "Creative Direction & Creator", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
@@ -407,6 +408,7 @@ const projects = [
     type: "vimeo",
     vimeo: "875550517",
     format: "wide",
+        thumbnail: "images/thumbnails/rodelinda.jpg",
     description: "Hudson Hall",
     credits: []
 },
@@ -439,6 +441,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1227003478",
     format: "wide",
+        thumbnail: "images/thumbnails/anna.jpg",
     description: "",
     credits: [
         { role: "Direction", names: ["Jeremy Jacob"] },
@@ -500,6 +503,7 @@ const projects = [
     type: "vimeo",
     vimeo: "939996147",
     format: "wide",
+        thumbnail: "images/thumbnails/illinoise.jpg",
     description: "Chicago Shakespeare Theater, Park Avenue Armory & Fisher Center at Bard",
     credits: []
 },
