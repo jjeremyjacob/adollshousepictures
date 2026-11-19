@@ -327,6 +327,9 @@
 
     /* ==========================================================
        CUSTOM VIDEO CONTROLS
+
+       Desktop: controls appear on hover or keyboard focus.
+       Touch: controls remain visible.
     ========================================================== */
 
     .video-controls {
@@ -340,27 +343,29 @@
       gap: 12px;
       padding: 16px 18px;
       color: #f8f5ed;
-      opacity: 1;
-      pointer-events: auto;
-      transition: opacity .2s;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity .35s ease,
+        transform .35s ease;
+      transform: translateY(5px);
       background: linear-gradient(
         0deg,
-        rgba(0,0,0,.3),
+        rgba(0,0,0,.48),
         transparent
       );
+    }
+
+    .video-frame:hover .video-controls,
+    .video-frame:focus-within .video-controls {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
     .video-controls button,
     .video-controls input {
       pointer-events: auto;
-    }
-
-    .video-frame[data-controls="false"] .video-controls {
-      display: none !important;
-    }
-
-    .video-frame[data-controls="false"] .video-hit {
-      display: none;
     }
 
     .control-button {
@@ -373,6 +378,12 @@
       color: inherit;
       padding: 0;
       cursor: pointer;
+      opacity: .9;
+      transition: opacity .2s ease;
+    }
+
+    .control-button:hover {
+      opacity: .6;
     }
 
     .control-button svg {
@@ -676,7 +687,6 @@
       }
 
       .video-controls {
-        opacity: 1;
         padding: 8px;
         gap: 5px;
       }
@@ -698,6 +708,8 @@
     @media(hover:none) {
       .video-controls {
         opacity: 1;
+        pointer-events: auto;
+        transform: none;
       }
     }
 
@@ -851,8 +863,7 @@
             data-vimeo="1168237754"
             data-hash="98c722212d"
             data-title="Summerscape — Fisher Center at Bard"
-            data-autoplay="true"
-            data-controls="false">
+            data-autoplay="true">
           </div>
 
           <div class="caption">
@@ -869,8 +880,7 @@
             data-vimeo="1195634810"
             data-hash="eca25cfa1b"
             data-title="Suddenly Last Summer — Fisher Center at Bard"
-            data-autoplay="true"
-            data-controls="false">
+            data-autoplay="true">
           </div>
 
           <div class="caption">
@@ -887,8 +897,7 @@
             data-vimeo="1208394894"
             data-hash="3b4760c000"
             data-title="Bard Music Festival — Fisher Center at Bard"
-            data-autoplay="true"
-            data-controls="false">
+            data-autoplay="true">
           </div>
 
           <div class="caption">
@@ -905,8 +914,7 @@
             data-vimeo="1208395130"
             data-hash="c5c1a0b963"
             data-title="Bard Opera — Fisher Center at Bard"
-            data-autoplay="true"
-            data-controls="false">
+            data-autoplay="true">
           </div>
 
           <div class="caption">
@@ -923,8 +931,7 @@
             data-vimeo="1208412279"
             data-hash="2048378cef"
             data-title="The Egyptian Helen — Fisher Center at Bard"
-            data-autoplay="true"
-            data-controls="false">
+            data-autoplay="true">
           </div>
 
           <div class="caption">
@@ -1071,13 +1078,6 @@
 
       /* ==========================================================
          VIMEO URL PARSER
-
-         Accepts:
-         https://vimeo.com/123456789
-         https://vimeo.com/123456789/abcdef1234
-         https://player.vimeo.com/video/123456789?h=abcdef1234
-         123456789
-         123456789/abcdef1234
       ========================================================== */
 
       const parseVimeo = value => {
@@ -1156,11 +1156,11 @@
          data-autoplay="true"
          Starts muted autoplay.
 
-         data-controls="false"
-         Hides custom controls and interaction overlay.
-
          data-poster="images/example.jpg"
          Optional poster image displayed until playback begins.
+
+         Controls appear on hover and keyboard focus.
+         On touch devices, controls remain visible.
       ========================================================== */
 
       const initializeVideo = frame => {
@@ -1179,7 +1179,6 @@
         frame.dataset.initialized = "true";
 
         const autoplay = frame.dataset.autoplay === "true";
-        const controlsEnabled = frame.dataset.controls !== "false";
 
         // Autoplay videos are muted to satisfy browser autoplay policies.
         const muted = autoplay || frame.dataset.muted === "true";
@@ -1272,11 +1271,6 @@
 
         frame.appendChild(controls);
 
-        if (!controlsEnabled) {
-          controls.setAttribute("aria-hidden", "true");
-          hit.setAttribute("aria-hidden", "true");
-        }
-
 
         /* PLAYER */
 
@@ -1295,7 +1289,6 @@
         /* PLAY / PAUSE */
 
         const setPlaying = playing => {
-          frame.classList.toggle("is-playing", playing);
           frame.classList.toggle("is-paused", !playing);
 
           playButton.innerHTML = playing ? icons.pause : icons.play;
@@ -1321,57 +1314,53 @@
 
         /* CONTROL EVENTS */
 
-        if (controlsEnabled) {
-
-          hit.addEventListener("click", toggle);
-          playButton.addEventListener("click", toggle);
+        hit.addEventListener("click", toggle);
+        playButton.addEventListener("click", toggle);
 
 
-          /* SOUND */
+        /* SOUND */
 
-          soundButton.addEventListener("click", async () => {
-            try {
-              isMuted = !isMuted;
+        soundButton.addEventListener("click", async () => {
+          try {
+            isMuted = !isMuted;
 
-              await player.setMuted(isMuted);
+            await player.setMuted(isMuted);
 
-              soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
+            soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
 
-              soundButton.setAttribute(
-                "aria-label",
-                isMuted ? "Unmute" : "Mute"
-              );
+            soundButton.setAttribute(
+              "aria-label",
+              isMuted ? "Unmute" : "Mute"
+            );
 
-            } catch (error) {
-              console.warn("Vimeo sound error:", error);
-            }
-          });
-
-
-          /* FULLSCREEN */
-
-          fullscreenButton.addEventListener("click", async () => {
-            try {
-              await player.requestFullscreen();
-            } catch (error) {
-              console.warn("Vimeo fullscreen error:", error);
-            }
-          });
+          } catch (error) {
+            console.warn("Vimeo sound error:", error);
+          }
+        });
 
 
-          /* PROGRESS */
+        /* FULLSCREEN */
 
-          progress.addEventListener("input", async () => {
-            try {
-              const videoDuration = await player.getDuration();
+        fullscreenButton.addEventListener("click", async () => {
+          try {
+            await player.requestFullscreen();
+          } catch (error) {
+            console.warn("Vimeo fullscreen error:", error);
+          }
+        });
 
-              await player.setCurrentTime(
-                videoDuration * (Number(progress.value) / 1000)
-              );
-            } catch (error) {}
-          });
 
-        }
+        /* PROGRESS */
+
+        progress.addEventListener("input", async () => {
+          try {
+            const videoDuration = await player.getDuration();
+
+            await player.setCurrentTime(
+              videoDuration * (Number(progress.value) / 1000)
+            );
+          } catch (error) {}
+        });
 
 
         /* ======================================================
@@ -1387,6 +1376,7 @@
 
         player.on("playing", () => {
           frame.classList.add("is-ready");
+          frame.classList.remove("is-paused");
         });
 
         player.on("pause", () => {
@@ -1511,8 +1501,6 @@
          HERO VIDEO — POSTER TRANSITION
 
          Keep the poster visible until Vimeo confirms playback.
-         No ready/getPaused shortcut: the player can be unpaused
-         while the video is still buffering.
       ========================================================== */
 
       const heroVideo = document.querySelector(".hero-video");

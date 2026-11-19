@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -352,7 +353,10 @@
       color: #f8f5ed;
       opacity: 1;
       pointer-events: auto;
-      transition: opacity .2s;
+      transform: translateY(0);
+      transition:
+        opacity .4s cubic-bezier(.22,1,.36,1),
+        transform .4s cubic-bezier(.22,1,.36,1);
       background: linear-gradient(
         0deg,
         rgba(0,0,0,.3),
@@ -365,12 +369,34 @@
       pointer-events: auto;
     }
 
-    .video-frame[data-controls="false"] .video-controls {
-      display: none !important;
+    /* ALWAYS VISIBLE */
+
+    .video-frame[data-controls="true"] .video-controls {
+      opacity: 1;
+      pointer-events: auto;
     }
 
+    /* HOVER ONLY */
+
+    .video-frame[data-controls="hover"] .video-controls {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(5px);
+    }
+
+    .video-frame[data-controls="hover"]:hover .video-controls,
+    .video-frame[data-controls="hover"]:focus-within .video-controls,
+    .video-frame[data-controls="hover"].is-paused .video-controls {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* NO CONTROLS */
+
+    .video-frame[data-controls="false"] .video-controls,
     .video-frame[data-controls="false"] .video-hit {
-      display: none;
+      display: none !important;
     }
 
     .control-button {
@@ -847,7 +873,6 @@
       }
 
       .video-controls {
-        opacity: 1;
         padding: 8px;
         gap: 5px;
       }
@@ -866,11 +891,22 @@
       }
     }
 
+    /* ==========================================================
+       TOUCH DEVICES
+       No hover exists on touchscreens, so controls stay visible.
+    ========================================================== */
+
     @media(hover:none) {
-      .video-controls {
+      .video-frame[data-controls="hover"] .video-controls {
         opacity: 1;
+        pointer-events: auto;
+        transform: none;
       }
     }
+
+    /* ==========================================================
+       REDUCED MOTION
+    ========================================================== */
 
     @media(prefers-reduced-motion:reduce) {
       html {
@@ -1005,7 +1041,9 @@
             data-vimeo="1238353177"
             data-hash="95dda1076c"
             data-title="Craft Feast — Film 01"
-            data-poster="images/thumbnails/stissinghousecraftfeast1.jpg">
+            data-poster="images/thumbnails/stissinghousecraftfeast1.jpg"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1022,7 +1060,9 @@
             data-vimeo="1238355345"
             data-hash="204b5872f8"
             data-title="Craft Feast — Film 02"
-            data-poster="images/thumbnails/stissinghousecraftfeast2.jpg">
+            data-poster="images/thumbnails/stissinghousecraftfeast2.jpg"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1039,7 +1079,9 @@
             data-vimeo="1238354768"
             data-hash="3c849b1a53"
             data-title="Craft Feast — Film 03"
-            data-poster="images/thumbnails/stissinghousecraftfeast3.jpg">
+            data-poster="images/thumbnails/stissinghousecraftfeast3.jpg"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1084,7 +1126,9 @@
             class="video-frame vertical"
             data-vimeo="1103594187"
             data-hash="deb47959b3"
-            data-title="Candles">
+            data-title="Candles"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1100,7 +1144,9 @@
             class="video-frame vertical"
             data-vimeo="1135735488"
             data-hash="f8b1225c5d"
-            data-title="Sticky Toffee">
+            data-title="Sticky Toffee"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1110,28 +1156,14 @@
 
         </article>
 
-        <article>
-
-          <div
-            class="video-frame vertical"
-            data-vimeo="1135779851"
-            data-hash="ce3e333307"
-            data-title="Duck">
-          </div>
-
-          <div class="caption">
-            <strong>Duck</strong>
-            <span>Stissing House</span>
-          </div>
-
-        </article>
-
-        <article>
+                <article>
 
           <div
             class="video-frame vertical"
             data-vimeo="1119623841"
-            data-title="Cobbler">
+            data-title="Cobbler"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1145,9 +1177,30 @@
 
           <div
             class="video-frame vertical"
+            data-vimeo="1135779851"
+            data-hash="ce3e333307"
+            data-title="Duck"
+            data-autoplay="true"
+            data-controls="hover">
+          </div>
+
+          <div class="caption">
+            <strong>Duck</strong>
+            <span>Stissing House</span>
+          </div>
+
+        </article>
+
+
+        <article>
+
+          <div
+            class="video-frame vertical"
             data-vimeo="1226973263"
             data-hash="ab87885cfa"
-            data-title="Squash">
+            data-title="Squash"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
@@ -1219,11 +1272,13 @@
             class="video-frame vertical"
             data-vimeo="1238768610"
             data-hash="3099e641f9"
-            data-title="Hands">
+            data-title="Hands"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
-            <strong>Hands</strong>
+            <strong>Form</strong>
             <span>Stissing House</span>
           </div>
 
@@ -1235,11 +1290,13 @@
             class="video-frame vertical"
             data-vimeo="1238495061"
             data-hash="0d3f2cba17"
-            data-title="Collect">
+            data-title="Collect"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
-            <strong>Collect</strong>
+            <strong>Adorn</strong>
             <span>Stissing House</span>
           </div>
 
@@ -1251,11 +1308,13 @@
             class="video-frame vertical"
             data-vimeo="1040369938"
             data-hash="3dbcccf2a5"
-            data-title="Music">
+            data-title="Music"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
-            <strong>Music</strong>
+            <strong>Perform</strong>
             <span>Stissing House</span>
           </div>
 
@@ -1267,11 +1326,13 @@
             class="video-frame vertical"
             data-vimeo="1146943190"
             data-hash="2cfaec4370"
-            data-title="Wood">
+            data-title="Wood"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
-            <strong>Wood</strong>
+            <strong>Tend</strong>
             <span>Stissing House</span>
           </div>
 
@@ -1283,11 +1344,13 @@
             class="video-frame vertical"
             data-vimeo="1238759766"
             data-hash="c2e5cfc1c3"
-            data-title="Fire">
+            data-title="Fire"
+            data-autoplay="true"
+            data-controls="hover">
           </div>
 
           <div class="caption">
-            <strong>Fire</strong>
+            <strong>Warm</strong>
             <span>Stissing House</span>
           </div>
 
@@ -1484,8 +1547,15 @@
          data-autoplay="true"
          Enables muted autoplay.
 
+         data-controls="true"
+         Always-visible controls.
+
+         data-controls="hover"
+         Controls appear on hover and focus.
+         Controls stay visible on touchscreens.
+
          data-controls="false"
-         Hides custom controls and the interaction overlay.
+         Hides custom controls and interaction overlay.
 
          data-poster="images/example.jpg"
          Displays a poster until actual playback begins.
@@ -1510,7 +1580,11 @@
         frame.dataset.initialized = "true";
 
         const autoplay = frame.dataset.autoplay === "true";
-        const controlsEnabled = frame.dataset.controls !== "false";
+
+        const controlsMode = frame.dataset.controls || "true";
+        const controlsEnabled = controlsMode !== "false";
+
+        frame.dataset.controls = controlsMode;
 
         const muted = autoplay || frame.dataset.muted === "true";
 
@@ -1713,9 +1787,6 @@
 
         /* ======================================================
            PLAYER EVENTS
-
-           "playing" fires when video playback actually begins.
-           The poster remains visible while Vimeo is buffering.
         ====================================================== */
 
         player.on("play", () => {
@@ -1787,9 +1858,6 @@
 
       /* ==========================================================
          LAZY VIDEO INITIALIZATION
-
-         Initialize videos as they approach the viewport.
-         This avoids loading every Vimeo iframe at once.
       ========================================================== */
 
       const videoFrames = document.querySelectorAll(
@@ -1874,12 +1942,6 @@
 
       /* ==========================================================
          HERO VIDEO — SEAMLESS POSTER TRANSITION
-
-         The poster stays visible until Vimeo confirms that
-         playback has actually started.
-
-         No ready/getPaused shortcut: Vimeo can report an
-         unpaused state while the video is still buffering.
       ========================================================== */
 
       const heroVideo = document.querySelector(".hero-video");

@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,9 +106,6 @@ body.menu-open { overflow:hidden }
   background:#000;
 }
 
-/* HERO POSTER
-   Remains visible until Vimeo confirms actual playback. */
-
 .hero-poster {
   position:absolute;
   z-index:2;
@@ -117,7 +114,7 @@ body.menu-open { overflow:hidden }
   background-position:center;
   background-repeat:no-repeat;
   opacity:1;
-  transition:opacity .45s ease;
+  transition:opacity .65s ease;
   pointer-events:none;
 }
 
@@ -277,7 +274,7 @@ body.menu-open { overflow:hidden }
   background-size:cover;
   background-color:#000;
   opacity:1;
-  transition:opacity .4s ease;
+  transition:opacity .65s ease;
   pointer-events:none;
 }
 
@@ -288,11 +285,11 @@ body.menu-open { overflow:hidden }
   background:linear-gradient(0deg,rgba(0,0,0,.18),transparent 35%);
 }
 
-/* Do not remove the poster until playback has actually begun. */
-
 .video-frame.is-playing .video-poster {
   opacity:0;
 }
+
+/* INTERACTION OVERLAY */
 
 .video-hit {
   position:absolute;
@@ -322,25 +319,29 @@ body.menu-open { overflow:hidden }
   display:flex;
   align-items:center;
   gap:12px;
-  padding:16px 18px;
+  padding:18px 20px;
   color:#f8f5ed;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+  background:linear-gradient(
+    0deg,
+    rgba(0,0,0,.48),
+    rgba(0,0,0,.12) 70%,
+    transparent
+  );
+}
+
+.video-frame:hover .video-controls,
+.video-frame:focus-within .video-controls,
+.video-frame.is-paused .video-controls {
   opacity:1;
   pointer-events:auto;
-  transition:opacity .2s;
-  background:linear-gradient(0deg,rgba(0,0,0,.3),transparent);
 }
 
 .video-controls button,
 .video-controls input {
   pointer-events:auto;
-}
-
-.video-frame[data-controls="false"] .video-controls {
-  display:none !important;
-}
-
-.video-frame[data-controls="false"] .video-hit {
-  display:none;
 }
 
 .control-button {
@@ -353,6 +354,12 @@ body.menu-open { overflow:hidden }
   color:inherit;
   padding:0;
   cursor:pointer;
+  opacity:.85;
+  transition:opacity .2s ease;
+}
+
+.control-button:hover {
+  opacity:1;
 }
 
 .control-button svg {
@@ -417,6 +424,8 @@ body.menu-open { overflow:hidden }
   border-radius:50%;
   background:#f8f5ed;
 }
+
+/* CAPTIONS */
 
 .caption {
   display:flex;
@@ -610,7 +619,7 @@ body.menu-open { overflow:hidden }
   cursor:pointer;
 }
 
-/* PROJECT DETAIL — EXTERNAL VISIT LINK */
+/* EXTERNAL VISIT LINK */
 
 .visit-link {
   display:inline-flex;
@@ -740,6 +749,7 @@ body.menu-open { overflow:hidden }
 
   .video-controls {
     opacity:1;
+    pointer-events:auto;
     padding:8px;
     gap:5px;
   }
@@ -753,9 +763,16 @@ body.menu-open { overflow:hidden }
   .video-progress { min-width:18px }
 }
 
+/* TOUCH DEVICES */
+
 @media(hover:none) {
-  .video-controls { opacity:1 }
+  .video-controls {
+    opacity:1;
+    pointer-events:auto;
+  }
 }
+
+/* REDUCED MOTION */
 
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto }
@@ -873,7 +890,8 @@ body.menu-open { overflow:hidden }
       <article>
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248305302/e6d6bd086e"
-          data-title="Romber Works — The Making">
+          data-title="Romber Works — The Making"
+          data-autoplay="true">
         </div>
 
         <div class="caption">
@@ -885,7 +903,8 @@ body.menu-open { overflow:hidden }
       <article>
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248308340/7e3f1a8733"
-          data-title="Romber Works — The Material">
+          data-title="Romber Works — The Material"
+          data-autoplay="true">
         </div>
 
         <div class="caption">
@@ -896,8 +915,9 @@ body.menu-open { overflow:hidden }
 
       <article>
         <div class="video-frame vertical"
-          data-vimeo="https://vimeo.com/1077953571"
-          data-title="Romber Works — The Finish">
+          data-vimeo="https://vimeo.com/1241470631/4199ba943e"
+          data-title="Romber Works — The Finish"
+          data-autoplay="true">
         </div>
 
         <div class="caption">
@@ -962,8 +982,7 @@ body.menu-open { overflow:hidden }
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248305969/0682589e5e"
           data-title="Romber Works — The Fit"
-          data-autoplay="true"
-          data-controls="false">
+          data-autoplay="true">
         </div>
         <div class="caption">
           <strong>Look</strong>
@@ -975,8 +994,7 @@ body.menu-open { overflow:hidden }
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248305970/4afb80c0c9"
           data-title="Romber Works — The Hand"
-          data-autoplay="true"
-          data-controls="false">
+          data-autoplay="true">
         </div>
         <div class="caption">
           <strong>Measure</strong>
@@ -988,8 +1006,7 @@ body.menu-open { overflow:hidden }
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248305973/b83facc252"
           data-title="Romber Works — The Joint"
-          data-autoplay="true"
-          data-controls="false">
+          data-autoplay="true">
         </div>
         <div class="caption">
           <strong>Cut</strong>
@@ -1001,8 +1018,7 @@ body.menu-open { overflow:hidden }
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248306234/9cc3a48ac9"
           data-title="Romber Works — The Grain"
-          data-autoplay="true"
-          data-controls="false">
+          data-autoplay="true">
         </div>
         <div class="caption">
           <strong>Sand</strong>
@@ -1014,8 +1030,7 @@ body.menu-open { overflow:hidden }
         <div class="video-frame vertical"
           data-vimeo="https://vimeo.com/1248308338/08ee4228f9"
           data-title="Romber Works — The Finish"
-          data-autoplay="true"
-          data-controls="false">
+          data-autoplay="true">
         </div>
         <div class="caption">
           <strong>Level</strong>
@@ -1081,8 +1096,6 @@ body.menu-open { overflow:hidden }
   </section>
 
 </main>
-
-<!-- FOOTER -->
 
 <footer class="footer">
   <a href="./">A Doll's House Pictures</a>
@@ -1151,10 +1164,6 @@ body.menu-open { overflow:hidden }
 
   /* ==========================================================
      HERO VIDEO
-
-     Keep the poster visible until Vimeo emits "playing".
-     The "play" event only means playback was requested;
-     it does not guarantee that a video frame is visible.
   ========================================================== */
 
   const heroFrame = document.getElementById("hero-video");
@@ -1169,7 +1178,6 @@ body.menu-open { overflow:hidden }
 
     heroPlayer.on("error", error => {
       console.warn("Hero Vimeo playback error:", error);
-      // Keep the poster visible if playback fails.
     });
 
     heroPlayer.ready()
@@ -1177,7 +1185,6 @@ body.menu-open { overflow:hidden }
       .then(() => heroPlayer.play())
       .catch(error => {
         console.warn("Hero autoplay unavailable:", error);
-        // The poster remains visible.
       });
   }
 
@@ -1224,10 +1231,16 @@ body.menu-open { overflow:hidden }
 
     frame.dataset.initialized = "true";
 
-    const autoplay = frame.dataset.autoplay === "true";
-    const controlsEnabled = frame.dataset.controls !== "false";
+    /*
+      Every vertical video autoplays muted.
+      Horizontal films retain click-to-play behavior.
+    */
 
-    // Autoplay videos are muted to satisfy browser autoplay policies.
+    const autoplay =
+      frame.classList.contains("vertical") ||
+      frame.dataset.autoplay === "true";
+
+    const controlsEnabled = true;
     const muted = autoplay || frame.dataset.muted === "true";
 
     const params = new URLSearchParams({
@@ -1295,10 +1308,6 @@ body.menu-open { overflow:hidden }
 
     frame.appendChild(controls);
 
-    if (!controlsEnabled) {
-      controls.setAttribute("aria-hidden", "true");
-    }
-
     const player = new Vimeo.Player(iframe);
 
     const playButton = controls.querySelector(".play-toggle");
@@ -1309,6 +1318,7 @@ body.menu-open { overflow:hidden }
     const duration = controls.querySelector(".duration");
 
     let isMuted = muted;
+    let isSeeking = false;
 
     /* PLAY / PAUSE */
 
@@ -1321,6 +1331,11 @@ body.menu-open { overflow:hidden }
       playButton.setAttribute(
         "aria-label",
         playing ? "Pause" : "Play"
+      );
+
+      hit.setAttribute(
+        "aria-label",
+        `${playing ? "Pause" : "Play"} ${title}`
       );
     };
 
@@ -1336,52 +1351,62 @@ body.menu-open { overflow:hidden }
       }
     };
 
-    if (controlsEnabled) {
-      hit.addEventListener("click", toggle);
-      playButton.addEventListener("click", toggle);
+    hit.addEventListener("click", toggle);
+    playButton.addEventListener("click", toggle);
 
-      /* SOUND */
+    /* SOUND */
 
-      soundButton.addEventListener("click", async () => {
-        try {
-          isMuted = !isMuted;
+    soundButton.addEventListener("click", async () => {
+      try {
+        isMuted = !isMuted;
 
-          await player.setMuted(isMuted);
+        await player.setMuted(isMuted);
 
-          soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
+        soundButton.innerHTML = isMuted ? icons.mute : icons.sound;
 
-          soundButton.setAttribute(
-            "aria-label",
-            isMuted ? "Unmute" : "Mute"
-          );
+        soundButton.setAttribute(
+          "aria-label",
+          isMuted ? "Unmute" : "Mute"
+        );
 
-        } catch (error) {
-          console.warn("Vimeo sound error:", error);
-        }
-      });
+      } catch (error) {
+        console.warn("Vimeo sound error:", error);
+      }
+    });
 
-      /* FULLSCREEN */
+    /* FULLSCREEN */
 
-      fullscreenButton.addEventListener("click", async () => {
-        try {
-          await player.requestFullscreen();
-        } catch (error) {
-          console.warn("Vimeo fullscreen error:", error);
-        }
-      });
+    fullscreenButton.addEventListener("click", async () => {
+      try {
+        await player.requestFullscreen();
+      } catch (error) {
+        console.warn("Vimeo fullscreen error:", error);
+      }
+    });
 
-      /* PROGRESS */
+    /* PROGRESS */
 
-      progress.addEventListener("input", async () => {
-        try {
-          const d = await player.getDuration();
+    progress.addEventListener("pointerdown", () => {
+      isSeeking = true;
+    });
 
-          await player.setCurrentTime(
-            d * (Number(progress.value) / 1000)
-          );
-        } catch (error) {}
-      });
-    }
+    progress.addEventListener("pointerup", () => {
+      isSeeking = false;
+    });
+
+    progress.addEventListener("change", async () => {
+      try {
+        const d = await player.getDuration();
+
+        await player.setCurrentTime(
+          d * (Number(progress.value) / 1000)
+        );
+      } catch (error) {
+        console.warn("Vimeo seeking error:", error);
+      }
+
+      isSeeking = false;
+    });
 
     /* PLAYER EVENTS */
 
@@ -1389,7 +1414,6 @@ body.menu-open { overflow:hidden }
       setPlaying(true);
     });
 
-    // Only remove the poster once actual playback begins.
     player.on("playing", () => {
       frame.classList.add("is-playing");
       frame.classList.add("is-ready");
@@ -1410,22 +1434,23 @@ body.menu-open { overflow:hidden }
       current.textContent = fmt(data.seconds);
       duration.textContent = fmt(data.duration);
 
-      progress.value = String(
-        data.duration
-          ? Math.round(data.seconds / data.duration * 1000)
-          : 0
-      );
+      if (!isSeeking) {
+        progress.value = String(
+          data.duration
+            ? Math.round(data.seconds / data.duration * 1000)
+            : 0
+        );
 
-      progress.style.setProperty(
-        "--progress",
-        `${progress.value / 10}%`
-      );
+        progress.style.setProperty(
+          "--progress",
+          `${progress.value / 10}%`
+        );
+      }
     });
 
     player.on("error", error => {
       frame.classList.add("video-error");
       console.warn("Vimeo player error:", error);
-      // Do not hide the poster if playback fails.
     });
 
     frame._vimeoPlayer = player;
@@ -1439,45 +1464,65 @@ body.menu-open { overflow:hidden }
     /* AUTOPLAY */
 
     if (autoplay) {
-      player.ready().then(() => {
-        return player.setMuted(true);
-      }).then(() => {
-        return player.play();
-      }).catch(error => {
-        console.warn("Autoplay was blocked or unavailable:", error);
-      });
+      player.ready()
+        .then(() => player.setMuted(true))
+        .then(() => player.play())
+        .catch(error => {
+          console.warn("Autoplay was blocked or unavailable:", error);
+        });
     }
   };
 
 
   /* ==========================================================
-     LAZY LOADING
+     LAZY LOADING + VIEWPORT AUTOPLAY
 
-     Initialize players when they approach the viewport.
-     Autoplay videos are muted before playback.
+     Initialize videos as they approach the viewport.
+     Vertical videos play muted.
+     Pause them when they leave the viewing area.
   ========================================================== */
 
   const videoFrames = document.querySelectorAll(
     ".video-frame[data-vimeo]"
   );
 
+  const initializedFrames = new Set();
+
+  const isVertical = frame =>
+    frame.classList.contains("vertical");
+
   if ("IntersectionObserver" in window) {
 
-    const videoObserver = new IntersectionObserver((entries, observer) => {
+    const videoObserver = new IntersectionObserver((entries) => {
 
       entries.forEach(entry => {
 
-        if (!entry.isIntersecting) return;
+        const frame = entry.target;
 
-        initializeVideo(entry.target);
+        if (entry.isIntersecting) {
 
-        observer.unobserve(entry.target);
+          if (!initializedFrames.has(frame)) {
+            initializeVideo(frame);
+            initializedFrames.add(frame);
+          }
+
+          if (isVertical(frame) && frame._vimeoPlayer) {
+            frame._vimeoPlayer.play().catch(() => {});
+          }
+
+        } else {
+
+          if (isVertical(frame) && frame._vimeoPlayer) {
+            frame._vimeoPlayer.pause().catch(() => {});
+          }
+
+        }
 
       });
 
     }, {
-      rootMargin: "500px 0px",
-      threshold: 0
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.15
     });
 
     videoFrames.forEach(frame => {
@@ -1500,6 +1545,7 @@ body.menu-open { overflow:hidden }
         frame.dataset.vimeo !== "REPLACE_VIDEO_ID"
       ) {
         initializeVideo(frame);
+        initializedFrames.add(frame);
       }
 
     });
@@ -1549,3 +1595,4 @@ body.menu-open { overflow:hidden }
 
 </body>
 </html>
+```
