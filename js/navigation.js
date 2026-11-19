@@ -80,13 +80,18 @@
     if (link.action) return renderActionButton(link);
 
     return `
-      <a href="${escapeHTML(link.url)}"
+      <a
+        href="${escapeHTML(link.url)}"
         ${isCurrentPage(link.url) ? 'aria-current="page"' : ""}>
         ${escapeHTML(link.label)}
       </a>
     `;
   };
 
+
+  /* ==========================================================
+     EDITORIAL DESKTOP DROPDOWN
+  ========================================================== */
 
   const renderDesktopLink = link => {
     if (link.children?.length) {
@@ -116,9 +121,36 @@
 
             <div class="site-nav-dropdown-inner">
 
-     
+              <div class="site-nav-dropdown-heading">
+                <span>SELECTED WORK</span>
+                <span>${String(link.children.length).padStart(2, "0")} PROJECTS</span>
+              </div>
 
-              ${link.children.map(renderLink).join("")}
+              <div class="site-nav-dropdown-links">
+
+                ${link.children.map((child, index) => `
+                  <a
+                    href="${escapeHTML(child.url)}"
+                    ${isCurrentPage(child.url) ? 'aria-current="page"' : ""}>
+
+                    <span class="site-nav-dropdown-number">
+                      ${String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span class="site-nav-dropdown-title">
+                      ${escapeHTML(child.label)}
+                    </span>
+
+                    <span class="site-nav-dropdown-arrow">↗</span>
+
+                  </a>
+                `).join("")}
+
+              </div>
+
+              <div class="site-nav-dropdown-footer">
+                A DOLL'S HOUSE PICTURES
+              </div>
 
             </div>
 
@@ -132,6 +164,10 @@
   };
 
 
+  /* ==========================================================
+     MOBILE LINK RENDERING
+  ========================================================== */
+
   const renderMobileLink = link => {
     if (link.children?.length) {
       return `
@@ -142,7 +178,8 @@
           </span>
 
           ${link.children.map(child => `
-            <a href="${escapeHTML(child.url)}"
+            <a
+              href="${escapeHTML(child.url)}"
               ${isCurrentPage(child.url) ? 'aria-current="page"' : ""}>
               ${escapeHTML(child.label)}
               <span>↗</span>
@@ -156,7 +193,8 @@
     if (link.action) return renderActionButton(link, true);
 
     return `
-      <a href="${escapeHTML(link.url)}"
+      <a
+        href="${escapeHTML(link.url)}"
         ${isCurrentPage(link.url) ? 'aria-current="page"' : ""}>
         ${escapeHTML(link.label)}
         <span>↗</span>
@@ -166,7 +204,7 @@
 
 
   /* ==========================================================
-     VIDEO URL
+     VIMEO URL
   ========================================================== */
 
   const createVideoUrl = video => {
@@ -211,9 +249,10 @@
     mount.innerHTML = `
       <header class="site-nav-header">
 
-        <a class="site-nav-wordmark"
-           href="/"
-           aria-label="${escapeHTML(brand.name || "Home")} home">
+        <a
+          class="site-nav-wordmark"
+          href="/"
+          aria-label="${escapeHTML(brand.name || "Home")} home">
 
           <span class="site-nav-wordmark-main">
             ${escapeHTML(brand.name)}
@@ -482,6 +521,7 @@
     `;
 
     initialize();
+    requestAnimationFrame(syncLightboxNavigation);
   };
 
 
@@ -509,7 +549,6 @@
 
     /* ==========================================================
        HIDE NAVIGATION ON SCROLL DOWN / REVEAL ON SCROLL UP
-       DESKTOP + MOBILE / SAFARI
     ========================================================== */
 
     const scrollPositions = new WeakMap();
@@ -570,21 +609,48 @@
     );
 
 
-    /* ==========================================================
-       DROPDOWNS
-    ========================================================== */
+   /* ==========================================================
+   DROPDOWNS
+========================================================== */
 
-    const closeDropdowns = () => {
-      mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
-        dropdown.classList.remove("is-open");
+let dropdownCloseTimer = null;
 
-        dropdown.querySelector(".site-nav-dropdown-trigger")
-          ?.setAttribute("aria-expanded", "false");
+const closeDropdowns = () => {
+  clearTimeout(dropdownCloseTimer);
 
-        dropdown.querySelector(".site-nav-dropdown-menu")
-          ?.setAttribute("aria-hidden", "true");
-      });
-    };
+  mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
+    dropdown.classList.remove("is-open");
+
+    dropdown.querySelector(".site-nav-dropdown-trigger")
+      ?.setAttribute("aria-expanded", "false");
+
+    dropdown.querySelector(".site-nav-dropdown-menu")
+      ?.setAttribute("aria-hidden", "true");
+  });
+};
+
+const openDropdown = dropdown => {
+  clearTimeout(dropdownCloseTimer);
+
+  closeDropdowns();
+
+  const button = dropdown.querySelector(".site-nav-dropdown-trigger");
+  const menu = dropdown.querySelector(".site-nav-dropdown-menu");
+
+  if (!button || !menu) return;
+
+  dropdown.classList.add("is-open");
+  button.setAttribute("aria-expanded", "true");
+  menu.setAttribute("aria-hidden", "false");
+};
+
+const scheduleDropdownClose = () => {
+  clearTimeout(dropdownCloseTimer);
+
+  dropdownCloseTimer = setTimeout(() => {
+    closeDropdowns();
+  }, 180);
+};
 
 
     /* ==========================================================
@@ -719,27 +785,54 @@
 
 
     /* ==========================================================
-       DROPDOWN BUTTONS
-    ========================================================== */
+   DROPDOWN BUTTONS — HOVER / CLICK / KEYBOARD
+========================================================== */
 
-    mount.querySelectorAll(".site-nav-dropdown-trigger").forEach(button => {
-      button.addEventListener("click", event => {
-        event.stopPropagation();
+mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
+  const button = dropdown.querySelector(".site-nav-dropdown-trigger");
+  const menu = dropdown.querySelector(".site-nav-dropdown-menu");
 
-        const dropdown = button.closest(".site-nav-dropdown");
-        const menu = dropdown.querySelector(".site-nav-dropdown-menu");
-        const willOpen = !dropdown.classList.contains("is-open");
+  if (!button || !menu) return;
 
-        closeDropdowns();
+  // Open when hovering over the navigation item.
+  dropdown.addEventListener("mouseenter", () => {
+    openDropdown(dropdown);
+  });
 
-        if (willOpen) {
-          dropdown.classList.add("is-open");
-          button.setAttribute("aria-expanded", "true");
-          menu.setAttribute("aria-hidden", "false");
-        }
+  // Delay closing to allow movement into the menu.
+  dropdown.addEventListener("mouseleave", scheduleDropdownClose);
+
+  menu.addEventListener("mouseenter", () => {
+    clearTimeout(dropdownCloseTimer);
+  });
+
+  menu.addEventListener("mouseleave", scheduleDropdownClose);
+
+  // Click support for touchscreens and deliberate interaction.
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (dropdown.classList.contains("is-open")) {
+      closeDropdowns();
+    } else {
+      openDropdown(dropdown);
+    }
+  });
+
+  // Keyboard support.
+  button.addEventListener("keydown", event => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+
+      openDropdown(dropdown);
+
+      requestAnimationFrame(() => {
+        menu.querySelector("a")?.focus();
       });
-    });
-
+    }
+  });
+});
 
     /* ==========================================================
        CONTACT BUTTONS
@@ -762,10 +855,11 @@
       button.addEventListener("click", openAbout);
     });
 
-    // Connect homepage About button to the shared About lightbox
-document
-  .getElementById("studioAboutButton")
-  ?.addEventListener("click", openAbout);
+    // Connect homepage About button to shared About lightbox.
+    document
+      .getElementById("studioAboutButton")
+      ?.addEventListener("click", openAbout);
+
 
     /* ==========================================================
        GENERAL BUTTONS
@@ -853,6 +947,25 @@ document
 
 
   /* ==========================================================
+     LIGHTBOX NAVIGATION HEIGHT SYNCHRONIZATION
+  ========================================================== */
+
+  function syncLightboxNavigation() {
+    const siteNavigation = document.querySelector("#site-navigation");
+    const header = siteNavigation?.querySelector(".site-nav-header");
+
+    if (!header) return;
+
+    const height = header.getBoundingClientRect().height;
+
+    document.documentElement.style.setProperty(
+      "--actual-site-nav-height",
+      `${height}px`
+    );
+  }
+
+
+  /* ==========================================================
      LOAD NAVIGATION CONFIGURATION
   ========================================================== */
 
@@ -875,38 +988,23 @@ document
       `;
     });
 
-/* ============================================================
-   LIGHTBOX NAVIGATION HEIGHT SYNCHRONIZATION
-============================================================ */
 
-function syncLightboxNavigation() {
-  const siteNavigation = document.querySelector("#site-navigation");
-  const header = siteNavigation?.querySelector(".site-nav-header");
+  /* ==========================================================
+     RESIZE / LOAD / DOM OBSERVER
+  ========================================================== */
 
-  if (!header) return;
+  window.addEventListener("resize", syncLightboxNavigation);
+  window.addEventListener("load", syncLightboxNavigation);
 
-  const height = header.getBoundingClientRect().height;
+  const navigationObserver = new MutationObserver(() => {
+    requestAnimationFrame(syncLightboxNavigation);
+  });
 
-  document.documentElement.style.setProperty(
-    "--actual-site-nav-height",
-    `${height}px`
-  );
-}
-
-window.addEventListener("resize", syncLightboxNavigation);
-window.addEventListener("load", syncLightboxNavigation);
-
-const navigationObserver = new MutationObserver(() => {
-  requestAnimationFrame(syncLightboxNavigation);
-});
-
-if (mount) {
   navigationObserver.observe(mount, {
     childList: true,
     subtree: true
   });
-}
 
-requestAnimationFrame(syncLightboxNavigation);
+  requestAnimationFrame(syncLightboxNavigation);
 
 })();
