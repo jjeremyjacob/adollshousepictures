@@ -374,8 +374,11 @@ const projects = [
     category: "Short Film",
     type: "vimeo",
     vimeo: "1226948282",
+        hash: "520804b73a",
     format: "wide",
     description: "Works & Process at the Guggenheim",
+            thumbnail: "images/thumbnails/goodnight.jpg",
+
     credits: [
     { role: "A Film by", names: ["Jeremy Jacob"] },
     { role: "Created by", names: ["Jack Ferver", "Jeremy Jacob"] },
