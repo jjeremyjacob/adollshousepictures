@@ -1532,9 +1532,11 @@ function renderCarousel(project) {
                 <div class="carousel-stage">
 
                     <button
-                        class="carousel-arrow carousel-prev"
-                        type="button"
-                        aria-label="Previous image">←</button>
+    class="carousel-arrow carousel-prev"
+    type="button"
+    aria-label="Previous image">
+    <span aria-hidden="true"></span>
+</button>
 
                     <div class="carousel-image-wrap">
                         ${images.map((image, index) => `
@@ -1547,10 +1549,12 @@ function renderCarousel(project) {
                         `).join("")}
                     </div>
 
-                    <button
-                        class="carousel-arrow carousel-next"
-                        type="button"
-                        aria-label="Next image">→</button>
+                   <button
+    class="carousel-arrow carousel-next"
+    type="button"
+    aria-label="Next image">
+    <span aria-hidden="true"></span>
+</button>
 
                 </div>
 
