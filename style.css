@@ -2113,11 +2113,15 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
   /* Hero dimensions */
 
   .hero,
-  .hero.studio-hero,
-  .featuredproject {
-    height: calc(78svh + 50px);
-    min-height: 590px;
-  }
+.featuredproject {
+  height: calc(78svh + 50px);
+  min-height: 590px;
+}
+
+.studio-hero {
+  height: calc(90svh + 50px);
+  min-height: 700px;
+}
 
   .studio-hero .hero-topline,
   .featuredproject .hero-topline {
