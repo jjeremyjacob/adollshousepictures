@@ -2641,13 +2641,13 @@ body.detail-open .detail-content {
 
 @media (max-width: 650px) {
 
-  body.detail-open .detail-content {
-    padding-top: calc(
-      var(--actual-site-nav-height) +
-      var(--detail-nav-height) +
-      20px
-    ) !important;
-  }
+body.detail-open .detail-content {
+  padding-top: calc(
+    var(--actual-site-nav-height) +
+    var(--detail-nav-height) +
+    58px
+  ) !important;
+}
 }
 
 
