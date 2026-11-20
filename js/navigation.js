@@ -230,6 +230,67 @@
 
 
   /* ==========================================================
+     ABOUT SECTION RENDERING
+  ========================================================== */
+
+  const renderAboutSection = (section, index) => {
+    const number = section.number || String(index + 1).padStart(2, "0");
+
+    return `
+      <section class="site-about-section">
+
+        <div class="site-about-section-heading">
+          <span>${escapeHTML(number)}</span>
+          <span>${escapeHTML(section.label || "")}</span>
+        </div>
+
+        <div class="site-about-section-copy">
+
+          ${section.headline ? `
+            <h3 class="site-about-section-title">
+              ${escapeHTML(section.headline)}
+            </h3>
+          ` : ""}
+
+          ${section.paragraph ? `
+            <p>${escapeHTML(section.paragraph)}</p>
+          ` : ""}
+
+        </div>
+
+      </section>
+    `;
+  };
+
+
+  const renderAboutSections = about => {
+    if (Array.isArray(about.sections) && about.sections.length) {
+      return about.sections
+        .map(renderAboutSection)
+        .join("");
+    }
+
+    return `
+      <section class="site-about-section">
+        <div class="site-about-section-heading">
+          <span>01</span>
+          <span>WHO WE ARE</span>
+        </div>
+        <div class="site-about-section-copy">
+          <p>
+            A Doll’s House Pictures is an independent creative studio
+            founded by Jeremy Jacob, working across film, motion,
+            photography, and design. The studio creates image-driven
+            work shaped by storytelling, atmosphere, and a considered
+            visual language.
+          </p>
+        </div>
+      </section>
+    `;
+  };
+
+
+  /* ==========================================================
      NAVIGATION HTML
   ========================================================== */
 
@@ -350,9 +411,7 @@
               <div class="site-about-headline">
 
                 <h2 id="site-about-title" class="site-about-title">
-                  We develop ideas.<br>
-                  Shape identities.<br>
-                  Craft stories<span>.</span>
+                  ${escapeHTML(about.headline || "We develop ideas. Shape identities. Craft stories.")}
                 </h2>
 
               </div>
@@ -371,33 +430,8 @@
 
             <div class="site-about-copy">
 
-              <div class="site-about-copy-main">
-                <p>
-                  A Doll’s House Pictures is an independent creative studio
-                  founded by Jeremy Jacob, working across film, motion,
-                  photography, and design. The studio creates image-driven
-                  work shaped by storytelling, atmosphere, and a considered
-                  visual language.
-                </p>
-              </div>
-
-              <div class="site-about-copy-secondary">
-                <p>
-                  Working with brands, artists, and cultural organizations,
-                  the studio develops commercial, editorial, and artist-driven
-                  projects across moving image and still photography. From
-                  campaigns and branded content to experimental films and
-                  visual projects, A Doll’s House Pictures brings together
-                  creative direction, production, design, and filmmaking
-                  with a strong point of view.
-                </p>
-
-                <p>
-                  Based in the Hudson Valley and working in New York City
-                  and beyond, the studio moves between culture, fashion,
-                  performance, and commerce, exploring the space where
-                  commercial craft and artistic experimentation meet.
-                </p>
+              <div class="site-about-sections">
+                ${renderAboutSections(about)}
               </div>
 
               <div class="site-about-links">
@@ -609,48 +643,48 @@
     );
 
 
-   /* ==========================================================
-   DROPDOWNS
-========================================================== */
+    /* ==========================================================
+       DROPDOWNS
+    ========================================================== */
 
-let dropdownCloseTimer = null;
+    let dropdownCloseTimer = null;
 
-const closeDropdowns = () => {
-  clearTimeout(dropdownCloseTimer);
+    const closeDropdowns = () => {
+      clearTimeout(dropdownCloseTimer);
 
-  mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
-    dropdown.classList.remove("is-open");
+      mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
+        dropdown.classList.remove("is-open");
 
-    dropdown.querySelector(".site-nav-dropdown-trigger")
-      ?.setAttribute("aria-expanded", "false");
+        dropdown.querySelector(".site-nav-dropdown-trigger")
+          ?.setAttribute("aria-expanded", "false");
 
-    dropdown.querySelector(".site-nav-dropdown-menu")
-      ?.setAttribute("aria-hidden", "true");
-  });
-};
+        dropdown.querySelector(".site-nav-dropdown-menu")
+          ?.setAttribute("aria-hidden", "true");
+      });
+    };
 
-const openDropdown = dropdown => {
-  clearTimeout(dropdownCloseTimer);
+    const openDropdown = dropdown => {
+      clearTimeout(dropdownCloseTimer);
 
-  closeDropdowns();
+      closeDropdowns();
 
-  const button = dropdown.querySelector(".site-nav-dropdown-trigger");
-  const menu = dropdown.querySelector(".site-nav-dropdown-menu");
+      const button = dropdown.querySelector(".site-nav-dropdown-trigger");
+      const menu = dropdown.querySelector(".site-nav-dropdown-menu");
 
-  if (!button || !menu) return;
+      if (!button || !menu) return;
 
-  dropdown.classList.add("is-open");
-  button.setAttribute("aria-expanded", "true");
-  menu.setAttribute("aria-hidden", "false");
-};
+      dropdown.classList.add("is-open");
+      button.setAttribute("aria-expanded", "true");
+      menu.setAttribute("aria-hidden", "false");
+    };
 
-const scheduleDropdownClose = () => {
-  clearTimeout(dropdownCloseTimer);
+    const scheduleDropdownClose = () => {
+      clearTimeout(dropdownCloseTimer);
 
-  dropdownCloseTimer = setTimeout(() => {
-    closeDropdowns();
-  }, 180);
-};
+      dropdownCloseTimer = setTimeout(() => {
+        closeDropdowns();
+      }, 180);
+    };
 
 
     /* ==========================================================
@@ -785,54 +819,51 @@ const scheduleDropdownClose = () => {
 
 
     /* ==========================================================
-   DROPDOWN BUTTONS — HOVER / CLICK / KEYBOARD
-========================================================== */
+       DROPDOWN BUTTONS — HOVER / CLICK / KEYBOARD
+    ========================================================== */
 
-mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
-  const button = dropdown.querySelector(".site-nav-dropdown-trigger");
-  const menu = dropdown.querySelector(".site-nav-dropdown-menu");
+    mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
+      const button = dropdown.querySelector(".site-nav-dropdown-trigger");
+      const menu = dropdown.querySelector(".site-nav-dropdown-menu");
 
-  if (!button || !menu) return;
+      if (!button || !menu) return;
 
-  // Open when hovering over the navigation item.
-  dropdown.addEventListener("mouseenter", () => {
-    openDropdown(dropdown);
-  });
-
-  // Delay closing to allow movement into the menu.
-  dropdown.addEventListener("mouseleave", scheduleDropdownClose);
-
-  menu.addEventListener("mouseenter", () => {
-    clearTimeout(dropdownCloseTimer);
-  });
-
-  menu.addEventListener("mouseleave", scheduleDropdownClose);
-
-  // Click support for touchscreens and deliberate interaction.
-  button.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (dropdown.classList.contains("is-open")) {
-      closeDropdowns();
-    } else {
-      openDropdown(dropdown);
-    }
-  });
-
-  // Keyboard support.
-  button.addEventListener("keydown", event => {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-
-      openDropdown(dropdown);
-
-      requestAnimationFrame(() => {
-        menu.querySelector("a")?.focus();
+      dropdown.addEventListener("mouseenter", () => {
+        openDropdown(dropdown);
       });
-    }
-  });
-});
+
+      dropdown.addEventListener("mouseleave", scheduleDropdownClose);
+
+      menu.addEventListener("mouseenter", () => {
+        clearTimeout(dropdownCloseTimer);
+      });
+
+      menu.addEventListener("mouseleave", scheduleDropdownClose);
+
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (dropdown.classList.contains("is-open")) {
+          closeDropdowns();
+        } else {
+          openDropdown(dropdown);
+        }
+      });
+
+      button.addEventListener("keydown", event => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+
+          openDropdown(dropdown);
+
+          requestAnimationFrame(() => {
+            menu.querySelector("a")?.focus();
+          });
+        }
+      });
+    });
+
 
     /* ==========================================================
        CONTACT BUTTONS
@@ -855,7 +886,6 @@ mount.querySelectorAll(".site-nav-dropdown").forEach(dropdown => {
       button.addEventListener("click", openAbout);
     });
 
-    // Connect homepage About button to shared About lightbox.
     document
       .getElementById("studioAboutButton")
       ?.addEventListener("click", openAbout);
