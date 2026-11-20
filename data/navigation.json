@@ -1,3 +1,4 @@
+
 {
   "brand": {
     "name": "A Doll's House",
@@ -5,25 +6,24 @@
     "description": "Independent creative studio",
     "location": "New York / Hudson Valley"
   },
-"links": [
-  
+  "links": [
     {
-  "label": "Stories",
-  "children": [
-    {
-      "label": "Fisher Center at Bard",
-      "url": "/fishercenter.html"
+      "label": "Stories",
+      "children": [
+        {
+          "label": "Fisher Center at Bard",
+          "url": "/fishercenter.html"
+        },
+        {
+          "label": "Romber Works",
+          "url": "/romberworks.html"
+        },
+        {
+          "label": "Stissing House",
+          "url": "/stissinghouse.html"
+        }
+      ]
     },
-    {
-      "label": "Romber Works",
-      "url": "/romberworks.html"
-    },
-    {
-      "label": "Stissing House",
-      "url": "/stissinghouse.html"
-    }
-  ]
-},
     {
       "label": "About",
       "action": "about"
@@ -33,9 +33,9 @@
       "action": "contact"
     },
     {
-    "label": "Home",
-    "url": "/"
-  }
+      "label": "Home",
+      "url": "/"
+    }
   ],
   "footer": {
     "description": "Independent creative studio",
@@ -63,7 +63,7 @@
       {
         "number": "01",
         "label": "WHO WE ARE",
-        "paragraph": "A Doll’s House Pictures is an independent creative studio founded by Jeremy Jacob, working across film, motion, photography, and design. The studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language."
+        "paragraph": "A Doll’s House Pictures is an independent creative studio founded by filmmaker and creative director Jeremy Jacob. Working across film, motion, photography, and design, the studio creates image-driven work shaped by storytelling, atmosphere, and a considered visual language."
       },
       {
         "number": "02",
@@ -74,9 +74,13 @@
         "number": "03",
         "label": "WHERE WE WORK",
         "paragraph": "Based in the Hudson Valley and working in New York City and beyond, the studio moves between culture, fashion, performance, and commerce, exploring the space where commercial craft and artistic experimentation meet."
-      }
-    ],
-    "contactLabel": "04 — GET IN TOUCH",
+      },
+{
+  "number": "04",
+  "label": "THE FOUNDER",
+  "paragraph": "JEREMY JACOB is a filmmaker, photographer, and creative director whose work moves between commercial storytelling and the performing arts. His practice spans direction, cinematography, editing, sound, and design, with an interest in the relationship between image, movement, music, and atmosphere. Working across disciplines and in close collaboration with artists, performers, designers, and institutions, he brings a filmmaker’s sensibility to a wide range of projects. Through A Doll’s House Pictures, he brings these interests together in a collaborative studio practice based in the Hudson Valley and working throughout New York and beyond."
+}    ],
+    "contactLabel": "05 — GET IN TOUCH",
     "contactHeadline": "Have a project in mind?",
     "email": "adollshousepictures@gmail.com",
     "emailUrl": "mailto:adollshousepictures@gmail.com",
