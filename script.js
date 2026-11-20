@@ -526,7 +526,7 @@ const projects = [
 },
 
 {
-    title: "Little Lad: ANNA",
+    title: "The Little Lad: Anna",
     category: "Short Film",
     type: "vimeo",
     vimeo: "1227003478",
@@ -862,6 +862,16 @@ function createCard(project, index, number) {
     );
 
     card.innerHTML = `
+        <div class="card-topline">
+            <span class="card-number">
+                ${pad(number)} / ${escapeHTML(projectGroup(project))}
+            </span>
+
+            <span class="card-category">
+                ${escapeHTML(project.category || "")}
+            </span>
+        </div>
+
         <div class="card-media">
             ${
                 thumb
@@ -878,11 +888,6 @@ function createCard(project, index, number) {
 
         <div class="card-meta">
             <h3 class="card-title">${escapeHTML(project.title)}</h3>
-            <span class="card-category">${escapeHTML(project.category || "")}</span>
-        </div>
-
-        <div class="card-number">
-            ${pad(number)} / ${escapeHTML(projectGroup(project))}
         </div>
     `;
 
