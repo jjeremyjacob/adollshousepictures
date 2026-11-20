@@ -32,7 +32,10 @@ const projects = [
     thumbnail: "images/thumbnails/nike.jpg",
     format: "vertical",
     description: "",
-    credits: []
+    credits: [
+            { role: "Creative Direction, Photography, Editing and Sound Design by", names: ["Jeremy Jacob"] },
+    { role: "Choreographed and Performed by", names: ["Jack Ferver"] },
+    ]
 },
 
 {
@@ -117,7 +120,7 @@ const projects = [
     type: "vimeo",
     vimeo: "1226955261",
     hash: "c019cba0b1",
-    format: "wide",
+    format: "vertical",
     thumbnail: "images/thumbnails/stissinghouse_oysters.jpg",
     description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
     credits: [
@@ -221,6 +224,7 @@ const projects = [
     category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1180594270",
+    hash: "e61094d60c",
     format: "wide",
     description: "Fisher Center at Bard",
     credits: [
@@ -237,6 +241,7 @@ const projects = [
     category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1189497026",
+    hash: "544bd60fa9",
     format: "wide",
     description: "Fisher Center at Bard",
     credits: [
@@ -393,16 +398,18 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Fish Pie",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1110256553",
+    hash: "6b6b1e879b",
     format: "vertical",
             thumbnail: "images/thumbnails/stissinghouse_fishpie.jpg",
 
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Featuring", names: ["Fish Pie"] }
+                { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
@@ -451,7 +458,7 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Duck",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1135779851",
@@ -461,7 +468,8 @@ const projects = [
 
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Featuring", names: ["Duck"] }
+                { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
@@ -487,14 +495,15 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Cobbler",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1119623841",
     format: "vertical",
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Featuring", names: ["Cobbler"] }
+                { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
@@ -617,7 +626,7 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Squash",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1226973263",
@@ -627,7 +636,8 @@ const projects = [
 
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Featuring", names: ["Squash"] }
+                { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 }
 
