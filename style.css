@@ -905,6 +905,10 @@ a {
   transform: none;
 }
 
+.card-topline {
+  margin-bottom: 6px;
+}
+
 .card-meta {
   display: flex;
   justify-content: space-between;
@@ -1300,6 +1304,7 @@ body.detail-open .detail-bottom {
 
   pointer-events: none;
 }
+
 /* Vertical navigation labels */
 
 body.detail-open .detail-bottom .detail-step {
@@ -1318,7 +1323,7 @@ body.detail-open .detail-bottom .detail-step {
   color: rgba(238, 234, 226, .58);
 
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 400;
   letter-spacing: .12em;
   line-height: 1.5;
@@ -2250,23 +2255,32 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
     aspect-ratio: 16 / 9;
   }
 
-  .card-meta {
+    .card-meta {
     display: block;
+    padding-top: 19px;
   }
 
+  .card-topline {
+  margin-bottom: 6px;
+}
+
   .card-title {
+    min-height: 2.2em;
     font-size: 18px;
   }
 
   .card-category {
     display: block;
-    margin-top: 5px;
+    margin-top: 0;
     font-size: 7px;
+    line-height: 1.2;
     text-align: left;
   }
 
   .card-number {
+    margin-top: 2px;
     font-size: 7px;
+    line-height: 1.2;
   }
 
   /* Studio note */
@@ -2716,37 +2730,29 @@ body.detail-open .detail-content {
   transition: transform .35s cubic-bezier(.2, .7, .2, 1);
 }
 
-/* Arrow placement inside circles */
-
 .carousel-prev span {
-  transform: translateX(2px) rotate(-135deg);
+  transform: rotate(-135deg);
 }
 
 .carousel-next span {
-  transform: translateX(-2px) rotate(45deg);
+  transform: rotate(45deg);
 }
-
-/* Hover movement */
 
 .carousel-prev:hover span {
-  transform: translateX(-1px) rotate(-135deg);
-}
-
-.carousel-next:hover span {
-  transform: translateX(1px) rotate(45deg);
-}
-
-/* Active movement */
-
-.carousel-prev:active span {
   transform: translateX(-3px) rotate(-135deg);
 }
 
-.carousel-next:active span {
+.carousel-next:hover span {
   transform: translateX(3px) rotate(45deg);
 }
 
-/* Circle hover */
+.carousel-prev:active span {
+  transform: translateX(-5px) rotate(-135deg);
+}
+
+.carousel-next:active span {
+  transform: translateX(5px) rotate(45deg);
+}
 
 .carousel-arrow:hover {
   color: #fff;
@@ -2754,14 +2760,13 @@ body.detail-open .detail-content {
   background: rgba(0, 0, 0, .5);
 }
 
-/* Reduced motion */
-
 @media (prefers-reduced-motion: reduce) {
   .carousel-arrow,
   .carousel-arrow span {
     transition: none;
   }
 }
+
 
 /* ============================================================
    END — MASTER STYLESHEET
