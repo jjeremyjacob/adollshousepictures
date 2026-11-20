@@ -529,6 +529,7 @@ a {
   line-height: .78;
   letter-spacing: -.055em;
   white-space: nowrap;
+  animation: heroKerning 60s linear forwards;
 }
 
 .studio-hero .hero-title-sub {
@@ -541,6 +542,20 @@ a {
   line-height: 1;
   letter-spacing: .38em;
   color: var(--ink);
+  animation: heroKerningSub 60s linear forwards;
+}
+
+
+/* Subtitle: slow expansion over 60 seconds */
+
+@keyframes heroKerningSub {
+  from {
+    letter-spacing: .38em;
+  }
+
+  to {
+    letter-spacing: 1.5em;
+  }
 }
 
 .studio-hero .hero-bottom {
@@ -1679,6 +1694,7 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
   opacity: 1;
   pointer-events: auto;
 }
+
 .carousel-arrow {
   position: absolute;
   z-index: 2;
@@ -2099,8 +2115,8 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
   .hero,
   .hero.studio-hero,
   .featuredproject {
-    height: 78svh;
-    min-height: 540px;
+    height: calc(78svh + 50px);
+    min-height: 590px;
   }
 
   .studio-hero .hero-topline,
@@ -2128,6 +2144,7 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
     font-size: clamp(76px, 19vw, 112px);
     line-height: .73;
     letter-spacing: -.065em;
+    animation: heroKerningMobile 60s linear forwards;
   }
 
   .studio-hero .hero-title-sub {
@@ -2141,6 +2158,21 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
     letter-spacing: .24em;
     line-height: 1;
     white-space: nowrap;
+    animation: heroKerningSubMobile 60s linear forwards;
+  }
+
+
+
+  /* Mobile subtitle animation */
+
+  @keyframes heroKerningSubMobile {
+    from {
+      letter-spacing: .14em;
+    }
+
+    to {
+      letter-spacing: .85em;
+    }
   }
 
   .studio-hero .hero-bottom {
@@ -2255,14 +2287,14 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
     aspect-ratio: 16 / 9;
   }
 
-    .card-meta {
+  .card-meta {
     display: block;
     padding-top: 19px;
   }
 
   .card-topline {
-  margin-bottom: 6px;
-}
+    margin-bottom: 6px;
+  }
 
   .card-title {
     min-height: 2.2em;
@@ -2656,13 +2688,13 @@ body.detail-open .detail-content {
 
 @media (max-width: 650px) {
 
-body.detail-open .detail-content {
-  padding-top: calc(
-    var(--actual-site-nav-height) +
-    var(--detail-nav-height) +
-    58px
-  ) !important;
-}
+  body.detail-open .detail-content {
+    padding-top: calc(
+      var(--actual-site-nav-height) +
+      var(--detail-nav-height) +
+      58px
+    ) !important;
+  }
 }
 
 
@@ -2675,7 +2707,12 @@ body.detail-open .detail-content {
 }
 
 .desktop-title {
-  display: inline;
+  display: inline-block;
+  font-size: clamp(150px, 18vw, 280px);
+  line-height: .68;
+  letter-spacing: -.075em;
+    transform: translateX(-12px);
+
 }
 
 @media (max-width: 700px) {
