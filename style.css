@@ -524,7 +524,7 @@ a {
 .studio-hero .hero-title-main {
   display: block;
   font-family: var(--serif);
-  font-size: clamp(76px, 11vw, 160px);
+font-size: clamp(76px, 9vw, 100px);
   font-weight: 500;
   line-height: .78;
   letter-spacing: -.055em;
@@ -2723,7 +2723,7 @@ body.detail-open .detail-content {
 
 .desktop-title {
   display: inline-block;
-  font-size: clamp(150px, 18vw, 280px);
+  font-size: clamp(150px, 18vw, 180px);
   line-height: .68;
   letter-spacing: -.075em;
     transform: translateX(-12px);
