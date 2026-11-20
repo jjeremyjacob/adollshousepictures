@@ -2123,6 +2123,17 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
   min-height: 700px;
 }
 
+.studio-hero .studio-hero-image {
+  inset: 0;
+}
+
+.studio-hero .studio-hero-image iframe {
+  width: 177.78vh;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
+}
+
   .studio-hero .hero-topline,
   .featuredproject .hero-topline {
     top: 24px;
