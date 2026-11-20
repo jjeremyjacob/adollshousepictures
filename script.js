@@ -7,7 +7,7 @@
 const projects = [
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Craft Feast 2026",
     category: "2026 Craft Feast",
     type: "triple-vimeo",
     videos: [
@@ -36,15 +36,24 @@ const projects = [
 },
 
 {
-    title: "Storm King - Girl Group",
-    category: "Performance Highlights",
+    title: "Storm King / Girl Group",
+    category: "Performance Documentation",
     type: "vimeo",
     vimeo: "1007644295",
     thumbnail: "images/thumbnails/stormking_girlgroup.jpg",
     format: "wide",
-    description: "Girl Group",
+    description: "Girl Group — Arlene Shechet x Annie-B Parson",
     credits: [
-        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
+        { role: "Film Direction, Cinematography, and Editing", names: ["Jeremy Jacob"] },
+        { role: "Artist", names: ["Arlene Shechet"] },
+        { role: "Choreography", names: ["Annie-B Parson"] },
+        { role: "Choreography in Collaboration with", names: ["Cecily Campbell", "Elizabeth DeMent", "Natalie Green", "Kashia Kancey", "Brooke Ashley Rucker", "Jin Ju Song-Begin"] },
+        { role: "Costumes", names: ["Arlene Shechet"] },
+        { role: "Sound Design", names: ["Tei Blow"] },
+        { role: "Sound Supervision", names: ["Kwamina Binne"] },
+        { role: "Stage Manager", names: ["Sara Procopio"] },
+        { role: "Produced by", names: ["Storm King Art Center", "Big Dance Theater"] },
+        { role: "Film Production", names: ["A Doll's House Pictures"] }
     ]
 },
 
@@ -78,7 +87,9 @@ const projects = [
     format: "vertical",
     description: "A series of short-form films created for Talbott & Arding in Hudson, New York.",
     credits: [
-        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
+        { role: "Creative Direction, Direction, Cinematography, and Editing", names: ["Jeremy Jacob"] },
+        { role: "Production", names: ["A Doll's House Pictures"] },
+        { role: "Client", names: ["Talbott & Arding"] }
     ]
 },
 
@@ -101,7 +112,7 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Oysters",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1226955261",
@@ -110,12 +121,13 @@ const projects = [
     thumbnail: "images/thumbnails/stissinghouse_oysters.jpg",
     description: "A series of short-form films created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
+        { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
 {
-    title: "Cole Haan",
+    title: "Cole Haan / Urban Jungle",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1227036895",
@@ -126,7 +138,7 @@ const projects = [
 },
 
 {
-    title: "Stissing House",
+    title: "Stissing House / Sticky Toffee",
     category: "Social Campaign",
     type: "vimeo",
     vimeo: "1135735488",
@@ -135,12 +147,13 @@ const projects = [
     format: "vertical",
     description: "A series of short-form stories created for Stissing House in Pine Plains, New York.",
     credits: [
-        { role: "Featuring", names: ["Sticky Toffee"] }
+        { role: "Direction, Photography, & Editing", names: ["Jeremy Jacob"] },
+        { role: "Creative Direction", names: ["Katie Pierce", "Stissing House"] }
     ]
 },
 
 {
-    title: "Munner Farm",
+    title: "Munner Farm / Summer 2026",
     category: "Photography",
     type: "carousel",
     images: [
@@ -167,12 +180,15 @@ const projects = [
     thumbnail: "images/thumbnails/stormking_growth.jpg",
     description: "Growth: The Watch",
     credits: [
-        { role: "Creative Direction", names: ["Jeremy Jacob", "A Doll's House Pictures"] }
+        { role: "Direction, Cinematography, Editing, and Post-Production", names: ["Jeremy Jacob"] },
+        { role: "Artist", names: ["Kevin Beasley"] },
+        { role: "Performance", names: ["Kevin Beasley"] },
+        { role: "Presented by", names: ["Storm King Art Center"] }
     ]
 },
 
 {
-    title: "Romber Works",
+    title: "Romber Works / Ross Brown",
     category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1119062430",
@@ -207,7 +223,13 @@ const projects = [
     vimeo: "1180594270",
     format: "wide",
     description: "Fisher Center at Bard",
-    credits: []
+    credits: [
+        { role: "Campaign Direction, Photography, Editing, and Titles by", names: ["Jeremy Jacob"] },
+        { role: "Choreography", names: ["Lucinda Childs"] },
+        { role: "Music", names: ["Philip Glass", "John Adams", "Johann Sebastian Bach"] },
+        { role: "Featuring", names: ["Lucinda Childs Dance Company"] },
+        { role: "Presented by", names: ["Fisher Center at Bard"] }
+    ]
 },
 
 {
@@ -217,7 +239,22 @@ const projects = [
     vimeo: "1189497026",
     format: "wide",
     description: "Fisher Center at Bard",
-    credits: []
+    credits: [
+        { role: "Campaign Direction, Photography, Editing and Titles by", names: ["Jeremy Jacob"] },
+        { role: "Music", names: ["Courtney Bryan"] },
+        { role: "Libretto", names: ["Gideon Lester", "Daniel Fish"] },
+        { role: "Direction", names: ["Daniel Fish"] },
+        { role: "Music Direction & Supervision", names: ["Nathan Koci"] },
+        { role: "Scenic Design", names: ["Marsha Ginsberg"] },
+        { role: "Costume Design", names: ["Terese Wadden"] },
+        { role: "Lighting Design", names: ["Stacey Derosier"] },
+        { role: "Projection Design", names: ["Joshua Thorson"] },
+        { role: "Sound Design", names: ["Garth MacAleavey"] },
+        { role: "Movement Direction", names: ["Beth Gill"] },
+        { role: "Hair & Wig Design", names: ["Bobbie Zlotnik"] },
+        { role: "Makeup Design", names: ["Anne Ford-Coates"] },
+        { role: "Producer", names: ["Carter Edwards"] }
+    ]
 },
 
 {
@@ -228,11 +265,16 @@ const projects = [
     format: "wide",
     description: "American Ballet Theatre",
     credits: [
-        { role: "Direction, Music, Editing, and Produced by", names: ["Jeremy Jacob"] },
-        { role: "Choreography", names: ["Pam Tanowitz"] },
+        { role: "A Film by", names: ["Pam Tanowitz", "Jeremy Jacob"] },
+        { role: "Directed, Edited, Color, Sound Design, and Title Design by", names: ["Jeremy Jacob"] },
+        { role: "Choreography by", names: ["Pam Tanowitz"] },
         { role: "Starring", names: ["David Hallberg"] },
-        { role: "Director of Photography", names: ["Daniel Rampulla"] },
-        { role: "Costume Design by", names: ["Reid Bartelme and Harriet Jung"] }
+        { role: "Cinematography", names: ["Daniel Rampulla"] },
+        { role: "Music", names: ["Lawrence Baldwin", "Luigi Boccherini"] },
+        { role: "Costume Design", names: ["Reid Bartelme", "Harriet Jung"] },
+        { role: "Produced by", names: ["Pam Tanowitz Dance", "A Doll's House Pictures"] },
+        { role: "Commissioned by", names: ["American Ballet Theatre"] },
+        { role: "Additional Support", names: ["Fisher Center at Bard"] }
     ]
 },
 
@@ -241,12 +283,22 @@ const projects = [
     category: "Dance Film Trailer",
     type: "vimeo",
     vimeo: "657102461",
+    hash: "6c9471ddb3",
     format: "wide",
     description: "Fisher Center at Bard",
     credits: [
-        { role: "Direction, Editing, and Produced by", names: ["Jeremy Jacob"] },
+        { role: "Directed, Edited, Color, Sound Design, and Title Design by", names: ["Jeremy Jacob"] },
         { role: "Choreography by", names: ["Pam Tanowitz"] },
-        { role: "Director of Photography", names: ["Daniel Rampulla"] }
+        { role: "Cinematography", names: ["Daniel Rampulla"] },
+        { role: "Music", names: ["Jessie Montgomery", "Big Dog Little Dog"] },
+        { role: "Featuring", names: ["Jason Collins", "Brittany Engel-Adams", "Christine Flores", "Zachary Gonder", "Lindsey Jones", "Victor Lozano", "Maile Okamura", "Melissa Toogood"] },
+        { role: "Costume Design", names: ["Reid Bartelme", "Harriet Jung"] },
+        { role: "Music Design and Mixing", names: ["Garth MacAleavey"] },
+        { role: "Recording Engineering", names: ["Danny Blume"] },
+        { role: "Music Arrangements", names: ["Eleanore Oppenheim"] },
+        { role: "Produced by", names: ["Caleb Hammons", "Jeremy Jacob"] },
+        { role: "Executive Producer", names: ["Gideon Lester"] },
+        { role: "Production", names: ["Fisher Center at Bard", "A Doll's House Pictures"] }
     ]
 },
 
@@ -320,10 +372,12 @@ const projects = [
     format: "wide",
     description: "Works & Process at the Guggenheim",
     credits: [
-        { role: "Film by", names: ["Jeremy Jacob"] },
-        { role: "Text & Choreography", names: ["Jack Ferver"] },
-        { role: "Commissioned by", names: ["Works & Process at the Guggenheim"] }
-    ]
+    { role: "A Film by", names: ["Jeremy Jacob"] },
+    { role: "Created by", names: ["Jack Ferver", "Jeremy Jacob"] },
+    { role: "Written, Choreographed, and Performed by", names: ["Jack Ferver"] },
+    { role: "Commissioned by", names: ["Works & Process at the Guggenheim"] },
+    { role: "Co-Presented by", names: ["New York Live Arts"] }
+]
 },
 
 {
@@ -359,11 +413,16 @@ const projects = [
     vimeo: "1226957906",
     format: "wide",
     description: "Dance Film",
-    credits: [
-        { role: "Direction", names: ["Jeremy Jacob"] },
-        { role: "Choreography", names: ["Abby Zbikowski"] },
-        { role: "Photography", names: ["Jeremy Jacob and Daniel Rampulla"] }
-    ]
+   credits: [
+    { role: "Director", names: ["Jeremy Jacob"] },
+    { role: "Director of Photography", names: ["Daniel Rampulla"] },
+    { role: "Choreography", names: ["Abby Zbikowski"] },
+    { role: "Dramaturgy", names: ["Momar Ndiaye"] },
+    { role: "Performers", names: ["Alex Gossen", "Kashia Kancey", "Fiona Lundie", "Jennifer Meckley", "Benjamin Roach", "Jinsei Sato"] },
+    { role: "Original Music", names: ["Raphael Xavier"] },
+    { role: "Commissioned by", names: ["Dance Umbrella"] },
+    { role: "Production", names: ["A Doll's House Pictures"] }
+]
 },
 
 {
@@ -414,7 +473,17 @@ const projects = [
     format: "wide",
         thumbnail: "images/thumbnails/rodelinda.jpg",
     description: "Hudson Hall",
-    credits: []
+    credits: [
+    { role: "Direction & Production", names: ["R.B. Schlather"] },
+    { role: "Cast", names: ["Keely Futterer", "Sun-Ly Pierce", "Karim Sulayman", "Teresa Buchholz", "Douglas Williams", "Brennan Hall"] },
+    { role: "Associate Designer", names: ["Jiaying Zhang"] },
+    { role: "Lighting Design", names: ["Masha Tsimring"] },
+    { role: "Dramaturgy", names: ["Joseph Cermatori"] },
+    { role: "Hair & Makeup", names: ["Matia Emsellem"] },
+    { role: "Assistant Director", names: ["Emily Cuk"] },
+    { role: "Musical Preparation", names: ["David Sytkowski"] },
+    { role: "Presented by", names: ["Hudson Hall"] }
+]
 },
 
 {
@@ -436,7 +505,12 @@ const projects = [
     vimeo: "1226960266",
     format: "wide",
     description: "Chris Garneau",
-    credits: []
+    credits: [
+        { role: "Directed, Edited, and Produced by", names: ["Jeremy Jacob"] },
+        { role: "Choreography by", names: ["Jack Ferver"] },
+        { role: "Director of Photography", names: ["Daniel Rampulla"] },
+        { role: "Costumes by", names: ["Reid Bartelme"] }
+    ]
 },
 
 {
@@ -448,9 +522,9 @@ const projects = [
         thumbnail: "images/thumbnails/anna.jpg",
     description: "",
     credits: [
-        { role: "Direction", names: ["Jeremy Jacob"] },
-        { role: "Text & Choreography", names: ["Jack Ferver"] },
-        { role: "Photography", names: ["Daniel Rampulla"] }
+        { role: "Directed, Edited, Music, and Produced by", names: ["Jeremy Jacob"] },
+        { role: "Written and Choreography by", names: ["Jack Ferver"] },
+        { role: "Director of Photography", names: ["Daniel Rampulla"] }
     ]
 },
 
@@ -464,7 +538,23 @@ const projects = [
         thumbnail: "images/thumbnails/pastoral.jpg",
 
     description: "Fisher Center at Bard",
-    credits: []
+    credits: [
+    { role: "Campaign Direction, Photography, Editing, and Titles by", names: ["Jeremy Jacob"] },
+    { role: "Choreography", names: ["Pam Tanowitz"] },
+    { role: "Décor Design", names: ["Sarah Crowner"] },
+    { role: "Music", names: ["Caroline Shaw"] },
+    { role: "Costume Design", names: ["Reid Bartelme"] },
+    { role: "Sound Design", names: ["Justin Ellington"] },
+    { role: "Production & Lighting Design", names: ["Davison Scandrett"] },
+    { role: "Associate Production Design", names: ["Nicholas Houfek"] },
+    { role: "Associate Sound Design & Audio Supervisor", names: ["Stephen Jensen"] },
+    { role: "Technical Director & Production Manager", names: ["Mark Quiles"] },
+    { role: "Stage Manager", names: ["Nicole Mitchell Mommen"] },
+    { role: "Rehearsal Director", names: ["Maile Okamura"] },
+    { role: "Music Supervisor", names: ["Dana Jessen"] },
+    { role: "Producer", names: ["Jason Collins"] },
+    { role: "Presented by", names: ["Fisher Center at Bard"] }
+]
 },
 
 {
@@ -507,9 +597,23 @@ const projects = [
     type: "vimeo",
     vimeo: "939996147",
     format: "wide",
-        thumbnail: "images/thumbnails/illinoise.jpg",
+    thumbnail: "images/thumbnails/illinoise.jpg",
     description: "Chicago Shakespeare Theater, Park Avenue Armory & Fisher Center at Bard",
-    credits: []
+    credits: [
+        { role: "Campaign Direction, Photography, Editing and Titles by", names: ["Jeremy Jacob"] },
+        { role: "Music & Lyrics", names: ["Sufjan Stevens"] },
+        { role: "Story", names: ["Justin Peck", "Jackie Sibblies Drury"] },
+        { role: "Direction & Choreography", names: ["Justin Peck"] },
+        { role: "Music Direction & Supervision", names: ["Nathan Koci"] },
+        { role: "Music Arrangements & Orchestrations", names: ["Timo Andres"] },
+        { role: "Scenic Design", names: ["Adam Rigg"] },
+        { role: "Lighting Design", names: ["Brandon Stirling Baker"] },
+        { role: "Sound Design", names: ["Garth MacAleavey"] },
+        { role: "Costume Design", names: ["Reid Bartelme", "Harriet Jung"] },
+        { role: "Props Design", names: ["Andrew Diaz"] },
+        { role: "Masks", names: ["Julian Crouch"] },
+        { role: "Producers", names: ["Fisher Center at Bard", "Park Avenue Armory", "Chicago Shakespeare Theater"] }
+    ]
 },
 
 {
