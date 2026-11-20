@@ -37,7 +37,7 @@ const projects = [
 
 {
     title: "Storm King - Girl Group",
-    category: "Dance Film Highlights",
+    category: "Performance Highlights",
     type: "vimeo",
     vimeo: "1007644295",
     thumbnail: "images/thumbnails/stormking_girlgroup.jpg",
@@ -159,8 +159,8 @@ const projects = [
 },
 
 {
-    title: "Storm King - Growth",
-    category: "Performance Film Highlights",
+    title: "Storm King / Performance Highlights",
+    category: "Performance Documentation",
     type: "vimeo",
     vimeo: "1122967020",
     format: "wide",
@@ -173,7 +173,7 @@ const projects = [
 
 {
     title: "Romber Works",
-    category: "Profile Film",
+    category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1119062430",
     format: "wide",
@@ -184,8 +184,8 @@ const projects = [
 },
 
 {
-    title: "Bard College",
-    category: "It's Different",
+    title: "Bard College / It's Different",
+    category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1229121057",
     hash: "3f29c53761",
@@ -193,7 +193,7 @@ const projects = [
     format: "wide",
     description: "",
     credits: [
-        { role: "Creative Director & Producer", names: ["Jeremy Jacob"] },
+        { role: "Creative Director, Director, & Producer", names: ["Jeremy Jacob"] },
         { role: "Written by", names: ["Savannah Lucas Sanchez"] },
         { role: "Photography, Editing, and Music by", names: ["Jeremy Jacob"] },
         { role: "Sound Recordist", names: ["Joao De La Cruz"] }
@@ -202,7 +202,7 @@ const projects = [
 
 {
     title: "Lucinda Childs",
-    category: "Campaign",
+    category: "Promotional Campaign",
     type: "vimeo",
     vimeo: "1180594270",
     format: "wide",
@@ -228,10 +228,11 @@ const projects = [
     format: "wide",
     description: "American Ballet Theatre",
     credits: [
-        { role: "Direction", names: ["Jeremy Jacob"] },
+        { role: "Direction, Music, Editing, and Produced by", names: ["Jeremy Jacob"] },
         { role: "Choreography", names: ["Pam Tanowitz"] },
-        { role: "Photography", names: ["Daniel Rampulla"] },
-        { role: "Starring", names: ["David Hallberg"] }
+        { role: "Starring", names: ["David Hallberg"] },
+        { role: "Director of Photography", names: ["Daniel Rampulla"] },
+        { role: "Costume Design by", names: ["Reid Bartelme and Harriet Jung"] }
     ]
 },
 
@@ -243,9 +244,9 @@ const projects = [
     format: "wide",
     description: "Fisher Center at Bard",
     credits: [
-        { role: "Direction", names: ["Jeremy Jacob"] },
-        { role: "Choreography", names: ["Pam Tanowitz"] },
-        { role: "Photography", names: ["Daniel Rampulla"] }
+        { role: "Direction, Editing, and Produced by", names: ["Jeremy Jacob"] },
+        { role: "Choreography by", names: ["Pam Tanowitz"] },
+        { role: "Director of Photography", names: ["Daniel Rampulla"] }
     ]
 },
 
@@ -290,6 +291,8 @@ const projects = [
         "images/MDWL_34.jpg"
     ],
     description: "",
+                thumbnail: "images/thumbnails/MDWL_1.jpg",
+
     credits: [
         { role: "Prop Styling & Set Design", names: ["Jeremy Jacob"] }
     ]
@@ -303,28 +306,29 @@ const projects = [
     format: "wide",
     description: "",
     credits: [
-        { role: "Direction", names: ["Jeremy Jacob"] },
-        { role: "Choreography", names: ["Netta Yerushalmy"] },
-        { role: "Photography", names: ["Daniel Rampulla"] }
+        { role: "Direction, Music, Editing and Written by", names: ["Jeremy Jacob"] },
+        { role: "Written by and Choreography by", names: ["Netta Yerushalmy"] },
+        { role: "Director of Photography", names: ["Daniel Rampulla"] }
     ]
 },
 
 {
     title: "Good Night",
-    category: "Film",
+    category: "Short Film",
     type: "vimeo",
     vimeo: "1226948282",
     format: "wide",
     description: "Works & Process at the Guggenheim",
     credits: [
         { role: "Film by", names: ["Jeremy Jacob"] },
-        { role: "Text & Choreography", names: ["Jack Ferver"] }
+        { role: "Text & Choreography", names: ["Jack Ferver"] },
+        { role: "Commissioned by", names: ["Works & Process at the Guggenheim"] }
     ]
 },
 
 {
-    title: "Gary Graham",
-    category: "Social Campaign - Dressing",
+    title: "Gary Graham / Dressing",
+    category: "Social Campaign",
     type: "vimeo",
     vimeo: "816869534",
     format: "vertical",
@@ -350,7 +354,7 @@ const projects = [
 
 {
     title: "Radioactive Practice",
-    category: "Film Trailer",
+    category: "Dance Film Trailer",
     type: "vimeo",
     vimeo: "1226957906",
     format: "wide",
@@ -363,8 +367,8 @@ const projects = [
 },
 
 {
-    title: "Romber Works",
-    category: "Hamlet on the Hudson",
+    title: "Romber Works / Hamlet on the Hudson",
+    category: "Craftsmanship Portrait",
     type: "vimeo",
     vimeo: "1052327824",
     format: "wide",
@@ -464,8 +468,8 @@ const projects = [
 },
 
 {
-    title: "Gary Graham",
-    category: "Social Campaign - Corsage",
+    title: "Gary Graham / Corsage",
+    category: "Social Campaign",
     type: "vimeo",
     vimeo: "816869497",
     format: "vertical",
@@ -474,8 +478,8 @@ const projects = [
 },
 
 {
-    title: "Romber Works",
-    category: "Hamlet on the Hudson Library",
+    title: "Romber Works / Library",
+    category: "Craftsmanship Portrait",
     type: "vimeo",
     vimeo: "1041157693",
     format: "wide",
