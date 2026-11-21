@@ -2443,6 +2443,16 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
     gap: 5px;
   }
 
+  /* Reduce vertical videos by 10% on mobile */
+
+.vimeo-wrap.vertical {
+  width: min(90%, 342px);
+}
+
+.triple-vertical-grid {
+  width: 90%;
+}
+
   .triple-vimeo-wrap .vimeo-controls {
     gap: 3px;
     padding: 7px 4px;
