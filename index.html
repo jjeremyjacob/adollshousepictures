@@ -164,7 +164,7 @@
 
         <iframe
           id="studioHeroPlayer"
-          src="https://player.vimeo.com/video/1247956538?h=6841a6b5e1&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
+          src="https://player.vimeo.com/video/1249446082?h=d4dd13baf8&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&transparent=0&dnt=1&playsinline=1"
           title="A Doll's House Pictures"
           allow="autoplay; fullscreen; picture-in-picture"
           allowfullscreen
@@ -461,15 +461,6 @@
 <script src="js/navigation.js" defer></script>
 
 
-<!-- =====================================================
-     09 — SHARED HERO VIDEO INITIALIZATION
-
-     Both hero videos use the same Vimeo event handling.
-
-     The poster remains visible until Vimeo emits "playing".
-     If playback fails or autoplay is blocked, the poster
-     stays visible.
-====================================================== -->
 
 <script>
 window.addEventListener("DOMContentLoaded", () => {
@@ -479,56 +470,44 @@ window.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const initializeHeroVideo = (containerId, iframeId, label) => {
+  const container = document.getElementById("studioHeroImage");
+  const iframe = document.getElementById("studioHeroPlayer");
 
-    const container = document.getElementById(containerId);
-    const iframe = document.getElementById(iframeId);
+  if (!container || !iframe) return;
 
-    if (!container || !iframe) return;
+  const player = new Vimeo.Player(iframe);
 
-    const player = new Vimeo.Player(iframe);
+  player.on("playing", () => {
+    container.classList.add("is-playing");
+  });
 
-    player.on("playing", () => {
-      container.classList.add("is-playing");
+  player.on("error", error => {
+    console.warn("Homepage hero video error:", error);
+  });
+
+  player.ready()
+    .then(() => player.setMuted(true))
+    .then(() => player.getDuration())
+    .then(duration => {
+
+      if (!duration || !Number.isFinite(duration)) {
+        throw new Error("Unable to determine video duration.");
+      }
+
+      // Choose a random starting point.
+      // Avoid the final five seconds.
+      const randomStart = Math.random() * Math.max(1, duration - 5);
+
+      return player.setCurrentTime(randomStart);
+    })
+    .then(() => player.play())
+    .catch(error => {
+      console.warn("Homepage hero initialization:", error);
     });
-
-    player.on("error", error => {
-      console.warn(label + " video error:", error);
-
-      // Keep the poster visible if playback fails.
-    });
-
-    player.ready()
-      .then(() => player.setMuted(true))
-      .then(() => player.play())
-      .catch(error => {
-        console.warn(label + " video initialization:", error);
-
-        // Keep the poster visible if autoplay is unavailable.
-      });
-
-  };
-
-
-  /* HOMEPAGE HERO */
-
-  initializeHeroVideo(
-    "studioHeroImage",
-    "studioHeroPlayer",
-    "Homepage hero"
-  );
-
-
-  /* FEATURED PROJECT */
-
-  initializeHeroVideo(
-    "heroImage",
-    "featuredProjectPlayer",
-    "Featured project"
-  );
 
 });
 </script>
+
 
 </body>
 </html>
