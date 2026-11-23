@@ -2446,7 +2446,7 @@ body.detail-open .detail-bottom .detail-step:focus-visible {
   /* Reduce vertical videos by 10% on mobile */
 
 .vimeo-wrap.vertical {
-  width: min(90%, 342px);
+  width: min(85%, 342px);
 }
 
 .triple-vertical-grid {
