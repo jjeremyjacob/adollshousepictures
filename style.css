@@ -656,7 +656,7 @@ a {
 .featuredproject .hero-open {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 5px;
   margin-top: 25px;
   color: var(--ink);
   font: 10px var(--mono);
@@ -665,11 +665,12 @@ a {
 }
 
 .featuredproject .hero-open span {
-  transition: transform .25s ease;
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
 
 .featuredproject .hero-open:hover span {
-  transform: translateX(5px);
+  transform: translate(3px, -3px);
 }
 
 .featuredproject .hero-scroll {
