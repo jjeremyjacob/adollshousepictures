@@ -25,6 +25,7 @@
   align-items: center;
   position: relative;
   z-index: 30;
+  overflow: visible;
   background: var(--nav-ink);
   border-bottom: 1px solid var(--nav-line);
   color: var(--nav-paper);
@@ -68,7 +69,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: clamp(17px, 2.5vw, 34px);
+  gap: clamp(12px, 2vw, 30px);
+  overflow: visible;
   font: 9px/1.4 "DM Mono", monospace;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -102,19 +104,6 @@
    SECTION 02 — EDITORIAL DROPDOWN
 ============================================================ */
 
-/* Navigation positioning */
-
-.site-nav-header {
-  position: relative;
-  overflow: visible;
-}
-
-.site-nav-desktop {
-  overflow: visible;
-}
-
-/* Dropdown trigger */
-
 .site-nav-dropdown {
   position: static;
   height: 100%;
@@ -146,6 +135,7 @@
   color: var(--nav-paper);
 }
 
+
 /* Caret */
 
 .site-nav-caret {
@@ -163,8 +153,9 @@
   transform: rotate(180deg);
 }
 
+
 /* ============================================================
-   DROPDOWN PANEL
+   SECTION 03 — DROPDOWN PANEL
 ============================================================ */
 
 .site-nav-dropdown-menu {
@@ -172,24 +163,19 @@
   top: 100%;
   right: var(--gutter, clamp(20px, 5vw, 78px));
   z-index: 50;
-
   width: min(390px, calc(100vw - 40px));
   padding: 0;
-
   display: block;
   background: #111110;
   border: 1px solid rgba(232, 228, 220, .13);
   border-top: 0;
   box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
   transform-origin: top center;
   transform: translateY(-3px) scaleY(.985);
   clip-path: inset(0 0 100% 0);
-
   transition:
     opacity .4s ease,
     transform .65s cubic-bezier(.22, 1, .36, 1),
@@ -197,24 +183,18 @@
     visibility 0s linear .65s;
 }
 
-/* Open state */
-
 .site-nav-dropdown.is-open .site-nav-dropdown-menu {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-
   transform: translateY(0) scaleY(1);
   clip-path: inset(0 0 0 0);
-
   transition:
     opacity .45s ease,
     transform .75s cubic-bezier(.16, 1, .3, 1),
     clip-path .65s cubic-bezier(.16, 1, .3, 1),
     visibility 0s;
 }
-
-/* Invisible hover bridge */
 
 .site-nav-dropdown-menu::before {
   content: "";
@@ -225,15 +205,14 @@
   height: 14px;
 }
 
+
 /* ============================================================
-   INNER LAYOUT
+   SECTION 04 — DROPDOWN INNER LAYOUT
 ============================================================ */
 
 .site-nav-dropdown-inner {
   padding: 25px 28px 19px;
 }
-
-/* Heading */
 
 .site-nav-dropdown-heading {
   display: flex;
@@ -249,8 +228,9 @@
   text-transform: uppercase;
 }
 
+
 /* ============================================================
-   DROPDOWN LINKS
+   SECTION 05 — DROPDOWN LINKS
 ============================================================ */
 
 .site-nav-dropdown-links {
@@ -274,15 +254,11 @@
   border-bottom: 0;
 }
 
-/* Number */
-
 .site-nav-dropdown-number {
   color: rgba(232, 228, 220, .34);
   font: 8px/1 "DM Mono", monospace;
   letter-spacing: .04em;
 }
-
-/* Title */
 
 .site-nav-dropdown-title {
   font: 400 14px/1.4 "Cormorant Garamond", Georgia, serif;
@@ -290,8 +266,6 @@
   text-transform: none;
   transition: transform .4s cubic-bezier(.22, 1, .36, 1);
 }
-
-/* Arrow */
 
 .site-nav-dropdown-arrow {
   color: rgba(232, 228, 220, .35);
@@ -302,8 +276,6 @@
     opacity .3s ease,
     transform .4s cubic-bezier(.22, 1, .36, 1);
 }
-
-/* Hover */
 
 .site-nav-dropdown-links a:hover,
 .site-nav-dropdown-links a[aria-current="page"] {
@@ -319,15 +291,14 @@
   transform: translate(0, 0);
 }
 
-/* Current page */
-
 .site-nav-dropdown-links a[aria-current="page"] .site-nav-dropdown-title,
 .site-nav-dropdown-links a[aria-current="page"] .site-nav-dropdown-number {
   color: var(--nav-paper);
 }
 
+
 /* ============================================================
-   FOOTER
+   SECTION 06 — DROPDOWN FOOTER
 ============================================================ */
 
 .site-nav-dropdown-footer {
@@ -339,30 +310,24 @@
   letter-spacing: .13em;
 }
 
-/* ============================================================
-   EDITORIAL CONTENT REVEAL
-============================================================ */
 
-/* Initial hidden state */
+/* ============================================================
+   SECTION 07 — EDITORIAL CONTENT REVEAL
+============================================================ */
 
 .site-nav-dropdown-heading,
 .site-nav-dropdown-links a,
 .site-nav-dropdown-footer {
   opacity: 0;
   transform: translateY(8px);
-
   transition:
     opacity .65s ease,
     transform .8s cubic-bezier(.16, 1, .3, 1);
 }
 
-/* Heading */
-
 .site-nav-dropdown-heading {
   transition-delay: .04s;
 }
-
-/* Staggered links */
 
 .site-nav-dropdown-links a:nth-child(1) {
   transition-delay: .10s;
@@ -396,13 +361,9 @@
   transition-delay: .45s;
 }
 
-/* Footer */
-
 .site-nav-dropdown-footer {
   transition-delay: .48s;
 }
-
-/* Revealed state */
 
 .site-nav-dropdown.is-open .site-nav-dropdown-heading,
 .site-nav-dropdown.is-open .site-nav-dropdown-links a,
@@ -411,51 +372,15 @@
   transform: translateY(0);
 }
 
-/* Reset delays when closing */
-
 .site-nav-dropdown:not(.is-open) .site-nav-dropdown-heading,
 .site-nav-dropdown:not(.is-open) .site-nav-dropdown-links a,
 .site-nav-dropdown:not(.is-open) .site-nav-dropdown-footer {
   transition-delay: 0s;
 }
 
-/* ============================================================
-   RESPONSIVE
-============================================================ */
-
-@media (max-width: 1250px) {
-  .site-nav-dropdown {
-    display: none;
-  }
-}
 
 /* ============================================================
-   REDUCED MOTION
-============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .site-nav-dropdown-menu,
-  .site-nav-dropdown-links a,
-  .site-nav-dropdown-title,
-  .site-nav-dropdown-arrow,
-  .site-nav-caret,
-  .site-nav-dropdown-heading,
-  .site-nav-dropdown-footer {
-    transition: none !important;
-  }
-
-  .site-nav-dropdown-heading,
-  .site-nav-dropdown-links a,
-  .site-nav-dropdown-footer {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-
-
-/* ============================================================
-   SECTION 03 — ABOUT / CONTACT TRIGGERS
+   SECTION 08 — ABOUT / CONTACT TRIGGERS
 ============================================================ */
 
 .site-nav-contact-trigger,
@@ -493,7 +418,7 @@
 
 
 /* ============================================================
-   SECTION 04 — MOBILE MENU BUTTON
+   SECTION 09 — MOBILE MENU BUTTON
 ============================================================ */
 
 .site-nav-menu-button {
@@ -529,7 +454,7 @@
 
 
 /* ============================================================
-   SECTION 05 — MOBILE DRAWER
+   SECTION 10 — MOBILE DRAWER
 ============================================================ */
 
 .site-nav-backdrop {
@@ -678,8 +603,10 @@
 
 
 /* ============================================================
-   SECTION 06 — NAVIGATION RESPONSIVE
+   SECTION 11 — NAVIGATION RESPONSIVE
 ============================================================ */
+
+/* Tablet and smaller desktop */
 
 @media (max-width: 1100px) {
   .site-nav-header {
@@ -691,9 +618,15 @@
   }
 
   .site-nav-desktop {
-    gap: 19px;
+    gap: clamp(10px, 1.5vw, 19px);
+  }
+
+  .site-nav-dropdown {
+    display: flex;
   }
 }
+
+/* Mobile */
 
 @media (max-width: 700px) {
   .site-nav-header {
@@ -714,7 +647,7 @@
 
 
 /* ============================================================
-   SECTION 07 — BODY SCROLL LOCK
+   SECTION 12 — BODY SCROLL LOCK
 ============================================================ */
 
 body.site-nav-open,
@@ -725,7 +658,7 @@ body.site-about-open {
 
 
 /* ============================================================
-   SECTION 08 — SHARED LIGHTBOX FOUNDATION
+   SECTION 13 — SHARED LIGHTBOX FOUNDATION
 ============================================================ */
 
 .site-contact-lightbox,
@@ -811,7 +744,7 @@ body.site-about-open {
 
 
 /* ============================================================
-   SECTION 09 — CONTACT LIGHTBOX
+   SECTION 14 — CONTACT LIGHTBOX
 ============================================================ */
 
 .site-contact-content {
@@ -972,8 +905,9 @@ body.site-about-open {
   text-transform: uppercase;
 }
 
+
 /* ============================================================
-   SECTION 10 — ABOUT LIGHTBOX
+   SECTION 15 — ABOUT LIGHTBOX
 ============================================================ */
 
 .site-about-panel {
@@ -1072,7 +1006,7 @@ body.site-about-open {
 
 
 /* ============================================================
-   SECTION 11 — ABOUT COPY / EDITORIAL SECTIONS
+   SECTION 16 — ABOUT COPY / EDITORIAL SECTIONS
 ============================================================ */
 
 .site-about-copy {
@@ -1111,10 +1045,6 @@ body.site-about-open {
   background: rgba(232, 228, 220, .28);
 }
 
-/* ============================================================
-   SECTION LAYOUT
-============================================================ */
-
 .site-about-section {
   width: 100%;
   flex: 0 0 auto;
@@ -1134,10 +1064,6 @@ body.site-about-open {
   border-bottom: 0;
 }
 
-/* ============================================================
-   SECTION LABELS
-============================================================ */
-
 .site-about-section-heading {
   display: flex;
   flex-direction: column;
@@ -1152,11 +1078,6 @@ body.site-about-open {
   color: rgba(232, 228, 220, .43);
 }
 
-/* ============================================================
-   PARAGRAPH FOUNDATION
-   Sections 02–04
-============================================================ */
-
 .site-about-section-copy {
   width: 100%;
   max-width: 680px;
@@ -1169,11 +1090,6 @@ body.site-about-open {
   margin: 0;
 }
 
-/* ============================================================
-   SECTION 01 — WHO WE ARE
-   Larger opening statement
-============================================================ */
-
 .site-about-section:first-child .site-about-section-copy {
   max-width: 760px;
   color: rgba(232, 228, 220, .97);
@@ -1181,11 +1097,6 @@ body.site-about-open {
   line-height: 1.7;
   letter-spacing: -.035em;
 }
-
-/* ============================================================
-   SECTION 02–04
-   Consistent supporting paragraph treatment
-============================================================ */
 
 .site-about-section:nth-child(2) .site-about-section-copy,
 .site-about-section:nth-child(3) .site-about-section-copy,
@@ -1199,87 +1110,13 @@ body.site-about-open {
   letter-spacing: -.015em;
 }
 
-/* Hide separate founder headline */
-
 .site-about-section:nth-child(4) .site-about-section-title {
   display: none;
 }
 
-/* ============================================================
-   RESPONSIVE — TABLET
-============================================================ */
-
-@media (max-width: 1000px) {
-
-  .site-about-section {
-    grid-template-columns: minmax(100px, .32fr) minmax(0, 1fr);
-    gap: 6vw;
-  }
-
-  .site-about-section:first-child .site-about-section-copy {
-    font-size: 17px;
-  }
-
-}
 
 /* ============================================================
-   RESPONSIVE — MOBILE
-============================================================ */
-
-@media (max-width: 700px) {
-
-  .site-about-section {
-    display: grid;
-    grid-template-columns: 82px minmax(0, 1fr);
-    gap: 16px;
-    padding: 20px 0;
-  }
-
-  .site-about-section:first-child {
-    padding-top: 5px;
-  }
-
-  .site-about-section-heading {
-    gap: 7px;
-    font-size: 7px;
-    line-height: 1.5;
-  }
-
-  .site-about-section-copy,
-  .site-about-section-copy p {
-    font-size: 12px;
-    line-height: 1.75;
-  }
-
-  .site-about-section:first-child .site-about-section-copy,
-  .site-about-section:first-child .site-about-section-copy p {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-}
-
-/* ============================================================
-   RESPONSIVE — SMALL MOBILE
-============================================================ */
-
-@media (max-width: 380px) {
-
-  .site-about-section {
-    grid-template-columns: 70px minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  .site-about-section:first-child .site-about-section-copy,
-  .site-about-section:first-child .site-about-section-copy p {
-    font-size: 14px;
-  }
-
-}
-}
-
-/* ============================================================
-   SECTION 12 — ABOUT LINKS
+   SECTION 17 — ABOUT LINKS
 ============================================================ */
 
 .site-about-links {
@@ -1322,10 +1159,18 @@ body.site-about-open {
 
 
 /* ============================================================
-   SECTION 13 — TABLET
+   SECTION 18 — TABLET
 ============================================================ */
 
 @media (max-width: 1000px) {
+  .site-about-section {
+    grid-template-columns: minmax(100px, .32fr) minmax(0, 1fr);
+    gap: 6vw;
+  }
+
+  .site-about-section:first-child .site-about-section-copy {
+    font-size: 17px;
+  }
 
   .site-about-content {
     padding: 76px 6vw 68px;
@@ -1341,14 +1186,7 @@ body.site-about-open {
     column-gap: 6vw;
   }
 
-  .site-about-section {
-    grid-template-columns: minmax(100px, .32fr) minmax(0, 1fr);
-  }
-
-  .site-about-section:nth-child(3) .site-about-section-copy {
-    font-size: 13px;
-  }
-
+  .site-about-section:nth-child(3) .site-about-section-copy,
   .site-about-section:nth-child(3) .site-about-section-copy p {
     font-size: 13px;
   }
@@ -1361,17 +1199,44 @@ body.site-about-open {
     padding-left: 6vw;
     padding-right: 6vw;
   }
-
 }
 
+
 /* ============================================================
-   SECTION 14 — MOBILE
-   FULL ABOUT LIGHTBOX SCROLL
+   SECTION 19 — MOBILE
 ============================================================ */
 
 @media (max-width: 700px) {
 
-  /* LIGHTBOX */
+  /* CONTACT */
+
+  .site-contact-content {
+    min-height: 100dvh;
+    padding: 85px 22px 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 30px;
+  }
+
+  .site-contact-copy {
+    width: 100%;
+  }
+
+  .site-contact-title {
+    font-size: clamp(58px, 12vw, 82px);
+  }
+
+  .site-contact-details {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 16px;
+  }
+
+  .site-contact-footer {
+    padding: 16px 22px 22px;
+  }
+
+  /* ABOUT LIGHTBOX */
 
   .site-about-lightbox {
     align-items: flex-start;
@@ -1395,8 +1260,6 @@ body.site-about-open {
     right: 22px;
   }
 
-  /* ENTIRE CONTENT BECOMES THE SCROLLING AREA */
-
   .site-about-content {
     width: 100%;
     height: auto;
@@ -1413,8 +1276,6 @@ body.site-about-open {
     flex: 0 0 auto;
     margin-bottom: 0;
   }
-
-  /* HERO */
 
   .site-about-hero {
     width: 100%;
@@ -1444,8 +1305,6 @@ body.site-about-open {
     width: 100%;
     margin-top: 12px;
   }
-
-  /* ABOUT COPY — NO INDEPENDENT SCROLLING */
 
   .site-about-copy {
     width: 100%;
@@ -1497,15 +1356,11 @@ body.site-about-open {
     line-height: 1.75;
   }
 
-  /* FIRST PARAGRAPH */
-
   .site-about-section:first-child .site-about-section-copy,
   .site-about-section:first-child .site-about-section-copy p {
     font-size: 15px;
     line-height: 1.7;
   }
-
-  /* ABOUT LINKS */
 
   .site-about-links {
     flex: 0 0 auto;
@@ -1518,8 +1373,6 @@ body.site-about-open {
     gap: 10px;
   }
 
-  /* FOOTER — NOW PART OF THE SCROLLING CONTENT */
-
   .site-about-footer {
     position: relative;
     left: auto;
@@ -1530,48 +1383,15 @@ body.site-about-open {
     padding: 18px 22px 25px;
     flex: 0 0 auto;
   }
-
 }
 
 
 /* ============================================================
-   SECTION 15 — SMALL MOBILE
+   SECTION 20 — SMALL MOBILE
 ============================================================ */
 
 @media (max-width: 380px) {
 
-  .site-about-content {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .site-about-title {
-    font-size: 36px;
-  }
-
-  .site-about-section {
-    grid-template-columns: 70px minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  .site-about-footer {
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-
-  .site-about-marquee {
-    gap: 8px;
-    font-size: 6px;
-  }
-
-}
-
-
-/* ============================================================
-   SECTION 15 — SMALL MOBILE
-============================================================ */
-
-@media (max-width: 380px) {
   .site-contact-content,
   .site-about-content {
     padding-right: 18px;
@@ -1594,7 +1414,17 @@ body.site-about-open {
   }
 
   .site-about-title {
-    font-size: 56px;
+    font-size: 36px;
+  }
+
+  .site-about-section {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .site-about-section:first-child .site-about-section-copy,
+  .site-about-section:first-child .site-about-section-copy p {
+    font-size: 14px;
   }
 
   .site-about-marquee {
@@ -1605,12 +1435,18 @@ body.site-about-open {
 
 
 /* ============================================================
-   SECTION 16 — REDUCED MOTION
+   SECTION 21 — REDUCED MOTION
 ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .site-nav-dropdown-menu,
+  .site-nav-dropdown-links a,
+  .site-nav-dropdown-title,
+  .site-nav-dropdown-arrow,
   .site-nav-caret,
+  .site-nav-dropdown-heading,
+  .site-nav-dropdown-footer,
   .site-nav-contact-arrow,
   .site-nav-about-arrow,
   .site-nav-menu-button span,
@@ -1629,5 +1465,12 @@ body.site-about-open {
   .site-about-links a,
   .site-about-links a span {
     transition: none !important;
+  }
+
+  .site-nav-dropdown-heading,
+  .site-nav-dropdown-links a,
+  .site-nav-dropdown-footer {
+    opacity: 1;
+    transform: none;
   }
 }
