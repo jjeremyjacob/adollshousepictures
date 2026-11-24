@@ -462,48 +462,79 @@
 
 
 
+
 <script>
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   if (!window.Vimeo || !window.Vimeo.Player) {
+    console.warn("Vimeo Player API did not load.");
     return;
   }
 
-  const container = document.getElementById("studioHeroImage");
-  const iframe = document.getElementById("studioHeroPlayer");
+  /* =========================================
+     01 — HOMEPAGE HERO
+     Random starting position
+  ========================================= */
 
-  if (!container || !iframe) return;
+  const studioContainer = document.getElementById("studioHeroImage");
+  const studioIframe = document.getElementById("studioHeroPlayer");
 
-  const player = new Vimeo.Player(iframe);
+  if (studioContainer && studioIframe) {
+    const studioPlayer = new Vimeo.Player(studioIframe);
 
-  player.on("playing", () => {
-    container.classList.add("is-playing");
-  });
-
-  player.on("error", error => {
-    console.warn("Homepage hero video error:", error);
-  });
-
-  player.ready()
-    .then(() => player.setMuted(true))
-    .then(() => player.getDuration())
-    .then(duration => {
-
-      if (!duration || !Number.isFinite(duration)) {
-        throw new Error("Unable to determine video duration.");
-      }
-
-      // Choose a random starting point.
-      // Avoid the final five seconds.
-      const randomStart = Math.random() * Math.max(1, duration - 5);
-
-      return player.setCurrentTime(randomStart);
-    })
-    .then(() => player.play())
-    .catch(error => {
-      console.warn("Homepage hero initialization:", error);
+    studioPlayer.on("playing", () => {
+      studioContainer.classList.add("is-playing");
     });
+
+    studioPlayer.on("error", error => {
+      console.warn("Homepage hero video error:", error);
+    });
+
+    studioPlayer.ready()
+      .then(() => studioPlayer.setMuted(true))
+      .then(() => studioPlayer.getDuration())
+      .then(duration => {
+        if (!duration || !Number.isFinite(duration)) {
+          throw new Error("Unable to determine video duration.");
+        }
+
+        const randomStart = Math.random() * Math.max(1, duration - 5);
+        return studioPlayer.setCurrentTime(randomStart);
+      })
+      .then(() => studioPlayer.play())
+      .catch(error => {
+        console.warn("Homepage hero initialization:", error);
+      });
+  }
+
+
+  /* =========================================
+     02 — FEATURED PROJECT
+     Stissing House background video
+  ========================================= */
+
+  const featuredContainer = document.getElementById("heroImage");
+  const featuredIframe = document.getElementById("featuredProjectPlayer");
+
+  if (featuredContainer && featuredIframe) {
+    const featuredPlayer = new Vimeo.Player(featuredIframe);
+
+    featuredPlayer.on("playing", () => {
+      featuredContainer.classList.add("is-playing");
+    });
+
+    featuredPlayer.on("error", error => {
+      console.warn("Featured project video error:", error);
+    });
+
+    featuredPlayer.ready()
+      .then(() => featuredPlayer.setMuted(true))
+      .then(() => featuredPlayer.play())
+      .catch(error => {
+        console.warn("Featured project video initialization:", error);
+      });
+  }
 
 });
 </script>
